@@ -53,11 +53,10 @@ namespace AssigementOOADWinForms.Data
             modelBuilder.Entity<StockAdjustment>().ToTable("tbStockAdjustment");
             modelBuilder.Entity<AuditLog>().ToTable("tbAuditLog");
 
-            // ✅ Define primary key for AuditLog
+            // Primary key for AuditLog
             modelBuilder.Entity<AuditLog>()
                 .HasKey(al => al.LogID);
 
-            // ✅ Make LogID auto-increment (IDENTITY)
             modelBuilder.Entity<AuditLog>()
                 .Property(al => al.LogID)
                 .ValueGeneratedOnAdd();
@@ -66,42 +65,62 @@ namespace AssigementOOADWinForms.Data
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryID);
+                .HasForeignKey(p => p.CategoryID)
+                .OnDelete(DeleteBehavior.Restrict); // ❌ Disable cascade
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Supplier)
                 .WithMany(s => s.Products)
-                .HasForeignKey(p => p.SupplierID);
+                .HasForeignKey(p => p.SupplierID)
+                .OnDelete(DeleteBehavior.Restrict); // ❌ Disable cascade
 
             modelBuilder.Entity<PurchaseOrder>()
                 .HasOne(po => po.Supplier)
                 .WithMany(s => s.PurchaseOrders)
-                .HasForeignKey(po => po.SupplierID);
+                .HasForeignKey(po => po.SupplierID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<PurchaseOrder>()
                 .HasOne(po => po.Employee)
                 .WithMany(e => e.PurchaseOrders)
-                .HasForeignKey(po => po.EmployeeID);
+                .HasForeignKey(po => po.EmployeeID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PurchaseOrderDetail>()
+                .HasOne(pod => pod.PurchaseOrder)
+                .WithMany(po => po.PurchaseOrderDetails)
+                .HasForeignKey(pod => pod.PurchaseOrderID)
+                .OnDelete(DeleteBehavior.Restrict); // ❌ Prevent multiple cascade paths
+
+            modelBuilder.Entity<PurchaseOrderDetail>()
+                .HasOne(pod => pod.Product)
+                .WithMany(p => p.PurchaseOrderDetails)
+                .HasForeignKey(pod => pod.ProductID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SalesOrder>()
                 .HasOne(so => so.Customer)
                 .WithMany(c => c.SalesOrders)
-                .HasForeignKey(so => so.CustomerID);
+                .HasForeignKey(so => so.CustomerID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SalesOrder>()
                 .HasOne(so => so.Employee)
                 .WithMany(e => e.SalesOrders)
-                .HasForeignKey(so => so.EmployeeID);
+                .HasForeignKey(so => so.EmployeeID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AuditLog>()
                 .HasOne(al => al.User)
                 .WithMany(u => u.AuditLogs)
-                .HasForeignKey(al => al.UserID);
+                .HasForeignKey(al => al.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Default value for ActionDate
             modelBuilder.Entity<AuditLog>()
                 .Property(al => al.ActionDate)
                 .HasDefaultValueSql("GETDATE()");
         }
+
     }
 }
