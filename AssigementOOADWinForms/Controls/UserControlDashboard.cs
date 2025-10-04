@@ -24,9 +24,9 @@ namespace AssigementOOADWinForms.Controls
             InitializeComponent();
 
             // Rounded panels
-            RoundedPanelHelper.ApplyRoundedStyle(panel3, 15);
-            RoundedPanelHelper.ApplyRoundedStyle(panel4, 15);
-            RoundedPanelHelper.ApplyRoundedStyle(panel5, 15);
+            RoundedPanelHelper.ApplyRoundedStyle(panel3, 5);
+            RoundedPanelHelper.ApplyRoundedStyle(panel4, 5);
+            RoundedPanelHelper.ApplyRoundedStyle(panel5, 5);
 
             // Charts paint events
             pbStockVsSales.Paint += PbStockVsSales_Paint;
