@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Reflection;
-
 public static class RoundedPanelHelper
 {
     /// <summary>
@@ -43,7 +42,6 @@ public static class RoundedPanelHelper
             }
         };
     }
-
     private static GraphicsPath GetRoundedPath(Rectangle rect, int radius)
     {
         GraphicsPath path = new GraphicsPath();
