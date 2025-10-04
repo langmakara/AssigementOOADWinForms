@@ -1,40 +1,18 @@
-﻿using System;
-using System.Windows.Forms;
-using AssigementOOADWinForms.Data; // for ApplicationDbContext
-
-namespace AssigementOOADWinForms
+﻿using System.Net.Http.Json;
+using AssigementOOADWinForms.Classes;
+namespace AssigementOOADWinForms;
+public partial class Form1 : Form
 {
-    public partial class Form1 : Form
+    private readonly HttpClient _httpClient;
+    public Form1()
     {
-        public Form1()
-        {
-            InitializeComponent();
-            this.Load += Form1_Load; // Make sure Load event is hooked
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var db = new ApplicationDbContext())
-                {
-                    if (db.Database.CanConnect())
-                    {
-                        MessageBox.Show("✅ Database connection OK!", "Connection Test",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("❌ Cannot connect to the database.", "Connection Test",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("❌ Error: " + ex.Message, "Connection Test",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        InitializeComponent();
+        RoundedPanelHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
+        RoundedPanelHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
+        RoundedPanelHelper.ApplyRoundedStyle(panel3, borderRadius: 5);
+        RoundedPanelHelper.ApplyRoundedStyle(panel4, borderRadius: 5);
+        RoundedPanelHelper.ApplyRoundedStyle(panel5, borderRadius: 5);
     }
 }
+
+
