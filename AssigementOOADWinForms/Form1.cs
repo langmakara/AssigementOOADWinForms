@@ -8,6 +8,7 @@ public partial class Form1 : Form
     private UserControlUser? userControlUser;
     private UserControlEmployee? userControlEmployee;
     private UserControlSupplier? userControlSupplier;
+    private UserControlCustomer? userControlCustomer;
     public Form1()
     {
         InitializeComponent();
@@ -19,11 +20,13 @@ public partial class Form1 : Form
         userControlUser = new UserControlUser();
         userControlEmployee = new UserControlEmployee();
         userControlSupplier = new UserControlSupplier();
+        userControlCustomer = new UserControlCustomer();
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
         Lbuser.Click += HandleClickUser;
         LbEmployee.Click += HandleClickEmployee;
         LbSupplier.Click += HandleClickSupplier;
+        LbCustomer.Click += HandleClickCustomer;
         this.Load += Form1_Load;
 
     }
@@ -79,6 +82,27 @@ public partial class Form1 : Form
         {
             panelMain.Controls.Add(userControlSupplier);
             userControlSupplier.Dock = DockStyle.Fill;
+        }
+    }
+    private void HandleClickCustomer(object? sender, EventArgs args)
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbCustomer.Text;
+        if (userControlCustomer != null) {
+            panelMain.Controls.Add(userControlCustomer);
+            userControlCustomer.Dock = DockStyle.Fill;
+        }
+    }
+    private void HandleClickProduct(object? sender, EventArgs args)
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbCustomer.Text;
+        if (userControlCustomer != null)
+        {
+            panelMain.Controls.Add(userControlCustomer);
+            userControlCustomer.Dock = DockStyle.Fill;
         }
     }
     private void Form1_Load(object? sender, EventArgs e)

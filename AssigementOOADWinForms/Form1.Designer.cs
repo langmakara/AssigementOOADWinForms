@@ -48,7 +48,7 @@
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            label7 = new Label();
+            Lbproduct = new Label();
             LbCustomer = new Label();
             LbSupplier = new Label();
             LbEmployee = new Label();
@@ -98,7 +98,7 @@
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label8);
-            panel2.Controls.Add(label7);
+            panel2.Controls.Add(Lbproduct);
             panel2.Controls.Add(LbCustomer);
             panel2.Controls.Add(LbSupplier);
             panel2.Controls.Add(LbEmployee);
@@ -326,17 +326,17 @@
             label8.TabIndex = 9;
             label8.Text = "Categories";
             // 
-            // label7
+            // Lbproduct
             // 
-            label7.AutoSize = true;
-            label7.Cursor = Cursors.Hand;
-            label7.Font = new Font("Segoe UI", 15F);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(48, 410);
-            label7.Name = "label7";
-            label7.Size = new Size(89, 28);
-            label7.TabIndex = 8;
-            label7.Text = "Products";
+            Lbproduct.AutoSize = true;
+            Lbproduct.Cursor = Cursors.Hand;
+            Lbproduct.Font = new Font("Segoe UI", 15F);
+            Lbproduct.ForeColor = Color.White;
+            Lbproduct.Location = new Point(48, 410);
+            Lbproduct.Name = "Lbproduct";
+            Lbproduct.Size = new Size(89, 28);
+            Lbproduct.TabIndex = 8;
+            Lbproduct.Text = "Products";
             // 
             // LbCustomer
             // 
@@ -488,7 +488,7 @@
         private Label label10;
         private Label label9;
         private Label label8;
-        private Label label7;
+        private Label Lbproduct;
         private Label LbCustomer;
         private Label LbSupplier;
         private Label LbEmployee;
