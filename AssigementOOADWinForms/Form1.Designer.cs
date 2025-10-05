@@ -49,11 +49,11 @@
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
+            LbCustomer = new Label();
+            LbSupplier = new Label();
+            LbEmployee = new Label();
             Lbuser = new Label();
-            label2 = new Label();
+            LbInventory = new Label();
             LbDash = new Label();
             panel1 = new Panel();
             LbPage = new Label();
@@ -99,11 +99,11 @@
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label4);
+            panel2.Controls.Add(LbCustomer);
+            panel2.Controls.Add(LbSupplier);
+            panel2.Controls.Add(LbEmployee);
             panel2.Controls.Add(Lbuser);
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(LbInventory);
             panel2.Controls.Add(LbDash);
             panel2.Location = new Point(4, 3);
             panel2.Name = "panel2";
@@ -338,41 +338,41 @@
             label7.TabIndex = 8;
             label7.Text = "Products";
             // 
-            // label6
+            // LbCustomer
             // 
-            label6.AutoSize = true;
-            label6.Cursor = Cursors.Hand;
-            label6.Font = new Font("Segoe UI", 15F);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(48, 362);
-            label6.Name = "label6";
-            label6.Size = new Size(104, 28);
-            label6.TabIndex = 7;
-            label6.Text = "Customers";
+            LbCustomer.AutoSize = true;
+            LbCustomer.Cursor = Cursors.Hand;
+            LbCustomer.Font = new Font("Segoe UI", 15F);
+            LbCustomer.ForeColor = Color.White;
+            LbCustomer.Location = new Point(48, 362);
+            LbCustomer.Name = "LbCustomer";
+            LbCustomer.Size = new Size(104, 28);
+            LbCustomer.TabIndex = 7;
+            LbCustomer.Text = "Customers";
             // 
-            // label5
+            // LbSupplier
             // 
-            label5.AutoSize = true;
-            label5.Cursor = Cursors.Hand;
-            label5.Font = new Font("Segoe UI", 15F);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(48, 314);
-            label5.Name = "label5";
-            label5.Size = new Size(93, 28);
-            label5.TabIndex = 6;
-            label5.Text = "Suppliers";
+            LbSupplier.AutoSize = true;
+            LbSupplier.Cursor = Cursors.Hand;
+            LbSupplier.Font = new Font("Segoe UI", 15F);
+            LbSupplier.ForeColor = Color.White;
+            LbSupplier.Location = new Point(48, 314);
+            LbSupplier.Name = "LbSupplier";
+            LbSupplier.Size = new Size(93, 28);
+            LbSupplier.TabIndex = 6;
+            LbSupplier.Text = "Suppliers";
             // 
-            // label4
+            // LbEmployee
             // 
-            label4.AutoSize = true;
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(48, 266);
-            label4.Name = "label4";
-            label4.Size = new Size(98, 28);
-            label4.TabIndex = 5;
-            label4.Text = "Employee";
+            LbEmployee.AutoSize = true;
+            LbEmployee.Cursor = Cursors.Hand;
+            LbEmployee.Font = new Font("Segoe UI", 15F);
+            LbEmployee.ForeColor = Color.White;
+            LbEmployee.Location = new Point(48, 266);
+            LbEmployee.Name = "LbEmployee";
+            LbEmployee.Size = new Size(98, 28);
+            LbEmployee.TabIndex = 5;
+            LbEmployee.Text = "Employee";
             // 
             // Lbuser
             // 
@@ -386,17 +386,17 @@
             Lbuser.TabIndex = 4;
             Lbuser.Text = "User";
             // 
-            // label2
+            // LbInventory
             // 
-            label2.AutoSize = true;
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(48, 170);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 28);
-            label2.TabIndex = 3;
-            label2.Text = "Inventory";
+            LbInventory.AutoSize = true;
+            LbInventory.Cursor = Cursors.Hand;
+            LbInventory.Font = new Font("Segoe UI", 15F);
+            LbInventory.ForeColor = Color.White;
+            LbInventory.Location = new Point(48, 170);
+            LbInventory.Name = "LbInventory";
+            LbInventory.Size = new Size(95, 28);
+            LbInventory.TabIndex = 3;
+            LbInventory.Text = "Inventory";
             // 
             // LbDash
             // 
@@ -416,9 +416,9 @@
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(LbPage);
-            panel1.Location = new Point(208, 3);
+            panel1.Location = new Point(205, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(981, 75);
+            panel1.Size = new Size(984, 75);
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -437,10 +437,10 @@
             // panelMain
             // 
             panelMain.BackColor = Color.White;
-            panelMain.Location = new Point(205, 88);
+            panelMain.Location = new Point(205, 81);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(984, 661);
+            panelMain.Size = new Size(984, 668);
             panelMain.TabIndex = 7;
             // 
             // Form1
@@ -455,6 +455,7 @@
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
@@ -482,15 +483,15 @@
         #endregion
         private Panel panel2;
         private Label LbDash;
-        private Label label2;
+        private Label LbInventory;
         private Label Lbuser;
         private Label label10;
         private Label label9;
         private Label label8;
         private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
+        private Label LbCustomer;
+        private Label LbSupplier;
+        private Label LbEmployee;
         private Label label11;
         private PictureBox pictureBox1;
         private PictureBox pictureBox12;

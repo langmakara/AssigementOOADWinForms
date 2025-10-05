@@ -24,9 +24,9 @@ namespace AssigementOOADWinForms.Controls
             InitializeComponent();
 
             // Rounded panels
-            RoundedPanelHelper.ApplyRoundedStyle(panel3, 5);
-            RoundedPanelHelper.ApplyRoundedStyle(panel4, 5);
-            RoundedPanelHelper.ApplyRoundedStyle(panel5, 5);
+            DesignHelper.ApplyRoundedStyle(panel3, 5);
+            DesignHelper.ApplyRoundedStyle(panel4, 5);
+            DesignHelper.ApplyRoundedStyle(panel5, 5);
 
             // Charts paint events
             pbStockVsSales.Paint += PbStockVsSales_Paint;
@@ -37,8 +37,8 @@ namespace AssigementOOADWinForms.Controls
             // For Low Stock table
           
 
-            StyleDataGridView(dataGridView1);
-            StyleDataGridView(DataViewOutOfStock);
+            DesignHelper.StyleDataGridView(dataGridView1);
+            DesignHelper.StyleDataGridView(DataViewOutOfStock);
 
 
 
@@ -112,42 +112,7 @@ namespace AssigementOOADWinForms.Controls
             for (int i = 0; i < stock.Length; i++)
                 total += stock[i] * 10; // example price
             return total;
-        }
-
-        private void StyleDataGridView(DataGridView dgv)
-        {
-            dgv.EnableHeadersVisualStyles = false;
-
-            // Header style
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.DodgerBlue;
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-
-            // Row style
-            dgv.RowTemplate.Height = 28;
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.Black;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
-            dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            // Remove borders
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dgv.GridColor = Color.White;
-
-            // Remove row headers
-            dgv.RowHeadersVisible = false;
-
-            // Fill columns to available width
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Other settings
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-        }
+        }  
         #endregion
     }
 }

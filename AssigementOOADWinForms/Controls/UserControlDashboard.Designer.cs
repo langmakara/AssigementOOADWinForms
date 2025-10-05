@@ -208,7 +208,7 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(7, 133);
+            label1.Location = new Point(7, 136);
             label1.Name = "label1";
             label1.Size = new Size(105, 28);
             label1.TabIndex = 29;
@@ -220,7 +220,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(332, 134);
+            label2.Location = new Point(330, 136);
             label2.Name = "label2";
             label2.Size = new Size(132, 28);
             label2.TabIndex = 32;
@@ -231,22 +231,22 @@
             DataViewOutOfStock.BackgroundColor = Color.Azure;
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataViewOutOfStock.Location = new Point(332, 164);
+            DataViewOutOfStock.Location = new Point(332, 177);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
             DataViewOutOfStock.Size = new Size(306, 213);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // pbStockVsSales
             // 
-            pbStockVsSales.Location = new Point(661, 165);
+            pbStockVsSales.Location = new Point(661, 177);
             pbStockVsSales.Name = "pbStockVsSales";
-            pbStockVsSales.Size = new Size(312, 469);
+            pbStockVsSales.Size = new Size(312, 457);
             pbStockVsSales.TabIndex = 34;
             pbStockVsSales.TabStop = false;
             // 
             // pbStockTrend
             // 
-            pbStockTrend.Location = new Point(332, 411);
+            pbStockTrend.Location = new Point(332, 435);
             pbStockTrend.Name = "pbStockTrend";
             pbStockTrend.Size = new Size(306, 223);
             pbStockTrend.TabIndex = 35;
@@ -254,7 +254,7 @@
             // 
             // pbSalesTrend
             // 
-            pbSalesTrend.Location = new Point(9, 411);
+            pbSalesTrend.Location = new Point(15, 435);
             pbSalesTrend.Name = "pbSalesTrend";
             pbSalesTrend.Size = new Size(304, 222);
             pbSalesTrend.TabIndex = 36;
@@ -265,7 +265,7 @@
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 164);
+            dataGridView1.Location = new Point(7, 177);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(302, 213);
             dataGridView1.TabIndex = 30;
@@ -276,7 +276,7 @@
             lblSalesTrendTitle.Cursor = Cursors.Hand;
             lblSalesTrendTitle.Font = new Font("Segoe UI", 15F);
             lblSalesTrendTitle.ForeColor = Color.FromArgb(64, 64, 64);
-            lblSalesTrendTitle.Location = new Point(7, 381);
+            lblSalesTrendTitle.Location = new Point(18, 404);
             lblSalesTrendTitle.Name = "lblSalesTrendTitle";
             lblSalesTrendTitle.Size = new Size(188, 28);
             lblSalesTrendTitle.TabIndex = 37;
@@ -288,7 +288,7 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 15F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(336, 380);
+            label4.Location = new Point(335, 404);
             label4.Name = "label4";
             label4.Size = new Size(192, 28);
             label4.TabIndex = 38;
@@ -300,7 +300,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(663, 136);
+            label3.Location = new Point(661, 136);
             label3.Name = "label3";
             label3.Size = new Size(133, 28);
             label3.TabIndex = 39;
@@ -325,7 +325,7 @@
             Controls.Add(panel3);
             Controls.Add(panel4);
             Name = "UserControlDashboard";
-            Size = new Size(980, 640);
+            Size = new Size(984, 668);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
