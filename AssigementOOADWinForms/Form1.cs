@@ -9,6 +9,7 @@ public partial class Form1 : Form
     private UserControlEmployee? userControlEmployee;
     private UserControlSupplier? userControlSupplier;
     private UserControlCustomer? userControlCustomer;
+    private UserControlProduct? userControlProduct;
     public Form1()
     {
         InitializeComponent();
@@ -21,15 +22,25 @@ public partial class Form1 : Form
         userControlEmployee = new UserControlEmployee();
         userControlSupplier = new UserControlSupplier();
         userControlCustomer = new UserControlCustomer();
+        userControlProduct = new UserControlProduct();
+
+
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
         Lbuser.Click += HandleClickUser;
         LbEmployee.Click += HandleClickEmployee;
         LbSupplier.Click += HandleClickSupplier;
         LbCustomer.Click += HandleClickCustomer;
+        Lbproduct.Click += HandleClickProduct;
         this.Load += Form1_Load;
 
     }
+
+    private void Lbproduct_Click(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
     private void HandleClickDashBoard(object? sender, EventArgs e)
     {
         panelMain.Controls.Clear();
@@ -98,11 +109,11 @@ public partial class Form1 : Form
     {
         panelMain.Controls.Clear();
         LbPage.Text = "";
-        LbPage.Text = LbCustomer.Text;
-        if (userControlCustomer != null)
+        LbPage.Text = Lbproduct.Text;
+        if (userControlProduct != null)
         {
-            panelMain.Controls.Add(userControlCustomer);
-            userControlCustomer.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(userControlProduct);
+            userControlProduct.Dock = DockStyle.Fill;
         }
     }
     private void Form1_Load(object? sender, EventArgs e)

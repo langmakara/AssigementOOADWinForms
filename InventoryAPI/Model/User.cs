@@ -1,21 +1,28 @@
-using System.Collections.Generic;
-using InventoryAPI.Model;
-
+﻿using System.ComponentModel.DataAnnotations;
+using InventoryAPI.Enum;
 namespace InventoryAPI.Model
 {
     public class User
     {
+        [Key]
         public int UserID { get; set; }
 
+        [Required, MaxLength(50)]
         public string Username { get; set; }
+
+        [Required, MaxLength(255)]
         public string PasswordHash { get; set; }
 
-        // Optional: extra fields
+        [EmailAddress, MaxLength(100)]
         public string Email { get; set; }
-        public string Role { get; set; }   // e.g., Admin, Staff, Manager
+
+        [Required]
+        public UserRole Role { get; set; } = UserRole.Admin;
+
         public bool IsActive { get; set; } = true;
 
-        // Navigation property
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
         public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>();
     }
 }

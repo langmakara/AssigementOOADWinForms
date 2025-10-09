@@ -45,6 +45,7 @@
             dgvcustomer = new DataGridView();
             label2 = new Label();
             textBox5 = new TextBox();
+            btnRefresh = new Button();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvcustomer).BeginInit();
@@ -56,7 +57,7 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(668, 239);
+            panel3.Location = new Point(668, 502);
             panel3.Name = "panel3";
             panel3.Size = new Size(304, 115);
             panel3.TabIndex = 86;
@@ -129,7 +130,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(668, 82);
+            label5.Location = new Point(668, 126);
             label5.Name = "label5";
             label5.Size = new Size(67, 28);
             label5.TabIndex = 79;
@@ -141,7 +142,7 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 15F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(668, 155);
+            label4.Location = new Point(668, 199);
             label4.Name = "label4";
             label4.Size = new Size(107, 28);
             label4.TabIndex = 78;
@@ -149,7 +150,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(668, 187);
+            textBox4.Location = new Point(668, 231);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(304, 37);
@@ -157,7 +158,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(668, 114);
+            textBox3.Location = new Point(668, 158);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -169,7 +170,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(668, 9);
+            label3.Location = new Point(668, 53);
             label3.Name = "label3";
             label3.Size = new Size(64, 28);
             label3.TabIndex = 75;
@@ -177,7 +178,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(668, 41);
+            textBox2.Location = new Point(668, 85);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(304, 37);
@@ -232,10 +233,25 @@
             textBox5.Size = new Size(208, 37);
             textBox5.TabIndex = 89;
             // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.DodgerBlue;
+            btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.Location = new Point(495, 41);
+            btnRefresh.Margin = new Padding(0);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(129, 37);
+            btnRefresh.TabIndex = 90;
+            btnRefresh.Text = "Add User";
+            btnRefresh.UseVisualStyleBackColor = false;
+            // 
             // UserControlCustomer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Azure;
+            Controls.Add(btnRefresh);
             Controls.Add(textBox5);
             Controls.Add(label2);
             Controls.Add(panel3);
@@ -279,5 +295,6 @@
         private DataGridView dgvcustomer;
         private Label label2;
         private TextBox textBox5;
+        private Button btnRefresh;
     }
 }

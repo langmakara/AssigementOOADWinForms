@@ -37,9 +37,9 @@ partial class UserControlComponentProductCard
         // pictureBox1
         // 
         pictureBox1.BackColor = Color.White;
-        pictureBox1.Location = new Point(3, 3);
+        pictureBox1.Location = new Point(4, 7);
         pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(340, 234);
+        pictureBox1.Size = new Size(236, 234);
         pictureBox1.TabIndex = 0;
         pictureBox1.TabStop = false;
         // 
@@ -48,8 +48,8 @@ partial class UserControlComponentProductCard
         Lbproduct.AutoSize = true;
         Lbproduct.Cursor = Cursors.Hand;
         Lbproduct.Font = new Font("Segoe UI", 15F);
-        Lbproduct.ForeColor = Color.White;
-        Lbproduct.Location = new Point(3, 240);
+        Lbproduct.ForeColor = Color.FromArgb(64, 64, 64);
+        Lbproduct.Location = new Point(9, 245);
         Lbproduct.Name = "Lbproduct";
         Lbproduct.Size = new Size(85, 28);
         Lbproduct.TabIndex = 72;
@@ -60,8 +60,9 @@ partial class UserControlComponentProductCard
         Lbprice.AutoSize = true;
         Lbprice.Cursor = Cursors.Hand;
         Lbprice.Font = new Font("Segoe UI", 15F);
-        Lbprice.ForeColor = Color.White;
-        Lbprice.Location = new Point(3, 268);
+        Lbprice.ForeColor = Color.FromArgb(64, 64, 64);
+        Lbprice.Location = new Point(9, 273);
+        Lbprice.Margin = new Padding(0);
         Lbprice.Name = "Lbprice";
         Lbprice.Size = new Size(58, 28);
         Lbprice.TabIndex = 73;
@@ -72,24 +73,24 @@ partial class UserControlComponentProductCard
         Lbdescription.AutoSize = true;
         Lbdescription.Cursor = Cursors.Hand;
         Lbdescription.Font = new Font("Segoe UI", 15F);
-        Lbdescription.ForeColor = Color.White;
-        Lbdescription.Location = new Point(3, 296);
+        Lbdescription.ForeColor = Color.FromArgb(64, 64, 64);
+        Lbdescription.Location = new Point(9, 301);
         Lbdescription.Name = "Lbdescription";
         Lbdescription.Size = new Size(112, 28);
         Lbdescription.TabIndex = 74;
         Lbdescription.Text = "Description";
         // 
-        // UserControlConponentProductCard
+        // UserControlComponentProductCard
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.DodgerBlue;
+        BackColor = Color.Azure;
         Controls.Add(Lbdescription);
         Controls.Add(Lbprice);
         Controls.Add(Lbproduct);
         Controls.Add(pictureBox1);
-        Name = "UserControlConponentProductCard";
-        Size = new Size(346, 324);
+        Name = "UserControlComponentProductCard";
+        Size = new Size(245, 336);
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         ResumeLayout(false);
         PerformLayout();

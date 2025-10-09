@@ -1,7 +1,6 @@
-﻿using InventoryAPI.Model;
+﻿using InventoryAPI.Enum;
+using InventoryAPI.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-
 namespace InventoryAPI.Data
 {
     public class ApplicationDbContext : DbContext
@@ -25,6 +24,7 @@ namespace InventoryAPI.Data
             : base(options)
         {
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -111,6 +111,11 @@ namespace InventoryAPI.Data
             modelBuilder.Entity<AuditLog>()
                         .Property(al => al.ActionDate)
                         .HasDefaultValueSql("GETDATE()");
+            modelBuilder.Entity<User>()
+    .Property(u => u.Role)
+    .HasConversion<string>() // store enum as string
+    .HasDefaultValue(UserRole.Admin);
+
         }
     }
 }

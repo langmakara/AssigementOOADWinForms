@@ -284,11 +284,11 @@
             label11.Cursor = Cursors.Hand;
             label11.Font = new Font("Segoe UI", 15F);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(48, 602);
+            label11.Location = new Point(48, 599);
             label11.Name = "label11";
-            label11.Size = new Size(83, 28);
+            label11.Size = new Size(113, 28);
             label11.TabIndex = 12;
-            label11.Text = "Settings";
+            label11.Text = "Adjustment";
             // 
             // label10
             // 

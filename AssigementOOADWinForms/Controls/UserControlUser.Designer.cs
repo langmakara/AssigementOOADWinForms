@@ -112,7 +112,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(665, 43);
+            pictureBox1.Location = new Point(669, 43);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(304, 334);
             pictureBox1.TabIndex = 38;
@@ -124,7 +124,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(665, 459);
+            label3.Location = new Point(669, 459);
             label3.Name = "label3";
             label3.Size = new Size(64, 28);
             label3.TabIndex = 40;
@@ -132,7 +132,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(665, 490);
+            textBox3.Location = new Point(669, 490);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -140,7 +140,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(665, 569);
+            textBox4.Location = new Point(669, 569);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(304, 37);
@@ -152,7 +152,7 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 15F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(665, 534);
+            label4.Location = new Point(669, 534);
             label4.Name = "label4";
             label4.Size = new Size(50, 28);
             label4.TabIndex = 43;
@@ -164,7 +164,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(665, 380);
+            label5.Location = new Point(669, 380);
             label5.Name = "label5";
             label5.Size = new Size(31, 28);
             label5.TabIndex = 44;
@@ -175,7 +175,7 @@
             button1.BackColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderSize = 0;
-            button1.Location = new Point(665, 622);
+            button1.Location = new Point(669, 622);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(129, 37);
@@ -188,7 +188,7 @@
             button2.BackColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
-            button2.Location = new Point(840, 622);
+            button2.Location = new Point(844, 622);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(129, 37);
@@ -198,7 +198,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(665, 411);
+            textBox2.Location = new Point(669, 411);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(304, 37);
