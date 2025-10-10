@@ -118,6 +118,7 @@ partial class FormLogin
         btLogin.TabIndex = 6;
         btLogin.Text = "LOG IN";
         btLogin.UseVisualStyleBackColor = false;
+        btLogin.Click += btLogin_Click_1;
         // 
         // lbExit
         // 
@@ -131,6 +132,7 @@ partial class FormLogin
         lbExit.Size = new Size(57, 20);
         lbExit.TabIndex = 7;
         lbExit.Text = "Close";
+        lbExit.Click += lbExit_Click;
         // 
         // lbClearFields
         // 
@@ -144,6 +146,7 @@ partial class FormLogin
         lbClearFields.Size = new Size(105, 20);
         lbClearFields.TabIndex = 8;
         lbClearFields.Text = "ClearFields";
+        lbClearFields.Click += lbClearFields_Click;
         // 
         // tbUser
         // 

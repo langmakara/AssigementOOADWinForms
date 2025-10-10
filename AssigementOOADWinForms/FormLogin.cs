@@ -22,9 +22,9 @@ namespace AssigementOOADWinForms
 
         }
 
-        private void btLogin_Click(object sender, EventArgs e)
+
+        private void btLogin_Click_1(object sender, EventArgs e)
         {
-            // Fixing the syntax errors in the if statement
             if (tbUser.Text == "MakaraLang" && tbPassword.Text == "1234567")
             {
                 new Form1().Show();
@@ -44,22 +44,11 @@ namespace AssigementOOADWinForms
             Application.Exit();
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void lbClearFields_Click(object sender, EventArgs e)
         {
             tbUser.Clear();
             tbPassword.Clear();
             tbUser.Focus();
-
-        }
-
-        private void NovaCompany_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
