@@ -249,7 +249,7 @@
             // 
             comboBox2.Font = new Font("Segoe UI", 15F);
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(262, 41);
+            comboBox2.Location = new Point(268, 41);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(224, 36);
             comboBox2.TabIndex = 137;
