@@ -42,6 +42,10 @@
             textBox2 = new TextBox();
             dgvcustomer = new DataGridView();
             btnRefresh = new Button();
+            textBox5 = new TextBox();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
+            label4 = new Label();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvcustomer).BeginInit();
@@ -53,11 +57,11 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(657, 52);
+            label2.Location = new Point(664, 4);
             label2.Name = "label2";
-            label2.Size = new Size(48, 28);
+            label2.Size = new Size(111, 28);
             label2.TabIndex = 102;
-            label2.Text = "Sale";
+            label2.Text = "CategoryID";
             // 
             // panel3
             // 
@@ -65,7 +69,7 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(657, 491);
+            panel3.Location = new Point(660, 341);
             panel3.Name = "panel3";
             panel3.Size = new Size(304, 115);
             panel3.TabIndex = 101;
@@ -111,7 +115,7 @@
             button2.BackColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
-            button2.Location = new Point(832, 622);
+            button2.Location = new Point(835, 621);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(129, 37);
@@ -124,12 +128,12 @@
             button1.BackColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderSize = 0;
-            button1.Location = new Point(657, 621);
+            button1.Location = new Point(664, 621);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(129, 37);
             button1.TabIndex = 99;
-            button1.Text = "Edit";
+            button1.Text = "Save";
             button1.UseVisualStyleBackColor = false;
             // 
             // label5
@@ -138,23 +142,24 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(657, 124);
+            label5.Location = new Point(660, 119);
             label5.Name = "label5";
-            label5.Size = new Size(64, 28);
+            label5.Size = new Size(144, 28);
             label5.TabIndex = 98;
-            label5.Text = "Name";
+            label5.Text = "CategoryName";
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(657, 229);
+            textBox4.Location = new Point(660, 265);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(304, 37);
             textBox4.TabIndex = 96;
+            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(657, 156);
+            textBox3.Location = new Point(664, 150);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -166,7 +171,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(657, 198);
+            label3.Location = new Point(663, 234);
             label3.Name = "label3";
             label3.Size = new Size(112, 28);
             label3.TabIndex = 94;
@@ -174,7 +179,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(657, 83);
+            textBox2.Location = new Point(663, 35);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(304, 37);
@@ -185,9 +190,9 @@
             // 
             dgvcustomer.BackgroundColor = Color.White;
             dgvcustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvcustomer.Location = new Point(13, 83);
+            dgvcustomer.Location = new Point(3, 77);
             dgvcustomer.Name = "dgvcustomer";
-            dgvcustomer.Size = new Size(612, 576);
+            dgvcustomer.Size = new Size(648, 588);
             dgvcustomer.TabIndex = 90;
             // 
             // btnRefresh
@@ -195,19 +200,64 @@
             btnRefresh.BackColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Location = new Point(461, 42);
+            btnRefresh.Location = new Point(522, 34);
             btnRefresh.Margin = new Padding(0);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(129, 37);
             btnRefresh.TabIndex = 103;
-            btnRefresh.Text = "Add User";
+            btnRefresh.Text = "Clear";
             btnRefresh.UseVisualStyleBackColor = false;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(270, 34);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(245, 37);
+            textBox5.TabIndex = 105;
+            // 
+            // comboBox1
+            // 
+            comboBox1.Font = new Font("Segoe UI", 15F);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(3, 35);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(261, 36);
+            comboBox1.TabIndex = 106;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Segoe UI", 15F);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(3, 4);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 28);
+            label1.TabIndex = 107;
+            label1.Text = "Supplier";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 15F);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(270, 4);
+            label4.Name = "label4";
+            label4.Size = new Size(144, 28);
+            label4.TabIndex = 108;
+            label4.Text = "CategoryName";
             // 
             // UserControlCategory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
+            Controls.Add(label4);
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
+            Controls.Add(textBox5);
             Controls.Add(btnRefresh);
             Controls.Add(label2);
             Controls.Add(panel3);
@@ -244,5 +294,9 @@
         private TextBox textBox2;
         private DataGridView dgvcustomer;
         private Button btnRefresh;
+        private TextBox textBox5;
+        private ComboBox comboBox1;
+        private Label label1;
+        private Label label4;
     }
 }

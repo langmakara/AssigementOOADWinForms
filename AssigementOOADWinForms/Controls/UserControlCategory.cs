@@ -15,9 +15,15 @@ namespace AssigementOOADWinForms.Controls
         public UserControlCategory()
         {
             InitializeComponent();
+            dgvcustomer.CellPainting += DesignHelper.dataGridView1_CellPainting;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }

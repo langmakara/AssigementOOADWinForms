@@ -17,5 +17,10 @@ namespace AssigementOOADWinForms.Controls
             InitializeComponent();
             DesignHelper.StyleDataGridView(dgvinventory);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

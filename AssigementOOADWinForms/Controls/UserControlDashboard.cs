@@ -39,7 +39,9 @@ namespace AssigementOOADWinForms.Controls
 
             DesignHelper.StyleDataGridView(dataGridView1);
             DesignHelper.StyleDataGridView(DataViewOutOfStock);
-
+            dataGridView1.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            DataViewOutOfStock.CellPainting += DesignHelper.dataGridView1_CellPainting;
+  
 
 
             LoadDashboard();
