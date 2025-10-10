@@ -35,7 +35,6 @@
             comboBox1 = new ComboBox();
             label3 = new Label();
             textBox2 = new TextBox();
-            label4 = new Label();
             textBox3 = new TextBox();
             panel3 = new Panel();
             label14 = new Label();
@@ -48,6 +47,9 @@
             comboBox2 = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             label6 = new Label();
+            label7 = new Label();
+            textBox1 = new TextBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvinventory).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -57,9 +59,9 @@
             // 
             dgvinventory.BackgroundColor = Color.White;
             dgvinventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvinventory.Location = new Point(12, 81);
+            dgvinventory.Location = new Point(3, 76);
             dgvinventory.Name = "dgvinventory";
-            dgvinventory.Size = new Size(649, 572);
+            dgvinventory.Size = new Size(795, 588);
             dgvinventory.TabIndex = 1;
             // 
             // label1
@@ -68,11 +70,11 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(667, 7);
+            label1.Location = new Point(807, 3);
             label1.Name = "label1";
-            label1.Size = new Size(81, 28);
+            label1.Size = new Size(100, 28);
             label1.TabIndex = 30;
-            label1.Text = "Product";
+            label1.Text = "ProductID";
             // 
             // btnRefresh
             // 
@@ -80,10 +82,10 @@
             btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderSize = 0;
             btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(535, 38);
+            btnRefresh.Location = new Point(662, 29);
             btnRefresh.Margin = new Padding(0);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(129, 37);
+            btnRefresh.Size = new Size(136, 42);
             btnRefresh.TabIndex = 31;
             btnRefresh.Text = "Clear";
             btnRefresh.UseVisualStyleBackColor = false;
@@ -94,7 +96,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(667, 114);
+            label2.Location = new Point(804, 105);
             label2.Name = "label2";
             label2.Size = new Size(137, 28);
             label2.TabIndex = 32;
@@ -104,7 +106,7 @@
             // 
             comboBox1.Font = new Font("Segoe UI", 15F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(667, 145);
+            comboBox1.Location = new Point(804, 138);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(304, 36);
             comboBox1.TabIndex = 0;
@@ -115,7 +117,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(667, 227);
+            label3.Location = new Point(804, 213);
             label3.Name = "label3";
             label3.Size = new Size(154, 28);
             label3.TabIndex = 33;
@@ -123,27 +125,15 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(667, 258);
+            textBox2.Location = new Point(804, 244);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(304, 37);
             textBox2.TabIndex = 34;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(667, 334);
-            label4.Name = "label4";
-            label4.Size = new Size(115, 28);
-            label4.TabIndex = 35;
-            label4.Text = "ReferenceID";
-            // 
             // textBox3
             // 
-            textBox3.Location = new Point(667, 365);
+            textBox3.Location = new Point(804, 351);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -155,9 +145,9 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(667, 441);
+            panel3.Location = new Point(804, 510);
             panel3.Name = "panel3";
-            panel3.Size = new Size(304, 115);
+            panel3.Size = new Size(304, 101);
             panel3.TabIndex = 102;
             // 
             // label14
@@ -166,7 +156,7 @@
             label14.Cursor = Cursors.Hand;
             label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(32, 58);
+            label14.Location = new Point(32, 50);
             label14.Name = "label14";
             label14.Size = new Size(97, 37);
             label14.TabIndex = 28;
@@ -179,18 +169,18 @@
             label13.Cursor = Cursors.Hand;
             label13.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(16, 18);
+            label13.Location = new Point(16, 12);
             label13.Name = "label13";
-            label13.Size = new Size(166, 28);
+            label13.Size = new Size(216, 28);
             label13.TabIndex = 27;
-            label13.Text = "Total Employees";
+            label13.Text = "Transation Per Month";
             // 
             // pictureBox13
             // 
             pictureBox13.BackgroundImage = Properties.Resources.icons8_employees_100__1_;
             pictureBox13.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox13.Cursor = Cursors.AppStarting;
-            pictureBox13.Location = new Point(255, 18);
+            pictureBox13.Location = new Point(255, 12);
             pictureBox13.Name = "pictureBox13";
             pictureBox13.Size = new Size(30, 30);
             pictureBox13.TabIndex = 27;
@@ -202,7 +192,7 @@
             button1.FlatAppearance.BorderColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderSize = 0;
             button1.ForeColor = Color.White;
-            button1.Location = new Point(667, 614);
+            button1.Location = new Point(801, 625);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(129, 37);
@@ -216,7 +206,7 @@
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(842, 614);
+            button2.Location = new Point(979, 625);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(129, 37);
@@ -226,10 +216,10 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(12, 38);
+            textBox5.Location = new Point(3, 31);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(225, 37);
+            textBox5.Size = new Size(288, 37);
             textBox5.TabIndex = 106;
             // 
             // label5
@@ -238,7 +228,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(243, 7);
+            label5.Location = new Point(300, 3);
             label5.Name = "label5";
             label5.Size = new Size(137, 28);
             label5.TabIndex = 107;
@@ -248,17 +238,17 @@
             // 
             comboBox2.Font = new Font("Segoe UI", 15F);
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(667, 39);
+            comboBox2.Location = new Point(801, 32);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(304, 36);
             comboBox2.TabIndex = 108;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 13F);
-            dateTimePicker1.Location = new Point(243, 43);
+            dateTimePicker1.Font = new Font("Segoe UI", 16F);
+            dateTimePicker1.Location = new Point(297, 32);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(286, 31);
+            dateTimePicker1.Size = new Size(362, 36);
             dateTimePicker1.TabIndex = 109;
             // 
             // label6
@@ -267,17 +257,53 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.FromArgb(64, 64, 64);
-            label6.Location = new Point(12, 7);
+            label6.Location = new Point(3, 3);
             label6.Name = "label6";
             label6.Size = new Size(137, 28);
             label6.TabIndex = 110;
             label6.Text = "TransitionData";
+            label6.Click += label6_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Cursor = Cursors.Hand;
+            label7.Font = new Font("Segoe UI", 15F);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
+            label7.Location = new Point(804, 320);
+            label7.Name = "label7";
+            label7.Size = new Size(137, 28);
+            label7.TabIndex = 111;
+            label7.Text = "TransitionType";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(804, 458);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(304, 37);
+            textBox1.TabIndex = 112;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 15F);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(807, 427);
+            label4.Name = "label4";
+            label4.Size = new Size(115, 28);
+            label4.TabIndex = 113;
+            label4.Text = "ReferenceID";
             // 
             // UserControlInventory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
+            Controls.Add(label4);
+            Controls.Add(textBox1);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(dateTimePicker1);
             Controls.Add(comboBox2);
@@ -287,7 +313,6 @@
             Controls.Add(button1);
             Controls.Add(panel3);
             Controls.Add(textBox3);
-            Controls.Add(label4);
             Controls.Add(textBox2);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -296,7 +321,8 @@
             Controls.Add(dgvinventory);
             Controls.Add(comboBox1);
             Name = "UserControlInventory";
-            Size = new Size(984, 668);
+            Size = new Size(1111, 664);
+            Load += UserControlInventory_Load;
             ((System.ComponentModel.ISupportInitialize)dgvinventory).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -313,7 +339,6 @@
         private ComboBox comboBox1;
         private Label label3;
         private TextBox textBox2;
-        private Label label4;
         private TextBox textBox3;
         private Panel panel3;
         private Label label14;
@@ -326,5 +351,8 @@
         private ComboBox comboBox2;
         private DateTimePicker dateTimePicker1;
         private Label label6;
+        private Label label7;
+        private TextBox textBox1;
+        private Label label4;
     }
 }

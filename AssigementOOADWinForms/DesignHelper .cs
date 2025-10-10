@@ -6,22 +6,9 @@ using System.Reflection;
 
 public static class DesignHelper
 {
-    // --- Load Delete Icon ---
-    public static Image deleteImg;
+    
 
-    static DesignHelper()
-    {
-        try
-        {
-            deleteImg = Image.FromFile("D:\\IconforC#\\icons8-categories-100(1).png");
-        }
-        catch
-        {
-            MessageBox.Show("Delete icon not found! Please check the file path.",
-                            "Icon Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            deleteImg = null; // fallback
-        }
-    }
+
 
     // --- Apply Rounded Style to Panel ---
     public static void ApplyRoundedStyle(Panel panel, int borderRadius = 20, Color? borderColor = null, int borderThickness = 0)
@@ -122,31 +109,6 @@ public static class DesignHelper
             {
                 e.Graphics.FillRectangle(glassBrush, rect);
             }
-
-            var grid = sender as DataGridView;
-
-            // Draw Delete icon if column exists
-            if (grid.Columns.Contains("Delete") && grid.Columns[e.ColumnIndex].Name == "Delete")
-            {
-                if (deleteImg != null)
-                {
-                    int iconSize = Math.Min(e.CellBounds.Height - 4, e.CellBounds.Width - 4);
-                    int imgX = e.CellBounds.Left + (e.CellBounds.Width - iconSize) / 2;
-                    int imgY = e.CellBounds.Top + (e.CellBounds.Height - iconSize) / 2;
-
-                    e.Graphics.DrawImage(deleteImg, new Rectangle(imgX, imgY, iconSize, iconSize));
-                }
-                else
-                {
-                    // Fallback: draw red "X"
-                    TextRenderer.DrawText(e.Graphics, "X", grid.Font, e.CellBounds, Color.Red,
-                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-                }
-
-                e.Handled = true;
-                return;
-            }
-
             e.PaintContent(rect);
             e.Handled = true;
         }

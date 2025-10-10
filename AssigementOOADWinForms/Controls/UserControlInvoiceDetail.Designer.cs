@@ -1,6 +1,6 @@
 ﻿namespace AssigementOOADWinForms.Controls
 {
-    partial class UserControlCategory
+    partial class UserControlInvoiceDetail
     {
         /// <summary> 
         /// Required designer variable.
@@ -46,6 +46,10 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             label4 = new Label();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            textBox6 = new TextBox();
+            label7 = new Label();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvcustomer).BeginInit();
@@ -57,7 +61,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(664, 4);
+            label2.Location = new Point(803, 108);
             label2.Name = "label2";
             label2.Size = new Size(111, 28);
             label2.TabIndex = 102;
@@ -69,9 +73,9 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(660, 341);
+            panel3.Location = new Point(803, 505);
             panel3.Name = "panel3";
-            panel3.Size = new Size(304, 115);
+            panel3.Size = new Size(300, 104);
             panel3.TabIndex = 101;
             // 
             // label14
@@ -115,20 +119,21 @@
             button2.BackColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
-            button2.Location = new Point(835, 621);
+            button2.Location = new Point(978, 627);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(129, 37);
             button2.TabIndex = 100;
             button2.Text = "Remove";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
             button1.BackColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderSize = 0;
-            button1.Location = new Point(664, 621);
+            button1.Location = new Point(803, 627);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(129, 37);
@@ -142,7 +147,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(660, 119);
+            label5.Location = new Point(803, 212);
             label5.Name = "label5";
             label5.Size = new Size(144, 28);
             label5.TabIndex = 98;
@@ -150,16 +155,16 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(660, 265);
+            textBox4.Location = new Point(803, 339);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(304, 37);
+            textBox4.Size = new Size(303, 37);
             textBox4.TabIndex = 96;
             textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(664, 150);
+            textBox3.Location = new Point(803, 243);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -171,7 +176,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(663, 234);
+            label3.Location = new Point(803, 308);
             label3.Name = "label3";
             label3.Size = new Size(112, 28);
             label3.TabIndex = 94;
@@ -179,10 +184,10 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(663, 35);
+            textBox2.Location = new Point(803, 139);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(304, 37);
+            textBox2.Size = new Size(303, 37);
             textBox2.TabIndex = 93;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
@@ -192,7 +197,7 @@
             dgvcustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvcustomer.Location = new Point(3, 77);
             dgvcustomer.Name = "dgvcustomer";
-            dgvcustomer.Size = new Size(648, 588);
+            dgvcustomer.Size = new Size(790, 588);
             dgvcustomer.TabIndex = 90;
             // 
             // btnRefresh
@@ -200,17 +205,17 @@
             btnRefresh.BackColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Location = new Point(522, 34);
+            btnRefresh.Location = new Point(664, 31);
             btnRefresh.Margin = new Padding(0);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(129, 37);
+            btnRefresh.Size = new Size(129, 40);
             btnRefresh.TabIndex = 103;
             btnRefresh.Text = "Clear";
             btnRefresh.UseVisualStyleBackColor = false;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(270, 34);
+            textBox5.Location = new Point(338, 34);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(245, 37);
@@ -243,17 +248,61 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 15F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(270, 4);
+            label4.Location = new Point(338, 3);
             label4.Name = "label4";
             label4.Size = new Size(144, 28);
             label4.TabIndex = 108;
             label4.Text = "CategoryName";
             // 
-            // UserControlCategory
+            // textBox1
+            // 
+            textBox1.Location = new Point(803, 31);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(303, 37);
+            textBox1.TabIndex = 109;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Cursor = Cursors.Hand;
+            label6.Font = new Font("Segoe UI", 15F);
+            label6.ForeColor = Color.FromArgb(64, 64, 64);
+            label6.Location = new Point(806, 4);
+            label6.Name = "label6";
+            label6.Size = new Size(111, 28);
+            label6.TabIndex = 110;
+            label6.Text = "CategoryID";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(803, 451);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(303, 37);
+            textBox6.TabIndex = 111;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Cursor = Cursors.Hand;
+            label7.Font = new Font("Segoe UI", 15F);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
+            label7.Location = new Point(806, 420);
+            label7.Name = "label7";
+            label7.Size = new Size(112, 28);
+            label7.TabIndex = 112;
+            label7.Text = "Description";
+            // 
+            // UserControlInvoiceDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
+            Controls.Add(label7);
+            Controls.Add(textBox6);
+            Controls.Add(label6);
+            Controls.Add(textBox1);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(comboBox1);
@@ -269,8 +318,8 @@
             Controls.Add(label3);
             Controls.Add(textBox2);
             Controls.Add(dgvcustomer);
-            Name = "UserControlCategory";
-            Size = new Size(984, 668);
+            Name = "UserControlInvoiceDetail";
+            Size = new Size(1111, 664);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
@@ -298,5 +347,9 @@
         private ComboBox comboBox1;
         private Label label1;
         private Label label4;
+        private TextBox textBox1;
+        private Label label6;
+        private TextBox textBox6;
+        private Label label7;
     }
 }

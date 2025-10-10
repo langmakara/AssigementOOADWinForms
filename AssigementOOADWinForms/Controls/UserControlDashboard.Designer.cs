@@ -69,9 +69,9 @@
             panel5.Controls.Add(pictureBox15);
             panel5.Controls.Add(label18);
             panel5.Controls.Add(label17);
-            panel5.Location = new Point(659, 6);
+            panel5.Location = new Point(729, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(312, 115);
+            panel5.Size = new Size(379, 130);
             panel5.TabIndex = 3;
             // 
             // pictureBox15
@@ -115,9 +115,9 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(5, 6);
+            panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(308, 115);
+            panel3.Size = new Size(349, 130);
             panel3.TabIndex = 2;
             // 
             // label14
@@ -162,9 +162,9 @@
             panel4.Controls.Add(label16);
             panel4.Controls.Add(pictureBox14);
             panel4.Controls.Add(label15);
-            panel4.Location = new Point(330, 6);
+            panel4.Location = new Point(364, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(312, 115);
+            panel4.Size = new Size(353, 130);
             panel4.TabIndex = 3;
             // 
             // label16
@@ -231,32 +231,35 @@
             DataViewOutOfStock.BackgroundColor = Color.Azure;
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataViewOutOfStock.Location = new Point(332, 177);
+            DataViewOutOfStock.Location = new Point(330, 167);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(306, 213);
+            DataViewOutOfStock.Size = new Size(331, 241);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // pbStockVsSales
             // 
-            pbStockVsSales.Location = new Point(661, 177);
+            pbStockVsSales.Location = new Point(661, 164);
+            pbStockVsSales.Margin = new Padding(0);
             pbStockVsSales.Name = "pbStockVsSales";
-            pbStockVsSales.Size = new Size(312, 457);
+            pbStockVsSales.Size = new Size(447, 497);
             pbStockVsSales.TabIndex = 34;
             pbStockVsSales.TabStop = false;
             // 
             // pbStockTrend
             // 
-            pbStockTrend.Location = new Point(332, 435);
+            pbStockTrend.Location = new Point(330, 435);
+            pbStockTrend.Margin = new Padding(0);
             pbStockTrend.Name = "pbStockTrend";
-            pbStockTrend.Size = new Size(306, 223);
+            pbStockTrend.Size = new Size(331, 226);
             pbStockTrend.TabIndex = 35;
             pbStockTrend.TabStop = false;
             // 
             // pbSalesTrend
             // 
-            pbSalesTrend.Location = new Point(15, 435);
+            pbSalesTrend.Location = new Point(3, 435);
+            pbSalesTrend.Margin = new Padding(0);
             pbSalesTrend.Name = "pbSalesTrend";
-            pbSalesTrend.Size = new Size(304, 222);
+            pbSalesTrend.Size = new Size(323, 226);
             pbSalesTrend.TabIndex = 36;
             pbSalesTrend.TabStop = false;
             // 
@@ -265,9 +268,9 @@
             dataGridView1.BackgroundColor = Color.Azure;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 177);
+            dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(302, 213);
+            dataGridView1.Size = new Size(323, 241);
             dataGridView1.TabIndex = 30;
             // 
             // lblSalesTrendTitle
@@ -325,7 +328,7 @@
             Controls.Add(panel3);
             Controls.Add(panel4);
             Name = "UserControlDashboard";
-            Size = new Size(984, 668);
+            Size = new Size(1111, 664);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();

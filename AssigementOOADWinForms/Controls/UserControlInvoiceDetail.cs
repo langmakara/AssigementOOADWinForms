@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AssigementOOADWinForms.Controls
 {
-    public partial class UserControlCategory : UserControl
+    public partial class UserControlInvoiceDetail : UserControl
     {
-        public UserControlCategory()
+        public UserControlInvoiceDetail()
         {
             InitializeComponent();
             dgvcustomer.CellPainting += DesignHelper.dataGridView1_CellPainting;
@@ -24,6 +24,11 @@ namespace AssigementOOADWinForms.Controls
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

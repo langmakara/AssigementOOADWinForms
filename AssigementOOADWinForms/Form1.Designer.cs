@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            label2 = new Label();
+            pictureBox8 = new PictureBox();
+            pictureBox1 = new PictureBox();
             pictureBox13 = new PictureBox();
             label1 = new Label();
             label12 = new Label();
@@ -45,7 +48,7 @@
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
-            label8 = new Label();
+            LbInvoice = new Label();
             Lbproduct = new Label();
             LbSupplier = new Label();
             LbEmployee = new Label();
@@ -55,10 +58,9 @@
             panel1 = new Panel();
             LbPage = new Label();
             panelMain = new Panel();
-            pictureBox1 = new PictureBox();
-            label2 = new Label();
-            pictureBox8 = new PictureBox();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
@@ -71,8 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -98,7 +98,7 @@
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label9);
-            panel2.Controls.Add(label8);
+            panel2.Controls.Add(LbInvoice);
             panel2.Controls.Add(Lbproduct);
             panel2.Controls.Add(LbSupplier);
             panel2.Controls.Add(LbEmployee);
@@ -107,8 +107,42 @@
             panel2.Controls.Add(LbDash);
             panel2.Location = new Point(4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(199, 746);
+            panel2.Size = new Size(199, 743);
             panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Cursor = Cursors.Hand;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(48, 639);
+            label2.Name = "label2";
+            label2.Size = new Size(113, 28);
+            label2.TabIndex = 31;
+            label2.Text = "Adjustment";
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackgroundImage = Properties.Resources.icons8_logout_96;
+            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox8.Cursor = Cursors.AppStarting;
+            pictureBox8.Location = new Point(17, 639);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(25, 25);
+            pictureBox8.TabIndex = 30;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.icons8_products_100__1_;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Cursor = Cursors.AppStarting;
+            pictureBox1.Location = new Point(17, 498);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(25, 25);
+            pictureBox1.TabIndex = 29;
+            pictureBox1.TabStop = false;
             // 
             // pictureBox13
             // 
@@ -291,17 +325,17 @@
             label9.TabIndex = 10;
             label9.Text = "Payments";
             // 
-            // label8
+            // LbInvoice
             // 
-            label8.AutoSize = true;
-            label8.Cursor = Cursors.Hand;
-            label8.Font = new Font("Segoe UI", 15F);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(48, 404);
-            label8.Name = "label8";
-            label8.Size = new Size(105, 28);
-            label8.TabIndex = 9;
-            label8.Text = "Categories";
+            LbInvoice.AutoSize = true;
+            LbInvoice.Cursor = Cursors.Hand;
+            LbInvoice.Font = new Font("Segoe UI", 15F);
+            LbInvoice.ForeColor = Color.White;
+            LbInvoice.Location = new Point(48, 404);
+            LbInvoice.Name = "LbInvoice";
+            LbInvoice.Size = new Size(74, 28);
+            LbInvoice.TabIndex = 9;
+            LbInvoice.Text = "Invoice";
             // 
             // Lbproduct
             // 
@@ -377,13 +411,14 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(28, 126, 214);
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(LbPage);
-            panel1.Location = new Point(205, 3);
+            panel1.Location = new Point(206, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(984, 75);
+            panel1.Size = new Size(1109, 75);
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -393,7 +428,7 @@
             LbPage.Cursor = Cursors.Hand;
             LbPage.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             LbPage.ForeColor = Color.White;
-            LbPage.Location = new Point(383, 16);
+            LbPage.Location = new Point(433, 16);
             LbPage.Name = "LbPage";
             LbPage.Size = new Size(207, 37);
             LbPage.TabIndex = 29;
@@ -401,53 +436,20 @@
             // 
             // panelMain
             // 
+            panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelMain.BackColor = Color.White;
-            panelMain.Location = new Point(205, 81);
+            panelMain.Location = new Point(204, 82);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(984, 668);
+            panelMain.Size = new Size(1111, 664);
             panelMain.TabIndex = 7;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = Properties.Resources.icons8_products_100__1_;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Cursor = Cursors.AppStarting;
-            pictureBox1.Location = new Point(17, 498);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 25);
-            pictureBox1.TabIndex = 29;
-            pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(48, 639);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 28);
-            label2.TabIndex = 31;
-            label2.Text = "Adjustment";
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.BackgroundImage = Properties.Resources.icons8_logout_96;
-            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox8.Cursor = Cursors.AppStarting;
-            pictureBox8.Location = new Point(17, 639);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(25, 25);
-            pictureBox8.TabIndex = 30;
-            pictureBox8.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1194, 751);
+            ClientSize = new Size(1318, 751);
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -456,11 +458,14 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
+            Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -474,8 +479,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
         }
 
@@ -486,7 +489,7 @@
         private Label Lbuser;
         private Label label10;
         private Label label9;
-        private Label label8;
+        private Label LbInvoice;
         private Label Lbproduct;
         private Label LbSupplier;
         private Label LbEmployee;
