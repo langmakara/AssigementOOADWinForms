@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            dateTimePicker1 = new DateTimePicker();
             btInsert = new Button();
             lbTotal = new Label();
             tbTotal = new TextBox();
@@ -43,7 +44,6 @@
             tbPurchaseID = new TextBox();
             dgvemployee = new DataGridView();
             OrderDate = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
             panel2 = new Panel();
             lbPurchaseID = new Label();
             panel1.SuspendLayout();
@@ -71,9 +71,18 @@
             panel1.Size = new Size(421, 873);
             panel1.TabIndex = 76;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CalendarFont = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateTimePicker1.Font = new Font("Segoe UI", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            dateTimePicker1.Location = new Point(29, 255);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(355, 38);
+            dateTimePicker1.TabIndex = 78;
+            // 
             // btInsert
             // 
-            btInsert.BackColor = Color.DeepSkyBlue;
+            btInsert.BackColor = Color.Orange;
             btInsert.FlatAppearance.BorderColor = Color.DodgerBlue;
             btInsert.FlatAppearance.BorderSize = 0;
             btInsert.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
@@ -193,7 +202,7 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.BackColor = Color.DeepSkyBlue;
+            btnRefresh.BackColor = Color.Orange;
             btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderSize = 0;
             btnRefresh.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
@@ -235,15 +244,6 @@
             OrderDate.Name = "OrderDate";
             OrderDate.Size = new Size(389, 38);
             OrderDate.TabIndex = 77;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.CalendarFont = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker1.Font = new Font("Segoe UI", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            dateTimePicker1.Location = new Point(29, 255);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(355, 38);
-            dateTimePicker1.TabIndex = 78;
             // 
             // panel2
             // 
