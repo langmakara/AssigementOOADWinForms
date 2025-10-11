@@ -129,7 +129,6 @@
             // 
             pbProfile.BackgroundImage = Properties.Resources.user;
             pbProfile.BackgroundImageLayout = ImageLayout.Zoom;
-            pbProfile.BorderStyle = BorderStyle.Fixed3D;
             pbProfile.Location = new Point(86, 22);
             pbProfile.Margin = new Padding(3, 4, 3, 4);
             pbProfile.Name = "pbProfile";
