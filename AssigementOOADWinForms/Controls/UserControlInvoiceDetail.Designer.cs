@@ -46,8 +46,8 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
             label6 = new Label();
+            textBox1 = new TextBox();
             textBox6 = new TextBox();
             label7 = new Label();
             panel3.SuspendLayout();
@@ -61,11 +61,11 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(803, 108);
+            label2.Location = new Point(803, 202);
             label2.Name = "label2";
-            label2.Size = new Size(111, 28);
+            label2.Size = new Size(100, 28);
             label2.TabIndex = 102;
-            label2.Text = "CategoryID";
+            label2.Text = "ProductID";
             // 
             // panel3
             // 
@@ -73,7 +73,7 @@
             panel3.Controls.Add(label14);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(803, 505);
+            panel3.Location = new Point(803, 499);
             panel3.Name = "panel3";
             panel3.Size = new Size(300, 104);
             panel3.TabIndex = 101;
@@ -119,7 +119,9 @@
             button2.BackColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
-            button2.Location = new Point(978, 627);
+            button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(978, 624);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(129, 37);
@@ -133,12 +135,14 @@
             button1.BackColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderColor = Color.DodgerBlue;
             button1.FlatAppearance.BorderSize = 0;
-            button1.Location = new Point(803, 627);
+            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(803, 624);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(129, 37);
             button1.TabIndex = 99;
-            button1.Text = "Save";
+            button1.Text = "Insert";
             button1.UseVisualStyleBackColor = false;
             // 
             // label5
@@ -147,15 +151,16 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(803, 212);
+            label5.Location = new Point(806, 309);
             label5.Name = "label5";
-            label5.Size = new Size(144, 28);
+            label5.Size = new Size(88, 28);
             label5.TabIndex = 98;
-            label5.Text = "CategoryName";
+            label5.Text = "Qauntity";
+            label5.Click += label5_Click;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(803, 339);
+            textBox4.Location = new Point(803, 443);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(303, 37);
@@ -164,7 +169,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(803, 243);
+            textBox3.Location = new Point(803, 340);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(304, 37);
@@ -176,15 +181,15 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(803, 308);
+            label3.Location = new Point(803, 412);
             label3.Name = "label3";
-            label3.Size = new Size(112, 28);
+            label3.Size = new Size(54, 28);
             label3.TabIndex = 94;
-            label3.Text = "Description";
+            label3.Text = "Price";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(803, 139);
+            textBox2.Location = new Point(803, 237);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(303, 37);
@@ -197,7 +202,7 @@
             dgvcustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvcustomer.Location = new Point(3, 77);
             dgvcustomer.Name = "dgvcustomer";
-            dgvcustomer.Size = new Size(790, 588);
+            dgvcustomer.Size = new Size(790, 584);
             dgvcustomer.TabIndex = 90;
             // 
             // btnRefresh
@@ -205,7 +210,9 @@
             btnRefresh.BackColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
             btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Location = new Point(664, 31);
+            btnRefresh.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(628, 31);
             btnRefresh.Margin = new Padding(0);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(129, 40);
@@ -254,29 +261,29 @@
             label4.TabIndex = 108;
             label4.Text = "CategoryName";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(803, 31);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(303, 37);
-            textBox1.TabIndex = 109;
-            // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.FromArgb(64, 64, 64);
-            label6.Location = new Point(806, 4);
+            label6.Location = new Point(806, 103);
             label6.Name = "label6";
-            label6.Size = new Size(111, 28);
+            label6.Size = new Size(93, 28);
             label6.TabIndex = 110;
-            label6.Text = "CategoryID";
+            label6.Text = "InvoiceID";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(803, 134);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(303, 37);
+            textBox1.TabIndex = 109;
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(803, 451);
+            textBox6.Location = new Point(803, 33);
             textBox6.Multiline = true;
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(303, 37);
@@ -288,11 +295,11 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI", 15F);
             label7.ForeColor = Color.FromArgb(64, 64, 64);
-            label7.Location = new Point(806, 420);
+            label7.Location = new Point(803, 4);
             label7.Name = "label7";
-            label7.Size = new Size(112, 28);
+            label7.Size = new Size(144, 28);
             label7.TabIndex = 112;
-            label7.Text = "Description";
+            label7.Text = "InvoiceDetailID";
             // 
             // UserControlInvoiceDetail
             // 
@@ -347,8 +354,8 @@
         private ComboBox comboBox1;
         private Label label1;
         private Label label4;
-        private TextBox textBox1;
         private Label label6;
+        private TextBox textBox1;
         private TextBox textBox6;
         private Label label7;
     }

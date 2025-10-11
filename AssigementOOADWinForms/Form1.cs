@@ -10,6 +10,7 @@ public partial class Form1 : Form
     private UserControlSupplier? userControlSupplier;
     private UserControlProduct? userControlProduct;
     private UserControlInvoiceDetail? userControlInvoiceDetail;
+    private UserControlInvoice? userControlInvoice;
     public Form1()
     {
         InitializeComponent();
@@ -23,6 +24,7 @@ public partial class Form1 : Form
         userControlSupplier = new UserControlSupplier();
         userControlProduct = new UserControlProduct();
         userControlInvoiceDetail = new UserControlInvoiceDetail();
+        userControlInvoice = new UserControlInvoice();
 
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
@@ -111,10 +113,10 @@ public partial class Form1 : Form
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbInvoice.Text;
-        if (userControlInvoiceDetail != null)
+        if (userControlInvoice != null)
         {
-            panelMain.Controls.Add(userControlInvoiceDetail);
-            userControlInvoiceDetail.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(userControlInvoice);
+            userControlInvoice.Dock = DockStyle.Fill;
         }
     }
     private void Form1_Load(object? sender, EventArgs e)
