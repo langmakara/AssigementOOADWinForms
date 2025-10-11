@@ -99,7 +99,6 @@
             lbQuantity.Size = new Size(115, 35);
             lbQuantity.TabIndex = 72;
             lbQuantity.Text = "Quantity";
-            lbQuantity.Click += this.lbQuantity_Click;
             // 
             // tbQuantity
             // 

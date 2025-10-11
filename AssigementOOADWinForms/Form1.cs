@@ -34,7 +34,6 @@ public partial class Form1 : Form
         Lbproduct.Click += HandleClickProduct;
         LbInvoice.Click += HandleClickInvoice;
         this.Load += Form1_Load;
-
     }
 
     private void Lbproduct_Click(object? sender, EventArgs e)
