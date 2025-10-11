@@ -21,5 +21,10 @@ namespace AssigementOOADWinForms.Controls
         {
 
         }
+
+        private void tbQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
