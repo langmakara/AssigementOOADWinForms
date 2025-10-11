@@ -3,13 +3,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Reflection;
-
 public static class DesignHelper
 {
-    
-
-
-
     // --- Apply Rounded Style to Panel ---
     public static void ApplyRoundedStyle(Panel panel, int borderRadius = 20, Color? borderColor = null, int borderThickness = 0)
     {

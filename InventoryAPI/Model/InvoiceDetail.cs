@@ -1,18 +1,17 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace InventoryAPI.Model
 {
-
-    [Table("tbPurchaseOrderDetail")]
-    public class PurchaseOrderDetail
+    [Table("tbInvoicerDetail")]
+    public class InvoiceDetail
     {
         [Key]
-        public int PurchaseDetailID { get; set; }
+        public int InvoiceDetailID { get; set; }
 
-        public int PurchaseID { get; set; }
-        [ForeignKey("PurchaseID")]
-        public PurchaseOrder PurchaseOrder { get; set; }
+        public int InvoiceID { get; set; }
+        [ForeignKey("InvoiceID")]
+        public Invoice Invoice { get; set; }
 
         public int ProductID { get; set; }
         [ForeignKey("ProductID")]

@@ -1,28 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using InventoryAPI.Enum;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace InventoryAPI.Model
 {
+    [Table("tbUser")]
     public class User
     {
         [Key]
         public int UserID { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, StringLength(50)]
         public string Username { get; set; }
 
-        [Required, MaxLength(255)]
+        [Required, StringLength(255)]
         public string PasswordHash { get; set; }
 
-        [EmailAddress, MaxLength(100)]
-        public string Email { get; set; }
-
-        [Required]
-        public UserRole Role { get; set; } = UserRole.Admin;
-
-        public bool IsActive { get; set; } = true;
+        [Required, StringLength(50)]
+        public string Role { get; set; } // Admin, Manager, Staff
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        public ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>();
     }
 }

@@ -1,20 +1,27 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InventoryAPI.Model
 {
+    [Table("tbInventoryTransaction")]
     public class InventoryTransaction
     {
-        [Key]  // ? Primary key
+        [Key]
         public int TransactionID { get; set; }
 
         public int ProductID { get; set; }
-        public string TransactionType { get; set; } // e.g., "IN", "OUT"
-        public int QuantityChange { get; set; }
-        public DateTime TransactionDate { get; set; }
-        public int? ReferenceID { get; set; }
-
-        // Navigation property
+        [ForeignKey("ProductID")]
         public Product Product { get; set; }
+
+        [Required, StringLength(50)]
+        public string TransactionType { get; set; } // Purchase, Sale, Adjustment
+
+        [Required]
+        public int QuantityChange { get; set; }
+
+        public DateTime TransactionDate { get; set; } = DateTime.Now;
+
+        public int? ReferenceID { get; set; }
     }
 }
