@@ -15,7 +15,12 @@ namespace AssigementOOADWinForms.Controls
         public UserControlInvoiceDetail()
         {
             InitializeComponent();
-            dgvcustomer.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            DesignHelper.MakeAllInputsRounded(this, radius: 6);
+            DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
+            DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
+            DesignHelper.ApplyRoundedStyle(panel3, borderRadius: 5);
+            DesignHelper.StyleDataGridView(dgvInvoicedetail);
+            dgvInvoicedetail.CellPainting += DesignHelper.dataGridView1_CellPainting;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -34,6 +39,11 @@ namespace AssigementOOADWinForms.Controls
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
