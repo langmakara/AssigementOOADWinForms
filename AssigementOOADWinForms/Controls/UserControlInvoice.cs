@@ -9,6 +9,7 @@ namespace AssigementOOADWinForms.Controls
         private List<InvoiceDto> invoicesList = new();
         private readonly InvoiceService _invoiceService = new();
         private readonly EmployeeService _employeeService = new();
+        private UserControlInvoiceDetail _userControlInvoiceDetail;
 
         public UserControlInvoice()
         {
@@ -18,7 +19,6 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvInvoice);
-
             btnClear.Click += HandleClearTextBox;
             dgvInvoice.SelectionChanged += SelectionRowChanges;
             dgvInvoice.CellPainting += DesignHelper.dataGridView1_CellPainting;
@@ -27,6 +27,7 @@ namespace AssigementOOADWinForms.Controls
             searchCustomerName.TextChanged += (s, e) => FilterInvoices();
             btnSaveAndUpdateInvoice.Click += (s, e) => HandleSaveInvoice();
             btnremoveInvoice.Click += (s, e) => HandleRemoveInvoice();
+            btnCreateInvoice.Click += (s, e) => HandleChangeUserControlInvoiceToCreateInvoiceDetail();
 
             this.Load += (s, e) =>
             {
@@ -103,7 +104,13 @@ namespace AssigementOOADWinForms.Controls
             var hiddenColumns = new List<string> { "InvoiceID", "EmployeeID" };
             DesignHelper.HideColumns(dgvInvoice, hiddenColumns);
         }
-
+        private void HandleChangeUserControlInvoiceToCreateInvoiceDetail()
+        {
+            if (this.FindForm() is Mainform main)
+            {
+                main.HandleUserControlReplacseItselfMainForm(new UserControlInvoiceDetail(), "InvoiceDetail");
+            }
+        }
         // -------------------------
         // Selection & Form Controls
         // -------------------------

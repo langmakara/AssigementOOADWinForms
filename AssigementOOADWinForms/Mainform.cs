@@ -35,12 +35,19 @@ public partial class Mainform : Form
         LbInvoice.Click += HandleClickInvoice;
         this.Load += Form1_Load;
     }
-
     private void Lbproduct_Click(object? sender, EventArgs e)
     {
         throw new NotImplementedException();
     }
-
+    public void HandleUserControlReplacseItselfMainForm(UserControl control, string title = "")
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = title;
+        control.Dock = DockStyle.Fill;    
+        panelMain.Controls.Add(control); 
+        control.BringToFront();           
+    }
     private void HandleClickDashBoard(object? sender, EventArgs e)
     {
         panelMain.Controls.Clear();

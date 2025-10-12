@@ -42,6 +42,7 @@
             textcustomerName = new TextBox();
             dgvInvoice = new DataGridView();
             panel1 = new Panel();
+            comboEmployee = new ComboBox();
             textcustomerPhone = new TextBox();
             label8 = new Label();
             datetimeorderDate = new DateTimePicker();
@@ -51,8 +52,7 @@
             searchInvoiceDatess = new Label();
             searchinvoiceDate = new DateTimePicker();
             searchCustomerName = new TextBox();
-            button3 = new Button();
-            comboEmployee = new ComboBox();
+            btnCreateInvoice = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvInvoice).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -237,6 +237,16 @@
             panel1.Size = new Size(290, 525);
             panel1.TabIndex = 122;
             // 
+            // comboEmployee
+            // 
+            comboEmployee.Font = new Font("Segoe UI", 15F);
+            comboEmployee.ForeColor = Color.FromArgb(64, 64, 64);
+            comboEmployee.FormattingEnabled = true;
+            comboEmployee.Location = new Point(13, 315);
+            comboEmployee.Name = "comboEmployee";
+            comboEmployee.Size = new Size(267, 36);
+            comboEmployee.TabIndex = 135;
+            // 
             // textcustomerPhone
             // 
             textcustomerPhone.Font = new Font("Segoe UI", 15F);
@@ -340,37 +350,27 @@
             searchCustomerName.Size = new Size(247, 37);
             searchCustomerName.TabIndex = 132;
             // 
-            // button3
+            // btnCreateInvoice
             // 
-            button3.BackColor = Color.FromArgb(255, 128, 0);
-            button3.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(819, 528);
-            button3.Margin = new Padding(0);
-            button3.Name = "button3";
-            button3.Size = new Size(290, 43);
-            button3.TabIndex = 129;
-            button3.Text = "Create Invoice Detail";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // comboEmployee
-            // 
-            comboEmployee.Font = new Font("Segoe UI", 15F);
-            comboEmployee.ForeColor = Color.FromArgb(64, 64, 64);
-            comboEmployee.FormattingEnabled = true;
-            comboEmployee.Location = new Point(13, 315);
-            comboEmployee.Name = "comboEmployee";
-            comboEmployee.Size = new Size(267, 36);
-            comboEmployee.TabIndex = 135;
+            btnCreateInvoice.BackColor = Color.FromArgb(255, 128, 0);
+            btnCreateInvoice.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnCreateInvoice.FlatAppearance.BorderSize = 0;
+            btnCreateInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCreateInvoice.ForeColor = Color.White;
+            btnCreateInvoice.Location = new Point(819, 528);
+            btnCreateInvoice.Margin = new Padding(0);
+            btnCreateInvoice.Name = "btnCreateInvoice";
+            btnCreateInvoice.Size = new Size(290, 43);
+            btnCreateInvoice.TabIndex = 129;
+            btnCreateInvoice.Text = "View / Create Invoice Detail";
+            btnCreateInvoice.UseVisualStyleBackColor = false;
             // 
             // UserControlInvoice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            Controls.Add(button3);
+            Controls.Add(btnCreateInvoice);
             Controls.Add(textinvoiceID);
             Controls.Add(btnClear);
             Controls.Add(btnremoveInvoice);
@@ -413,7 +413,7 @@
         private DateTimePicker searchinvoiceDate;
         private Label searchInvoiceDatess;
         private ComboBox searchEmployee;
-        private Button button3;
+        private Button btnCreateInvoice;
         private ComboBox comboEmployee;
     }
 }
