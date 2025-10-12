@@ -1,5 +1,6 @@
 ﻿using AssigementOOADWinForms.DTOs;
 using AssigementOOADWinForms.Services;
+using AssigementOOADWinForms.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,16 +10,21 @@ namespace AssigementOOADWinForms.Controls
 {
     public partial class UserControlEmployee : UserControl
     {
-        private readonly EmployeeService _employeeService = new EmployeeService();
-        private Label lblTotalEmployees; // Changed from object to Label
+        private List<EmployeeDto> employeesList = new();
+        private readonly EmployeeService _employeeService = new();
 
         public UserControlEmployee()
         {
             InitializeComponent();
+            DesignHelper.MakeAllInputsRounded(this, radius: 3);
+            DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
+            DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvemployee);
-            DesignHelper.ApplyRoundedStyle(panel3, 5);
-            lblTotalEmployees = new Label(); // Initialize lblTotalEmployees
-            LoadEmployees(); // Load data on startup
+            dgvemployee.SelectionChanged += SelectionRowChanges;
+            dgvemployee.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            dgvemployee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            searchEmployeeName.TextChanged += (s, e) => FilterEmployees();
+            this.Load += (s, e) => LoadEmployees();
         }
 
         private void LoadEmployees()
@@ -26,36 +32,49 @@ namespace AssigementOOADWinForms.Controls
             try
             {
                 var employees = _employeeService.GetAllEmployees();
+                employeesList = employees.Select(e => new EmployeeDto
+                {
+                    EmployeeID = e.EmployeeID,
+                    EmployeeName = e.EmployeeName,
+                    Phone = e.Phone,
+                    Email = e.Email,
+                    Address = e.Address,
+                    Position = e.Position,
+                    HireDate = e.HireDate
+                }).ToList();
 
-                dgvemployee.DataSource = employees;
-
-                // Optional: Auto resize columns
-                dgvemployee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                // Update total employees count
-                lblTotalEmployees.Text = employees.Count.ToString();
+                dgvemployee.DataSource = employeesList;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading employees: {ex.Message}");
+                MessageBox.Show($"Failed to load employees:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void dgvemployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void FilterEmployees()
         {
-            // This method is intentionally left empty or can be implemented as needed.
-        }
-
-        private void dgvemployee_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
+            var filtered = employeesList.AsEnumerable();
+            if (!string.IsNullOrWhiteSpace(searchEmployeeName.Text))
             {
-                var row = dgvemployee.Rows[e.RowIndex];
-                tbName.Text = row.Cells["EmployeeName"].Value.ToString();
-                tbPhone.Text = row.Cells["Phone"].Value?.ToString();
-                tbAddress.Text = row.Cells["Address"].Value?.ToString();
-                tbPosition.Text = row.Cells["Position"].Value?.ToString();
-                tbHireDate.Text = row.Cells["HireDate"].Value?.ToString();
+                filtered = filtered.Where(e => e.EmployeeName.Contains(searchEmployeeName.Text, StringComparison.OrdinalIgnoreCase));
+            }
+            dgvemployee.DataSource = null;
+            dgvemployee.DataSource = filtered.ToList();
+        }
+        private void SelectionRowChanges(object? sender, EventArgs e)
+        {
+            if (dgvemployee.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvemployee.SelectedRows[0];
+                var employee = selectedRow.DataBoundItem as EmployeeDto;
+                if (employee != null)
+                {
+                    tbName.Text = employee.EmployeeName;
+                    tbPhone.Text = employee.Phone;
+                    tbAddress.Text = employee.Address;
+                    tbPosition.Text = employee.Position;
+                    dtpHireDate.Value = employee.HireDate;
+                }
             }
         }
     }

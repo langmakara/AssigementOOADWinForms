@@ -34,14 +34,14 @@
             tbPhone = new TextBox();
             label3 = new Label();
             tbName = new TextBox();
-            textBox1 = new TextBox();
+            searchEmployeeName = new TextBox();
             comboBox1 = new ComboBox();
             dgvemployee = new DataGridView();
             tbPosition = new TextBox();
             label6 = new Label();
-            tbHireDate = new TextBox();
             label7 = new Label();
             panel1 = new Panel();
+            dtpHireDate = new DateTimePicker();
             panel2 = new Panel();
             label2 = new Label();
             label1 = new Label();
@@ -65,7 +65,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(8, 116);
+            label5.Location = new Point(8, 136);
             label5.Name = "label5";
             label5.Size = new Size(88, 35);
             label5.TabIndex = 59;
@@ -77,7 +77,7 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(8, 217);
+            label4.Location = new Point(8, 257);
             label4.Name = "label4";
             label4.Size = new Size(141, 35);
             label4.TabIndex = 58;
@@ -85,7 +85,7 @@
             // 
             // tbAddress
             // 
-            tbAddress.Location = new Point(8, 261);
+            tbAddress.Location = new Point(8, 311);
             tbAddress.Margin = new Padding(3, 4, 3, 4);
             tbAddress.Multiline = true;
             tbAddress.Name = "tbAddress";
@@ -94,7 +94,7 @@
             // 
             // tbPhone
             // 
-            tbPhone.Location = new Point(8, 160);
+            tbPhone.Location = new Point(8, 190);
             tbPhone.Margin = new Padding(3, 4, 3, 4);
             tbPhone.Multiline = true;
             tbPhone.Name = "tbPhone";
@@ -115,21 +115,21 @@
             // 
             // tbName
             // 
-            tbName.Location = new Point(8, 59);
+            tbName.Location = new Point(8, 69);
             tbName.Margin = new Padding(3, 4, 3, 4);
             tbName.Multiline = true;
             tbName.Name = "tbName";
             tbName.Size = new Size(343, 48);
             tbName.TabIndex = 54;
             // 
-            // textBox1
+            // searchEmployeeName
             // 
-            textBox1.Location = new Point(10, 46);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(267, 45);
-            textBox1.TabIndex = 49;
+            searchEmployeeName.Location = new Point(10, 46);
+            searchEmployeeName.Margin = new Padding(3, 4, 3, 4);
+            searchEmployeeName.Multiline = true;
+            searchEmployeeName.Name = "searchEmployeeName";
+            searchEmployeeName.Size = new Size(267, 45);
+            searchEmployeeName.TabIndex = 49;
             // 
             // comboBox1
             // 
@@ -145,17 +145,16 @@
             // 
             dgvemployee.BackgroundColor = Color.White;
             dgvemployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvemployee.Location = new Point(-4, 113);
+            dgvemployee.Location = new Point(3, 113);
             dgvemployee.Margin = new Padding(3, 4, 3, 4);
             dgvemployee.Name = "dgvemployee";
             dgvemployee.RowHeadersWidth = 51;
-            dgvemployee.Size = new Size(898, 772);
+            dgvemployee.Size = new Size(891, 768);
             dgvemployee.TabIndex = 47;
-            dgvemployee.CellContentClick += dgvemployee_CellContentClick;
             // 
             // tbPosition
             // 
-            tbPosition.Location = new Point(8, 362);
+            tbPosition.Location = new Point(8, 432);
             tbPosition.Margin = new Padding(3, 4, 3, 4);
             tbPosition.Multiline = true;
             tbPosition.Name = "tbPosition";
@@ -168,20 +167,11 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(8, 318);
+            label6.Location = new Point(8, 378);
             label6.Name = "label6";
             label6.Size = new Size(122, 35);
             label6.TabIndex = 63;
             label6.Text = "Position  ";
-            // 
-            // tbHireDate
-            // 
-            tbHireDate.Location = new Point(8, 463);
-            tbHireDate.Margin = new Padding(3, 4, 3, 4);
-            tbHireDate.Multiline = true;
-            tbHireDate.Name = "tbHireDate";
-            tbHireDate.Size = new Size(343, 48);
-            tbHireDate.TabIndex = 64;
             // 
             // label7
             // 
@@ -189,7 +179,7 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(8, 419);
+            label7.Location = new Point(8, 499);
             label7.Name = "label7";
             label7.Size = new Size(115, 35);
             label7.TabIndex = 65;
@@ -199,8 +189,8 @@
             // 
             panel1.BackColor = Color.DodgerBlue;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(dtpHireDate);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(tbHireDate);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(tbPosition);
             panel1.Controls.Add(label5);
@@ -209,21 +199,30 @@
             panel1.Controls.Add(tbPhone);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(tbName);
-            panel1.Location = new Point(897, -1);
+            panel1.Location = new Point(897, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(381, 642);
+            panel1.Size = new Size(381, 638);
             panel1.TabIndex = 69;
+            // 
+            // dtpHireDate
+            // 
+            dtpHireDate.CalendarFont = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpHireDate.Font = new Font("Segoe UI", 12F);
+            dtpHireDate.Location = new Point(8, 548);
+            dtpHireDate.Name = "dtpHireDate";
+            dtpHireDate.Size = new Size(341, 34);
+            dtpHireDate.TabIndex = 66;
             // 
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(searchEmployeeName);
             panel2.Controls.Add(comboBox1);
-            panel2.Location = new Point(0, -3);
+            panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(901, 116);
+            panel2.Size = new Size(891, 110);
             panel2.TabIndex = 70;
             // 
             // label2
@@ -377,12 +376,11 @@
         private TextBox tbPhone;
         private Label label3;
         private TextBox tbName;
-        private TextBox textBox1;
+        private TextBox searchEmployeeName;
         private ComboBox comboBox1;
         private DataGridView dgvemployee;
         private TextBox tbPosition;
         private Label label6;
-        private TextBox tbHireDate;
         private Label label7;
         private Panel panel1;
         private Panel panel2;
@@ -395,5 +393,6 @@
         private Button btnRefresh;
         private Button button2;
         private Button button1;
+        private DateTimePicker dtpHireDate;
     }
 }
