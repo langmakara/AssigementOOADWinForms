@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryAPI.Model
 {
+    [Table("tbInvoices")]
     public class Invoice
     {
         [Key]
@@ -14,9 +15,9 @@ namespace InventoryAPI.Model
         [StringLength(50)]
         public required string CustomerPhone { get; set; }
 
-        public int EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
         [ForeignKey("EmployeeID")]
-        public required Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
@@ -25,6 +26,6 @@ namespace InventoryAPI.Model
 
         // Navigation
         public required ICollection<InvoiceDetail> InvoiceDetails { get; set; }
-        public required ICollection<Payment> Payments { get; set; }
+        public ICollection<Payment?> Payments { get; set; }
     }
 }

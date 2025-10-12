@@ -5,8 +5,6 @@ VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssigementOOADWinForms", "AssigementOOADWinForms\AssigementOOADWinForms.csproj", "{E7FCA9C4-3560-4C76-B367-F6ED495B23D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryAPI", "InventoryAPI\InventoryAPI.csproj", "{DC568367-7B14-4E60-BAD3-14A0616B46EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{E7FCA9C4-3560-4C76-B367-F6ED495B23D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7FCA9C4-3560-4C76-B367-F6ED495B23D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7FCA9C4-3560-4C76-B367-F6ED495B23D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC568367-7B14-4E60-BAD3-14A0616B46EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC568367-7B14-4E60-BAD3-14A0616B46EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC568367-7B14-4E60-BAD3-14A0616B46EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC568367-7B14-4E60-BAD3-14A0616B46EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

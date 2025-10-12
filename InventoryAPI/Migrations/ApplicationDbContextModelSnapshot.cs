@@ -125,7 +125,7 @@ namespace InventoryAPI.Migrations
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("Invoices");
+                    b.ToTable("tbInvoices");
                 });
 
             modelBuilder.Entity("InventoryAPI.Model.InvoiceDetail", b =>

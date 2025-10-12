@@ -29,3 +29,4 @@ public class Employee
     public required ICollection<Invoice> Invoices { get; set; }
     public required ICollection<StockAdjustment> StockAdjustments { get; set; }
 }
+

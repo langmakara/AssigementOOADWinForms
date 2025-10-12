@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251010184839_InitialCreate")]
+    [Migration("20251011150348_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -128,7 +128,7 @@ namespace InventoryAPI.Migrations
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("Invoices");
+                    b.ToTable("tbInvoices");
                 });
 
             modelBuilder.Entity("InventoryAPI.Model.InvoiceDetail", b =>
