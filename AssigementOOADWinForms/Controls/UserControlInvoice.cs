@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Windows.Forms;
-using AssigementOOADWinForms.DATAs;
+﻿using System.Data;
 using AssigementOOADWinForms.DTOs;
-using Microsoft.Data.SqlClient;
-
+using AssigementOOADWinForms.Models;
+using AssigementOOADWinForms.Services;
 namespace AssigementOOADWinForms.Controls
 {
     public partial class UserControlInvoice : UserControl
     {
-        private readonly int radius;
         private List<InvoiceDto> invoicesList = new();
+        private readonly InvoiceService _invoiceService = new();
+        private readonly EmployeeService _employeeService = new();
 
         public UserControlInvoice()
         {
@@ -29,20 +25,47 @@ namespace AssigementOOADWinForms.Controls
             dgvInvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             searchCustomerName.TextChanged += (s, e) => FilterInvoices();
-            this.Load += (s, e) => LoadInvoices();
+            btnSaveAndUpdateInvoice.Click += (s, e) => HandleSaveInvoice();
+            btnremoveInvoice.Click += (s, e) => HandleRemoveInvoice();
+
+            this.Load += (s, e) =>
+            {
+                LoadEmployeesToCombo();
+                LoadInvoices();
+            };
         }
 
+        // -------------------------
+        // Load & Filter
+        // -------------------------
         private void LoadInvoices()
         {
             try
             {
-                invoicesList = GetAllInvoicesFromDb();
+                invoicesList = _invoiceService.GetAllInvoices();
                 LoadEmployeeComboFromInvoices();
                 FilterInvoices();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to load invoices:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadEmployeesToCombo()
+        {
+            try
+            {
+                var employees = _employeeService.GetAllEmployees();
+                comboEmployee.DataSource = employees;
+                comboEmployee.DisplayMember = "EmployeeName";
+                comboEmployee.ValueMember = "EmployeeID";
+                comboEmployee.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load employees: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -81,6 +104,9 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.HideColumns(dgvInvoice, hiddenColumns);
         }
 
+        // -------------------------
+        // Selection & Form Controls
+        // -------------------------
         private void SelectionRowChanges(object? sender, EventArgs? e)
         {
             if (dgvInvoice.CurrentRow == null || dgvInvoice.RowCount == 0)
@@ -90,7 +116,10 @@ namespace AssigementOOADWinForms.Controls
             textinvoiceID.Text = row.Cells["InvoiceID"].Value?.ToString();
             textcustomerName.Text = row.Cells["CustomerName"].Value?.ToString();
             textcustomerPhone.Text = row.Cells["CustomerPhone"].Value?.ToString();
-            textEmployeeID.Text = row.Cells["EmployeeID"].Value?.ToString();
+
+            int empId = Convert.ToInt32(row.Cells["EmployeeID"].Value);
+            comboEmployee.SelectedValue = empId;
+
             textTotalAmount.Text = Convert.ToDecimal(row.Cells["TotalAmount"].Value).ToString("C");
 
             if (DateTime.TryParse(row.Cells["OrderDate"].Value?.ToString(), out DateTime invoiceDate))
@@ -105,54 +134,69 @@ namespace AssigementOOADWinForms.Controls
             textcustomerName.Clear();
             textcustomerPhone.Clear();
             datetimeorderDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            textEmployeeID.Clear();
+            comboEmployee.SelectedIndex = -1;
             textTotalAmount.Clear();
         }
 
-        private List<InvoiceDto> GetAllInvoicesFromDb()
+        // -------------------------
+        // CRUD Logic
+        // -------------------------
+        private void HandleSaveInvoice()
         {
-            var list = new List<InvoiceDto>();
-
-            using (SqlConnection conn = HandleConnection.GetSqlConnection())
+            try
             {
-                if (conn == null)
-                    throw new Exception("Cannot open database connection.");
-
-                string query = @"
-            SELECT i.InvoiceID,
-                   i.CustomerName,
-                   i.CustomerPhone,
-                   e.EmployeeID,
-                   e.EmployeeName,
-                   i.TotalAmount,
-                   i.OrderDate
-            FROM tbInvoices i
-            JOIN tbEmployee e ON i.EmployeeID = e.EmployeeID";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                if (comboEmployee.SelectedValue == null)
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            list.Add(new InvoiceDto
-                            {
-                                InvoiceID = reader.GetInt32(reader.GetOrdinal("InvoiceID")),
-                                CustomerName = reader.GetString(reader.GetOrdinal("CustomerName")),
-                                CustomerPhone = reader.GetString(reader.GetOrdinal("CustomerPhone")),
-                                EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
-                                EmployeeName = reader.GetString(reader.GetOrdinal("EmployeeName")),
-                                TotalAmount = reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
-                                OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"))
-                            });
-                        }
-                    }
+                    MessageBox.Show("Please select an employee.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-            }
 
-            return list;
+                var model = new Invoice
+                {
+                    InvoiceID = string.IsNullOrWhiteSpace(textinvoiceID.Text) ? 0 : int.Parse(textinvoiceID.Text),
+                    CustomerName = textcustomerName.Text,
+                    CustomerPhone = textcustomerPhone.Text,
+                    EmployeeID = Convert.ToInt32(comboEmployee.SelectedValue),
+                    OrderDate = DateTime.Parse(datetimeorderDate.Text),
+                    TotalAmount = decimal.Parse(textTotalAmount.Text)
+                };
+
+                _invoiceService.SaveInvoice(model);
+                MessageBox.Show("Invoice saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadInvoices();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save invoice:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void HandleRemoveInvoice()
+        {
+            if (string.IsNullOrWhiteSpace(textinvoiceID.Text))
+            {
+                MessageBox.Show("Please select an invoice to delete.", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            int invoiceId = Convert.ToInt32(textinvoiceID.Text);
+
+            if (MessageBox.Show("Are you sure you want to delete this invoice?", "Confirm Delete",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                _invoiceService.RemoveInvoice(invoiceId);
+                MessageBox.Show("Invoice deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadInvoices();
+                HandleClearTextBox(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete invoice:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

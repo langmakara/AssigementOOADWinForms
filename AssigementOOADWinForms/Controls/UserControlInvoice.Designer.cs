@@ -34,10 +34,9 @@
             label1 = new Label();
             btnClear = new Button();
             label2 = new Label();
-            button2 = new Button();
-            button1 = new Button();
+            btnremoveInvoice = new Button();
+            btnSaveAndUpdateInvoice = new Button();
             label5 = new Label();
-            textEmployeeID = new TextBox();
             textTotalAmount = new TextBox();
             label3 = new Label();
             textcustomerName = new TextBox();
@@ -53,6 +52,7 @@
             searchinvoiceDate = new DateTimePicker();
             searchCustomerName = new TextBox();
             button3 = new Button();
+            comboEmployee = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvInvoice).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -133,35 +133,35 @@
             label2.TabIndex = 122;
             label2.Text = "CustomerName";
             // 
-            // button2
+            // btnremoveInvoice
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
-            button2.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(818, 617);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(290, 43);
-            button2.TabIndex = 120;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
+            btnremoveInvoice.BackColor = Color.FromArgb(255, 128, 0);
+            btnremoveInvoice.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnremoveInvoice.FlatAppearance.BorderSize = 0;
+            btnremoveInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnremoveInvoice.ForeColor = Color.White;
+            btnremoveInvoice.Location = new Point(818, 617);
+            btnremoveInvoice.Margin = new Padding(0);
+            btnremoveInvoice.Name = "btnremoveInvoice";
+            btnremoveInvoice.Size = new Size(290, 43);
+            btnremoveInvoice.TabIndex = 120;
+            btnremoveInvoice.Text = "Remove";
+            btnremoveInvoice.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnSaveAndUpdateInvoice
             // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(818, 573);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(152, 43);
-            button1.TabIndex = 119;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = false;
+            btnSaveAndUpdateInvoice.BackColor = Color.DodgerBlue;
+            btnSaveAndUpdateInvoice.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnSaveAndUpdateInvoice.FlatAppearance.BorderSize = 0;
+            btnSaveAndUpdateInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnSaveAndUpdateInvoice.ForeColor = Color.White;
+            btnSaveAndUpdateInvoice.Location = new Point(818, 573);
+            btnSaveAndUpdateInvoice.Margin = new Padding(0);
+            btnSaveAndUpdateInvoice.Name = "btnSaveAndUpdateInvoice";
+            btnSaveAndUpdateInvoice.Size = new Size(152, 43);
+            btnSaveAndUpdateInvoice.TabIndex = 119;
+            btnSaveAndUpdateInvoice.Text = "Save";
+            btnSaveAndUpdateInvoice.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -175,16 +175,6 @@
             label5.Size = new Size(151, 28);
             label5.TabIndex = 118;
             label5.Text = "CustomerPhone";
-            // 
-            // textEmployeeID
-            // 
-            textEmployeeID.Font = new Font("Segoe UI", 15F);
-            textEmployeeID.ForeColor = Color.FromArgb(64, 64, 64);
-            textEmployeeID.Location = new Point(13, 305);
-            textEmployeeID.Multiline = true;
-            textEmployeeID.Name = "textEmployeeID";
-            textEmployeeID.Size = new Size(266, 37);
-            textEmployeeID.TabIndex = 117;
             // 
             // textTotalAmount
             // 
@@ -231,6 +221,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(comboEmployee);
             panel1.Controls.Add(textcustomerName);
             panel1.Controls.Add(textcustomerPhone);
             panel1.Controls.Add(label8);
@@ -241,7 +232,6 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textTotalAmount);
-            panel1.Controls.Add(textEmployeeID);
             panel1.Location = new Point(818, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(290, 525);
@@ -365,6 +355,16 @@
             button3.Text = "Create Invoice Detail";
             button3.UseVisualStyleBackColor = false;
             // 
+            // comboEmployee
+            // 
+            comboEmployee.Font = new Font("Segoe UI", 15F);
+            comboEmployee.ForeColor = Color.FromArgb(64, 64, 64);
+            comboEmployee.FormattingEnabled = true;
+            comboEmployee.Location = new Point(13, 315);
+            comboEmployee.Name = "comboEmployee";
+            comboEmployee.Size = new Size(267, 36);
+            comboEmployee.TabIndex = 135;
+            // 
             // UserControlInvoice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -373,8 +373,8 @@
             Controls.Add(button3);
             Controls.Add(textinvoiceID);
             Controls.Add(btnClear);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnremoveInvoice);
+            Controls.Add(btnSaveAndUpdateInvoice);
             Controls.Add(dgvInvoice);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -396,10 +396,9 @@
         private Label label1;
         private Button btnClear;
         private Label label2;
-        private Button button2;
-        private Button button1;
+        private Button btnremoveInvoice;
+        private Button btnSaveAndUpdateInvoice;
         private Label label5;
-        private TextBox textEmployeeID;
         private TextBox textTotalAmount;
         private Label label3;
         private TextBox textcustomerName;
@@ -415,5 +414,6 @@
         private Label searchInvoiceDatess;
         private ComboBox searchEmployee;
         private Button button3;
+        private ComboBox comboEmployee;
     }
 }

@@ -1,10 +1,9 @@
 ﻿namespace AssigementOOADWinForms.Models
 {
-    public class Invoice
+    public class PurchaseOrder
     {
-        public int InvoiceID { get; set; }
-        public string? CustomerName { get; set; }
-        public string? CustomerPhone { get; set; }
+        public int PurchaseID { get; set; }
+        public int? SupplierID { get; set; }
         public int? EmployeeID { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
