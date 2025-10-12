@@ -183,6 +183,7 @@
             textTotalAmount.Location = new Point(13, 477);
             textTotalAmount.Multiline = true;
             textTotalAmount.Name = "textTotalAmount";
+            textTotalAmount.ReadOnly = true;
             textTotalAmount.Size = new Size(266, 37);
             textTotalAmount.TabIndex = 116;
             // 

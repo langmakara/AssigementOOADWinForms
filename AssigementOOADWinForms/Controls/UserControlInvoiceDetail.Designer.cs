@@ -62,7 +62,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(11, 195);
+            label2.Location = new Point(14, 237);
             label2.Name = "label2";
             label2.Size = new Size(100, 28);
             label2.TabIndex = 102;
@@ -104,7 +104,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(11, 287);
+            label5.Location = new Point(14, 343);
             label5.Name = "label5";
             label5.Size = new Size(88, 28);
             label5.TabIndex = 98;
@@ -112,7 +112,9 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(10, 418);
+            textBox4.Font = new Font("Segoe UI", 15F);
+            textBox4.ForeColor = Color.FromArgb(64, 64, 64);
+            textBox4.Location = new Point(14, 476);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(261, 37);
@@ -120,7 +122,9 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(833, 323);
+            textBox3.Font = new Font("Segoe UI", 15F);
+            textBox3.ForeColor = Color.FromArgb(64, 64, 64);
+            textBox3.Location = new Point(14, 374);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(261, 37);
@@ -132,7 +136,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 387);
+            label3.Location = new Point(14, 445);
             label3.Name = "label3";
             label3.Size = new Size(54, 28);
             label3.TabIndex = 94;
@@ -140,6 +144,8 @@
             // 
             // textBox2
             // 
+            textBox2.Font = new Font("Segoe UI", 15F);
+            textBox2.ForeColor = Color.FromArgb(64, 64, 64);
             textBox2.Location = new Point(524, 33);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
@@ -176,7 +182,7 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(11, 97);
+            label6.Location = new Point(14, 117);
             label6.Name = "label6";
             label6.Size = new Size(93, 28);
             label6.TabIndex = 110;
@@ -184,7 +190,9 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(836, 131);
+            textBox1.Font = new Font("Segoe UI", 15F);
+            textBox1.ForeColor = Color.FromArgb(64, 64, 64);
+            textBox1.Location = new Point(14, 148);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(257, 37);
@@ -192,6 +200,8 @@
             // 
             // textBox6
             // 
+            textBox6.Font = new Font("Segoe UI", 15F);
+            textBox6.ForeColor = Color.FromArgb(64, 64, 64);
             textBox6.Location = new Point(836, 35);
             textBox6.Multiline = true;
             textBox6.Name = "textBox6";
@@ -216,18 +226,22 @@
             panel1.Controls.Add(textBox5);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textBox4);
+            panel1.Controls.Add(textBox3);
             panel1.Location = new Point(822, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(285, 530);
+            panel1.Size = new Size(285, 525);
             panel1.TabIndex = 102;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(13, 226);
+            textBox5.Font = new Font("Segoe UI", 15F);
+            textBox5.ForeColor = Color.FromArgb(64, 64, 64);
+            textBox5.Location = new Point(14, 268);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(257, 37);
@@ -244,7 +258,7 @@
             panel2.Controls.Add(textBox2);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(817, 100);
+            panel2.Size = new Size(817, 95);
             panel2.TabIndex = 123;
             // 
             // label1
@@ -261,6 +275,8 @@
             // 
             // textBox7
             // 
+            textBox7.Font = new Font("Segoe UI", 15F);
+            textBox7.ForeColor = Color.FromArgb(64, 64, 64);
             textBox7.Location = new Point(13, 33);
             textBox7.Multiline = true;
             textBox7.Name = "textBox7";
@@ -269,6 +285,8 @@
             // 
             // textBox8
             // 
+            textBox8.Font = new Font("Segoe UI", 15F);
+            textBox8.ForeColor = Color.FromArgb(64, 64, 64);
             textBox8.Location = new Point(262, 33);
             textBox8.Multiline = true;
             textBox8.Name = "textBox8";
@@ -322,11 +340,9 @@
             Controls.Add(btnBack);
             Controls.Add(panel2);
             Controls.Add(textBox6);
-            Controls.Add(textBox1);
             Controls.Add(btnRefresh);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox3);
             Controls.Add(dgvInvoicedetail);
             Controls.Add(panel1);
             Name = "UserControlInvoiceDetail";

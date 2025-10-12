@@ -12,8 +12,5 @@
 
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
-
-        // Optional: summary info from joined InvoiceDetail
-        public int TotalItems { get; set; }
     }
 }

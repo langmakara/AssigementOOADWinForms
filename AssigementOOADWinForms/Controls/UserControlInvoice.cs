@@ -19,9 +19,9 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvInvoice);
-            btnClear.Click += HandleClearTextBox;
-            dgvInvoice.SelectionChanged += SelectionRowChanges;
             dgvInvoice.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            btnClear.Click += HandleClearTextBox;
+            dgvInvoice.SelectionChanged += SelectionRowChanges;  
             dgvInvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             searchCustomerName.TextChanged += (s, e) => FilterInvoices();
@@ -165,7 +165,6 @@ namespace AssigementOOADWinForms.Controls
                     CustomerPhone = textcustomerPhone.Text,
                     EmployeeID = Convert.ToInt32(comboEmployee.SelectedValue),
                     OrderDate = DateTime.Parse(datetimeorderDate.Text),
-                    TotalAmount = decimal.Parse(textTotalAmount.Text)
                 };
 
                 _invoiceService.SaveInvoice(model);

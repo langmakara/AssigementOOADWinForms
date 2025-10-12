@@ -17,47 +17,44 @@ BEGIN
     ORDER BY i.OrderDate DESC;
 END;
 GO
-
-CREATE PROCEDURE sp_UpsertInvoice
-    @InvoiceID INT = NULL,
+--Isert Or Update
+CREATE OR ALTER PROCEDURE sp_InsertInvoice
+    @InvoiceID INT OUTPUT,
     @CustomerName VARCHAR(50),
     @CustomerPhone VARCHAR(50),
     @EmployeeID INT,
-    @OrderDate DATETIME,
-    @TotalAmount DECIMAL(18,2)
+    @OrderDate DATETIME
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Check if InvoiceID exists
-    IF EXISTS (SELECT 1 FROM tbInvoice WHERE InvoiceID = @InvoiceID)
-    BEGIN
-        -- Update existing record
-        UPDATE tbInvoice
-        SET
-            CustomerName = @CustomerName,
-            CustomerPhone = @CustomerPhone,
-            EmployeeID = @EmployeeID,
-            OrderDate = @OrderDate,
-            TotalAmount = @TotalAmount
-        WHERE InvoiceID = @InvoiceID;
+    INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, OrderDate, TotalAmount)
+    VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @OrderDate, 0); -- insert 0 first
 
-        PRINT 'Invoice updated successfully.';
-    END
-    ELSE
-    BEGIN
-        -- Insert new record
-        INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, OrderDate, TotalAmount)
-        VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @OrderDate, @TotalAmount);
+    SET @InvoiceID = SCOPE_IDENTITY();
 
-        -- Optional: Return new InvoiceID
-        SET @InvoiceID = SCOPE_IDENTITY();
-        PRINT 'New invoice inserted successfully.';
-    END
+    SELECT @InvoiceID AS InvoiceID;
+END;
+GO
+--Trigger automatic update invoice
+CREATE TRIGGER trg_UpdateInvoiceTotal
+ON tbInvoiceDetail
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    DECLARE @InvoiceID INT;
+    SELECT @InvoiceID = InvoiceID FROM inserted;
+
+    UPDATE tbInvoice
+    SET TotalAmount = (
+        SELECT SUM(Quantity * UnitPrice)
+        FROM tbInvoiceDetail
+        WHERE InvoiceID = @InvoiceID
+    )
+    WHERE InvoiceID = @InvoiceID;
 END;
 GO
 --Remove Store Procedure 
-
 CREATE PROCEDURE sp_DeleteInvoice
     @InvoiceID INT
 AS
@@ -81,6 +78,21 @@ BEGIN
     END
 END;
 GO
+--Insert Invoice Detail
+CREATE OR ALTER PROCEDURE sp_InsertInvoiceDetail
+    @InvoiceID INT,
+    @ProductID INT,
+    @Quantity INT,
+    @UnitPrice DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO tbInvoiceDetail (InvoiceID, ProductID, Quantity, UnitPrice)
+    VALUES (@InvoiceID, @ProductID, @Quantity, @UnitPrice);
+END;
+GO
+
 --Employee Table Select 
 CREATE PROCEDURE sp_GetAllEmployees
 AS
