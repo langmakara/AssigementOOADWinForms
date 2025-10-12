@@ -371,6 +371,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "UserControlSupplier";
             Size = new Size(1264, 885);
+            Load += UserControlSupplier_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();

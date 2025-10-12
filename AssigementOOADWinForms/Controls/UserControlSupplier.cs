@@ -27,5 +27,10 @@ namespace AssigementOOADWinForms.Controls
             tbEmail.Clear();
             tbAddress.Clear();
         }
+
+        private void UserControlSupplier_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
