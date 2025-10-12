@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AssigementOOADWinForms.DATAs;
+using AssigementOOADWinForms.Models;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Microsoft.Data.SqlClient;
-using AssigementOOADWinForms.DATAs;
-using AssigementOOADWinForms.Models;
 
 namespace AssigementOOADWinForms.Services
 {
@@ -13,34 +13,31 @@ namespace AssigementOOADWinForms.Services
         {
             var employees = new List<Employee>();
 
-            try
+            using (SqlConnection conn = HandleConnection.GetSqlConnection())
             {
-                using (SqlConnection conn = HandleConnection.GetSqlConnection())
+                if (conn == null) throw new Exception("Database connection failed.");
+
+                using (SqlCommand cmd = new SqlCommand("sp_GetAllEmployees", conn))
                 {
-                    if (conn == null)
-                        throw new Exception("Database connection failed.");
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    using (SqlCommand cmd = new SqlCommand("sp_GetAllEmployees", conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            employees.Add(new Employee
                             {
-                                employees.Add(new Employee
-                                {
-                                    EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
-                                    EmployeeName = reader.GetString(reader.GetOrdinal("EmployeeName"))
-                                });
-                            }
+                                EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                                EmployeeName = reader.GetString(reader.GetOrdinal("EmployeeName")),
+                                Phone = reader.IsDBNull(reader.GetOrdinal("Phone")) ? null : reader.GetString(reader.GetOrdinal("Phone")),
+                                Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
+                                Address = reader.IsDBNull(reader.GetOrdinal("Address")) ? null : reader.GetString(reader.GetOrdinal("Address")),
+                                Position = reader.IsDBNull(reader.GetOrdinal("Position")) ? null : reader.GetString(reader.GetOrdinal("Position")),
+                                HireDate = reader.GetDateTime(reader.GetOrdinal("HireDate"))
+                            });
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error fetching employees: {ex.Message}", ex);
             }
 
             return employees;

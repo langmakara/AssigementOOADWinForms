@@ -30,16 +30,16 @@
         {
             label5 = new Label();
             label4 = new Label();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
+            tbAddress = new TextBox();
+            tbPhone = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            tbName = new TextBox();
             textBox1 = new TextBox();
             comboBox1 = new ComboBox();
             dgvemployee = new DataGridView();
-            textBox5 = new TextBox();
+            tbPosition = new TextBox();
             label6 = new Label();
-            textBox6 = new TextBox();
+            tbHireDate = new TextBox();
             label7 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -83,23 +83,23 @@
             label4.TabIndex = 58;
             label4.Text = "Address     ";
             // 
-            // textBox4
+            // tbAddress
             // 
-            textBox4.Location = new Point(8, 261);
-            textBox4.Margin = new Padding(3, 4, 3, 4);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(343, 48);
-            textBox4.TabIndex = 57;
+            tbAddress.Location = new Point(8, 261);
+            tbAddress.Margin = new Padding(3, 4, 3, 4);
+            tbAddress.Multiline = true;
+            tbAddress.Name = "tbAddress";
+            tbAddress.Size = new Size(343, 48);
+            tbAddress.TabIndex = 57;
             // 
-            // textBox3
+            // tbPhone
             // 
-            textBox3.Location = new Point(8, 160);
-            textBox3.Margin = new Padding(3, 4, 3, 4);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(343, 48);
-            textBox3.TabIndex = 56;
+            tbPhone.Location = new Point(8, 160);
+            tbPhone.Margin = new Padding(3, 4, 3, 4);
+            tbPhone.Multiline = true;
+            tbPhone.Name = "tbPhone";
+            tbPhone.Size = new Size(343, 48);
+            tbPhone.TabIndex = 56;
             // 
             // label3
             // 
@@ -113,14 +113,14 @@
             label3.TabIndex = 55;
             label3.Text = "Name";
             // 
-            // textBox2
+            // tbName
             // 
-            textBox2.Location = new Point(8, 59);
-            textBox2.Margin = new Padding(3, 4, 3, 4);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(343, 48);
-            textBox2.TabIndex = 54;
+            tbName.Location = new Point(8, 59);
+            tbName.Margin = new Padding(3, 4, 3, 4);
+            tbName.Multiline = true;
+            tbName.Name = "tbName";
+            tbName.Size = new Size(343, 48);
+            tbName.TabIndex = 54;
             // 
             // textBox1
             // 
@@ -151,15 +151,16 @@
             dgvemployee.RowHeadersWidth = 51;
             dgvemployee.Size = new Size(898, 772);
             dgvemployee.TabIndex = 47;
+            dgvemployee.CellContentClick += dgvemployee_CellContentClick;
             // 
-            // textBox5
+            // tbPosition
             // 
-            textBox5.Location = new Point(8, 362);
-            textBox5.Margin = new Padding(3, 4, 3, 4);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(343, 48);
-            textBox5.TabIndex = 62;
+            tbPosition.Location = new Point(8, 362);
+            tbPosition.Margin = new Padding(3, 4, 3, 4);
+            tbPosition.Multiline = true;
+            tbPosition.Name = "tbPosition";
+            tbPosition.Size = new Size(343, 48);
+            tbPosition.TabIndex = 62;
             // 
             // label6
             // 
@@ -169,18 +170,18 @@
             label6.ForeColor = Color.White;
             label6.Location = new Point(8, 318);
             label6.Name = "label6";
-            label6.Size = new Size(133, 35);
+            label6.Size = new Size(122, 35);
             label6.TabIndex = 63;
-            label6.Text = "Possition  ";
+            label6.Text = "Position  ";
             // 
-            // textBox6
+            // tbHireDate
             // 
-            textBox6.Location = new Point(8, 463);
-            textBox6.Margin = new Padding(3, 4, 3, 4);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(343, 48);
-            textBox6.TabIndex = 64;
+            tbHireDate.Location = new Point(8, 463);
+            tbHireDate.Margin = new Padding(3, 4, 3, 4);
+            tbHireDate.Multiline = true;
+            tbHireDate.Name = "tbHireDate";
+            tbHireDate.Size = new Size(343, 48);
+            tbHireDate.TabIndex = 64;
             // 
             // label7
             // 
@@ -199,15 +200,15 @@
             panel1.BackColor = Color.DodgerBlue;
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(textBox6);
+            panel1.Controls.Add(tbHireDate);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(tbPosition);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(tbAddress);
+            panel1.Controls.Add(tbPhone);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(tbName);
             panel1.Location = new Point(897, -1);
             panel1.Name = "panel1";
             panel1.Size = new Size(381, 642);
@@ -233,9 +234,9 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(290, 9);
             label2.Name = "label2";
-            label2.Size = new Size(119, 35);
+            label2.Size = new Size(108, 35);
             label2.TabIndex = 53;
-            label2.Text = "Possition";
+            label2.Text = "Position";
             // 
             // label1
             // 
@@ -372,16 +373,16 @@
         #endregion
         private Label label5;
         private Label label4;
-        private TextBox textBox4;
-        private TextBox textBox3;
+        private TextBox tbAddress;
+        private TextBox tbPhone;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox tbName;
         private TextBox textBox1;
         private ComboBox comboBox1;
         private DataGridView dgvemployee;
-        private TextBox textBox5;
+        private TextBox tbPosition;
         private Label label6;
-        private TextBox textBox6;
+        private TextBox tbHireDate;
         private Label label7;
         private Panel panel1;
         private Panel panel2;
