@@ -27,7 +27,7 @@ namespace AssigementOOADWinForms
         {
             if (tbUser.Text == "MakaraLang" && tbPassword.Text == "1234567")
             {
-                new Form1().Show();
+                new Mainform().Show();
                 this.Hide();
             }
             else

@@ -1,6 +1,6 @@
 ﻿using AssigementOOADWinForms.Controls;
 namespace AssigementOOADWinForms;
-public partial class Form1 : Form
+public partial class Mainform : Form
 {
     private readonly HttpClient _httpClient;
     private UserControlDashboard? userControlDashboard;
@@ -11,7 +11,7 @@ public partial class Form1 : Form
     private UserControlProduct? userControlProduct;
     private UserControlInvoiceDetail? userControlInvoiceDetail;
     private UserControlInvoice? userControlInvoice;
-    public Form1()
+    public Mainform()
     {
         InitializeComponent();
         DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
