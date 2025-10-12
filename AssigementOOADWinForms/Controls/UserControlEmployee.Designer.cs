@@ -51,8 +51,8 @@
             btInsert = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
-            label1 = new Label();
             label2 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
@@ -198,7 +198,7 @@
             dgvemployee.Margin = new Padding(3, 4, 3, 4);
             dgvemployee.Name = "dgvemployee";
             dgvemployee.RowHeadersWidth = 51;
-            dgvemployee.Size = new Size(836, 772);
+            dgvemployee.Size = new Size(859, 772);
             dgvemployee.TabIndex = 47;
             // 
             // textBox5
@@ -326,7 +326,7 @@
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textBox2);
-            panel1.Location = new Point(833, -2);
+            panel1.Location = new Point(861, -2);
             panel1.Name = "panel1";
             panel1.Size = new Size(438, 890);
             panel1.TabIndex = 69;
@@ -341,21 +341,9 @@
             panel2.Controls.Add(comboBox1);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(836, 116);
+            panel2.Size = new Size(862, 116);
             panel2.TabIndex = 70;
             panel2.Paint += panel2_Paint;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Cursor = Cursors.Hand;
-            label1.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(126, 35);
-            label1.TabIndex = 52;
-            label1.Text = "Employee";
             // 
             // label2
             // 
@@ -368,6 +356,18 @@
             label2.Size = new Size(119, 35);
             label2.TabIndex = 53;
             label2.Text = "Possition";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(126, 35);
+            label1.TabIndex = 52;
+            label1.Text = "Employee";
             // 
             // UserControlEmployee
             // 

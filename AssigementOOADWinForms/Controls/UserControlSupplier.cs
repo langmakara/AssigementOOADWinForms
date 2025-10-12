@@ -15,17 +15,17 @@ namespace AssigementOOADWinForms.Controls
         public UserControlSupplier()
         {
             InitializeComponent();
-            DesignHelper.StyleDataGridView(dgvsuppiler);
         }
 
-        private void label9_Click(object sender, EventArgs e)
+        private void btClear_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            tbSupplierID.Clear();
+            tbSeach.Clear();
+            tbSupplierName.Clear();
+            tbContactName.Clear();
+            tbPhoneNumble.Clear();
+            tbEmail.Clear();
+            tbAddress.Clear();
         }
     }
 }

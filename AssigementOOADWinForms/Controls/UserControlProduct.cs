@@ -10,17 +10,24 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
         }
-        private void UserControlProduct_Load(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tbProductID.Clear();
+            tbSeach.Clear();
+            tbProductName.Clear();
+            tbCategory.Clear();
+            tbSupplier.Clear();
+            tbUnitPrice.Clear();
+            tbQauntity.Clear();
+            tbImportDate.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
+        private void btSave_Click(object sender, EventArgs e)
         {
 
         }
