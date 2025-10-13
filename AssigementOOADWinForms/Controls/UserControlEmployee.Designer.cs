@@ -34,8 +34,7 @@
             tbPhone = new TextBox();
             label3 = new Label();
             tbName = new TextBox();
-            searchEmployeeName = new TextBox();
-            comboBox1 = new ComboBox();
+            tbsearchEmployeeName = new TextBox();
             dgvemployee = new DataGridView();
             tbPosition = new TextBox();
             label6 = new Label();
@@ -52,6 +51,7 @@
             btnRefresh = new Button();
             button2 = new Button();
             button1 = new Button();
+            cbPositionFilter = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -85,6 +85,7 @@
             // 
             // tbAddress
             // 
+            tbAddress.Font = new Font("Segoe UI", 15F);
             tbAddress.Location = new Point(8, 311);
             tbAddress.Margin = new Padding(3, 4, 3, 4);
             tbAddress.Multiline = true;
@@ -94,6 +95,7 @@
             // 
             // tbPhone
             // 
+            tbPhone.Font = new Font("Segoe UI", 15F);
             tbPhone.Location = new Point(8, 190);
             tbPhone.Margin = new Padding(3, 4, 3, 4);
             tbPhone.Multiline = true;
@@ -115,6 +117,7 @@
             // 
             // tbName
             // 
+            tbName.Font = new Font("Segoe UI", 15F);
             tbName.Location = new Point(8, 69);
             tbName.Margin = new Padding(3, 4, 3, 4);
             tbName.Multiline = true;
@@ -122,38 +125,30 @@
             tbName.Size = new Size(343, 48);
             tbName.TabIndex = 54;
             // 
-            // searchEmployeeName
+            // tbsearchEmployeeName
             // 
-            searchEmployeeName.Location = new Point(10, 46);
-            searchEmployeeName.Margin = new Padding(3, 4, 3, 4);
-            searchEmployeeName.Multiline = true;
-            searchEmployeeName.Name = "searchEmployeeName";
-            searchEmployeeName.Size = new Size(267, 45);
-            searchEmployeeName.TabIndex = 49;
-            // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Segoe UI", 15F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(290, 48);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(285, 43);
-            comboBox1.TabIndex = 48;
+            tbsearchEmployeeName.Font = new Font("Segoe UI", 15F);
+            tbsearchEmployeeName.Location = new Point(10, 46);
+            tbsearchEmployeeName.Margin = new Padding(3, 4, 3, 4);
+            tbsearchEmployeeName.Multiline = true;
+            tbsearchEmployeeName.Name = "tbsearchEmployeeName";
+            tbsearchEmployeeName.Size = new Size(267, 45);
+            tbsearchEmployeeName.TabIndex = 49;
             // 
             // dgvemployee
             // 
             dgvemployee.BackgroundColor = Color.White;
             dgvemployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvemployee.Location = new Point(3, 113);
+            dgvemployee.Location = new Point(3, 120);
             dgvemployee.Margin = new Padding(3, 4, 3, 4);
             dgvemployee.Name = "dgvemployee";
             dgvemployee.RowHeadersWidth = 51;
-            dgvemployee.Size = new Size(891, 768);
+            dgvemployee.Size = new Size(891, 761);
             dgvemployee.TabIndex = 47;
             // 
             // tbPosition
             // 
+            tbPosition.Font = new Font("Segoe UI", 15F);
             tbPosition.Location = new Point(8, 432);
             tbPosition.Margin = new Padding(3, 4, 3, 4);
             tbPosition.Multiline = true;
@@ -201,7 +196,7 @@
             panel1.Controls.Add(tbName);
             panel1.Location = new Point(897, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(381, 638);
+            panel1.Size = new Size(381, 637);
             panel1.TabIndex = 69;
             // 
             // dtpHireDate
@@ -218,8 +213,7 @@
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(searchEmployeeName);
-            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(tbsearchEmployeeName);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(891, 110);
@@ -343,11 +337,22 @@
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = false;
             // 
+            // cbPositionFilter
+            // 
+            cbPositionFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPositionFilter.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbPositionFilter.Location = new Point(290, 48);
+            cbPositionFilter.Name = "cbPositionFilter";
+            cbPositionFilter.Size = new Size(285, 43);
+            cbPositionFilter.TabIndex = 0;
+            cbPositionFilter.SelectedIndexChanged += CbPositionFilter_SelectedIndexChanged;
+            // 
             // UserControlEmployee
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
+            Controls.Add(cbPositionFilter);
             Controls.Add(panel3);
             Controls.Add(btnRefresh);
             Controls.Add(button2);
@@ -376,8 +381,7 @@
         private TextBox tbPhone;
         private Label label3;
         private TextBox tbName;
-        private TextBox searchEmployeeName;
-        private ComboBox comboBox1;
+        private TextBox tbsearchEmployeeName;
         private DataGridView dgvemployee;
         private TextBox tbPosition;
         private Label label6;
@@ -394,5 +398,6 @@
         private Button button2;
         private Button button1;
         private DateTimePicker dtpHireDate;
+        private ComboBox cbPositionFilter;
     }
 }
