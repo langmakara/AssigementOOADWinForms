@@ -158,16 +158,24 @@ namespace AssigementOOADWinForms.Controls
                     return;
                 }
 
+                if (!DateTime.TryParse(datetimeorderDate.Text, out DateTime orderDate))
+                {
+                    MessageBox.Show("Invalid order date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var model = new Invoice
                 {
                     InvoiceID = string.IsNullOrWhiteSpace(textinvoiceID.Text) ? 0 : int.Parse(textinvoiceID.Text),
                     CustomerName = textcustomerName.Text,
                     CustomerPhone = textcustomerPhone.Text,
                     EmployeeID = Convert.ToInt32(comboEmployee.SelectedValue),
-                    OrderDate = DateTime.Parse(datetimeorderDate.Text),
+                    OrderDate = orderDate,
                 };
 
+                // Call service that executes sp_InsertOrUpdateInvoice
                 _invoiceService.SaveInvoice(model);
+
                 MessageBox.Show("Invoice saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadInvoices();
             }
@@ -176,6 +184,7 @@ namespace AssigementOOADWinForms.Controls
                 MessageBox.Show($"Failed to save invoice:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void HandleRemoveInvoice()
         {

@@ -37,16 +37,22 @@ namespace AssigementOOADWinForms.Repositories
         public void Save(Invoice model)
         {
             using var conn = HandleConnection.GetSqlConnection();
-            using var cmd = new SqlCommand("sp_UpsertInvoice", conn);
+            using var cmd = new SqlCommand("sp_InsertOrUpdateInvoice", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@InvoiceID", model.InvoiceID == 0 ? DBNull.Value : model.InvoiceID);
+            var invoiceIDParam = new SqlParameter("@InvoiceID", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output,
+                Value = model.InvoiceID == 0 ? DBNull.Value : model.InvoiceID
+            };
+            cmd.Parameters.Add(invoiceIDParam);
             cmd.Parameters.AddWithValue("@CustomerName", model.CustomerName);
             cmd.Parameters.AddWithValue("@CustomerPhone", model.CustomerPhone);
             cmd.Parameters.AddWithValue("@EmployeeID", model.EmployeeID);
             cmd.Parameters.AddWithValue("@OrderDate", model.OrderDate);
-            cmd.Parameters.AddWithValue("@TotalAmount", model.TotalAmount);
             cmd.ExecuteNonQuery();
+            model.InvoiceID = (int)invoiceIDParam.Value;
         }
+
 
         public void Delete(int invoiceId)
         {

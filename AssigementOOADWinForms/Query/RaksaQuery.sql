@@ -1,25 +1,26 @@
-CREATE PROCEDURE sp_GetAllInvoices
+-- =====================================
+-- Get all invoices
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetAllInvoices
 AS
 BEGIN
     SET NOCOUNT ON;
 
     SELECT 
-        i.InvoiceID,
-        i.CustomerName,
-        i.CustomerPhone,
-        e.EmployeeID,
-        e.EmployeeName,
-        i.TotalAmount,
-        i.OrderDate
-    FROM tbInvoice AS i
-    INNER JOIN tbEmployee AS e
-        ON i.EmployeeID = e.EmployeeID
-    ORDER BY i.OrderDate DESC;
+        InvoiceID,
+        CustomerName,
+        CustomerPhone,
+        EmployeeID,
+        EmployeeName,  -- denormalized
+        TotalAmount,
+        OrderDate
+    FROM tbInvoice
+    ORDER BY OrderDate DESC;
 END;
 GO
---Isert Or Update
-CREATE OR ALTER PROCEDURE sp_InsertInvoice
-    @InvoiceID INT OUTPUT,
+--Insert or Update
+CREATE OR ALTER PROCEDURE sp_InsertOrUpdateInvoice
+    @InvoiceID INT = NULL OUTPUT,
     @CustomerName VARCHAR(50),
     @CustomerPhone VARCHAR(50),
     @EmployeeID INT,
@@ -28,48 +29,51 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, OrderDate, TotalAmount)
-    VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @OrderDate, 0); -- insert 0 first
+    DECLARE @EmployeeName VARCHAR(150);
 
-    SET @InvoiceID = SCOPE_IDENTITY();
+    -- Get Employee Name for denormalization
+    SELECT @EmployeeName = EmployeeName 
+    FROM tbEmployee
+    WHERE EmployeeID = @EmployeeID;
 
+    IF @InvoiceID IS NOT NULL AND EXISTS (SELECT 1 FROM tbInvoice WHERE InvoiceID = @InvoiceID)
+    BEGIN
+        -- Update existing invoice
+        UPDATE tbInvoice
+        SET CustomerName = @CustomerName,
+            CustomerPhone = @CustomerPhone,
+            EmployeeID = @EmployeeID,
+            EmployeeName = @EmployeeName,
+            OrderDate = @OrderDate
+        WHERE InvoiceID = @InvoiceID;
+    END
+    ELSE
+    BEGIN
+        -- Insert new invoice
+        INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, EmployeeName, OrderDate, TotalAmount)
+        VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @EmployeeName, @OrderDate, 0);
+
+        SET @InvoiceID = SCOPE_IDENTITY();
+    END
+
+    -- Return the InvoiceID
     SELECT @InvoiceID AS InvoiceID;
 END;
 GO
---Trigger automatic update invoice
-CREATE TRIGGER trg_UpdateInvoiceTotal
-ON tbInvoiceDetail
-AFTER INSERT, UPDATE, DELETE
-AS
-BEGIN
-    DECLARE @InvoiceID INT;
-    SELECT @InvoiceID = InvoiceID FROM inserted;
 
-    UPDATE tbInvoice
-    SET TotalAmount = (
-        SELECT SUM(Quantity * UnitPrice)
-        FROM tbInvoiceDetail
-        WHERE InvoiceID = @InvoiceID
-    )
-    WHERE InvoiceID = @InvoiceID;
-END;
-GO
---Remove Store Procedure 
-CREATE PROCEDURE sp_DeleteInvoice
+-- =====================================
+-- Delete Invoice
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_DeleteInvoice
     @InvoiceID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Check if the invoice exists
     IF EXISTS (SELECT 1 FROM tbInvoice WHERE InvoiceID = @InvoiceID)
     BEGIN
-        -- Optional: Delete related details first to maintain foreign key integrity
-        DELETE FROM tbInvoicerDetail WHERE InvoiceID = @InvoiceID;
-
-        -- Then delete the invoice itself
+        DELETE FROM tbInvoiceDetail WHERE InvoiceID = @InvoiceID;
         DELETE FROM tbInvoice WHERE InvoiceID = @InvoiceID;
-
         PRINT 'Invoice deleted successfully.';
     END
     ELSE
@@ -78,7 +82,10 @@ BEGIN
     END
 END;
 GO
---Insert Invoice Detail
+
+-- =====================================
+-- Insert Invoice Detail
+-- =====================================
 CREATE OR ALTER PROCEDURE sp_InsertInvoiceDetail
     @InvoiceID INT,
     @ProductID INT,
@@ -88,13 +95,22 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO tbInvoiceDetail (InvoiceID, ProductID, Quantity, UnitPrice)
-    VALUES (@InvoiceID, @ProductID, @Quantity, @UnitPrice);
+    DECLARE @ProductName VARCHAR(150);
+
+    -- Get Product Name for denormalization
+    SELECT @ProductName = ProductName 
+    FROM tbProduct
+    WHERE ProductID = @ProductID;
+
+    INSERT INTO tbInvoiceDetail (InvoiceID, ProductID, ProductName, Quantity, UnitPrice)
+    VALUES (@InvoiceID, @ProductID, @ProductName, @Quantity, @UnitPrice);
 END;
 GO
 
---Employee Table Select 
-CREATE PROCEDURE sp_GetAllEmployees
+-- =====================================
+-- Get all employees
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetAllEmployees
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -110,5 +126,33 @@ BEGIN
     FROM tbEmployee
     ORDER BY EmployeeName;
 END;
+GO
 
+-- =====================================
+-- Trigger to update Invoice TotalAmount
+-- =====================================
+CREATE OR ALTER TRIGGER trg_UpdateInvoiceTotal
+ON tbInvoiceDetail
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    DECLARE @AffectedInvoices TABLE (InvoiceID INT);
+
+    INSERT INTO @AffectedInvoices (InvoiceID)
+    SELECT DISTINCT InvoiceID FROM inserted
+    UNION
+    SELECT DISTINCT InvoiceID FROM deleted;
+
+    UPDATE i
+    SET TotalAmount = ISNULL(d.Total, 0)
+    FROM tbInvoice i
+    INNER JOIN (
+        SELECT InvoiceID, SUM(Quantity * UnitPrice) AS Total
+        FROM tbInvoiceDetail
+        GROUP BY InvoiceID
+    ) d ON i.InvoiceID = d.InvoiceID
+    WHERE i.InvoiceID IN (SELECT InvoiceID FROM @AffectedInvoices);
+END;
+GO

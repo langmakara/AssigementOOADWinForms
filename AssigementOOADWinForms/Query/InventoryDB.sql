@@ -38,134 +38,117 @@ CREATE TABLE tbSupplier (
 GO
 
 -- =====================================
--- Product Table
+-- Product Table (denormalized)
 -- =====================================
 CREATE TABLE tbProduct (
     ProductID INT IDENTITY(1,1) PRIMARY KEY,
     ProductName VARCHAR(150) NOT NULL,
     SupplierID INT,
+    SupplierName VARCHAR(150),        -- denormalized
+    SupplierPhone VARCHAR(50),       -- denormalized
     UnitPrice DECIMAL(18,2) NOT NULL,
     QuantityInStock INT DEFAULT 0,
     ReorderLevel INT DEFAULT 0,
-    CreatedAt DATETIME DEFAULT GETDATE(),
-    CONSTRAINT FK_Product_Supplier FOREIGN KEY (SupplierID)
-        REFERENCES tbSupplier(SupplierID)
+    CreatedAt DATETIME DEFAULT GETDATE()
 );
 GO
 
 -- =====================================
--- Purchase Order Table
+-- Purchase Order Table (denormalized)
 -- =====================================
 CREATE TABLE tbPurchaseOrder (
     PurchaseID INT IDENTITY(1,1) PRIMARY KEY,
     SupplierID INT,
+    SupplierName VARCHAR(150),       -- denormalized
     EmployeeID INT,
+    EmployeeName VARCHAR(150),       -- denormalized
     OrderDate DATETIME DEFAULT GETDATE(),
-    TotalAmount DECIMAL(18,2),
-    CONSTRAINT FK_PurchaseOrder_Supplier FOREIGN KEY (SupplierID)
-        REFERENCES tbSupplier(SupplierID),
-    CONSTRAINT FK_PurchaseOrder_Employee FOREIGN KEY (EmployeeID)
-        REFERENCES tbEmployee(EmployeeID)
+    TotalAmount DECIMAL(18,2)
 );
 GO
 
 -- =====================================
--- Purchase Order Detail Table
+-- Purchase Order Detail Table (denormalized)
 -- =====================================
 CREATE TABLE tbPurchaseOrderDetail (
     PurchaseDetailID INT IDENTITY(1,1) PRIMARY KEY,
     PurchaseID INT NOT NULL,
     ProductID INT NOT NULL,
+    ProductName VARCHAR(150),        -- denormalized
     Quantity INT NOT NULL,
-    UnitPrice DECIMAL(18,2) NOT NULL,
-    CONSTRAINT FK_PurchaseDetail_Purchase FOREIGN KEY (PurchaseID)
-        REFERENCES tbPurchaseOrder(PurchaseID),
-    CONSTRAINT FK_PurchaseDetail_Product FOREIGN KEY (ProductID)
-        REFERENCES tbProduct(ProductID)
+    UnitPrice DECIMAL(18,2) NOT NULL
 );
 GO
 
 -- =====================================
--- Invoice (Sales Order) Table
+-- Invoice Table (denormalized)
 -- =====================================
 CREATE TABLE tbInvoice (
     InvoiceID INT IDENTITY(1,1) PRIMARY KEY,
     CustomerName VARCHAR(50),
     CustomerPhone VARCHAR(50),
     EmployeeID INT,
+    EmployeeName VARCHAR(150),       -- denormalized
     OrderDate DATETIME DEFAULT GETDATE(),
-    TotalAmount DECIMAL(18,2),
-    CONSTRAINT FK_Invoice_Employee FOREIGN KEY (EmployeeID)
-        REFERENCES tbEmployee(EmployeeID)
+    Status VARCHAR(50) NOT NULL DEFAULT 'Pending',
+    TotalAmount DECIMAL(18,2)
 );
 GO
 
 -- =====================================
--- Invoice Detail (Sales Order Detail) Table
+-- Invoice Detail Table (denormalized)
 -- =====================================
-CREATE TABLE tbInvoicerDetail (
+CREATE TABLE tbInvoiceDetail (
     InvoiceDetailID INT IDENTITY(1,1) PRIMARY KEY,
     InvoiceID INT NOT NULL,
     ProductID INT NOT NULL,
+    ProductName VARCHAR(150),        -- denormalized
     Quantity INT NOT NULL,
-    UnitPrice DECIMAL(18,2) NOT NULL,
-    CONSTRAINT FK_InvoiceDetail_Invoice FOREIGN KEY (InvoiceID)
-        REFERENCES tbInvoice(InvoiceID),
-    CONSTRAINT FK_InvoiceDetail_Product FOREIGN KEY (ProductID)
-        REFERENCES tbProduct(ProductID)
+    UnitPrice DECIMAL(18,2) NOT NULL
 );
 GO
 
 -- =====================================
--- Inventory Transaction Table
+-- Inventory Transaction Table (denormalized)
 -- =====================================
 CREATE TABLE tbInventoryTransaction (
     TransactionID INT IDENTITY(1,1) PRIMARY KEY,
     ProductID INT NOT NULL,
+    ProductName VARCHAR(150),        -- denormalized
+    ProductUnitPrice DECIMAL(18,2),  -- denormalized
     TransactionType VARCHAR(50) CHECK (TransactionType IN ('Purchase', 'Sale', 'Adjustment')),
     QuantityChange INT NOT NULL,
     TransactionDate DATETIME DEFAULT GETDATE(),
-    ReferenceID INT,
-    CONSTRAINT FK_InventoryTransaction_Product FOREIGN KEY (ProductID)
-        REFERENCES tbProduct(ProductID)
+    ReferenceID INT
 );
 GO
 
 -- =====================================
--- Payment Table
+-- Payment Table (denormalized)
 -- =====================================
 CREATE TABLE tbPayment (
     PaymentID INT IDENTITY(1,1) PRIMARY KEY,
     InvoiceID INT NOT NULL,
+    CustomerName VARCHAR(50),        -- denormalized
+    InvoiceTotalAmount DECIMAL(18,2), -- denormalized
     PaymentDate DATETIME DEFAULT GETDATE(),
     PaymentMethod VARCHAR(50) CHECK (PaymentMethod IN ('Cash', 'Credit Card', 'Bank Transfer')),
-    AmountPaid DECIMAL(18,2) NOT NULL,
-    CONSTRAINT FK_Payment_Invoice FOREIGN KEY (InvoiceID)
-        REFERENCES tbInvoice(InvoiceID)
+    AmountPaid DECIMAL(18,2) NOT NULL
 );
 GO
 
 -- =====================================
--- Stock Adjustment Table
+-- Stock Adjustment Table (denormalized)
 -- =====================================
 CREATE TABLE tbStockAdjustment (
     AdjustmentID INT IDENTITY(1,1) PRIMARY KEY,
     ProductID INT NOT NULL,
+    ProductName VARCHAR(150),        -- denormalized
     EmployeeID INT NOT NULL,
+    EmployeeName VARCHAR(150),       -- denormalized
     AdjustmentType VARCHAR(50) CHECK (AdjustmentType IN ('Increase', 'Decrease')),
     Quantity INT NOT NULL,
     Reason VARCHAR(255),
-    AdjustmentDate DATETIME DEFAULT GETDATE(),
-    CONSTRAINT FK_StockAdjustment_Product FOREIGN KEY (ProductID)
-        REFERENCES tbProduct(ProductID),
-    CONSTRAINT FK_StockAdjustment_Employee FOREIGN KEY (EmployeeID)
-        REFERENCES tbEmployee(EmployeeID)
+    AdjustmentDate DATETIME DEFAULT GETDATE()
 );
 GO
-
--- =====================================
--- (OPTIONAL) Note: The last line in your definition:
--- Ref: "tbEmployee"."Phone" < "tbUser"."CreatedAt"
--- This is not a valid SQL relationship.
--- If you meant to add a constraint, please clarify what logic you need.
--- =====================================
