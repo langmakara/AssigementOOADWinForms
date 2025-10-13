@@ -20,46 +20,42 @@ END;
 GO
 --Insert or Update
 CREATE OR ALTER PROCEDURE sp_InsertOrUpdateInvoice
-    @InvoiceID INT = NULL OUTPUT,
+    @InvoiceID   INT = NULL OUTPUT,
     @CustomerName VARCHAR(50),
     @CustomerPhone VARCHAR(50),
-    @EmployeeID INT,
-    @OrderDate DATETIME
+    @EmployeeID   INT,
+    @OrderDate    DATETIME,
+    @Status       VARCHAR(20) = 'Pending'
 AS
 BEGIN
     SET NOCOUNT ON;
 
     DECLARE @EmployeeName VARCHAR(150);
-
-    -- Get Employee Name for denormalization
-    SELECT @EmployeeName = EmployeeName 
-    FROM tbEmployee
-    WHERE EmployeeID = @EmployeeID;
+    SELECT @EmployeeName = EmployeeName FROM tbEmployee WHERE EmployeeID = @EmployeeID;
 
     IF @InvoiceID IS NOT NULL AND EXISTS (SELECT 1 FROM tbInvoice WHERE InvoiceID = @InvoiceID)
     BEGIN
-        -- Update existing invoice
         UPDATE tbInvoice
-        SET CustomerName = @CustomerName,
+        SET CustomerName  = @CustomerName,
             CustomerPhone = @CustomerPhone,
-            EmployeeID = @EmployeeID,
-            EmployeeName = @EmployeeName,
-            OrderDate = @OrderDate
+            EmployeeID    = @EmployeeID,
+            EmployeeName  = @EmployeeName,
+            OrderDate     = @OrderDate,
+            Status        = @Status
         WHERE InvoiceID = @InvoiceID;
     END
     ELSE
     BEGIN
-        -- Insert new invoice
-        INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, EmployeeName, OrderDate, TotalAmount)
-        VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @EmployeeName, @OrderDate, 0);
+        INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, EmployeeName, OrderDate, TotalAmount, Status)
+        VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @EmployeeName, @OrderDate, 0, @Status);
 
         SET @InvoiceID = SCOPE_IDENTITY();
     END
 
-    -- Return the InvoiceID
     SELECT @InvoiceID AS InvoiceID;
 END;
 GO
+
 
 -- =====================================
 -- Delete Invoice
