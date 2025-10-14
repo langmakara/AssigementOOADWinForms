@@ -178,7 +178,7 @@
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbEmail.Location = new Point(19, 400);
+            tbEmail.Location = new Point(19, 406);
             tbEmail.Margin = new Padding(3, 4, 3, 4);
             tbEmail.Multiline = true;
             tbEmail.Name = "tbEmail";
@@ -188,7 +188,7 @@
             // tbSupplierID
             // 
             tbSupplierID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierID.Location = new Point(19, 40);
+            tbSupplierID.Location = new Point(19, 46);
             tbSupplierID.Margin = new Padding(3, 4, 3, 4);
             tbSupplierID.Multiline = true;
             tbSupplierID.Name = "tbSupplierID";
@@ -202,7 +202,7 @@
             lbEmail.Cursor = Cursors.Hand;
             lbEmail.Font = new Font("Segoe UI", 15F);
             lbEmail.ForeColor = Color.White;
-            lbEmail.Location = new Point(15, 361);
+            lbEmail.Location = new Point(15, 367);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(75, 35);
             lbEmail.TabIndex = 132;
@@ -215,7 +215,7 @@
             lbAddress.Cursor = Cursors.Hand;
             lbAddress.Font = new Font("Segoe UI", 15F);
             lbAddress.ForeColor = Color.White;
-            lbAddress.Location = new Point(11, 448);
+            lbAddress.Location = new Point(11, 454);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(105, 35);
             lbAddress.TabIndex = 130;
@@ -224,7 +224,7 @@
             // tbContactName
             // 
             tbContactName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbContactName.Location = new Point(19, 218);
+            tbContactName.Location = new Point(19, 224);
             tbContactName.Margin = new Padding(3, 4, 3, 4);
             tbContactName.Multiline = true;
             tbContactName.Name = "tbContactName";
@@ -237,7 +237,7 @@
             lbSupplierID.BackColor = Color.DodgerBlue;
             lbSupplierID.Font = new Font("Segoe UI", 15F);
             lbSupplierID.ForeColor = Color.White;
-            lbSupplierID.Location = new Point(19, -1);
+            lbSupplierID.Location = new Point(19, 5);
             lbSupplierID.Name = "lbSupplierID";
             lbSupplierID.Size = new Size(138, 35);
             lbSupplierID.TabIndex = 129;
@@ -250,7 +250,7 @@
             lbContactName.Cursor = Cursors.Hand;
             lbContactName.Font = new Font("Segoe UI", 15F);
             lbContactName.ForeColor = Color.White;
-            lbContactName.Location = new Point(19, 179);
+            lbContactName.Location = new Point(19, 185);
             lbContactName.Name = "lbContactName";
             lbContactName.Size = new Size(174, 35);
             lbContactName.TabIndex = 118;
@@ -263,7 +263,7 @@
             lbSupplierName.Cursor = Cursors.Hand;
             lbSupplierName.Font = new Font("Segoe UI", 15F);
             lbSupplierName.ForeColor = Color.White;
-            lbSupplierName.Location = new Point(19, 92);
+            lbSupplierName.Location = new Point(19, 98);
             lbSupplierName.Name = "lbSupplierName";
             lbSupplierName.Size = new Size(180, 35);
             lbSupplierName.TabIndex = 122;
@@ -276,7 +276,7 @@
             lbPhoneNumble.Cursor = Cursors.Hand;
             lbPhoneNumble.Font = new Font("Segoe UI", 15F);
             lbPhoneNumble.ForeColor = Color.White;
-            lbPhoneNumble.Location = new Point(18, 270);
+            lbPhoneNumble.Location = new Point(18, 276);
             lbPhoneNumble.Name = "lbPhoneNumble";
             lbPhoneNumble.Size = new Size(181, 35);
             lbPhoneNumble.TabIndex = 115;
@@ -285,7 +285,7 @@
             // tbAddress
             // 
             tbAddress.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbAddress.Location = new Point(13, 490);
+            tbAddress.Location = new Point(13, 496);
             tbAddress.Margin = new Padding(3, 4, 3, 4);
             tbAddress.Multiline = true;
             tbAddress.Name = "tbAddress";
@@ -295,7 +295,7 @@
             // tbSupplierName
             // 
             tbSupplierName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierName.Location = new Point(19, 131);
+            tbSupplierName.Location = new Point(19, 137);
             tbSupplierName.Margin = new Padding(3, 4, 3, 4);
             tbSupplierName.Multiline = true;
             tbSupplierName.Name = "tbSupplierName";
@@ -305,7 +305,7 @@
             // tbPhoneNumble
             // 
             tbPhoneNumble.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbPhoneNumble.Location = new Point(19, 312);
+            tbPhoneNumble.Location = new Point(19, 318);
             tbPhoneNumble.Margin = new Padding(3, 4, 3, 4);
             tbPhoneNumble.Multiline = true;
             tbPhoneNumble.Name = "tbPhoneNumble";

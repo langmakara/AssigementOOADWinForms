@@ -32,6 +32,9 @@ namespace AssigementOOADWinForms.Controls
             dgvemployee.AutoGenerateColumns = true;
 
             // Events
+            btClear.Click += HandleClearTextBox;
+            btSave.Click += HandleSaveEmployee;
+            btRemove.Click += HandleRemoveEmployee;
             tbsearchEmployeeName.TextChanged += (s, e) => FilterEmployees();
             cbPositionFilter.SelectedIndexChanged += CbPositionFilter_SelectedIndexChanged;
             this.Load += (s, e) =>
@@ -39,6 +42,12 @@ namespace AssigementOOADWinForms.Controls
                 LoadEmployees();
                 LoadPositions();
             };
+
+            // Initialize Role ComboBox
+            cbPositionFilter.Items.Clear();
+            cbPositionFilter.Items.Add("All");
+            cbPositionFilter.SelectedIndex = 0; // Default to "All"
+            cbPositionFilter.SelectedIndexChanged += (s, e) => FilterEmployees();
         }
 
         // ===============================
@@ -173,8 +182,10 @@ namespace AssigementOOADWinForms.Controls
                 var employee = selectedRow.DataBoundItem as EmployeeDto;
                 if (employee != null)
                 {
+                    tbEmployeeID.Text = employee.EmployeeID.ToString();
                     tbName.Text = employee.EmployeeName;
                     tbPhone.Text = employee.Phone;
+                    tbEmail.Text = employee.Email;
                     tbAddress.Text = employee.Address;
                     tbPosition.Text = employee.Position;
                     dtpHireDate.Value = employee.HireDate;
@@ -187,11 +198,104 @@ namespace AssigementOOADWinForms.Controls
         // ===============================
         private void HandleClearTextBox(object? sender, EventArgs e)
         {
+            tbEmployeeID.Clear();
             tbName.Clear();
             tbPhone.Clear();
+            tbEmail.Clear();
             tbAddress.Clear();
             tbPosition.Clear();
             dtpHireDate.Value = DateTime.Now;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // ===============================
+        // Save or Update Employee
+        // ===============================
+        private void HandleSaveEmployee(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(tbPosition.Text))
+                {
+                    MessageBox.Show("Please write a valid position.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int employeeId = 0;
+                // If you have a textbox for ID, use int.TryParse(tbEmployeeID.Text, out employeeId);
+
+                // If editing, get ID from selected row
+                if (dgvemployee.SelectedRows.Count > 0)
+                {
+                    var selectedRow = dgvemployee.SelectedRows[0];
+                    if (selectedRow.DataBoundItem is EmployeeDto dto)
+                        employeeId = dto.EmployeeID;
+                }
+
+                var model = new Employee
+                {
+                    EmployeeID = string.IsNullOrWhiteSpace(tbEmployeeID.Text) ? 0 : int.Parse(tbEmployeeID.Text),
+                    EmployeeName = tbName.Text,
+                    Phone = tbPhone.Text,
+                    Email = tbEmail.Text,
+                    Address = tbAddress.Text,
+                    Position = tbPosition.Text,
+                    HireDate = dtpHireDate.Value
+                };
+                _employeeService.SaveEmployee(model);
+                LoadEmployees();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save employee:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===============================
+        // Remove Employee
+        // ===============================
+        private void HandleRemoveEmployee(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(tbEmployeeID.Text) || !int.TryParse(tbEmployeeID.Text, out int employeeId))
+                {
+                    MessageBox.Show("Please select an employee to remove.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var selectedRow = dgvemployee.SelectedRows[0];
+                var employee = selectedRow.DataBoundItem as EmployeeDto;
+                if (employee == null)
+                {
+                    MessageBox.Show("Selected employee is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var confirmResult = MessageBox.Show($"Are you sure to delete employee '{employee.EmployeeName}'?",
+                                                     "Confirm Delete",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Call service that executes sp_DeleteEmployee
+                    _employeeService.RemoveEmployee(employee.EmployeeID);
+                    MessageBox.Show("User deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadEmployees();
+                    LoadPositions(fromDatabase: true); // Refresh positions after deletion
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to remove employee:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

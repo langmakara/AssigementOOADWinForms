@@ -36,10 +36,12 @@
             tbName = new TextBox();
             tbsearchEmployeeName = new TextBox();
             dgvemployee = new DataGridView();
-            tbPosition = new TextBox();
             label6 = new Label();
             label7 = new Label();
             panel1 = new Panel();
+            label8 = new Label();
+            tbEmployeeID = new TextBox();
+            tbPosition = new TextBox();
             dtpHireDate = new DateTimePicker();
             panel2 = new Panel();
             label2 = new Label();
@@ -48,10 +50,12 @@
             label14 = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
-            btnRefresh = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btClear = new Button();
+            btRemove = new Button();
+            btSave = new Button();
             cbPositionFilter = new ComboBox();
+            label9 = new Label();
+            tbEmail = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -65,11 +69,12 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(8, 136);
+            label5.Location = new Point(8, 178);
             label5.Name = "label5";
             label5.Size = new Size(88, 35);
             label5.TabIndex = 59;
             label5.Text = "Phone";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -77,7 +82,7 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(8, 257);
+            label4.Location = new Point(8, 364);
             label4.Name = "label4";
             label4.Size = new Size(141, 35);
             label4.TabIndex = 58;
@@ -86,7 +91,7 @@
             // tbAddress
             // 
             tbAddress.Font = new Font("Segoe UI", 15F);
-            tbAddress.Location = new Point(8, 311);
+            tbAddress.Location = new Point(8, 403);
             tbAddress.Margin = new Padding(3, 4, 3, 4);
             tbAddress.Multiline = true;
             tbAddress.Name = "tbAddress";
@@ -96,7 +101,7 @@
             // tbPhone
             // 
             tbPhone.Font = new Font("Segoe UI", 15F);
-            tbPhone.Location = new Point(8, 190);
+            tbPhone.Location = new Point(8, 217);
             tbPhone.Margin = new Padding(3, 4, 3, 4);
             tbPhone.Multiline = true;
             tbPhone.Name = "tbPhone";
@@ -109,7 +114,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(8, 15);
+            label3.Location = new Point(8, 89);
             label3.Name = "label3";
             label3.Size = new Size(82, 35);
             label3.TabIndex = 55;
@@ -118,7 +123,7 @@
             // tbName
             // 
             tbName.Font = new Font("Segoe UI", 15F);
-            tbName.Location = new Point(8, 69);
+            tbName.Location = new Point(8, 128);
             tbName.Margin = new Padding(3, 4, 3, 4);
             tbName.Multiline = true;
             tbName.Name = "tbName";
@@ -146,23 +151,13 @@
             dgvemployee.Size = new Size(891, 761);
             dgvemployee.TabIndex = 47;
             // 
-            // tbPosition
-            // 
-            tbPosition.Font = new Font("Segoe UI", 15F);
-            tbPosition.Location = new Point(8, 432);
-            tbPosition.Margin = new Padding(3, 4, 3, 4);
-            tbPosition.Multiline = true;
-            tbPosition.Name = "tbPosition";
-            tbPosition.Size = new Size(343, 48);
-            tbPosition.TabIndex = 62;
-            // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(8, 378);
+            label6.Location = new Point(8, 455);
             label6.Name = "label6";
             label6.Size = new Size(122, 35);
             label6.TabIndex = 63;
@@ -174,7 +169,7 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(8, 499);
+            label7.Location = new Point(8, 546);
             label7.Name = "label7";
             label7.Size = new Size(115, 35);
             label7.TabIndex = 65;
@@ -184,10 +179,14 @@
             // 
             panel1.BackColor = Color.DodgerBlue;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(tbEmail);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(tbEmployeeID);
+            panel1.Controls.Add(tbPosition);
             panel1.Controls.Add(dtpHireDate);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(tbPosition);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(tbAddress);
@@ -199,11 +198,43 @@
             panel1.Size = new Size(381, 637);
             panel1.TabIndex = 69;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Cursor = Cursors.Hand;
+            label8.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(6, 2);
+            label8.Name = "label8";
+            label8.Size = new Size(151, 35);
+            label8.TabIndex = 69;
+            label8.Text = "EmployeeID";
+            // 
+            // tbEmployeeID
+            // 
+            tbEmployeeID.Font = new Font("Segoe UI", 15F);
+            tbEmployeeID.Location = new Point(6, 41);
+            tbEmployeeID.Margin = new Padding(3, 4, 3, 4);
+            tbEmployeeID.Multiline = true;
+            tbEmployeeID.Name = "tbEmployeeID";
+            tbEmployeeID.Size = new Size(343, 48);
+            tbEmployeeID.TabIndex = 68;
+            // 
+            // tbPosition
+            // 
+            tbPosition.Font = new Font("Segoe UI", 15F);
+            tbPosition.Location = new Point(8, 494);
+            tbPosition.Margin = new Padding(3, 4, 3, 4);
+            tbPosition.Multiline = true;
+            tbPosition.Name = "tbPosition";
+            tbPosition.Size = new Size(343, 48);
+            tbPosition.TabIndex = 67;
+            // 
             // dtpHireDate
             // 
             dtpHireDate.CalendarFont = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpHireDate.Font = new Font("Segoe UI", 12F);
-            dtpHireDate.Location = new Point(8, 548);
+            dtpHireDate.Location = new Point(8, 584);
             dtpHireDate.Name = "dtpHireDate";
             dtpHireDate.Size = new Size(341, 34);
             dtpHireDate.TabIndex = 66;
@@ -292,50 +323,51 @@
             pictureBox13.TabIndex = 27;
             pictureBox13.TabStop = false;
             // 
-            // btnRefresh
+            // btClear
             // 
-            btnRefresh.BackColor = Color.White;
-            btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRefresh.ForeColor = Color.DodgerBlue;
-            btnRefresh.Location = new Point(1085, 762);
-            btnRefresh.Margin = new Padding(0);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(179, 64);
-            btnRefresh.TabIndex = 125;
-            btnRefresh.Text = "Clear";
-            btnRefresh.UseVisualStyleBackColor = false;
+            btClear.BackColor = Color.White;
+            btClear.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btClear.FlatAppearance.BorderSize = 0;
+            btClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btClear.ForeColor = Color.DodgerBlue;
+            btClear.Location = new Point(1085, 762);
+            btClear.Margin = new Padding(0);
+            btClear.Name = "btClear";
+            btClear.Size = new Size(179, 64);
+            btClear.TabIndex = 125;
+            btClear.Text = "Clear";
+            btClear.UseVisualStyleBackColor = false;
+            btClear.Click += btnRefresh_Click;
             // 
-            // button2
+            // btRemove
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
-            button2.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(897, 826);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(367, 56);
-            button2.TabIndex = 124;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
+            btRemove.BackColor = Color.FromArgb(255, 128, 0);
+            btRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btRemove.FlatAppearance.BorderSize = 0;
+            btRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btRemove.ForeColor = Color.White;
+            btRemove.Location = new Point(897, 826);
+            btRemove.Margin = new Padding(0);
+            btRemove.Name = "btRemove";
+            btRemove.Size = new Size(367, 56);
+            btRemove.TabIndex = 124;
+            btRemove.Text = "Remove";
+            btRemove.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btSave
             // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(897, 762);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(179, 64);
-            button1.TabIndex = 123;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = false;
+            btSave.BackColor = Color.DodgerBlue;
+            btSave.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btSave.FlatAppearance.BorderSize = 0;
+            btSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btSave.ForeColor = Color.White;
+            btSave.Location = new Point(897, 762);
+            btSave.Margin = new Padding(0);
+            btSave.Name = "btSave";
+            btSave.Size = new Size(179, 64);
+            btSave.TabIndex = 123;
+            btSave.Text = "Save";
+            btSave.UseVisualStyleBackColor = false;
             // 
             // cbPositionFilter
             // 
@@ -347,6 +379,28 @@
             cbPositionFilter.TabIndex = 0;
             cbPositionFilter.SelectedIndexChanged += CbPositionFilter_SelectedIndexChanged;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Cursor = Cursors.Hand;
+            label9.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(8, 273);
+            label9.Name = "label9";
+            label9.Size = new Size(77, 35);
+            label9.TabIndex = 71;
+            label9.Text = "Email";
+            // 
+            // tbEmail
+            // 
+            tbEmail.Font = new Font("Segoe UI", 15F);
+            tbEmail.Location = new Point(8, 312);
+            tbEmail.Margin = new Padding(3, 4, 3, 4);
+            tbEmail.Multiline = true;
+            tbEmail.Name = "tbEmail";
+            tbEmail.Size = new Size(343, 48);
+            tbEmail.TabIndex = 70;
+            // 
             // UserControlEmployee
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -354,9 +408,9 @@
             BackColor = Color.Azure;
             Controls.Add(cbPositionFilter);
             Controls.Add(panel3);
-            Controls.Add(btnRefresh);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btClear);
+            Controls.Add(btRemove);
+            Controls.Add(btSave);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(dgvemployee);
@@ -383,7 +437,6 @@
         private TextBox tbName;
         private TextBox tbsearchEmployeeName;
         private DataGridView dgvemployee;
-        private TextBox tbPosition;
         private Label label6;
         private Label label7;
         private Panel panel1;
@@ -394,10 +447,15 @@
         private Label label14;
         private Label label13;
         private PictureBox pictureBox13;
-        private Button btnRefresh;
-        private Button button2;
-        private Button button1;
+        private Button btClear;
+        private Button btRemove;
+        private Button btSave;
         private DateTimePicker dtpHireDate;
         private ComboBox cbPositionFilter;
+        private TextBox tbPosition;
+        private Label label8;
+        private TextBox tbEmployeeID;
+        private Label label9;
+        private TextBox tbEmail;
     }
 }
