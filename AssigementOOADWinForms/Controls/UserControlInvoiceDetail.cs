@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using AssigementOOADWinForms.DTOs;
 using AssigementOOADWinForms.DTOs.AssigementOOADWinForms.DTOs;
 using AssigementOOADWinForms.Models;
 using AssigementOOADWinForms.Services;
@@ -17,20 +9,26 @@ namespace AssigementOOADWinForms.Controls
     {
         private readonly InvoiceDetailService service = new();
         private List<InvoiceDetailDto> invoiceDetailDtos;
+
         public UserControlInvoiceDetail()
         {
             InitializeComponent();
+            //Form DataGrideView 
             DesignHelper.MakeAllInputsRounded(this, radius: 3);
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvInvoicedetail);
             dgvInvoicedetail.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            //Handle Logic DataGrideView
             dgvInvoicedetail.SelectionChanged += (s, e) => SelectionRowChanges();
+            //Handle Btn Logic call event
             btnBack.Click += (s, e) => HandleGetBackToInvoice();
             btnSave.Click += (s, e) => SaveInvoiceDetail();
+            btnClear.Click += (s, e) => HandleClearTextBox();
             this.Load += (s, e) => LaodInvoiceDetail();
         }
-        //HandleForm Logic
+
+        // Handle Form Logic
         private void HandleGetBackToInvoice()
         {
             if (this.FindForm() is Mainform main)
@@ -38,20 +36,30 @@ namespace AssigementOOADWinForms.Controls
                 main.HandleUserControlReplacseItselfMainForm(new UserControlInvoice(), "Invoice");
             }
         }
+
         private void SelectionRowChanges()
         {
             var map = new Dictionary<string, Control>
-    {
-        { "InvoiceDetailID", textInvoiceDetailID },
-        { "InvoiceID", textInvoiceID },
-         { "Qauntity", textQauntity },
-        { "UnitPrice", textPrice },
-       
-    };
+            {
+                { "InvoiceDetailID", textInvoiceDetailID },
+                { "InvoiceID", textInvoiceID },
+                { "Qauntity", textQauntity },
+                { "UnitPrice", textPrice },
+            };
 
             DesignHelper.PopulateRowControls(dgvInvoicedetail, map);
         }
-        //Handle Database Server side
+
+        private void HandleClearTextBox()
+        {
+            textInvoiceDetailID.Clear();
+            textInvoiceID.Clear();
+            textQauntity.Clear();
+            textPrice.Clear();
+            comboProduct.SelectedIndex = -1;
+        }
+
+        // Handle Database Server Side
         private void LaodInvoiceDetail()
         {
             try
@@ -62,10 +70,15 @@ namespace AssigementOOADWinForms.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to load invoice detail:\n{ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Failed to load invoice detail:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
+
         private void SaveInvoiceDetail()
         {
             try
@@ -75,6 +88,7 @@ namespace AssigementOOADWinForms.Controls
                     MessageBox.Show("Invalid quantity value");
                     return;
                 }
+
                 var model = new InvoiceDetail
                 {
                     InvoiceDetailID = string.IsNullOrWhiteSpace(textInvoiceDetailID.Text) ? 0 : int.Parse(textInvoiceDetailID.Text),
@@ -82,15 +96,17 @@ namespace AssigementOOADWinForms.Controls
                     ProductID = int.Parse(textInvoiceDetailID.Text),
                     Quantity = quantity,
                     UnitPrice = decimal.Parse(textPrice.Text)
-
                 };
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to save invoice detail:\n{ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Failed to save invoice detail:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
-
     }
 }
