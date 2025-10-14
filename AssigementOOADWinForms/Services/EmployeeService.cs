@@ -1,6 +1,7 @@
 ﻿using AssigementOOADWinForms.DATAs;
 using AssigementOOADWinForms.Models;
 using Microsoft.Data.SqlClient;
+using AssigementOOADWinForms.Repositries;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,13 @@ namespace AssigementOOADWinForms.Services
 {
     public class EmployeeService
     {
+        private readonly EmployeeRepository _employeeRepository;
+
+        public EmployeeService()
+        {
+            _employeeRepository = new EmployeeRepository();
+        }
+
         public List<Employee> GetAllEmployees()
         {
             var employees = new List<Employee>();
@@ -42,5 +50,7 @@ namespace AssigementOOADWinForms.Services
 
             return employees;
         }
+        public void SaveEmployee(Employee model) => _employeeRepository.Save(model);
+        public void RemoveEmployee(int employeeId) => _employeeRepository.Delete(employeeId);
     }
 }
