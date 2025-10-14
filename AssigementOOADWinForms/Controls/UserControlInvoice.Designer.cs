@@ -48,9 +48,11 @@
             datetimeorderDate = new DateTimePicker();
             label7 = new Label();
             panel2 = new Panel();
+            label4 = new Label();
+            searchStartDate = new DateTimePicker();
             searchEmployee = new ComboBox();
             searchInvoiceDatess = new Label();
-            searchinvoiceDate = new DateTimePicker();
+            searchEndDate = new DateTimePicker();
             searchCustomerName = new TextBox();
             btnCreateInvoice = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvInvoice).BeginInit();
@@ -87,7 +89,7 @@
             searchEmployeeIDs.Cursor = Cursors.Hand;
             searchEmployeeIDs.Font = new Font("Segoe UI", 15F);
             searchEmployeeIDs.ForeColor = Color.White;
-            searchEmployeeIDs.Location = new Point(269, 4);
+            searchEmployeeIDs.Location = new Point(232, 5);
             searchEmployeeIDs.Name = "searchEmployeeIDs";
             searchEmployeeIDs.Size = new Size(117, 28);
             searchEmployeeIDs.TabIndex = 127;
@@ -99,7 +101,7 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(16, 2);
+            label1.Location = new Point(3, 5);
             label1.Name = "label1";
             label1.Size = new Size(148, 28);
             label1.TabIndex = 126;
@@ -297,9 +299,11 @@
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(searchStartDate);
             panel2.Controls.Add(searchEmployee);
             panel2.Controls.Add(searchInvoiceDatess);
-            panel2.Controls.Add(searchinvoiceDate);
+            panel2.Controls.Add(searchEndDate);
             panel2.Controls.Add(searchCustomerName);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(searchEmployeeIDs);
@@ -308,14 +312,39 @@
             panel2.Size = new Size(813, 100);
             panel2.TabIndex = 122;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.DodgerBlue;
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 15F);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(644, 2);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 28);
+            label4.TabIndex = 136;
+            label4.Text = "EndTime";
+            // 
+            // searchStartDate
+            // 
+            searchStartDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
+            searchStartDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
+            searchStartDate.Checked = false;
+            searchStartDate.Font = new Font("Segoe UI", 15F);
+            searchStartDate.Location = new Point(473, 38);
+            searchStartDate.Name = "searchStartDate";
+            searchStartDate.ShowCheckBox = true;
+            searchStartDate.Size = new Size(165, 34);
+            searchStartDate.TabIndex = 135;
+            // 
             // searchEmployee
             // 
             searchEmployee.Font = new Font("Segoe UI", 15F);
             searchEmployee.ForeColor = Color.FromArgb(64, 64, 64);
             searchEmployee.FormattingEnabled = true;
-            searchEmployee.Location = new Point(269, 35);
+            searchEmployee.Location = new Point(232, 36);
             searchEmployee.Name = "searchEmployee";
-            searchEmployee.Size = new Size(270, 36);
+            searchEmployee.Size = new Size(235, 36);
             searchEmployee.TabIndex = 134;
             // 
             // searchInvoiceDatess
@@ -325,30 +354,32 @@
             searchInvoiceDatess.Cursor = Cursors.Hand;
             searchInvoiceDatess.Font = new Font("Segoe UI", 15F);
             searchInvoiceDatess.ForeColor = Color.White;
-            searchInvoiceDatess.Location = new Point(545, 3);
+            searchInvoiceDatess.Location = new Point(473, 5);
             searchInvoiceDatess.Name = "searchInvoiceDatess";
-            searchInvoiceDatess.Size = new Size(115, 28);
+            searchInvoiceDatess.Size = new Size(95, 28);
             searchInvoiceDatess.TabIndex = 133;
-            searchInvoiceDatess.Text = "InvoiceDate";
+            searchInvoiceDatess.Text = "StartTime";
             // 
-            // searchinvoiceDate
+            // searchEndDate
             // 
-            searchinvoiceDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
-            searchinvoiceDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
-            searchinvoiceDate.Font = new Font("Segoe UI", 11F);
-            searchinvoiceDate.Location = new Point(545, 44);
-            searchinvoiceDate.Name = "searchinvoiceDate";
-            searchinvoiceDate.Size = new Size(259, 27);
-            searchinvoiceDate.TabIndex = 133;
+            searchEndDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
+            searchEndDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
+            searchEndDate.Checked = false;
+            searchEndDate.Font = new Font("Segoe UI", 15F);
+            searchEndDate.Location = new Point(644, 38);
+            searchEndDate.Name = "searchEndDate";
+            searchEndDate.ShowCheckBox = true;
+            searchEndDate.Size = new Size(165, 34);
+            searchEndDate.TabIndex = 133;
             // 
             // searchCustomerName
             // 
             searchCustomerName.Font = new Font("Segoe UI", 15F);
             searchCustomerName.ForeColor = Color.FromArgb(64, 64, 64);
-            searchCustomerName.Location = new Point(16, 35);
+            searchCustomerName.Location = new Point(3, 36);
             searchCustomerName.Multiline = true;
             searchCustomerName.Name = "searchCustomerName";
-            searchCustomerName.Size = new Size(247, 37);
+            searchCustomerName.Size = new Size(223, 37);
             searchCustomerName.TabIndex = 132;
             // 
             // btnCreateInvoice
@@ -411,10 +442,12 @@
         private TextBox textcustomerPhone;
         private Label label8;
         private DateTimePicker datetimeorderDate;
-        private DateTimePicker searchinvoiceDate;
+        private DateTimePicker searchEndDate;
         private Label searchInvoiceDatess;
         private ComboBox searchEmployee;
         private Button btnCreateInvoice;
         private ComboBox comboEmployee;
+        private Label label4;
+        private DateTimePicker searchStartDate;
     }
 }

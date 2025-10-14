@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             label2 = new Label();
-            button2 = new Button();
-            button1 = new Button();
+            btnRemove = new Button();
+            btnSave = new Button();
             label5 = new Label();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
+            textPrice = new TextBox();
+            textQauntity = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
             dgvInvoicedetail = new DataGridView();
-            btnRefresh = new Button();
+            btnClear = new Button();
             label6 = new Label();
-            textBox1 = new TextBox();
-            textBox6 = new TextBox();
+            textInvoiceID = new TextBox();
+            textInvoiceDetailID = new TextBox();
             label7 = new Label();
             panel1 = new Panel();
-            textBox5 = new TextBox();
-            panel2 = new Panel();
+            comboProduct = new ComboBox();
             label1 = new Label();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
+            textTotalPrice = new TextBox();
+            panel2 = new Panel();
+            searchProduct = new ComboBox();
+            btnReport = new Button();
+            searchInvoiceID = new TextBox();
             label8 = new Label();
             label10 = new Label();
             btnBack = new Button();
@@ -62,41 +63,41 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(14, 237);
+            label2.Location = new Point(17, 178);
             label2.Name = "label2";
             label2.Size = new Size(100, 28);
             label2.TabIndex = 102;
             label2.Text = "ProductID";
             // 
-            // button2
+            // btnRemove
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
-            button2.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(823, 620);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(285, 42);
-            button2.TabIndex = 100;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
+            btnRemove.BackColor = Color.FromArgb(255, 128, 0);
+            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnRemove.FlatAppearance.BorderSize = 0;
+            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnRemove.ForeColor = Color.White;
+            btnRemove.Location = new Point(823, 620);
+            btnRemove.Margin = new Padding(0);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(285, 42);
+            btnRemove.TabIndex = 100;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnSave
             // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(823, 572);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(149, 48);
-            button1.TabIndex = 99;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = false;
+            btnSave.BackColor = Color.DodgerBlue;
+            btnSave.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(823, 572);
+            btnSave.Margin = new Padding(0);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(149, 48);
+            btnSave.TabIndex = 99;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -104,31 +105,31 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(14, 343);
+            label5.Location = new Point(16, 266);
             label5.Name = "label5";
             label5.Size = new Size(88, 28);
             label5.TabIndex = 98;
             label5.Text = "Qauntity";
             // 
-            // textBox4
+            // textPrice
             // 
-            textBox4.Font = new Font("Segoe UI", 15F);
-            textBox4.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox4.Location = new Point(14, 476);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(261, 37);
-            textBox4.TabIndex = 96;
+            textPrice.Font = new Font("Segoe UI", 15F);
+            textPrice.ForeColor = Color.FromArgb(64, 64, 64);
+            textPrice.Location = new Point(16, 385);
+            textPrice.Multiline = true;
+            textPrice.Name = "textPrice";
+            textPrice.Size = new Size(257, 37);
+            textPrice.TabIndex = 96;
             // 
-            // textBox3
+            // textQauntity
             // 
-            textBox3.Font = new Font("Segoe UI", 15F);
-            textBox3.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox3.Location = new Point(14, 374);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(261, 37);
-            textBox3.TabIndex = 95;
+            textQauntity.Font = new Font("Segoe UI", 15F);
+            textQauntity.ForeColor = Color.FromArgb(64, 64, 64);
+            textQauntity.Location = new Point(15, 297);
+            textQauntity.Multiline = true;
+            textQauntity.Name = "textQauntity";
+            textQauntity.Size = new Size(258, 37);
+            textQauntity.TabIndex = 95;
             // 
             // label3
             // 
@@ -136,21 +137,11 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(14, 445);
+            label3.Location = new Point(17, 354);
             label3.Name = "label3";
             label3.Size = new Size(54, 28);
             label3.TabIndex = 94;
             label3.Text = "Price";
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 15F);
-            textBox2.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox2.Location = new Point(524, 33);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(258, 37);
-            textBox2.TabIndex = 93;
             // 
             // dgvInvoicedetail
             // 
@@ -161,20 +152,20 @@
             dgvInvoicedetail.Size = new Size(817, 558);
             dgvInvoicedetail.TabIndex = 90;
             // 
-            // btnRefresh
+            // btnClear
             // 
-            btnRefresh.BackColor = Color.White;
-            btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRefresh.ForeColor = Color.DodgerBlue;
-            btnRefresh.Location = new Point(972, 572);
-            btnRefresh.Margin = new Padding(0);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(136, 48);
-            btnRefresh.TabIndex = 103;
-            btnRefresh.Text = "Clear";
-            btnRefresh.UseVisualStyleBackColor = false;
+            btnClear.BackColor = Color.White;
+            btnClear.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClear.ForeColor = Color.DodgerBlue;
+            btnClear.Location = new Point(972, 572);
+            btnClear.Margin = new Padding(0);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(136, 48);
+            btnClear.TabIndex = 103;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -182,31 +173,31 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(14, 117);
+            label6.Location = new Point(17, 90);
             label6.Name = "label6";
             label6.Size = new Size(93, 28);
             label6.TabIndex = 110;
             label6.Text = "InvoiceID";
             // 
-            // textBox1
+            // textInvoiceID
             // 
-            textBox1.Font = new Font("Segoe UI", 15F);
-            textBox1.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox1.Location = new Point(14, 148);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(257, 37);
-            textBox1.TabIndex = 109;
+            textInvoiceID.Font = new Font("Segoe UI", 15F);
+            textInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
+            textInvoiceID.Location = new Point(16, 121);
+            textInvoiceID.Multiline = true;
+            textInvoiceID.Name = "textInvoiceID";
+            textInvoiceID.Size = new Size(257, 37);
+            textInvoiceID.TabIndex = 109;
             // 
-            // textBox6
+            // textInvoiceDetailID
             // 
-            textBox6.Font = new Font("Segoe UI", 15F);
-            textBox6.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox6.Location = new Point(836, 35);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(257, 37);
-            textBox6.TabIndex = 111;
+            textInvoiceDetailID.Font = new Font("Segoe UI", 15F);
+            textInvoiceDetailID.ForeColor = Color.FromArgb(64, 64, 64);
+            textInvoiceDetailID.Location = new Point(16, 33);
+            textInvoiceDetailID.Multiline = true;
+            textInvoiceDetailID.Name = "textInvoiceDetailID";
+            textInvoiceDetailID.Size = new Size(257, 37);
+            textInvoiceDetailID.TabIndex = 111;
             // 
             // label7
             // 
@@ -214,7 +205,7 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI", 15F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(13, 1);
+            label7.Location = new Point(17, 1);
             label7.Name = "label7";
             label7.Size = new Size(144, 28);
             label7.TabIndex = 112;
@@ -223,43 +214,32 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(comboProduct);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(textTotalPrice);
             panel1.Controls.Add(label7);
+            panel1.Controls.Add(textInvoiceDetailID);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(textInvoiceID);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(textPrice);
+            panel1.Controls.Add(textQauntity);
             panel1.Location = new Point(822, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(285, 525);
             panel1.TabIndex = 102;
             // 
-            // textBox5
+            // comboProduct
             // 
-            textBox5.Font = new Font("Segoe UI", 15F);
-            textBox5.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox5.Location = new Point(14, 268);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(257, 37);
-            textBox5.TabIndex = 113;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.DodgerBlue;
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(textBox7);
-            panel2.Controls.Add(textBox8);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(textBox2);
-            panel2.Location = new Point(3, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(817, 95);
-            panel2.TabIndex = 123;
+            comboProduct.Font = new Font("Segoe UI", 15F);
+            comboProduct.ForeColor = Color.FromArgb(64, 64, 64);
+            comboProduct.FormattingEnabled = true;
+            comboProduct.Location = new Point(17, 209);
+            comboProduct.Name = "comboProduct";
+            comboProduct.Size = new Size(256, 36);
+            comboProduct.TabIndex = 135;
             // 
             // label1
             // 
@@ -267,31 +247,69 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(527, 2);
+            label1.Location = new Point(17, 442);
             label1.Name = "label1";
-            label1.Size = new Size(123, 28);
-            label1.TabIndex = 133;
-            label1.Text = "ProductPrice";
+            label1.Size = new Size(96, 28);
+            label1.TabIndex = 115;
+            label1.Text = "TotalPrice";
             // 
-            // textBox7
+            // textTotalPrice
             // 
-            textBox7.Font = new Font("Segoe UI", 15F);
-            textBox7.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox7.Location = new Point(13, 33);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(242, 37);
-            textBox7.TabIndex = 132;
+            textTotalPrice.Font = new Font("Segoe UI", 15F);
+            textTotalPrice.ForeColor = Color.FromArgb(64, 64, 64);
+            textTotalPrice.Location = new Point(15, 473);
+            textTotalPrice.Multiline = true;
+            textTotalPrice.Name = "textTotalPrice";
+            textTotalPrice.Size = new Size(257, 37);
+            textTotalPrice.TabIndex = 114;
             // 
-            // textBox8
+            // panel2
             // 
-            textBox8.Font = new Font("Segoe UI", 15F);
-            textBox8.ForeColor = Color.FromArgb(64, 64, 64);
-            textBox8.Location = new Point(262, 33);
-            textBox8.Multiline = true;
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(256, 37);
-            textBox8.TabIndex = 124;
+            panel2.BackColor = Color.DodgerBlue;
+            panel2.Controls.Add(searchProduct);
+            panel2.Controls.Add(btnReport);
+            panel2.Controls.Add(searchInvoiceID);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label10);
+            panel2.Location = new Point(3, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(817, 95);
+            panel2.TabIndex = 123;
+            // 
+            // searchProduct
+            // 
+            searchProduct.Font = new Font("Segoe UI", 15F);
+            searchProduct.ForeColor = Color.FromArgb(64, 64, 64);
+            searchProduct.FormattingEnabled = true;
+            searchProduct.Location = new Point(259, 34);
+            searchProduct.Name = "searchProduct";
+            searchProduct.Size = new Size(256, 36);
+            searchProduct.TabIndex = 136;
+            // 
+            // btnReport
+            // 
+            btnReport.BackColor = Color.FromArgb(255, 128, 0);
+            btnReport.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnReport.FlatAppearance.BorderSize = 0;
+            btnReport.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnReport.ForeColor = Color.White;
+            btnReport.Location = new Point(524, 33);
+            btnReport.Margin = new Padding(0);
+            btnReport.Name = "btnReport";
+            btnReport.Size = new Size(285, 37);
+            btnReport.TabIndex = 125;
+            btnReport.Text = "Look For The Report Invoice";
+            btnReport.UseVisualStyleBackColor = false;
+            // 
+            // searchInvoiceID
+            // 
+            searchInvoiceID.Font = new Font("Segoe UI", 15F);
+            searchInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
+            searchInvoiceID.Location = new Point(13, 33);
+            searchInvoiceID.Multiline = true;
+            searchInvoiceID.Name = "searchInvoiceID";
+            searchInvoiceID.Size = new Size(242, 37);
+            searchInvoiceID.TabIndex = 132;
             // 
             // label8
             // 
@@ -339,10 +357,9 @@
             BackColor = Color.Azure;
             Controls.Add(btnBack);
             Controls.Add(panel2);
-            Controls.Add(textBox6);
-            Controls.Add(btnRefresh);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnClear);
+            Controls.Add(btnRemove);
+            Controls.Add(btnSave);
             Controls.Add(dgvInvoicedetail);
             Controls.Add(panel1);
             Name = "UserControlInvoiceDetail";
@@ -353,32 +370,32 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private Label label2;
-        private Button button2;
-        private Button button1;
+        private Button btnRemove;
+        private Button btnSave;
         private Label label5;
-        private TextBox textBox4;
-        private TextBox textBox3;
+        private TextBox textPrice;
+        private TextBox textQauntity;
         private Label label3;
-        private TextBox textBox2;
         private DataGridView dgvInvoicedetail;
-        private Button btnRefresh;
+        private Button btnClear;
         private Label label6;
-        private TextBox textBox1;
-        private TextBox textBox6;
+        private TextBox textInvoiceID;
+        private TextBox textInvoiceDetailID;
         private Label label7;
         private Panel panel1;
         private Panel panel2;
-        private TextBox textBox7;
-        private TextBox textBox8;
+        private TextBox searchInvoiceID;
         private Label label8;
-        private Label label10;
-        private TextBox textBox5;
-        private Label label1;
         private Button btnBack;
+        private Button btnReport;
+        private Label label10;
+        private Label label1;
+        private TextBox textTotalPrice;
+        private ComboBox comboProduct;
+        private ComboBox searchProduct;
     }
 }

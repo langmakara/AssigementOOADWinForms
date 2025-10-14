@@ -41,7 +41,7 @@ namespace AssigementOOADWinForms.Repositories
             cmd.CommandType = CommandType.StoredProcedure;
             var invoiceIDParam = new SqlParameter("@InvoiceID", SqlDbType.Int)
             {
-                Direction = ParameterDirection.Output,
+                Direction = ParameterDirection.InputOutput,
                 Value = model.InvoiceID == 0 ? DBNull.Value : model.InvoiceID
             };
             cmd.Parameters.Add(invoiceIDParam);
@@ -50,7 +50,8 @@ namespace AssigementOOADWinForms.Repositories
             cmd.Parameters.AddWithValue("@EmployeeID", model.EmployeeID);
             cmd.Parameters.AddWithValue("@OrderDate", model.OrderDate);
             cmd.ExecuteNonQuery();
-            model.InvoiceID = (int)invoiceIDParam.Value;
+            if (invoiceIDParam.Value != DBNull.Value)
+                model.InvoiceID = Convert.ToInt32(invoiceIDParam.Value);
         }
 
 
