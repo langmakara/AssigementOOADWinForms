@@ -19,7 +19,7 @@ public partial class UserControlInvoice : UserControl
         DesignHelper.StyleDataGridView(dgvInvoice);
         dgvInvoice.CellPainting += DesignHelper.dataGridView1_CellPainting;
         btnClear.Click += HandleClearTextBox;
-        dgvInvoice.SelectionChanged += (s,e) => SelectionRowChanges();  
+        dgvInvoice.SelectionChanged += (s, e) => SelectionRowChanges();
         dgvInvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         searchStartDate.Format = DateTimePickerFormat.Custom;
         searchStartDate.CustomFormat = "dd/MM/yyyy";
@@ -136,8 +136,8 @@ public partial class UserControlInvoice : UserControl
         { "InvoiceID", textinvoiceID },
         { "CustomerName", textcustomerName },
         { "CustomerPhone", textcustomerPhone },
+        { "CustomerAddress", textCustomerAddress },
         { "EmployeeID", comboEmployee },
-        { "TotalAmount", textTotalAmount },
         { "OrderDate", datetimeorderDate }
     };
 
@@ -150,7 +150,7 @@ public partial class UserControlInvoice : UserControl
         textcustomerPhone.Clear();
         datetimeorderDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         comboEmployee.SelectedIndex = -1;
-        textTotalAmount.Clear();
+        textCustomerAddress.Clear();
     }
     // -------------------------
     // CRUD Logic
@@ -257,4 +257,8 @@ public partial class UserControlInvoice : UserControl
         }
     }
 
+    private void label7_Click(object sender, EventArgs e)
+    {
+
+    }
 }

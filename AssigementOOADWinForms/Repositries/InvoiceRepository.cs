@@ -24,6 +24,7 @@ namespace AssigementOOADWinForms.Repositories
                     InvoiceID = reader.GetInt32(reader.GetOrdinal("InvoiceID")),
                     CustomerName = reader.GetString(reader.GetOrdinal("CustomerName")),
                     CustomerPhone = reader.GetString(reader.GetOrdinal("CustomerPhone")),
+                    CustomerAddress = reader.GetString(reader.GetOrdinal("CustomerAddress")),
                     EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
                     EmployeeName = reader.GetString(reader.GetOrdinal("EmployeeName")),
                     TotalAmount = reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
@@ -47,6 +48,7 @@ namespace AssigementOOADWinForms.Repositories
             cmd.Parameters.Add(invoiceIDParam);
             cmd.Parameters.AddWithValue("@CustomerName", model.CustomerName);
             cmd.Parameters.AddWithValue("@CustomerPhone", model.CustomerPhone);
+            cmd.Parameters.AddWithValue("@CustomerAddress", model.CustomerAddress);
             cmd.Parameters.AddWithValue("@EmployeeID", model.EmployeeID);
             cmd.Parameters.AddWithValue("@OrderDate", model.OrderDate);
             cmd.ExecuteNonQuery();

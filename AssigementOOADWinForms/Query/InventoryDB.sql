@@ -1,4 +1,4 @@
--- =====================================
+﻿-- =====================================
 -- Users Table
 -- =====================================
 CREATE TABLE tbUser (
@@ -87,8 +87,9 @@ CREATE TABLE tbInvoice (
     InvoiceID INT IDENTITY(1,1) PRIMARY KEY,
     CustomerName VARCHAR(50),
     CustomerPhone VARCHAR(50),
+    CustomerAddress VARCHAR(255),     -- 🆕 Added column
     EmployeeID INT,
-    EmployeeName VARCHAR(150),       -- denormalized
+    EmployeeName VARCHAR(150),        -- denormalized
     OrderDate DATETIME DEFAULT GETDATE(),
     Status VARCHAR(50) NOT NULL DEFAULT 'Pending',
     TotalAmount DECIMAL(18,2)

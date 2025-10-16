@@ -10,6 +10,7 @@ BEGIN
         InvoiceID,
         CustomerName,
         CustomerPhone,
+        CustomerAddress,
         EmployeeID,
         EmployeeName,  -- denormalized
         TotalAmount,
@@ -23,6 +24,7 @@ CREATE OR ALTER PROCEDURE sp_InsertOrUpdateInvoice
     @InvoiceID     INT = NULL OUTPUT,
     @CustomerName  VARCHAR(50),
     @CustomerPhone VARCHAR(50),
+    @CustomerAddress VARCHAR(225),
     @EmployeeID    INT,
     @OrderDate     DATETIME,
     @Status        VARCHAR(20) = 'Pending'
@@ -40,6 +42,7 @@ BEGIN
         UPDATE tbInvoice
         SET CustomerName  = @CustomerName,
             CustomerPhone = @CustomerPhone,
+             @CustomerAddress = @CustomerAddress,
             EmployeeID    = @EmployeeID,
             EmployeeName  = @EmployeeName,
             OrderDate     = @OrderDate,
@@ -49,8 +52,8 @@ BEGIN
     ELSE
     BEGIN
         -- ✅ INSERT NEW
-        INSERT INTO tbInvoice (CustomerName, CustomerPhone, EmployeeID, EmployeeName, OrderDate, TotalAmount, Status)
-        VALUES (@CustomerName, @CustomerPhone, @EmployeeID, @EmployeeName, @OrderDate, 0, @Status);
+        INSERT INTO tbInvoice (CustomerName, CustomerPhone,CustomerAddress, EmployeeID, EmployeeName, OrderDate, TotalAmount, Status)
+        VALUES (@CustomerName, @CustomerPhone,@CustomerAddress, @EmployeeID, @EmployeeName, @OrderDate, 0, @Status);
 
         SET @InvoiceID = SCOPE_IDENTITY();
     END

@@ -37,7 +37,7 @@
             btnremoveInvoice = new Button();
             btnSaveAndUpdateInvoice = new Button();
             label5 = new Label();
-            textTotalAmount = new TextBox();
+            textCustomerAddress = new TextBox();
             label3 = new Label();
             textcustomerName = new TextBox();
             dgvInvoice = new DataGridView();
@@ -89,7 +89,7 @@
             searchEmployeeIDs.Cursor = Cursors.Hand;
             searchEmployeeIDs.Font = new Font("Segoe UI", 15F);
             searchEmployeeIDs.ForeColor = Color.White;
-            searchEmployeeIDs.Location = new Point(232, 5);
+            searchEmployeeIDs.Location = new Point(242, 5);
             searchEmployeeIDs.Name = "searchEmployeeIDs";
             searchEmployeeIDs.Size = new Size(117, 28);
             searchEmployeeIDs.TabIndex = 127;
@@ -101,7 +101,7 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(3, 5);
+            label1.Location = new Point(11, 5);
             label1.Name = "label1";
             label1.Size = new Size(148, 28);
             label1.TabIndex = 126;
@@ -178,16 +178,16 @@
             label5.TabIndex = 118;
             label5.Text = "CustomerPhone";
             // 
-            // textTotalAmount
+            // textCustomerAddress
             // 
-            textTotalAmount.Font = new Font("Segoe UI", 15F);
-            textTotalAmount.ForeColor = Color.FromArgb(64, 64, 64);
-            textTotalAmount.Location = new Point(13, 477);
-            textTotalAmount.Multiline = true;
-            textTotalAmount.Name = "textTotalAmount";
-            textTotalAmount.ReadOnly = true;
-            textTotalAmount.Size = new Size(266, 37);
-            textTotalAmount.TabIndex = 116;
+            textCustomerAddress.Font = new Font("Segoe UI", 15F);
+            textCustomerAddress.ForeColor = Color.FromArgb(64, 64, 64);
+            textCustomerAddress.Location = new Point(13, 311);
+            textCustomerAddress.Multiline = true;
+            textCustomerAddress.Name = "textCustomerAddress";
+            textCustomerAddress.ReadOnly = true;
+            textCustomerAddress.Size = new Size(266, 37);
+            textCustomerAddress.TabIndex = 116;
             // 
             // label3
             // 
@@ -196,7 +196,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(17, 274);
+            label3.Location = new Point(13, 372);
             label3.Name = "label3";
             label3.Size = new Size(117, 28);
             label3.TabIndex = 115;
@@ -234,7 +234,7 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(textTotalAmount);
+            panel1.Controls.Add(textCustomerAddress);
             panel1.Location = new Point(818, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(290, 525);
@@ -245,7 +245,7 @@
             comboEmployee.Font = new Font("Segoe UI", 15F);
             comboEmployee.ForeColor = Color.FromArgb(64, 64, 64);
             comboEmployee.FormattingEnabled = true;
-            comboEmployee.Location = new Point(13, 315);
+            comboEmployee.Location = new Point(13, 403);
             comboEmployee.Name = "comboEmployee";
             comboEmployee.Size = new Size(267, 36);
             comboEmployee.TabIndex = 135;
@@ -267,7 +267,7 @@
             label8.Cursor = Cursors.Hand;
             label8.Font = new Font("Segoe UI", 15F);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(17, 368);
+            label8.Location = new Point(13, 452);
             label8.Name = "label8";
             label8.Size = new Size(104, 28);
             label8.TabIndex = 132;
@@ -278,7 +278,7 @@
             datetimeorderDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
             datetimeorderDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
             datetimeorderDate.Font = new Font("Segoe UI", 11F);
-            datetimeorderDate.Location = new Point(13, 399);
+            datetimeorderDate.Location = new Point(13, 483);
             datetimeorderDate.Name = "datetimeorderDate";
             datetimeorderDate.Size = new Size(266, 27);
             datetimeorderDate.TabIndex = 129;
@@ -290,11 +290,12 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI", 15F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(17, 446);
+            label7.Location = new Point(13, 278);
             label7.Name = "label7";
-            label7.Size = new Size(125, 28);
+            label7.Size = new Size(166, 28);
             label7.TabIndex = 130;
-            label7.Text = "TotalAmount";
+            label7.Text = "CustomerAddress";
+            label7.Click += label7_Click;
             // 
             // panel2
             // 
@@ -342,9 +343,9 @@
             searchEmployee.Font = new Font("Segoe UI", 15F);
             searchEmployee.ForeColor = Color.FromArgb(64, 64, 64);
             searchEmployee.FormattingEnabled = true;
-            searchEmployee.Location = new Point(232, 36);
+            searchEmployee.Location = new Point(236, 36);
             searchEmployee.Name = "searchEmployee";
-            searchEmployee.Size = new Size(235, 36);
+            searchEmployee.Size = new Size(226, 36);
             searchEmployee.TabIndex = 134;
             // 
             // searchInvoiceDatess
@@ -376,10 +377,10 @@
             // 
             searchCustomerName.Font = new Font("Segoe UI", 15F);
             searchCustomerName.ForeColor = Color.FromArgb(64, 64, 64);
-            searchCustomerName.Location = new Point(3, 36);
+            searchCustomerName.Location = new Point(11, 36);
             searchCustomerName.Multiline = true;
             searchCustomerName.Name = "searchCustomerName";
-            searchCustomerName.Size = new Size(223, 37);
+            searchCustomerName.Size = new Size(212, 37);
             searchCustomerName.TabIndex = 132;
             // 
             // btnCreateInvoice
@@ -431,7 +432,7 @@
         private Button btnremoveInvoice;
         private Button btnSaveAndUpdateInvoice;
         private Label label5;
-        private TextBox textTotalAmount;
+        private TextBox textCustomerAddress;
         private Label label3;
         private TextBox textcustomerName;
         private DataGridView dgvInvoice;
