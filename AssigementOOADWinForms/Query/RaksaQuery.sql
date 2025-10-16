@@ -42,7 +42,7 @@ BEGIN
         UPDATE tbInvoice
         SET CustomerName  = @CustomerName,
             CustomerPhone = @CustomerPhone,
-             @CustomerAddress = @CustomerAddress,
+            CustomerAddress = @CustomerAddress,
             EmployeeID    = @EmployeeID,
             EmployeeName  = @EmployeeName,
             OrderDate     = @OrderDate,

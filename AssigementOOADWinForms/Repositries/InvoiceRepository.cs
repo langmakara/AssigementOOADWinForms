@@ -34,6 +34,29 @@ namespace AssigementOOADWinForms.Repositories
 
             return list;
         }
+        public List<InvoiceDto> GetAllInvoicesLatestFirst()
+        {
+            var list = new List<InvoiceDto>();
+            using var conn = HandleConnection.GetSqlConnection();
+            const string query = @"
+        SELECT InvoiceID, OrderDate
+        FROM tbInvoice
+        ORDER BY OrderDate DESC"; // latest first
+
+            using var cmd = new SqlCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                list.Add(new InvoiceDto
+                {
+                    InvoiceID = reader.GetInt32(reader.GetOrdinal("InvoiceID")),
+                    OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"))
+                });
+            }
+
+            return list;
+        }
 
         public void Save(Invoice model)
         {

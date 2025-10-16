@@ -38,17 +38,17 @@
             dgvInvoicedetail = new DataGridView();
             btnClear = new Button();
             label6 = new Label();
-            textInvoiceID = new TextBox();
             textInvoiceDetailID = new TextBox();
             label7 = new Label();
             panel1 = new Panel();
+            comboInvoiceID = new ComboBox();
             comboProduct = new ComboBox();
             label1 = new Label();
             textTotalPrice = new TextBox();
             panel2 = new Panel();
+            textsearchInvoiceID = new TextBox();
             searchProduct = new ComboBox();
             btnReport = new Button();
-            searchInvoiceID = new TextBox();
             label8 = new Label();
             label10 = new Label();
             btnBack = new Button();
@@ -179,16 +179,6 @@
             label6.TabIndex = 110;
             label6.Text = "InvoiceID";
             // 
-            // textInvoiceID
-            // 
-            textInvoiceID.Font = new Font("Segoe UI", 15F);
-            textInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
-            textInvoiceID.Location = new Point(16, 121);
-            textInvoiceID.Multiline = true;
-            textInvoiceID.Name = "textInvoiceID";
-            textInvoiceID.Size = new Size(257, 37);
-            textInvoiceID.TabIndex = 109;
-            // 
             // textInvoiceDetailID
             // 
             textInvoiceDetailID.Font = new Font("Segoe UI", 15F);
@@ -214,13 +204,13 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(comboInvoiceID);
             panel1.Controls.Add(comboProduct);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textTotalPrice);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(textInvoiceDetailID);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textInvoiceID);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label3);
@@ -230,6 +220,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(285, 525);
             panel1.TabIndex = 102;
+            // 
+            // comboInvoiceID
+            // 
+            comboInvoiceID.Font = new Font("Segoe UI", 15F);
+            comboInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
+            comboInvoiceID.FormattingEnabled = true;
+            comboInvoiceID.Location = new Point(17, 121);
+            comboInvoiceID.Name = "comboInvoiceID";
+            comboInvoiceID.Size = new Size(256, 36);
+            comboInvoiceID.TabIndex = 136;
             // 
             // comboProduct
             // 
@@ -266,9 +266,9 @@
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
+            panel2.Controls.Add(textsearchInvoiceID);
             panel2.Controls.Add(searchProduct);
             panel2.Controls.Add(btnReport);
-            panel2.Controls.Add(searchInvoiceID);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label10);
             panel2.Location = new Point(3, 3);
@@ -276,14 +276,24 @@
             panel2.Size = new Size(817, 95);
             panel2.TabIndex = 123;
             // 
+            // textsearchInvoiceID
+            // 
+            textsearchInvoiceID.Font = new Font("Segoe UI", 15F);
+            textsearchInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
+            textsearchInvoiceID.Location = new Point(16, 33);
+            textsearchInvoiceID.Multiline = true;
+            textsearchInvoiceID.Name = "textsearchInvoiceID";
+            textsearchInvoiceID.Size = new Size(243, 37);
+            textsearchInvoiceID.TabIndex = 137;
+            // 
             // searchProduct
             // 
             searchProduct.Font = new Font("Segoe UI", 15F);
             searchProduct.ForeColor = Color.FromArgb(64, 64, 64);
             searchProduct.FormattingEnabled = true;
-            searchProduct.Location = new Point(259, 34);
+            searchProduct.Location = new Point(267, 34);
             searchProduct.Name = "searchProduct";
-            searchProduct.Size = new Size(256, 36);
+            searchProduct.Size = new Size(246, 36);
             searchProduct.TabIndex = 136;
             // 
             // btnReport
@@ -300,16 +310,6 @@
             btnReport.TabIndex = 125;
             btnReport.Text = "Look For The Report Invoice";
             btnReport.UseVisualStyleBackColor = false;
-            // 
-            // searchInvoiceID
-            // 
-            searchInvoiceID.Font = new Font("Segoe UI", 15F);
-            searchInvoiceID.ForeColor = Color.FromArgb(64, 64, 64);
-            searchInvoiceID.Location = new Point(13, 33);
-            searchInvoiceID.Multiline = true;
-            searchInvoiceID.Name = "searchInvoiceID";
-            searchInvoiceID.Size = new Size(242, 37);
-            searchInvoiceID.TabIndex = 132;
             // 
             // label8
             // 
@@ -329,7 +329,7 @@
             label10.Cursor = Cursors.Hand;
             label10.Font = new Font("Segoe UI", 15F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(258, 2);
+            label10.Location = new Point(268, 2);
             label10.Name = "label10";
             label10.Size = new Size(100, 28);
             label10.TabIndex = 127;
@@ -383,12 +383,10 @@
         private DataGridView dgvInvoicedetail;
         private Button btnClear;
         private Label label6;
-        private TextBox textInvoiceID;
         private TextBox textInvoiceDetailID;
         private Label label7;
         private Panel panel1;
         private Panel panel2;
-        private TextBox searchInvoiceID;
         private Label label8;
         private Button btnBack;
         private Button btnReport;
@@ -397,5 +395,7 @@
         private TextBox textTotalPrice;
         private ComboBox comboProduct;
         private ComboBox searchProduct;
+        private ComboBox comboInvoiceID;
+        private TextBox textsearchInvoiceID;
     }
 }

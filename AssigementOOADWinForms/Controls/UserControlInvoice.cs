@@ -116,7 +116,7 @@ public partial class UserControlInvoice : UserControl
         if (dgvInvoice.Columns["TotalAmount"] != null)
             dgvInvoice.Columns["TotalAmount"].DefaultCellStyle.Format = "C2";
 
-        var hiddenColumns = new List<string> { "InvoiceID", "EmployeeID" };
+        var hiddenColumns = new List<string> { "InvoiceID", "EmployeeID", "DisplayText" };
         DesignHelper.HideColumns(dgvInvoice, hiddenColumns);
     }
     private void HandleChangeUserControlInvoiceToCreateInvoiceDetail()
@@ -148,6 +148,7 @@ public partial class UserControlInvoice : UserControl
         textinvoiceID.Clear();
         textcustomerName.Clear();
         textcustomerPhone.Clear();
+        textCustomerAddress.Clear();
         datetimeorderDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         comboEmployee.SelectedIndex = -1;
         textCustomerAddress.Clear();
@@ -176,6 +177,7 @@ public partial class UserControlInvoice : UserControl
                 InvoiceID = string.IsNullOrWhiteSpace(textinvoiceID.Text) ? 0 : int.Parse(textinvoiceID.Text),
                 CustomerName = textcustomerName.Text,
                 CustomerPhone = textcustomerPhone.Text,
+                CustomerAddress = textCustomerAddress.Text,
                 EmployeeID = Convert.ToInt32(comboEmployee.SelectedValue),
                 OrderDate = orderDate,
             };

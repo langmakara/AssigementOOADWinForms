@@ -11,5 +11,6 @@ namespace AssigementOOADWinForms.Services
         public List<InvoiceDto> GetAllInvoices() => _repo.GetAll();
         public void SaveInvoice(Invoice model) => _repo.Save(model);
         public void RemoveInvoice(int invoiceId) => _repo.Delete(invoiceId);
+        public List<InvoiceDto> GetInvoiceIDAndName() => _repo.GetAllInvoicesLatestFirst();
     }
 }

@@ -40,22 +40,29 @@ namespace AssigementOOADWinForms.Repositries
 
             return list;
         }
-        public void SaveInvoiceDetail(InvoiceDetail model)
+
+        public int SaveInvoiceDetail(InvoiceDetail model)
         {
             using var conn = HandleConnection.GetSqlConnection();
-            using var cmd = new Microsoft.Data.SqlClient.SqlCommand("spUpsertInvoiceDetail", conn);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            var idParam = new Microsoft.Data.SqlClient.SqlParameter("@InvoiceDetailID", System.Data.SqlDbType.Int)
+            using var cmd = new SqlCommand("spUpsertInvoiceDetail", conn)
             {
-                Value = model.InvoiceDetailID == 0 ? System.DBNull.Value : model.InvoiceDetailID
+                CommandType = CommandType.StoredProcedure
             };
-            cmd.Parameters.Add(idParam);
+
+            cmd.Parameters.AddWithValue("@InvoiceDetailID", model.InvoiceDetailID == 0 ? DBNull.Value : model.InvoiceDetailID);
             cmd.Parameters.AddWithValue("@InvoiceID", model.InvoiceID);
             cmd.Parameters.AddWithValue("@ProductID", model.ProductID);
             cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
             cmd.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
-            cmd.ExecuteNonQuery();
+
+            object result = cmd.ExecuteScalar(); // Returns new InvoiceDetailID if inserted
+            if (result != null && int.TryParse(result.ToString(), out int newID))
+            {
+                return newID;
+            }
+
+            return model.InvoiceDetailID; 
         }
 
     }
