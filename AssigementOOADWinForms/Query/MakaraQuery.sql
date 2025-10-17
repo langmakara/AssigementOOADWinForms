@@ -200,3 +200,130 @@ BEGIN
 END;
 GO
 -- =====================================
+
+-- =====================================
+-- Get All Purchase Orders
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetAllPurchaseOrders
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        PurchaseID,
+        SupplierID,
+        SupplierName,
+        EmployeeID,
+        EmployeeName,
+        OrderDate,
+        TotalAmount
+    FROM dbo.tbPurchaseOrder
+    ORDER BY OrderDate DESC;
+END;
+GO
+
+
+-- =====================================
+-- Insert or Update Purchase Order
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_InsertOrUpdatePurchaseOrder
+    @PurchaseID     INT = NULL OUTPUT,
+    @SupplierID     INT,
+    @SupplierName   NVARCHAR(100),
+    @EmployeeID     INT,
+    @EmployeeName   NVARCHAR(100),
+    @OrderDate      DATETIME = NULL,
+    @TotalAmount    DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @OrderDate IS NULL
+        SET @OrderDate = GETDATE();
+
+    -- Update existing record
+    IF @PurchaseID IS NOT NULL AND EXISTS (SELECT 1 FROM dbo.tbPurchaseOrder WHERE PurchaseID = @PurchaseID)
+    BEGIN
+        UPDATE dbo.tbPurchaseOrder
+        SET 
+            SupplierID = @SupplierID,
+            SupplierName = @SupplierName,
+            EmployeeID = @EmployeeID,
+            EmployeeName = @EmployeeName,
+            OrderDate = @OrderDate,
+            TotalAmount = @TotalAmount
+        WHERE PurchaseID = @PurchaseID;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO dbo.tbPurchaseOrder 
+        (
+            SupplierID,
+            SupplierName,
+            EmployeeID,
+            EmployeeName,
+            OrderDate,
+            TotalAmount
+        )
+        VALUES 
+        (
+            @SupplierID,
+            @SupplierName,
+            @EmployeeID,
+            @EmployeeName,
+            @OrderDate,
+            @TotalAmount
+        );
+
+        SET @PurchaseID = SCOPE_IDENTITY();
+    END
+
+    SELECT @PurchaseID AS PurchaseID;
+END;
+GO
+
+
+-- =====================================
+-- Delete Purchase Order
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_DeletePurchaseOrder
+    @PurchaseID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (SELECT 1 FROM dbo.tbPurchaseOrder WHERE PurchaseID = @PurchaseID)
+    BEGIN
+        DELETE FROM dbo.tbPurchaseOrder WHERE PurchaseID = @PurchaseID;
+        PRINT 'Purchase order deleted successfully.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Purchase order not found.';
+    END
+END;
+GO
+
+
+-- =====================================
+-- Get Purchase Order by ID
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetPurchaseOrderById
+    @PurchaseID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        PurchaseID,
+        SupplierID,
+        SupplierName,
+        EmployeeID,
+        EmployeeName,
+        OrderDate,
+        TotalAmount
+    FROM dbo.tbPurchaseOrder
+    WHERE PurchaseID = @PurchaseID;
+END;
+GO
+

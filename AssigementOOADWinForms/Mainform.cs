@@ -11,6 +11,7 @@ public partial class Mainform : Form
     private UserControlProduct? userControlProduct;
     private UserControlInvoiceDetail? userControlInvoiceDetail;
     private UserControlInvoice? userControlInvoice;
+    private UserControlPurchasOrder? userControlPurchaseOrder;
     public Mainform()
     {
         InitializeComponent();
@@ -25,6 +26,7 @@ public partial class Mainform : Form
         userControlProduct = new UserControlProduct();
         userControlInvoiceDetail = new UserControlInvoiceDetail();
         userControlInvoice = new UserControlInvoice();
+        userControlPurchaseOrder = new UserControlPurchasOrder();
 
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
@@ -33,6 +35,7 @@ public partial class Mainform : Form
         LbSupplier.Click += HandleClickSupplier;
         Lbproduct.Click += HandleClickProduct;
         LbInvoice.Click += HandleClickInvoice;
+        LbPurchaseOrder.Click += HandleClickPurchaseOrder;
         this.Load += Form1_Load;
     }
     private void Lbproduct_Click(object? sender, EventArgs e)
@@ -44,9 +47,9 @@ public partial class Mainform : Form
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = title;
-        control.Dock = DockStyle.Fill;    
-        panelMain.Controls.Add(control); 
-        control.BringToFront();           
+        control.Dock = DockStyle.Fill;
+        panelMain.Controls.Add(control);
+        control.BringToFront();
     }
     private void HandleClickDashBoard(object? sender, EventArgs e)
     {
@@ -125,6 +128,17 @@ public partial class Mainform : Form
             userControlInvoice.Dock = DockStyle.Fill;
         }
     }
+    private void HandleClickPurchaseOrder(object? sender, EventArgs e)
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbPurchaseOrder.Text;
+        if (userControlPurchaseOrder != null)
+        {
+            panelMain.Controls.Add(userControlPurchaseOrder);
+            userControlPurchaseOrder.Dock = DockStyle.Fill;
+        }
+    }
     private void Form1_Load(object? sender, EventArgs e)
     {
         panelMain.Controls.Clear();
@@ -136,4 +150,5 @@ public partial class Mainform : Form
             userControlDashboard.Dock = DockStyle.Fill;
         }
     }
+
 }
