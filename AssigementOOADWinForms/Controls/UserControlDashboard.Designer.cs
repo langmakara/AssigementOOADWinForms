@@ -73,7 +73,7 @@
             pictureBox15.BackgroundImage = Properties.Resources.icons8_sales_100;
             pictureBox15.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox15.Cursor = Cursors.AppStarting;
-            pictureBox15.Location = new Point(248, 19);
+            pictureBox15.Location = new Point(326, 17);
             pictureBox15.Name = "pictureBox15";
             pictureBox15.Size = new Size(30, 30);
             pictureBox15.TabIndex = 30;
@@ -144,7 +144,7 @@
             pictureBox13.BackgroundImage = Properties.Resources.icons8_stock_64;
             pictureBox13.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox13.Cursor = Cursors.AppStarting;
-            pictureBox13.Location = new Point(255, 18);
+            pictureBox13.Location = new Point(294, 17);
             pictureBox13.Name = "pictureBox13";
             pictureBox13.Size = new Size(30, 30);
             pictureBox13.TabIndex = 27;
@@ -178,7 +178,7 @@
             pictureBox14.BackgroundImage = Properties.Resources.icons8_money_100;
             pictureBox14.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox14.Cursor = Cursors.AppStarting;
-            pictureBox14.Location = new Point(251, 21);
+            pictureBox14.Location = new Point(312, 18);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(30, 30);
             pictureBox14.TabIndex = 29;
@@ -225,9 +225,9 @@
             DataViewOutOfStock.BackgroundColor = Color.White;
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataViewOutOfStock.Location = new Point(330, 167);
+            DataViewOutOfStock.Location = new Point(332, 167);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(331, 494);
+            DataViewOutOfStock.Size = new Size(319, 494);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // dataGridView1
@@ -237,7 +237,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(323, 494);
+            dataGridView1.Size = new Size(313, 494);
             dataGridView1.TabIndex = 30;
             // 
             // label3

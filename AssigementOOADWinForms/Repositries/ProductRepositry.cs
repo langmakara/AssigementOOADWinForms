@@ -32,5 +32,31 @@ namespace AssigementOOADWinForms.Repositories
             }
             return list;
         }
+        public List<ProductDto> GetProductLowStock()
+        {
+            var list = new List<ProductDto>();
+
+            using var conn = HandleConnection.GetSqlConnection();
+            const string query = @"
+        SELECT ProductID, ProductName, UnitPrice, QuantityInStock 
+        FROM tbProduct 
+        WHERE QuantityInStock >= 5 AND QuantityInStock <= 10";
+
+            using var cmd = new SqlCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                list.Add(new ProductDto
+                {
+                    ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                    ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                    QuantityInStock = reader.GetInt32(reader.GetOrdinal("QuantityInStock")),
+                    UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
+                });
+            }
+
+            return list;
+        }
+
     }
 }

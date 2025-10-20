@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using AssigementOOADWinForms.Services;
 
 namespace AssigementOOADWinForms.Controls
 {
     public partial class UserControlDashboard : UserControl
     {
-        // Sample data (replace with database)
+        private readonly ProductService productService = new();
         private string[] products = { "Product A", "Product B", "Product C" };
         private int[] stock = { 50, 30, 70 };
         private int[] sales = { 20, 15, 60 };
-
-        // Monthly data
-        private string[] dates = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-        private int[] salesTrend = { 120, 150, 130, 160, 180, 200, 210, 190, 220, 230, 210, 240 };
 
         private string[] lowStockProducts = { "Product B - 3", "Product A - 5" };
         private string[] outStockProducts = { "Product X ❌", "Product Y ❌" };
@@ -51,18 +48,18 @@ namespace AssigementOOADWinForms.Controls
             label16.Text = CalculateTotalValue().ToString("C");  // Total Stock Value
             label18.Text = products.Length.ToString();           // Total Categories
 
-            // Low-stock table
+           var lowStock = productService.GetProductLowStock();
             dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add("Product", "Product");
-            dataGridView1.Columns.Add("Qty", "Quantity");
-            foreach (var item in lowStockProducts)
+            dataGridView1.DataSource = lowStock;
+            var hiddenColumns = new List<string>
             {
-                var parts = item.Split(" - ");
-                dataGridView1.Rows.Add(parts[0], parts.Length > 1 ? parts[1] : "");
-            }
+            "ProductID",
+            "SupplierID",
+            "ReorderLevel",
+            "CreatedAt"};
+            DesignHelper.HideColumns(dataGridView1, hiddenColumns);
 
-            // Out-of-stock table
+
             DataViewOutOfStock.Rows.Clear();
             DataViewOutOfStock.Columns.Clear();
             DataViewOutOfStock.Columns.Add("Product", "Product");

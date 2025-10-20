@@ -12,5 +12,6 @@ namespace AssigementOOADWinForms.Services
     {
         private ProductRepository _repo = new();
         public List<ProductDto> GetProductIDAndName() => _repo.GetIDandName();
+        public List<ProductDto> GetProductLowStock() => _repo.GetProductLowStock();
     }
 }

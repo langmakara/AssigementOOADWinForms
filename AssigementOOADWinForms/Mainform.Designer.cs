@@ -31,7 +31,6 @@
             panel2 = new Panel();
             label2 = new Label();
             pictureBox8 = new PictureBox();
-            pictureBox1 = new PictureBox();
             pictureBox13 = new PictureBox();
             label1 = new Label();
             LbPurchaseOrder = new Label();
@@ -45,7 +44,6 @@
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
-            label11 = new Label();
             label10 = new Label();
             label9 = new Label();
             LbInvoice = new Label();
@@ -60,7 +58,6 @@
             panelMain = new Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
@@ -81,7 +78,6 @@
             panel2.BackgroundImageLayout = ImageLayout.None;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(pictureBox8);
-            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(pictureBox13);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(LbPurchaseOrder);
@@ -95,7 +91,6 @@
             panel2.Controls.Add(pictureBox5);
             panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(pictureBox3);
-            panel2.Controls.Add(label11);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(LbInvoice);
@@ -105,10 +100,9 @@
             panel2.Controls.Add(Lbuser);
             panel2.Controls.Add(LbInventory);
             panel2.Controls.Add(LbDash);
-            panel2.Location = new Point(5, 4);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(227, 991);
+            panel2.Size = new Size(199, 743);
             panel2.TabIndex = 1;
             // 
             // label2
@@ -117,9 +111,9 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(55, 852);
+            label2.Location = new Point(48, 590);
             label2.Name = "label2";
-            label2.Size = new Size(142, 35);
+            label2.Size = new Size(113, 28);
             label2.TabIndex = 31;
             label2.Text = "Adjustment";
             // 
@@ -128,34 +122,20 @@
             pictureBox8.BackgroundImage = Properties.Resources.icons8_logout_96;
             pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox8.Cursor = Cursors.AppStarting;
-            pictureBox8.Location = new Point(19, 852);
-            pictureBox8.Margin = new Padding(3, 4, 3, 4);
+            pictureBox8.Location = new Point(17, 590);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(29, 33);
+            pictureBox8.Size = new Size(25, 25);
             pictureBox8.TabIndex = 30;
             pictureBox8.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = Properties.Resources.icons8_products_100__1_;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Cursor = Cursors.AppStarting;
-            pictureBox1.Location = new Point(19, 664);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 33);
-            pictureBox1.TabIndex = 29;
-            pictureBox1.TabStop = false;
             // 
             // pictureBox13
             // 
             pictureBox13.BackgroundImage = Properties.Resources.icons8_pink_lotus_flower_100;
             pictureBox13.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox13.Cursor = Cursors.AppStarting;
-            pictureBox13.Location = new Point(50, 11);
-            pictureBox13.Margin = new Padding(3, 4, 3, 4);
+            pictureBox13.Location = new Point(44, 8);
             pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(106, 89);
+            pictureBox13.Size = new Size(93, 67);
             pictureBox13.TabIndex = 28;
             pictureBox13.TabStop = false;
             // 
@@ -165,9 +145,9 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(19, 95);
+            label1.Location = new Point(17, 71);
             label1.Name = "label1";
-            label1.Size = new Size(188, 35);
+            label1.Size = new Size(150, 28);
             label1.TabIndex = 27;
             label1.Text = "NovaCompany";
             // 
@@ -177,9 +157,9 @@
             LbPurchaseOrder.Cursor = Cursors.Hand;
             LbPurchaseOrder.Font = new Font("Segoe UI", 15F);
             LbPurchaseOrder.ForeColor = Color.White;
-            LbPurchaseOrder.Location = new Point(55, 789);
+            LbPurchaseOrder.Location = new Point(48, 543);
             LbPurchaseOrder.Name = "LbPurchaseOrder";
-            LbPurchaseOrder.Size = new Size(115, 35);
+            LbPurchaseOrder.Size = new Size(89, 28);
             LbPurchaseOrder.TabIndex = 26;
             LbPurchaseOrder.Text = "Purchase";
             // 
@@ -188,10 +168,9 @@
             pictureBox2.BackgroundImage = Properties.Resources.icons8_logout_96;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox2.Cursor = Cursors.AppStarting;
-            pictureBox2.Location = new Point(19, 789);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(17, 543);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 33);
+            pictureBox2.Size = new Size(25, 25);
             pictureBox2.TabIndex = 25;
             pictureBox2.TabStop = false;
             // 
@@ -200,10 +179,9 @@
             pictureBox12.BackgroundImage = Properties.Resources.icons8_reports_96__1_;
             pictureBox12.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox12.Cursor = Cursors.AppStarting;
-            pictureBox12.Location = new Point(19, 727);
-            pictureBox12.Margin = new Padding(3, 4, 3, 4);
+            pictureBox12.Location = new Point(17, 496);
             pictureBox12.Name = "pictureBox12";
-            pictureBox12.Size = new Size(29, 33);
+            pictureBox12.Size = new Size(25, 25);
             pictureBox12.TabIndex = 24;
             pictureBox12.TabStop = false;
             // 
@@ -212,10 +190,9 @@
             pictureBox11.BackgroundImage = Properties.Resources.icons8_payment_100;
             pictureBox11.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox11.Cursor = Cursors.AppStarting;
-            pictureBox11.Location = new Point(19, 601);
-            pictureBox11.Margin = new Padding(3, 4, 3, 4);
+            pictureBox11.Location = new Point(17, 451);
             pictureBox11.Name = "pictureBox11";
-            pictureBox11.Size = new Size(29, 33);
+            pictureBox11.Size = new Size(25, 25);
             pictureBox11.TabIndex = 23;
             pictureBox11.TabStop = false;
             // 
@@ -224,10 +201,9 @@
             pictureBox10.BackgroundImage = Properties.Resources.icons8_categories_100__1_;
             pictureBox10.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox10.Cursor = Cursors.AppStarting;
-            pictureBox10.Location = new Point(19, 539);
-            pictureBox10.Margin = new Padding(3, 4, 3, 4);
+            pictureBox10.Location = new Point(17, 404);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(29, 33);
+            pictureBox10.Size = new Size(25, 25);
             pictureBox10.TabIndex = 22;
             pictureBox10.TabStop = false;
             // 
@@ -236,10 +212,9 @@
             pictureBox9.BackgroundImage = Properties.Resources.icons8_products_100__1_;
             pictureBox9.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox9.Cursor = Cursors.AppStarting;
-            pictureBox9.Location = new Point(19, 476);
-            pictureBox9.Margin = new Padding(3, 4, 3, 4);
+            pictureBox9.Location = new Point(17, 357);
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(29, 33);
+            pictureBox9.Size = new Size(25, 25);
             pictureBox9.TabIndex = 21;
             pictureBox9.TabStop = false;
             // 
@@ -248,10 +223,9 @@
             pictureBox7.BackgroundImage = Properties.Resources.icons8_supplier_90;
             pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox7.Cursor = Cursors.AppStarting;
-            pictureBox7.Location = new Point(19, 413);
-            pictureBox7.Margin = new Padding(3, 4, 3, 4);
+            pictureBox7.Location = new Point(17, 310);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(29, 33);
+            pictureBox7.Size = new Size(25, 25);
             pictureBox7.TabIndex = 19;
             pictureBox7.TabStop = false;
             // 
@@ -260,10 +234,9 @@
             pictureBox6.BackgroundImage = Properties.Resources.icons8_employees_100__1_;
             pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox6.Cursor = Cursors.AppStarting;
-            pictureBox6.Location = new Point(19, 351);
-            pictureBox6.Margin = new Padding(3, 4, 3, 4);
+            pictureBox6.Location = new Point(17, 263);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(29, 33);
+            pictureBox6.Size = new Size(25, 25);
             pictureBox6.TabIndex = 18;
             pictureBox6.TabStop = false;
             // 
@@ -272,10 +245,9 @@
             pictureBox5.BackgroundImage = Properties.Resources.icons8_users_100;
             pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox5.Cursor = Cursors.AppStarting;
-            pictureBox5.Location = new Point(19, 288);
-            pictureBox5.Margin = new Padding(3, 4, 3, 4);
+            pictureBox5.Location = new Point(17, 216);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(29, 33);
+            pictureBox5.Size = new Size(25, 25);
             pictureBox5.TabIndex = 17;
             pictureBox5.TabStop = false;
             // 
@@ -284,10 +256,9 @@
             pictureBox4.BackgroundImage = Properties.Resources.icons8_inventory_100__1_;
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox4.Cursor = Cursors.AppStarting;
-            pictureBox4.Location = new Point(19, 225);
-            pictureBox4.Margin = new Padding(3, 4, 3, 4);
+            pictureBox4.Location = new Point(17, 169);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(29, 33);
+            pictureBox4.Size = new Size(25, 25);
             pictureBox4.TabIndex = 16;
             pictureBox4.TabStop = false;
             // 
@@ -296,24 +267,11 @@
             pictureBox3.BackgroundImage = Properties.Resources.icons8_dashboard_96__1_;
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox3.Cursor = Cursors.AppStarting;
-            pictureBox3.Location = new Point(19, 163);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(17, 122);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(29, 33);
+            pictureBox3.Size = new Size(25, 25);
             pictureBox3.TabIndex = 15;
             pictureBox3.TabStop = false;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Cursor = Cursors.Hand;
-            label11.Font = new Font("Segoe UI", 15F);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(55, 664);
-            label11.Name = "label11";
-            label11.Size = new Size(94, 35);
-            label11.TabIndex = 12;
-            label11.Text = "Invoice";
             // 
             // label10
             // 
@@ -321,9 +279,9 @@
             label10.Cursor = Cursors.Hand;
             label10.Font = new Font("Segoe UI", 15F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(55, 727);
+            label10.Location = new Point(48, 496);
             label10.Name = "label10";
-            label10.Size = new Size(100, 35);
+            label10.Size = new Size(79, 28);
             label10.TabIndex = 11;
             label10.Text = "Reports";
             // 
@@ -333,9 +291,9 @@
             label9.Cursor = Cursors.Hand;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(55, 601);
+            label9.Location = new Point(48, 451);
             label9.Name = "label9";
-            label9.Size = new Size(121, 35);
+            label9.Size = new Size(95, 28);
             label9.TabIndex = 10;
             label9.Text = "Payments";
             // 
@@ -345,9 +303,9 @@
             LbInvoice.Cursor = Cursors.Hand;
             LbInvoice.Font = new Font("Segoe UI", 15F);
             LbInvoice.ForeColor = Color.White;
-            LbInvoice.Location = new Point(55, 539);
+            LbInvoice.Location = new Point(48, 404);
             LbInvoice.Name = "LbInvoice";
-            LbInvoice.Size = new Size(94, 35);
+            LbInvoice.Size = new Size(74, 28);
             LbInvoice.TabIndex = 9;
             LbInvoice.Text = "Invoice";
             // 
@@ -357,9 +315,9 @@
             Lbproduct.Cursor = Cursors.Hand;
             Lbproduct.Font = new Font("Segoe UI", 15F);
             Lbproduct.ForeColor = Color.White;
-            Lbproduct.Location = new Point(55, 476);
+            Lbproduct.Location = new Point(48, 357);
             Lbproduct.Name = "Lbproduct";
-            Lbproduct.Size = new Size(113, 35);
+            Lbproduct.Size = new Size(89, 28);
             Lbproduct.TabIndex = 8;
             Lbproduct.Text = "Products";
             // 
@@ -369,9 +327,9 @@
             LbSupplier.Cursor = Cursors.Hand;
             LbSupplier.Font = new Font("Segoe UI", 15F);
             LbSupplier.ForeColor = Color.White;
-            LbSupplier.Location = new Point(55, 413);
+            LbSupplier.Location = new Point(48, 310);
             LbSupplier.Name = "LbSupplier";
-            LbSupplier.Size = new Size(117, 35);
+            LbSupplier.Size = new Size(93, 28);
             LbSupplier.TabIndex = 6;
             LbSupplier.Text = "Suppliers";
             // 
@@ -381,9 +339,9 @@
             LbEmployee.Cursor = Cursors.Hand;
             LbEmployee.Font = new Font("Segoe UI", 15F);
             LbEmployee.ForeColor = Color.White;
-            LbEmployee.Location = new Point(55, 351);
+            LbEmployee.Location = new Point(48, 263);
             LbEmployee.Name = "LbEmployee";
-            LbEmployee.Size = new Size(124, 35);
+            LbEmployee.Size = new Size(98, 28);
             LbEmployee.TabIndex = 5;
             LbEmployee.Text = "Employee";
             // 
@@ -393,9 +351,9 @@
             Lbuser.Cursor = Cursors.Hand;
             Lbuser.Font = new Font("Segoe UI", 15F);
             Lbuser.ForeColor = Color.White;
-            Lbuser.Location = new Point(55, 288);
+            Lbuser.Location = new Point(48, 216);
             Lbuser.Name = "Lbuser";
-            Lbuser.Size = new Size(65, 35);
+            Lbuser.Size = new Size(51, 28);
             Lbuser.TabIndex = 4;
             Lbuser.Text = "User";
             // 
@@ -405,9 +363,9 @@
             LbInventory.Cursor = Cursors.Hand;
             LbInventory.Font = new Font("Segoe UI", 15F);
             LbInventory.ForeColor = Color.White;
-            LbInventory.Location = new Point(55, 225);
+            LbInventory.Location = new Point(48, 169);
             LbInventory.Name = "LbInventory";
-            LbInventory.Size = new Size(119, 35);
+            LbInventory.Size = new Size(95, 28);
             LbInventory.TabIndex = 3;
             LbInventory.Text = "Inventory";
             // 
@@ -417,9 +375,9 @@
             LbDash.Cursor = Cursors.Hand;
             LbDash.Font = new Font("Segoe UI", 15F);
             LbDash.ForeColor = Color.White;
-            LbDash.Location = new Point(55, 163);
+            LbDash.Location = new Point(48, 122);
             LbDash.Name = "LbDash";
-            LbDash.Size = new Size(138, 35);
+            LbDash.Size = new Size(108, 28);
             LbDash.TabIndex = 0;
             LbDash.Text = "Dashboard";
             // 
@@ -430,10 +388,9 @@
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(LbPage);
-            panel1.Location = new Point(235, 5);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(206, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1262, 99);
+            panel1.Size = new Size(1104, 75);
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -443,9 +400,9 @@
             LbPage.Cursor = Cursors.Hand;
             LbPage.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             LbPage.ForeColor = Color.White;
-            LbPage.Location = new Point(495, 21);
+            LbPage.Location = new Point(433, 16);
             LbPage.Name = "LbPage";
-            LbPage.Size = new Size(254, 46);
+            LbPage.Size = new Size(207, 37);
             LbPage.TabIndex = 29;
             LbPage.Text = "NovaCompany";
             // 
@@ -453,35 +410,33 @@
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelMain.BackColor = Color.White;
-            panelMain.Location = new Point(233, 109);
+            panelMain.Location = new Point(204, 82);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1264, 885);
+            panelMain.Size = new Size(1106, 664);
             panelMain.TabIndex = 7;
             // 
             // Mainform
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1506, 1001);
+            ClientSize = new Size(1318, 751);
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);
             ForeColor = Color.WhiteSmoke;
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Mainform";
-            Padding = new Padding(6, 7, 6, 7);
+            Padding = new Padding(5, 5, 5, 5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -509,7 +464,6 @@
         private Label Lbproduct;
         private Label LbSupplier;
         private Label LbEmployee;
-        private Label label11;
         private PictureBox pictureBox12;
         private PictureBox pictureBox11;
         private PictureBox pictureBox10;
@@ -526,7 +480,6 @@
         private Label label1;
         private PictureBox pictureBox13;
         private Label LbPage;
-        private PictureBox pictureBox1;
         private Label label2;
         private PictureBox pictureBox8;
     }
