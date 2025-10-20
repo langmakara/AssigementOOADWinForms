@@ -157,6 +157,29 @@ BEGIN
     END
 END;
 GO
+CREATE OR ALTER PROCEDURE sp_DeleteInvoiceDetail
+    @InvoiceDetailID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRANSACTION;
+
+    IF EXISTS (SELECT 1 FROM tbInvoiceDetail WHERE InvoiceDetailID = @InvoiceDetailID)
+    BEGIN
+        DELETE FROM tbInvoiceDetail
+        WHERE InvoiceDetailID = @InvoiceDetailID;
+
+        COMMIT TRANSACTION;
+        PRINT 'Invoice detail deleted successfully.';
+    END
+    ELSE
+    BEGIN
+        ROLLBACK TRANSACTION;
+        PRINT 'Invoice detail not found.';
+    END
+END;
+GO
 -- =====================================
 -- Get all employees
 -- =====================================

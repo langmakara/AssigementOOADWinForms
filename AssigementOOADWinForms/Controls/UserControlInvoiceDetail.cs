@@ -2,6 +2,7 @@
 using AssigementOOADWinForms.DTOs.AssigementOOADWinForms.DTOs;
 using AssigementOOADWinForms.Models;
 using AssigementOOADWinForms.Services;
+using Microsoft.Data.SqlClient;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AssigementOOADWinForms.Controls
@@ -29,11 +30,12 @@ namespace AssigementOOADWinForms.Controls
             btnBack.Click += (s, e) => HandleGetBackToInvoice();
             btnSave.Click += (s, e) => SaveInvoiceDetail();
             btnClear.Click += (s, e) => HandleClearTextBox();
+            btnRemove.Click += (s, e) => HandleRemoveInvoiceDetail();
             comboProduct.SelectedIndexChanged += comboProduct_SelectedIndexChanged;
             textsearchInvoiceID.TextChanged += (s, e) => FilterInvoiceDetailsByInvoiceAndProduct();
             searchProduct.SelectedIndexChanged += (s, e) => FilterInvoiceDetailsByInvoiceAndProduct();
             textQauntity.TextChanged += TextQauntity_TextChanged;
-            this.Load += (s, e) => LaodInvoiceDetail();
+            this.Load += (s, e) => LoadInvoiceDetail();
         }
 
         // Handle Form Logic
@@ -157,7 +159,7 @@ namespace AssigementOOADWinForms.Controls
             // Hide internal columns
             DesignHelper.HideColumns(dgvInvoicedetail, new List<string> { "InvoiceDetailID" });
         }
-        private void LaodInvoiceDetail()
+        private void LoadInvoiceDetail()
         {
             try
             {
@@ -189,5 +191,69 @@ namespace AssigementOOADWinForms.Controls
             int savedID = InvoiceDetailservice.SaveInvoiceDetailToDatabase(model);
             MessageBox.Show($"Invoice Detail saved! ID: {savedID}");
         }
+        private void HandleRemoveInvoiceDetail()
+        {
+            int invoiceId;
+
+            // Step 1: Determine Invoice ID
+            if (!string.IsNullOrWhiteSpace(textInvoiceDetailID.Text) && int.TryParse(textInvoiceDetailID.Text, out invoiceId))
+            {
+                // valid from textbox
+            }
+            else if (dgvInvoicedetail.CurrentRow != null)
+            {
+                invoiceId = Convert.ToInt32(dgvInvoicedetail.CurrentRow.Cells["InvoiceID"].Value);
+            }
+            else
+            {
+                MessageBox.Show("Please select an invoice to delete.", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Step 2: Confirm deletion
+            if (MessageBox.Show("Are you sure you want to delete this invoice?", "Confirm Delete",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                // Step 3: Delete and reload
+                InvoiceDetailservice.DeleteInvoiceDetail(invoiceId);
+                MessageBox.Show("Invoice deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LoadInvoiceDetail();
+
+                // Step 4: Re-select first row if available
+                if (dgvInvoicedetail.Rows.Count > 0)
+                {
+                    dgvInvoicedetail.ClearSelection();
+                    var firstRow = dgvInvoicedetail.Rows[0];
+                    firstRow.Selected = true;
+
+                    DataGridViewCell? firstVisibleCell = null;
+                    foreach (DataGridViewCell cell in firstRow.Cells)
+                    {
+                        if (cell.Visible)
+                        {
+                            firstVisibleCell = cell;
+                            break;
+                        }
+                    }
+
+                    if (firstVisibleCell != null)
+                        dgvInvoicedetail.CurrentCell = firstVisibleCell;
+
+                    SelectionRowChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to delete invoice:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
+
+

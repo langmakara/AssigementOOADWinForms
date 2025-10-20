@@ -64,6 +64,30 @@ namespace AssigementOOADWinForms.Repositries
 
             return model.InvoiceDetailID; 
         }
+        public bool Delete(int invoiceDetailID)
+        {
+            using var conn = HandleConnection.GetSqlConnection();
+
+            using var cmd = new SqlCommand("sp_DeleteInvoiceDetail", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@InvoiceDetailID", invoiceDetailID);
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return true; // deletion succeeded
+            }
+            catch (SqlException ex)
+            {
+                // optionally log the error
+                Console.WriteLine($"Error deleting invoice detail: {ex.Message}");
+                return false;
+            }
+        }
 
     }
+
 }

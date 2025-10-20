@@ -43,13 +43,9 @@
             label1 = new Label();
             label2 = new Label();
             DataViewOutOfStock = new DataGridView();
-            pbStockVsSales = new PictureBox();
-            pbStockTrend = new PictureBox();
-            pbSalesTrend = new PictureBox();
             dataGridView1 = new DataGridView();
-            lblSalesTrendTitle = new Label();
-            label4 = new Label();
             label3 = new Label();
+            pbStockVsSales = new PictureBox();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             panel3.SuspendLayout();
@@ -57,10 +53,8 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataViewOutOfStock).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbStockVsSales).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbStockTrend).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbSalesTrend).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbStockVsSales).BeginInit();
             SuspendLayout();
             // 
             // panel5
@@ -228,74 +222,23 @@
             // 
             // DataViewOutOfStock
             // 
-            DataViewOutOfStock.BackgroundColor = Color.Azure;
+            DataViewOutOfStock.BackgroundColor = Color.White;
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataViewOutOfStock.Location = new Point(330, 167);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(331, 241);
+            DataViewOutOfStock.Size = new Size(331, 494);
             DataViewOutOfStock.TabIndex = 34;
-            // 
-            // pbStockVsSales
-            // 
-            pbStockVsSales.Location = new Point(661, 164);
-            pbStockVsSales.Margin = new Padding(0);
-            pbStockVsSales.Name = "pbStockVsSales";
-            pbStockVsSales.Size = new Size(447, 497);
-            pbStockVsSales.TabIndex = 34;
-            pbStockVsSales.TabStop = false;
-            // 
-            // pbStockTrend
-            // 
-            pbStockTrend.Location = new Point(330, 435);
-            pbStockTrend.Margin = new Padding(0);
-            pbStockTrend.Name = "pbStockTrend";
-            pbStockTrend.Size = new Size(331, 226);
-            pbStockTrend.TabIndex = 35;
-            pbStockTrend.TabStop = false;
-            // 
-            // pbSalesTrend
-            // 
-            pbSalesTrend.Location = new Point(3, 435);
-            pbSalesTrend.Margin = new Padding(0);
-            pbSalesTrend.Name = "pbSalesTrend";
-            pbSalesTrend.Size = new Size(323, 226);
-            pbSalesTrend.TabIndex = 36;
-            pbSalesTrend.TabStop = false;
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = Color.Azure;
+            dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(323, 241);
+            dataGridView1.Size = new Size(323, 494);
             dataGridView1.TabIndex = 30;
-            // 
-            // lblSalesTrendTitle
-            // 
-            lblSalesTrendTitle.AutoSize = true;
-            lblSalesTrendTitle.Cursor = Cursors.Hand;
-            lblSalesTrendTitle.Font = new Font("Segoe UI", 15F);
-            lblSalesTrendTitle.ForeColor = Color.FromArgb(64, 64, 64);
-            lblSalesTrendTitle.Location = new Point(18, 404);
-            lblSalesTrendTitle.Name = "lblSalesTrendTitle";
-            lblSalesTrendTitle.Size = new Size(188, 28);
-            lblSalesTrendTitle.TabIndex = 37;
-            lblSalesTrendTitle.Text = "Monthly Sales Trend";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(335, 404);
-            label4.Name = "label4";
-            label4.Size = new Size(192, 28);
-            label4.TabIndex = 38;
-            label4.Text = "Monthly Stock Trend";
             // 
             // label3
             // 
@@ -309,18 +252,24 @@
             label3.TabIndex = 39;
             label3.Text = "Stock Vs Sales";
             // 
+            // pbStockVsSales
+            // 
+            pbStockVsSales.BackColor = Color.White;
+            pbStockVsSales.Location = new Point(664, 167);
+            pbStockVsSales.Margin = new Padding(0);
+            pbStockVsSales.Name = "pbStockVsSales";
+            pbStockVsSales.Size = new Size(444, 494);
+            pbStockVsSales.TabIndex = 34;
+            pbStockVsSales.TabStop = false;
+            // 
             // UserControlDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             Controls.Add(label3);
-            Controls.Add(label4);
-            Controls.Add(lblSalesTrendTitle);
             Controls.Add(DataViewOutOfStock);
             Controls.Add(dataGridView1);
-            Controls.Add(pbSalesTrend);
-            Controls.Add(pbStockTrend);
             Controls.Add(pbStockVsSales);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -339,10 +288,8 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)DataViewOutOfStock).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbStockVsSales).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbStockTrend).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbSalesTrend).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbStockVsSales).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -363,12 +310,8 @@
         private Label label1;
         private Label label2;
         private DataGridView DataViewOutOfStock;
-        private PictureBox pbStockVsSales;
-        private PictureBox pbStockTrend;
-        private PictureBox pbSalesTrend;
         private DataGridView dataGridView1;
-        private Label lblSalesTrendTitle;
-        private Label label4;
         private Label label3;
+        private PictureBox pbStockVsSales;
     }
 }

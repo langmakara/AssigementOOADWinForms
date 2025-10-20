@@ -35,34 +35,49 @@ public static class DesignHelper
         };
     }
 
+
     // --- Style DataGridView ---
     public static void StyleDataGridView(DataGridView dgv)
     {
-        dgv.ColumnHeadersHeight = 50; // <-- Set your desired header height here
+        // Enable double buffering via reflection to prevent flicker (like iOS fluid motion)
+        typeof(DataGridView).InvokeMember(
+            "DoubleBuffered",
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Instance |
+            System.Reflection.BindingFlags.SetProperty,
+            null, dgv, new object[] { true });
+
+        // Header styling
+        dgv.ColumnHeadersHeight = 50;
         dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         dgv.EnableHeadersVisualStyles = false;
-
-        dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.DodgerBlue;
+        dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 144, 255); // iOS Azure-Blue
         dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-        dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Regular);
         dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
 
-        dgv.RowTemplate.Height = 40;
+        // Rows styling
+        dgv.RowTemplate.Height = 44; // iOS standard row height
         dgv.DefaultCellStyle.BackColor = Color.White;
-        dgv.DefaultCellStyle.ForeColor = Color.Black;
-        dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
-        dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
-        dgv.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+        dgv.DefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 30);
+        dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+        dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+        dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(30, 30, 30);
+        dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(204, 232, 255);
         dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
 
+        // Grid look
         dgv.BorderStyle = BorderStyle.None;
-        dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
-        dgv.GridColor = Color.White;
+        dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        dgv.GridColor = Color.FromArgb(240, 240, 240);
         dgv.RowHeadersVisible = false;
         dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgv.MultiSelect = false;
+
+        // Smooth scroll effect
+        dgv.ScrollBars = ScrollBars.Both;
     }
+
 
     // --- Circular Button ---
     public static void MakeCircular(Button btn)
@@ -79,29 +94,49 @@ public static class DesignHelper
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // Draw clean background
-            Color backColor = (e.RowIndex % 2 == 0) ? Color.White : Color.FromArgb(245, 245, 245);
-            using (SolidBrush brush = new SolidBrush(backColor))
+            // === Background: soft glass-like gradient ===
+            Color topColor = (e.RowIndex % 2 == 0)
+                ? Color.FromArgb(255, 250, 253, 255)   // light bluish-white
+                : Color.FromArgb(255, 245, 248, 255);  // soft gray-blue tint
+            Color bottomColor = Color.FromArgb(255, 230, 240, 255); // subtle glass fade
+
+            using (var bgBrush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                e.CellBounds, topColor, bottomColor, 90f))
             {
-                e.Graphics.FillRectangle(brush, e.CellBounds);
+                e.Graphics.FillRectangle(bgBrush, e.CellBounds);
             }
 
-            // Draw selection highlight like iOS
+            // === Selection overlay (iOS translucent blue glow) ===
             if ((e.State & DataGridViewElementStates.Selected) != 0)
             {
-                using (SolidBrush selBrush = new SolidBrush(Color.FromArgb(50, Color.DodgerBlue)))
+                using (var selBrush = new SolidBrush(Color.FromArgb(90, 0, 122, 255))) // glassy blue
                 {
                     e.Graphics.FillRectangle(selBrush, e.CellBounds);
                 }
+
+                // Optional highlight border
+                using (var glowPen = new Pen(Color.FromArgb(180, 0, 122, 255), 1.5f))
+                {
+                    e.Graphics.DrawRectangle(glowPen,
+                        e.CellBounds.X + 0.5f,
+                        e.CellBounds.Y + 0.5f,
+                        e.CellBounds.Width - 1.5f,
+                        e.CellBounds.Height - 1.5f);
+                }
             }
 
-            // Draw the cell text
+            // === Text rendering (clean, Apple-like font) ===
+            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             e.PaintContent(e.CellBounds);
 
-            // Optional: subtle cell border
-            using (Pen pen = new Pen(Color.FromArgb(220, 220, 220)))
+            // === Subtle divider line (soft silver tone) ===
+            using (var pen = new Pen(Color.FromArgb(220, 225, 235)))
             {
-                e.Graphics.DrawRectangle(pen, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width - 1, e.CellBounds.Height - 1);
+                e.Graphics.DrawRectangle(pen,
+                    e.CellBounds.X,
+                    e.CellBounds.Y,
+                    e.CellBounds.Width - 1,
+                    e.CellBounds.Height - 1);
             }
 
             e.Handled = true;

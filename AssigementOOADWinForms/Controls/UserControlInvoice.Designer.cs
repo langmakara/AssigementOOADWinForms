@@ -185,7 +185,6 @@
             textCustomerAddress.Location = new Point(13, 311);
             textCustomerAddress.Multiline = true;
             textCustomerAddress.Name = "textCustomerAddress";
-            textCustomerAddress.ReadOnly = true;
             textCustomerAddress.Size = new Size(266, 37);
             textCustomerAddress.TabIndex = 116;
             // 

@@ -14,7 +14,6 @@ namespace AssigementOOADWinForms.Controls
         // Monthly data
         private string[] dates = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         private int[] salesTrend = { 120, 150, 130, 160, 180, 200, 210, 190, 220, 230, 210, 240 };
-        private int[] stockTrend = { 50, 45, 40, 35, 55, 60, 70, 65, 60, 55, 50, 45 };
 
         private string[] lowStockProducts = { "Product B - 3", "Product A - 5" };
         private string[] outStockProducts = { "Product X ❌", "Product Y ❌" };
@@ -30,8 +29,6 @@ namespace AssigementOOADWinForms.Controls
 
             // Charts paint events
             pbStockVsSales.Paint += PbStockVsSales_Paint;
-            pbStockTrend.Paint += PbStockTrend_Paint;
-            pbSalesTrend.Paint += PbSalesTrend_Paint;
 
             // Style DataGridViews
             // For Low Stock table
@@ -76,8 +73,7 @@ namespace AssigementOOADWinForms.Controls
 
             // Refresh charts
             pbStockVsSales.Invalidate();
-            pbStockTrend.Invalidate();
-            pbSalesTrend.Invalidate();
+
         }
 
         #region Chart Paint Events
@@ -87,17 +83,9 @@ namespace AssigementOOADWinForms.Controls
                 pbStockVsSales.Width, pbStockVsSales.Height);
         }
 
-        private void PbStockTrend_Paint(object sender, PaintEventArgs e)
-        {
-            ChartHelper.DrawLineChart(e.Graphics, dates, stockTrend, Color.MediumSeaGreen, "Monthly Stock Trend",
-                pbStockTrend.Width, pbStockTrend.Height);
-        }
 
-        private void PbSalesTrend_Paint(object sender, PaintEventArgs e)
-        {
-            ChartHelper.DrawLineChart(e.Graphics, dates, salesTrend, Color.DodgerBlue, "Monthly Sales Trend",
-                pbSalesTrend.Width, pbSalesTrend.Height);
-        }
+
+
         #endregion
 
         #region Helper Methods
