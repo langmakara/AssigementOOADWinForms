@@ -19,7 +19,7 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.ApplyRoundedStyle(panel2, 5);
             DesignHelper.ApplyRoundedStyle(panel3, 5);
             DesignHelper.StyleDataGridView(dgvinventory);
-            DesignHelper.MakeAllInputsGlass(this);
+            DesignHelper.MakeAllInputs(this);
             dgvinventory.CellPainting += DesignHelper.dataGridView1_CellPainting;
 
         }
