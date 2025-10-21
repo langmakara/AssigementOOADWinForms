@@ -19,7 +19,7 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             // UI design helpers
-            DesignHelper.MakeAllInputsRounded(this, radius: 3);
+            DesignHelper.MakeAllInputs(this);
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvPurchase);

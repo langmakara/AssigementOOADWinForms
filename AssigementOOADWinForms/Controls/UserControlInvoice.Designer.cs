@@ -266,7 +266,7 @@
             label8.Cursor = Cursors.Hand;
             label8.Font = new Font("Segoe UI", 15F);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(13, 451);
+            label8.Location = new Point(13, 442);
             label8.Name = "label8";
             label8.Size = new Size(104, 28);
             label8.TabIndex = 132;
@@ -277,7 +277,7 @@
             datetimeorderDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
             datetimeorderDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
             datetimeorderDate.Font = new Font("Segoe UI", 15F);
-            datetimeorderDate.Location = new Point(13, 484);
+            datetimeorderDate.Location = new Point(13, 474);
             datetimeorderDate.Name = "datetimeorderDate";
             datetimeorderDate.Size = new Size(266, 34);
             datetimeorderDate.TabIndex = 129;
