@@ -82,7 +82,7 @@ namespace AssigementOOADWinForms.Controls
         // ===============================
         private void HandleClearTextBox(object sender, EventArgs e)
         {
-            tbPurchaseID.Clear();
+            tbPuchaseOderID.Clear();
             tbSupplierID.Clear();
             tbSupplierName.Clear();
             tbEmployeeID.Clear();

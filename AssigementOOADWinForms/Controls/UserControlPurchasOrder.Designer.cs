@@ -94,6 +94,7 @@
             // 
             // tbEmployeeName
             // 
+            tbEmployeeName.Font = new Font("Segoe UI", 15F);
             tbEmployeeName.Location = new Point(10, 440);
             tbEmployeeName.Margin = new Padding(3, 4, 3, 4);
             tbEmployeeName.Multiline = true;
@@ -115,6 +116,7 @@
             // 
             // tbSupplierName
             // 
+            tbSupplierName.Font = new Font("Segoe UI", 15F);
             tbSupplierName.Location = new Point(7, 242);
             tbSupplierName.Margin = new Padding(3, 4, 3, 4);
             tbSupplierName.Multiline = true;
@@ -136,6 +138,7 @@
             // 
             // tbPuchaseOderID
             // 
+            tbPuchaseOderID.Font = new Font("Segoe UI", 15F);
             tbPuchaseOderID.Location = new Point(7, 44);
             tbPuchaseOderID.Margin = new Padding(3, 4, 3, 4);
             tbPuchaseOderID.Multiline = true;
@@ -166,6 +169,7 @@
             // 
             // tbTotal
             // 
+            tbTotal.Font = new Font("Segoe UI", 15F);
             tbTotal.Location = new Point(7, 628);
             tbTotal.Margin = new Padding(3, 4, 3, 4);
             tbTotal.Multiline = true;
@@ -199,6 +203,7 @@
             // 
             // tbEmployeeID
             // 
+            tbEmployeeID.Font = new Font("Segoe UI", 15F);
             tbEmployeeID.Location = new Point(7, 341);
             tbEmployeeID.Margin = new Padding(3, 4, 3, 4);
             tbEmployeeID.Multiline = true;
@@ -220,6 +225,7 @@
             // 
             // tbSupplierID
             // 
+            tbSupplierID.Font = new Font("Segoe UI", 15F);
             tbSupplierID.Location = new Point(7, 143);
             tbSupplierID.Margin = new Padding(3, 4, 3, 4);
             tbSupplierID.Multiline = true;
@@ -229,6 +235,7 @@
             // 
             // tbPurchaseID
             // 
+            tbPurchaseID.Font = new Font("Segoe UI", 15F);
             tbPurchaseID.Location = new Point(8, 58);
             tbPurchaseID.Margin = new Padding(3, 4, 3, 4);
             tbPurchaseID.Multiline = true;
@@ -336,7 +343,7 @@
             btnCreateInvoice.Name = "btnCreateInvoice";
             btnCreateInvoice.Size = new Size(370, 57);
             btnCreateInvoice.TabIndex = 136;
-            btnCreateInvoice.Text = "View / Create Invoice Detail";
+            btnCreateInvoice.Text = "View / Create Purchase Detail";
             btnCreateInvoice.UseVisualStyleBackColor = false;
             // 
             // UserControlPurchasOrder

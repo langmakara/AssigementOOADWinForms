@@ -229,15 +229,18 @@ GO
 CREATE OR ALTER PROCEDURE sp_InsertOrUpdatePurchaseOrder
     @PurchaseID     INT = NULL OUTPUT,
     @SupplierID     INT,
-    @SupplierName   NVARCHAR(100),
+    --@SupplierName   NVARCHAR(100),
     @EmployeeID     INT,
-    @EmployeeName   NVARCHAR(100),
+    --@EmployeeName   NVARCHAR(100),
     @OrderDate      DATETIME = NULL,
     @TotalAmount    DECIMAL(18,2)
 AS
 BEGIN
     SET NOCOUNT ON;
-
+	DECLARE @EmployeeName NVARCHAR(100);
+    SELECT @EmployeeName = EmployeeName FROM dbo.tbEmployee WHERE EmployeeID = @EmployeeID;
+	DECLARE @SupplierName   NVARCHAR(100);
+	SELECT @SupplierName = SupplierName FROM dbo.tbSupplier WHERE SupplierID = @SupplierID;
     IF @OrderDate IS NULL
         SET @OrderDate = GETDATE();
 
@@ -326,4 +329,6 @@ BEGIN
     WHERE PurchaseID = @PurchaseID;
 END;
 GO
+
+
 

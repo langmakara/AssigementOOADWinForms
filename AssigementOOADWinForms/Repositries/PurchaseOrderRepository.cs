@@ -64,7 +64,6 @@ namespace AssigementOOADWinForms.Repositries
                     };
                     cmd.Parameters.Add(purchaseIdParam);
                     cmd.Parameters.AddWithValue("@SupplierID", model.SupplierID ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@SupplierName", model.SupplierName ?? "");
                     cmd.Parameters.AddWithValue("@EmployeeID", model.EmployeeID ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@OrderDate", model.OrderDate);
                     cmd.Parameters.AddWithValue("@TotalAmount", model.TotalAmount);
