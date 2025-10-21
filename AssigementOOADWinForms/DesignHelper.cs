@@ -142,54 +142,95 @@ public static class DesignHelper
             e.Handled = true;
         }
     }
-
-
-    // --- Rounded TextBox and ComboBox ---
-    public static void MakeAllInputsRounded(Control parent, int radius = 20)
+   
+    private static System.Drawing.Drawing2D.GraphicsPath GetRoundedPath(Rectangle rect, int radius)
     {
-        foreach (Control control in parent.Controls)
-        {
-            if (control is TextBox txt)
-            {
-                ApplyRoundedRegion(txt, radius);
-            }
-
-            else if (control.HasChildren)
-            {
-                MakeAllInputsRounded(control, radius);
-            }
-        }
-    }
-
-    // ✅ Round a single TextBox safely
-    private static void ApplyRoundedRegion(TextBox txt, int radius)
-    {
-        txt.BorderStyle = BorderStyle.None;
-
-        void updateRegion()
-        {
-            using (var path = GetRoundedPath(txt.ClientRectangle, radius))
-            {
-                txt.Region?.Dispose();
-                txt.Region = new Region(path);
-            }
-        }
-
-        txt.Resize += (s, e) => updateRegion();
-        updateRegion();
-    }
-
-    // ✅ Helper: Build rounded corner path
-    private static GraphicsPath GetRoundedPath(Rectangle rect, int radius)
-    {
-        GraphicsPath path = new GraphicsPath();
-        int d = radius * 2;
+        int d = Math.Max(0, radius * 2);
+        var path = new System.Drawing.Drawing2D.GraphicsPath();
         path.AddArc(rect.X, rect.Y, d, d, 180, 90);
         path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
         path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
         path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
         path.CloseFigure();
         return path;
+    }
+    private const string IsStyledKey = "IsRoundedStyled";
+
+    public static void MakeAllInputsRounded(Control parent, int radius = 12)
+    {
+        foreach (Control control in parent.Controls)
+        {
+            if (control is TextBox txt)
+            {
+                // Ensure the control is initialized and styled only once.
+                EnsureRoundedStyleApplied(txt, radius);
+            }
+            else if (control.HasChildren)
+            {
+                // Recurse into containers
+                MakeAllInputsRounded(control, radius);
+            }
+        }
+    }
+
+    private static void EnsureRoundedStyleApplied(TextBox txt, int radius)
+    {
+        // Prevent re-initialization and multiple event subscriptions (fixes the memory leak bug).
+        // Check if the Tag is the correct Tuple type and contains the IsStyledKey flag.
+        if (txt.Tag is Tuple<string, int> tupleTag && tupleTag.Item1 == IsStyledKey)
+        {
+            // If already styled, just ensure the region is current.
+            UpdateControlRegion(txt, radius);
+            return;
+        }
+
+        // --- 1. Apply Standard Modern Style Settings ---
+        txt.BorderStyle = BorderStyle.None;
+        txt.BackColor = Color.White;
+        txt.Font = new Font("Segoe UI", 14f, FontStyle.Regular);
+        txt.TextAlign = HorizontalAlignment.Left;
+
+        // --- 2. Apply Initial Region and Attach Handlers (ONLY ONCE) ---
+        // Store the radius and the flag in the control's Tag.
+        txt.Tag = new Tuple<string, int>(IsStyledKey, radius);
+
+        UpdateControlRegion(txt, radius);
+
+        // Attach the Resize handler ONLY ONCE to update the region when size changes.
+        txt.Resize += (s, e) =>
+        {
+            // Safely retrieve the stored radius from the Tag.
+            int currentRadius = ((Control)s).Tag is Tuple<string, int> tag ? tag.Item2 : 12;
+            UpdateControlRegion((Control)s, currentRadius);
+        };
+
+        // Attach the Paint handler ONLY ONCE to draw the subtle border.
+        txt.Paint += DrawSubtleBorder;
+    }
+
+    private static void UpdateControlRegion(Control control, int radius)
+    {
+        if (control.Width < 2 || control.Height < 2) return;
+
+        // Setting Region to null removes any custom rounding, reverting to a standard rectangle.
+        control.Region?.Dispose();
+        control.Region = null;
+    }
+
+    private static void DrawSubtleBorder(object sender, PaintEventArgs e)
+    {
+        Control control = sender as Control;
+        if (control == null) return;
+
+        // Use a consistent, light gray border color (slightly lighter for iOS look)
+        using (var pen = new Pen(Color.FromArgb(220, 220, 220), 1))
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            var rect = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
+
+            // Draw a simple square border, honoring the "not rounded" requirement
+            e.Graphics.DrawRectangle(pen, rect);
+        }
     }
     public static void HideColumns(DataGridView dgv, List<string> columnsToHide)
     {

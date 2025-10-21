@@ -129,7 +129,6 @@
             label3.Size = new Size(154, 28);
             label3.TabIndex = 33;
             label3.Text = "QuantityChange";
-            label3.Click += label3_Click;
             // 
             // textBox2
             // 
@@ -182,7 +181,6 @@
             label13.Size = new Size(216, 28);
             label13.TabIndex = 27;
             label13.Text = "Transation Per Month";
-            label13.Click += label13_Click;
             // 
             // pictureBox13
             // 
@@ -375,7 +373,6 @@
             Controls.Add(panel1);
             Name = "UserControlInventory";
             Size = new Size(1111, 664);
-            Load += UserControlInventory_Load;
             ((System.ComponentModel.ISupportInitialize)dgvinventory).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

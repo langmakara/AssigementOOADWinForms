@@ -19,32 +19,8 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.ApplyRoundedStyle(panel2, 5);
             DesignHelper.ApplyRoundedStyle(panel3, 5);
             DesignHelper.StyleDataGridView(dgvinventory);
+            DesignHelper.MakeAllInputsRounded(this, radius: 6);
             dgvinventory.CellPainting += DesignHelper.dataGridView1_CellPainting;
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UserControlInventory_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
 
         }
     }

@@ -114,7 +114,7 @@
             btnClear.FlatAppearance.BorderSize = 0;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.ForeColor = Color.DodgerBlue;
-            btnClear.Location = new Point(972, 573);
+            btnClear.Location = new Point(973, 573);
             btnClear.Margin = new Padding(0);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(136, 43);
@@ -142,10 +142,10 @@
             btnremoveInvoice.FlatAppearance.BorderSize = 0;
             btnremoveInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnremoveInvoice.ForeColor = Color.White;
-            btnremoveInvoice.Location = new Point(818, 617);
+            btnremoveInvoice.Location = new Point(817, 617);
             btnremoveInvoice.Margin = new Padding(0);
             btnremoveInvoice.Name = "btnremoveInvoice";
-            btnremoveInvoice.Size = new Size(290, 43);
+            btnremoveInvoice.Size = new Size(294, 43);
             btnremoveInvoice.TabIndex = 120;
             btnremoveInvoice.Text = "Remove";
             btnremoveInvoice.UseVisualStyleBackColor = false;
@@ -157,7 +157,7 @@
             btnSaveAndUpdateInvoice.FlatAppearance.BorderSize = 0;
             btnSaveAndUpdateInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnSaveAndUpdateInvoice.ForeColor = Color.White;
-            btnSaveAndUpdateInvoice.Location = new Point(818, 573);
+            btnSaveAndUpdateInvoice.Location = new Point(817, 573);
             btnSaveAndUpdateInvoice.Margin = new Padding(0);
             btnSaveAndUpdateInvoice.Name = "btnSaveAndUpdateInvoice";
             btnSaveAndUpdateInvoice.Size = new Size(152, 43);
@@ -266,7 +266,7 @@
             label8.Cursor = Cursors.Hand;
             label8.Font = new Font("Segoe UI", 15F);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(13, 452);
+            label8.Location = new Point(13, 451);
             label8.Name = "label8";
             label8.Size = new Size(104, 28);
             label8.TabIndex = 132;
@@ -276,10 +276,10 @@
             // 
             datetimeorderDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
             datetimeorderDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
-            datetimeorderDate.Font = new Font("Segoe UI", 11F);
-            datetimeorderDate.Location = new Point(13, 483);
+            datetimeorderDate.Font = new Font("Segoe UI", 15F);
+            datetimeorderDate.Location = new Point(13, 484);
             datetimeorderDate.Name = "datetimeorderDate";
-            datetimeorderDate.Size = new Size(266, 27);
+            datetimeorderDate.Size = new Size(266, 34);
             datetimeorderDate.TabIndex = 129;
             // 
             // label7
@@ -389,10 +389,10 @@
             btnCreateInvoice.FlatAppearance.BorderSize = 0;
             btnCreateInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnCreateInvoice.ForeColor = Color.White;
-            btnCreateInvoice.Location = new Point(819, 528);
+            btnCreateInvoice.Location = new Point(816, 528);
             btnCreateInvoice.Margin = new Padding(0);
             btnCreateInvoice.Name = "btnCreateInvoice";
-            btnCreateInvoice.Size = new Size(290, 43);
+            btnCreateInvoice.Size = new Size(294, 43);
             btnCreateInvoice.TabIndex = 129;
             btnCreateInvoice.Text = "View / Create Invoice Detail";
             btnCreateInvoice.UseVisualStyleBackColor = false;
