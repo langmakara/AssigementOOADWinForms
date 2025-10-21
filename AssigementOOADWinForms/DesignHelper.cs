@@ -154,84 +154,75 @@ public static class DesignHelper
         path.CloseFigure();
         return path;
     }
-    private const string IsStyledKey = "IsRoundedStyled";
 
-    public static void MakeAllInputsRounded(Control parent, int radius = 12)
+
+    private const string IsGlassKey = "IsGlassStyled";
+
+    public static void MakeAllInputs(Control parent)
     {
         foreach (Control control in parent.Controls)
         {
-            if (control is TextBox txt)
+            switch (control)
             {
-                // Ensure the control is initialized and styled only once.
-                EnsureRoundedStyleApplied(txt, radius);
-            }
-            else if (control.HasChildren)
-            {
-                // Recurse into containers
-                MakeAllInputsRounded(control, radius);
+                case TextBox txt:
+                    ApplyGlassTextBox(txt);
+                    break;
+
+                case ComboBox cb:
+                    ApplyGlassComboBox(cb);
+                    break;
+
+                default:
+                    if (control.HasChildren)
+                        MakeAllInputs(control);
+                    break;
             }
         }
     }
 
-    private static void EnsureRoundedStyleApplied(TextBox txt, int radius)
+    private static void ApplyGlassTextBox(TextBox txt)
     {
-        // Prevent re-initialization and multiple event subscriptions (fixes the memory leak bug).
-        // Check if the Tag is the correct Tuple type and contains the IsStyledKey flag.
-        if (txt.Tag is Tuple<string, int> tupleTag && tupleTag.Item1 == IsStyledKey)
-        {
-            // If already styled, just ensure the region is current.
-            UpdateControlRegion(txt, radius);
-            return;
-        }
+        if (txt.Tag is string tag && tag == IsGlassKey) return;
+        txt.Tag = IsGlassKey;
 
-        // --- 1. Apply Standard Modern Style Settings ---
+        txt.Font = new Font("Segoe UI", 14f);
+        txt.BackColor = Color.FromArgb(250, 250, 250);
+        txt.ForeColor = Color.Black;
         txt.BorderStyle = BorderStyle.None;
-        txt.BackColor = Color.White;
-        txt.Font = new Font("Segoe UI", 14f, FontStyle.Regular);
         txt.TextAlign = HorizontalAlignment.Left;
+        txt.Padding = new Padding(8, 4, 8, 4);
 
-        // --- 2. Apply Initial Region and Attach Handlers (ONLY ONCE) ---
-        // Store the radius and the flag in the control's Tag.
-        txt.Tag = new Tuple<string, int>(IsStyledKey, radius);
-
-        UpdateControlRegion(txt, radius);
-
-        // Attach the Resize handler ONLY ONCE to update the region when size changes.
-        txt.Resize += (s, e) =>
+        // Draw subtle border only on TextBox
+        txt.Paint += (s, e) =>
         {
-            // Safely retrieve the stored radius from the Tag.
-            int currentRadius = ((Control)s).Tag is Tuple<string, int> tag ? tag.Item2 : 12;
-            UpdateControlRegion((Control)s, currentRadius);
+            var rect = new Rectangle(0, 0, txt.Width - 1, txt.Height - 1);
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            using var penBorder = new Pen(Color.FromArgb(200, 200, 200), 1);
+            e.Graphics.DrawRectangle(penBorder, rect);
+            var innerRect = new Rectangle(1, 1, txt.Width - 3, txt.Height - 3);
+            using var penHighlight = new Pen(Color.FromArgb(120, 255, 255, 255), 1);
+            e.Graphics.DrawRectangle(penHighlight, innerRect);
         };
-
-        // Attach the Paint handler ONLY ONCE to draw the subtle border.
-        txt.Paint += DrawSubtleBorder;
     }
 
-    private static void UpdateControlRegion(Control control, int radius)
+    private static void ApplyGlassComboBox(ComboBox cb)
     {
-        if (control.Width < 2 || control.Height < 2) return;
+        if (cb.Tag is string tag && tag == IsGlassKey) return;
+        cb.Tag = IsGlassKey;
 
-        // Setting Region to null removes any custom rounding, reverting to a standard rectangle.
-        control.Region?.Dispose();
-        control.Region = null;
+        cb.Font = new Font("Segoe UI", 14f);
+        cb.BackColor = Color.FromArgb(250, 250, 250); // light glass-like
+        cb.ForeColor = Color.Black;
+        cb.FlatStyle = FlatStyle.Flat;
+
+        // Remove borders and padding issues
+        cb.DropDownStyle = ComboBoxStyle.DropDownList; // or DropDown
+        cb.IntegralHeight = true;
+
+        // Optional: subtle border using a slight Padding trick
+        cb.Margin = new Padding(1);
     }
 
-    private static void DrawSubtleBorder(object sender, PaintEventArgs e)
-    {
-        Control control = sender as Control;
-        if (control == null) return;
-
-        // Use a consistent, light gray border color (slightly lighter for iOS look)
-        using (var pen = new Pen(Color.FromArgb(220, 220, 220), 1))
-        {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            var rect = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
-
-            // Draw a simple square border, honoring the "not rounded" requirement
-            e.Graphics.DrawRectangle(pen, rect);
-        }
-    }
     public static void HideColumns(DataGridView dgv, List<string> columnsToHide)
     {
         if (dgv == null || columnsToHide == null)

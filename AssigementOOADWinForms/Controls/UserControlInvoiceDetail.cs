@@ -17,7 +17,7 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             //Form DataGrideView 
-            DesignHelper.MakeAllInputsRounded(this, radius: 3);
+            DesignHelper.MakeAllInputsGlass(this);
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvInvoicedetail);

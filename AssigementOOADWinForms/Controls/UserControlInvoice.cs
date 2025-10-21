@@ -13,7 +13,7 @@ public partial class UserControlInvoice : UserControl
     {
         InitializeComponent();
 
-        DesignHelper.MakeAllInputsRounded(this);
+        DesignHelper.MakeAllInputs(this);
         DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
         DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
         DesignHelper.StyleDataGridView(dgvInvoice);
@@ -167,13 +167,7 @@ public partial class UserControlInvoice : UserControl
                 MessageBox.Show("Please select an employee.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            if (!DateTime.TryParse(datetimeorderDate.Text, out DateTime orderDate))
-            {
-                MessageBox.Show("Invalid order date.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+            DateTime orderDate = datetimeorderDate.Value;
             var model = new Invoice
             {
                 InvoiceID = string.IsNullOrWhiteSpace(textinvoiceID.Text) ? 0 : int.Parse(textinvoiceID.Text),
