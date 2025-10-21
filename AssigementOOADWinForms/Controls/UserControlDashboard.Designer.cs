@@ -227,7 +227,7 @@
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataViewOutOfStock.Location = new Point(332, 167);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(319, 494);
+            DataViewOutOfStock.Size = new Size(329, 494);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // dataGridView1
@@ -237,7 +237,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(313, 494);
+            dataGridView1.Size = new Size(323, 494);
             dataGridView1.TabIndex = 30;
             // 
             // label3

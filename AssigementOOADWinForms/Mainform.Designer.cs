@@ -390,7 +390,7 @@
             panel1.Controls.Add(LbPage);
             panel1.Location = new Point(206, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1104, 75);
+            panel1.Size = new Size(1109, 75);
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -413,7 +413,7 @@
             panelMain.Location = new Point(204, 82);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1106, 664);
+            panelMain.Size = new Size(1114, 664);
             panelMain.TabIndex = 7;
             // 
             // Mainform
@@ -421,7 +421,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1318, 751);
+            ClientSize = new Size(1323, 751);
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -430,7 +430,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Mainform";
-            Padding = new Padding(5, 5, 5, 5);
+            Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;

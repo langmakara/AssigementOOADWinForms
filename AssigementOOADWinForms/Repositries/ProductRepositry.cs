@@ -57,6 +57,30 @@ namespace AssigementOOADWinForms.Repositories
 
             return list;
         }
+        public List<ProductDto> GetProductOutOfStock()
+        {
+            var list = new List<ProductDto>();
+
+            using var conn = HandleConnection.GetSqlConnection();
+            const string query = @"
+        SELECT ProductName, UnitPrice
+        FROM tbProduct
+        WHERE QuantityInStock = 0";
+
+            using var cmd = new SqlCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                list.Add(new ProductDto
+                {
+                    ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                    UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice"))
+                });
+            }
+
+            return list;
+        }
 
     }
 }

@@ -51,22 +51,28 @@ namespace AssigementOOADWinForms.Controls
            var lowStock = productService.GetProductLowStock();
             dataGridView1.Rows.Clear();
             dataGridView1.DataSource = lowStock;
-            var hiddenColumns = new List<string>
+            var hiddenlowStock = new List<string>
             {
             "ProductID",
             "SupplierID",
             "ReorderLevel",
             "CreatedAt"};
-            DesignHelper.HideColumns(dataGridView1, hiddenColumns);
+            DesignHelper.HideColumns(dataGridView1, hiddenlowStock);
 
 
             DataViewOutOfStock.Rows.Clear();
-            DataViewOutOfStock.Columns.Clear();
-            DataViewOutOfStock.Columns.Add("Product", "Product");
-            foreach (var item in outStockProducts)
+            var outStock = productService.GetProductOutOfStock();
+            DataViewOutOfStock.DataSource = null;
+            DataViewOutOfStock.DataSource = outStock;
+            var hiddenoutStock = new List<string>
             {
-                DataViewOutOfStock.Rows.Add(item);
-            }
+            "ProductID",
+            "SupplierID",
+            "ReorderLevel",
+            "CreatedAt",
+            "QuantityInStock"
+            };
+            DesignHelper.HideColumns(DataViewOutOfStock, hiddenoutStock);
 
             // Refresh charts
             pbStockVsSales.Invalidate();
