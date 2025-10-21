@@ -13,7 +13,7 @@ public partial class UserControlInvoice : UserControl
     {
         InitializeComponent();
 
-        DesignHelper.MakeAllInputsRounded(this, radius: 3);
+        DesignHelper.MakeAllInputsRounded(this);
         DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
         DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
         DesignHelper.StyleDataGridView(dgvInvoice);
@@ -28,6 +28,8 @@ public partial class UserControlInvoice : UserControl
         searchStartDate.KeyUp += (s, e) => { if (e.KeyCode == Keys.Space) FilterInvoices(); };
         searchEndDate.Format = DateTimePickerFormat.Custom;
         searchEndDate.CustomFormat = "dd/MM/yyyy";
+        datetimeorderDate.Format = DateTimePickerFormat.Custom;
+        datetimeorderDate.CustomFormat = "dd/MM/yyyy";
         searchEndDate.ValueChanged += (s, e) => FilterInvoices();
         searchEndDate.MouseUp += (s, e) => FilterInvoices();
         searchEndDate.KeyUp += (s, e) => { if (e.KeyCode == Keys.Space) FilterInvoices(); };

@@ -21,6 +21,8 @@ namespace AssigementOOADWinForms.Controls
         public UserControlSupplier()
         {
             InitializeComponent();
+            DesignHelper.StyleDataGridView(dgvSupplier);
+            dgvSupplier.CellPainting += DesignHelper.dataGridView1_CellPainting;
             LoadSupplierData();
             LoadSuppliers(); // load all suppliers when form loads
             btSave.Click += btSave_Click;
