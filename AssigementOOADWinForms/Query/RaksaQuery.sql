@@ -242,3 +242,55 @@ END;
 GO
 
 
+-- =====================================
+-- Stored Procedure: Insert or Update InventoryTransaction
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_InsertOrUpdateInventoryTransaction
+    @TransactionID INT = 0,               -- Pass 0 for new record
+    @ProductID INT,
+    @ProductName VARCHAR(150) = NULL,
+    @ProductUnitPrice DECIMAL(18,2) = NULL,
+    @TransactionType VARCHAR(50),
+    @QuantityChange INT,
+    @TransactionDate DATETIME = NULL,     -- optional, default to GETDATE()
+    @ReferenceID INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Default TransactionDate to current date if NULL
+    IF @TransactionDate IS NULL
+        SET @TransactionDate = GETDATE();
+
+    IF EXISTS (SELECT 1 FROM tbInventoryTransaction WHERE TransactionID = @TransactionID AND @TransactionID <> 0)
+    BEGIN
+        -- Update existing transaction
+        UPDATE tbInventoryTransaction
+        SET ProductID = @ProductID,
+            ProductName = @ProductName,
+            ProductUnitPrice = @ProductUnitPrice,
+            TransactionType = @TransactionType,
+            QuantityChange = @QuantityChange,
+            TransactionDate = @TransactionDate,
+            ReferenceID = @ReferenceID
+        WHERE TransactionID = @TransactionID;
+    END
+    ELSE
+    BEGIN
+        -- Insert new transaction
+        INSERT INTO tbInventoryTransaction
+            (ProductID, ProductName, ProductUnitPrice, TransactionType, QuantityChange, TransactionDate, ReferenceID)
+        VALUES
+            (@ProductID, @ProductName, @ProductUnitPrice, @TransactionType, @QuantityChange, @TransactionDate, @ReferenceID);
+    END
+END;
+GO
+--=========================================================================================
+CREATE OR ALTER PROCEDURE sp_GetAllInventoryTransactions
+AS
+BEGIN
+    SELECT ProductID, ProductName, ProductUnitPrice, TransactionType, QuantityChange, TransactionDate
+    FROM tbInventoryTransaction;
+END
+GO
+

@@ -32,26 +32,28 @@
             label1 = new Label();
             btnRefresh = new Button();
             label2 = new Label();
-            comboBox1 = new ComboBox();
+            comboTransaction = new ComboBox();
             label3 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            textQuantityChange = new TextBox();
+            textUnitPrice = new TextBox();
             panel3 = new Panel();
             label14 = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
             button2 = new Button();
-            comboBox2 = new ComboBox();
+            comboProduct = new ComboBox();
             label7 = new Label();
-            textBox1 = new TextBox();
             label4 = new Label();
             button3 = new Button();
             panel1 = new Panel();
+            datetimeTransactionDate = new DateTimePicker();
             panel2 = new Panel();
+            label5 = new Label();
+            dateTimeSearchStart = new DateTimePicker();
+            comboSearchByProduct = new ComboBox();
             label9 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            textBox7 = new TextBox();
-            textBox4 = new TextBox();
+            dateTimeSearchEnd = new DateTimePicker();
+            textsearchBycustomerName = new TextBox();
             label8 = new Label();
             label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvinventory).BeginInit();
@@ -109,14 +111,14 @@
             label2.TabIndex = 32;
             label2.Text = "TransitionType";
             // 
-            // comboBox1
+            // comboTransaction
             // 
-            comboBox1.Font = new Font("Segoe UI", 15F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(800, 129);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(304, 36);
-            comboBox1.TabIndex = 0;
+            comboTransaction.Font = new Font("Segoe UI", 15F);
+            comboTransaction.FormattingEnabled = true;
+            comboTransaction.Location = new Point(800, 129);
+            comboTransaction.Name = "comboTransaction";
+            comboTransaction.Size = new Size(304, 36);
+            comboTransaction.TabIndex = 0;
             // 
             // label3
             // 
@@ -130,21 +132,21 @@
             label3.TabIndex = 33;
             label3.Text = "QuantityChange";
             // 
-            // textBox2
+            // textQuantityChange
             // 
-            textBox2.Location = new Point(800, 226);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(304, 37);
-            textBox2.TabIndex = 34;
+            textQuantityChange.Location = new Point(800, 226);
+            textQuantityChange.Multiline = true;
+            textQuantityChange.Name = "textQuantityChange";
+            textQuantityChange.Size = new Size(304, 37);
+            textQuantityChange.TabIndex = 34;
             // 
-            // textBox3
+            // textUnitPrice
             // 
-            textBox3.Location = new Point(800, 324);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(304, 37);
-            textBox3.TabIndex = 36;
+            textUnitPrice.Location = new Point(800, 324);
+            textUnitPrice.Multiline = true;
+            textUnitPrice.Name = "textUnitPrice";
+            textUnitPrice.Size = new Size(304, 37);
+            textUnitPrice.TabIndex = 36;
             // 
             // panel3
             // 
@@ -208,14 +210,14 @@
             button2.Text = "Remove";
             button2.UseVisualStyleBackColor = false;
             // 
-            // comboBox2
+            // comboProduct
             // 
-            comboBox2.Font = new Font("Segoe UI", 15F);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(797, 32);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(304, 36);
-            comboBox2.TabIndex = 108;
+            comboProduct.Font = new Font("Segoe UI", 15F);
+            comboProduct.FormattingEnabled = true;
+            comboProduct.Location = new Point(797, 32);
+            comboProduct.Name = "comboProduct";
+            comboProduct.Size = new Size(304, 36);
+            comboProduct.TabIndex = 108;
             // 
             // label7
             // 
@@ -223,19 +225,11 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI", 15F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(8, 291);
+            label7.Location = new Point(11, 291);
             label7.Name = "label7";
-            label7.Size = new Size(137, 28);
+            label7.Size = new Size(91, 28);
             label7.TabIndex = 111;
-            label7.Text = "TransitionType";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(800, 422);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(304, 37);
-            textBox1.TabIndex = 112;
+            label7.Text = "UnitPrice";
             // 
             // label4
             // 
@@ -245,9 +239,9 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(8, 389);
             label4.Name = "label4";
-            label4.Size = new Size(115, 28);
+            label4.Size = new Size(151, 28);
             label4.TabIndex = 113;
-            label4.Text = "ReferenceID";
+            label4.Text = "TransactionDate";
             // 
             // button3
             // 
@@ -267,6 +261,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(datetimeTransactionDate);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -277,19 +272,65 @@
             panel1.Size = new Size(319, 478);
             panel1.TabIndex = 103;
             // 
+            // datetimeTransactionDate
+            // 
+            datetimeTransactionDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
+            datetimeTransactionDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
+            datetimeTransactionDate.Font = new Font("Segoe UI", 15F);
+            datetimeTransactionDate.Location = new Point(11, 420);
+            datetimeTransactionDate.Name = "datetimeTransactionDate";
+            datetimeTransactionDate.Size = new Size(304, 34);
+            datetimeTransactionDate.TabIndex = 130;
+            // 
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(dateTimeSearchStart);
+            panel2.Controls.Add(comboSearchByProduct);
             panel2.Controls.Add(label9);
-            panel2.Controls.Add(dateTimePicker2);
-            panel2.Controls.Add(textBox7);
-            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(dateTimeSearchEnd);
+            panel2.Controls.Add(textsearchBycustomerName);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label10);
             panel2.Location = new Point(3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(784, 100);
             panel2.TabIndex = 123;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.DodgerBlue;
+            label5.Cursor = Cursors.Hand;
+            label5.Font = new Font("Segoe UI", 15F);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(398, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(156, 28);
+            label5.TabIndex = 135;
+            label5.Text = "StartInvoiceDate";
+            // 
+            // dateTimeSearchStart
+            // 
+            dateTimeSearchStart.CalendarForeColor = Color.FromArgb(64, 64, 64);
+            dateTimeSearchStart.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
+            dateTimeSearchStart.Checked = false;
+            dateTimeSearchStart.Font = new Font("Segoe UI", 16F);
+            dateTimeSearchStart.Location = new Point(398, 34);
+            dateTimeSearchStart.Name = "dateTimeSearchStart";
+            dateTimeSearchStart.ShowCheckBox = true;
+            dateTimeSearchStart.Size = new Size(198, 36);
+            dateTimeSearchStart.TabIndex = 134;
+            // 
+            // comboSearchByProduct
+            // 
+            comboSearchByProduct.Font = new Font("Segoe UI", 15F);
+            comboSearchByProduct.FormattingEnabled = true;
+            comboSearchByProduct.Location = new Point(192, 34);
+            comboSearchByProduct.Name = "comboSearchByProduct";
+            comboSearchByProduct.Size = new Size(201, 36);
+            comboSearchByProduct.TabIndex = 124;
             // 
             // label9
             // 
@@ -298,37 +339,31 @@
             label9.Cursor = Cursors.Hand;
             label9.Font = new Font("Segoe UI", 15F);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(427, 3);
+            label9.Location = new Point(602, 3);
             label9.Name = "label9";
-            label9.Size = new Size(115, 28);
+            label9.Size = new Size(148, 28);
             label9.TabIndex = 133;
-            label9.Text = "InvoiceDate";
+            label9.Text = "EndInvoiceDate";
             // 
-            // dateTimePicker2
+            // dateTimeSearchEnd
             // 
-            dateTimePicker2.CalendarForeColor = Color.FromArgb(64, 64, 64);
-            dateTimePicker2.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
-            dateTimePicker2.Font = new Font("Segoe UI", 16F);
-            dateTimePicker2.Location = new Point(423, 34);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(351, 36);
-            dateTimePicker2.TabIndex = 133;
+            dateTimeSearchEnd.CalendarForeColor = Color.FromArgb(64, 64, 64);
+            dateTimeSearchEnd.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
+            dateTimeSearchEnd.Checked = false;
+            dateTimeSearchEnd.Font = new Font("Segoe UI", 16F);
+            dateTimeSearchEnd.Location = new Point(602, 34);
+            dateTimeSearchEnd.Name = "dateTimeSearchEnd";
+            dateTimeSearchEnd.ShowCheckBox = true;
+            dateTimeSearchEnd.Size = new Size(178, 36);
+            dateTimeSearchEnd.TabIndex = 133;
             // 
-            // textBox7
+            // textsearchBycustomerName
             // 
-            textBox7.Location = new Point(8, 33);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(201, 37);
-            textBox7.TabIndex = 132;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(216, 34);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(201, 37);
-            textBox4.TabIndex = 124;
+            textsearchBycustomerName.Location = new Point(6, 34);
+            textsearchBycustomerName.Multiline = true;
+            textsearchBycustomerName.Name = "textsearchBycustomerName";
+            textsearchBycustomerName.Size = new Size(180, 37);
+            textsearchBycustomerName.TabIndex = 132;
             // 
             // label8
             // 
@@ -336,7 +371,7 @@
             label8.Cursor = Cursors.Hand;
             label8.Font = new Font("Segoe UI", 15F);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(11, 2);
+            label8.Location = new Point(6, 3);
             label8.Name = "label8";
             label8.Size = new Size(148, 28);
             label8.TabIndex = 126;
@@ -348,11 +383,11 @@
             label10.Cursor = Cursors.Hand;
             label10.Font = new Font("Segoe UI", 15F);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(219, 3);
+            label10.Location = new Point(192, 3);
             label10.Name = "label10";
-            label10.Size = new Size(117, 28);
+            label10.Size = new Size(89, 28);
             label10.TabIndex = 127;
-            label10.Text = "EmployeeID";
+            label10.Text = "Products";
             // 
             // UserControlInventory
             // 
@@ -361,15 +396,14 @@
             BackColor = Color.Azure;
             Controls.Add(panel2);
             Controls.Add(button3);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox2);
+            Controls.Add(comboProduct);
             Controls.Add(button2);
             Controls.Add(panel3);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(textUnitPrice);
+            Controls.Add(textQuantityChange);
             Controls.Add(btnRefresh);
             Controls.Add(dgvinventory);
-            Controls.Add(comboBox1);
+            Controls.Add(comboTransaction);
             Controls.Add(panel1);
             Name = "UserControlInventory";
             Size = new Size(1111, 664);
@@ -390,27 +424,29 @@
         private Label label1;
         private Button btnRefresh;
         private Label label2;
-        private ComboBox comboBox1;
+        private ComboBox comboTransaction;
         private Label label3;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox textQuantityChange;
+        private TextBox textUnitPrice;
         private Panel panel3;
         private Label label14;
         private Label label13;
         private PictureBox pictureBox13;
         private Button button2;
-        private ComboBox comboBox2;
+        private ComboBox comboProduct;
         private Label label7;
-        private TextBox textBox1;
         private Label label4;
         private Button button3;
         private Panel panel1;
         private Panel panel2;
         private Label label9;
-        private DateTimePicker dateTimePicker2;
-        private TextBox textBox7;
-        private TextBox textBox4;
+        private DateTimePicker dateTimeSearchEnd;
+        private TextBox textsearchBycustomerName;
         private Label label8;
         private Label label10;
+        private DateTimePicker datetimeTransactionDate;
+        private ComboBox comboSearchByProduct;
+        private DateTimePicker dateTimeSearchStart;
+        private Label label5;
     }
 }

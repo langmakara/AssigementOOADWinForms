@@ -7,6 +7,7 @@
         public string TransactionType { get; set; }
         public int QuantityChange { get; set; }
         public DateTime TransactionDate { get; set; }
-        public int? ReferenceID { get; set; }
+        public string? ProductName { get; internal set; }
+        public object ProductUnitPrice { get; internal set; }
     }
 }
