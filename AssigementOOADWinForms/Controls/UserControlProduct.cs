@@ -19,14 +19,7 @@ namespace AssigementOOADWinForms.Controls
             tbSupplier.Clear();
             tbUnitPrice.Clear();
             tbQauntity.Clear();
-            tbImportDate.Clear();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btSave_Click(object sender, EventArgs e)
         {
 

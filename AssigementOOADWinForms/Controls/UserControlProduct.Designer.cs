@@ -30,8 +30,6 @@
         {
             dgvcustomer = new DataGridView();
             panel1 = new Panel();
-            lbImportDate = new Label();
-            tbImportDate = new TextBox();
             tbUnitPrice = new TextBox();
             tbProductID = new TextBox();
             lbUnitPrice = new Label();
@@ -45,8 +43,6 @@
             tbProductName = new TextBox();
             tbSupplier = new TextBox();
             panel2 = new Panel();
-            lbInvoiceDate = new Label();
-            InvoiceDate = new DateTimePicker();
             tbSeach = new TextBox();
             lbSeach = new Label();
             button3 = new Button();
@@ -67,18 +63,16 @@
             // 
             dgvcustomer.BackgroundColor = Color.White;
             dgvcustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvcustomer.Location = new Point(4, 144);
+            dgvcustomer.Location = new Point(4, 123);
             dgvcustomer.Margin = new Padding(3, 4, 3, 4);
             dgvcustomer.Name = "dgvcustomer";
             dgvcustomer.RowHeadersWidth = 51;
-            dgvcustomer.Size = new Size(873, 742);
+            dgvcustomer.Size = new Size(873, 763);
             dgvcustomer.TabIndex = 116;
             // 
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
-            panel1.Controls.Add(lbImportDate);
-            panel1.Controls.Add(tbImportDate);
             panel1.Controls.Add(tbUnitPrice);
             panel1.Controls.Add(tbProductID);
             panel1.Controls.Add(lbUnitPrice);
@@ -97,33 +91,10 @@
             panel1.Size = new Size(383, 632);
             panel1.TabIndex = 123;
             // 
-            // lbImportDate
-            // 
-            lbImportDate.AutoSize = true;
-            lbImportDate.BackColor = Color.DodgerBlue;
-            lbImportDate.Cursor = Cursors.Hand;
-            lbImportDate.Font = new Font("Segoe UI", 15F);
-            lbImportDate.ForeColor = Color.White;
-            lbImportDate.Location = new Point(11, 537);
-            lbImportDate.Name = "lbImportDate";
-            lbImportDate.Size = new Size(143, 35);
-            lbImportDate.TabIndex = 136;
-            lbImportDate.Text = "ImportDate";
-            // 
-            // tbImportDate
-            // 
-            tbImportDate.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbImportDate.Location = new Point(13, 579);
-            tbImportDate.Margin = new Padding(3, 4, 3, 4);
-            tbImportDate.Multiline = true;
-            tbImportDate.Name = "tbImportDate";
-            tbImportDate.Size = new Size(347, 48);
-            tbImportDate.TabIndex = 135;
-            // 
             // tbUnitPrice
             // 
             tbUnitPrice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbUnitPrice.Location = new Point(19, 400);
+            tbUnitPrice.Location = new Point(19, 426);
             tbUnitPrice.Margin = new Padding(3, 4, 3, 4);
             tbUnitPrice.Multiline = true;
             tbUnitPrice.Name = "tbUnitPrice";
@@ -133,7 +104,7 @@
             // tbProductID
             // 
             tbProductID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbProductID.Location = new Point(19, 40);
+            tbProductID.Location = new Point(19, 45);
             tbProductID.Margin = new Padding(3, 4, 3, 4);
             tbProductID.Multiline = true;
             tbProductID.Name = "tbProductID";
@@ -147,7 +118,7 @@
             lbUnitPrice.Cursor = Cursors.Hand;
             lbUnitPrice.Font = new Font("Segoe UI", 15F);
             lbUnitPrice.ForeColor = Color.White;
-            lbUnitPrice.Location = new Point(15, 361);
+            lbUnitPrice.Location = new Point(15, 388);
             lbUnitPrice.Name = "lbUnitPrice";
             lbUnitPrice.Size = new Size(114, 35);
             lbUnitPrice.TabIndex = 132;
@@ -160,7 +131,7 @@
             lbQauntity.Cursor = Cursors.Hand;
             lbQauntity.Font = new Font("Segoe UI", 15F);
             lbQauntity.ForeColor = Color.White;
-            lbQauntity.Location = new Point(11, 448);
+            lbQauntity.Location = new Point(15, 487);
             lbQauntity.Name = "lbQauntity";
             lbQauntity.Size = new Size(109, 35);
             lbQauntity.TabIndex = 130;
@@ -169,7 +140,7 @@
             // tbCategory
             // 
             tbCategory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbCategory.Location = new Point(19, 218);
+            tbCategory.Location = new Point(19, 237);
             tbCategory.Margin = new Padding(3, 4, 3, 4);
             tbCategory.Multiline = true;
             tbCategory.Name = "tbCategory";
@@ -183,7 +154,7 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(19, -1);
+            label6.Location = new Point(19, 5);
             label6.Name = "label6";
             label6.Size = new Size(134, 35);
             label6.TabIndex = 129;
@@ -196,7 +167,7 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(19, 179);
+            label5.Location = new Point(19, 199);
             label5.Name = "label5";
             label5.Size = new Size(115, 35);
             label5.TabIndex = 118;
@@ -209,7 +180,7 @@
             lbProductName.Cursor = Cursors.Hand;
             lbProductName.Font = new Font("Segoe UI", 15F);
             lbProductName.ForeColor = Color.White;
-            lbProductName.Location = new Point(19, 92);
+            lbProductName.Location = new Point(19, 103);
             lbProductName.Name = "lbProductName";
             lbProductName.Size = new Size(176, 35);
             lbProductName.TabIndex = 122;
@@ -222,7 +193,7 @@
             lbSupplier.Cursor = Cursors.Hand;
             lbSupplier.Font = new Font("Segoe UI", 15F);
             lbSupplier.ForeColor = Color.White;
-            lbSupplier.Location = new Point(18, 270);
+            lbSupplier.Location = new Point(18, 291);
             lbSupplier.Name = "lbSupplier";
             lbSupplier.Size = new Size(106, 35);
             lbSupplier.TabIndex = 115;
@@ -231,7 +202,7 @@
             // tbQauntity
             // 
             tbQauntity.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbQauntity.Location = new Point(13, 490);
+            tbQauntity.Location = new Point(18, 526);
             tbQauntity.Margin = new Padding(3, 4, 3, 4);
             tbQauntity.Multiline = true;
             tbQauntity.Name = "tbQauntity";
@@ -241,7 +212,7 @@
             // tbProductName
             // 
             tbProductName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbProductName.Location = new Point(19, 131);
+            tbProductName.Location = new Point(19, 141);
             tbProductName.Margin = new Padding(3, 4, 3, 4);
             tbProductName.Multiline = true;
             tbProductName.Name = "tbProductName";
@@ -251,7 +222,7 @@
             // tbSupplier
             // 
             tbSupplier.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplier.Location = new Point(19, 312);
+            tbSupplier.Location = new Point(19, 332);
             tbSupplier.Margin = new Padding(3, 4, 3, 4);
             tbSupplier.Multiline = true;
             tbSupplier.Name = "tbSupplier";
@@ -261,69 +232,45 @@
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
-            panel2.Controls.Add(lbInvoiceDate);
-            panel2.Controls.Add(InvoiceDate);
             panel2.Controls.Add(tbSeach);
             panel2.Controls.Add(lbSeach);
             panel2.Location = new Point(3, 3);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(876, 133);
+            panel2.Size = new Size(876, 112);
             panel2.TabIndex = 124;
-            // 
-            // lbInvoiceDate
-            // 
-            lbInvoiceDate.AutoSize = true;
-            lbInvoiceDate.BackColor = Color.DodgerBlue;
-            lbInvoiceDate.Cursor = Cursors.Hand;
-            lbInvoiceDate.Font = new Font("Segoe UI", 15F);
-            lbInvoiceDate.ForeColor = Color.White;
-            lbInvoiceDate.Location = new Point(301, 4);
-            lbInvoiceDate.Name = "lbInvoiceDate";
-            lbInvoiceDate.Size = new Size(146, 35);
-            lbInvoiceDate.TabIndex = 133;
-            lbInvoiceDate.Text = "InvoiceDate";
-            // 
-            // InvoiceDate
-            // 
-            InvoiceDate.CalendarForeColor = Color.White;
-            InvoiceDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
-            InvoiceDate.Font = new Font("Segoe UI", 16F);
-            InvoiceDate.Location = new Point(301, 45);
-            InvoiceDate.Margin = new Padding(3, 4, 3, 4);
-            InvoiceDate.Name = "InvoiceDate";
-            InvoiceDate.Size = new Size(411, 43);
-            InvoiceDate.TabIndex = 133;
             // 
             // tbSeach
             // 
             tbSeach.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSeach.Location = new Point(3, 44);
+            tbSeach.Location = new Point(24, 32);
             tbSeach.Margin = new Padding(3, 4, 3, 4);
             tbSeach.Multiline = true;
             tbSeach.Name = "tbSeach";
-            tbSeach.Size = new Size(292, 48);
+            tbSeach.Size = new Size(486, 43);
             tbSeach.TabIndex = 132;
             // 
             // lbSeach
             // 
             lbSeach.AutoSize = true;
+            lbSeach.BackColor = Color.White;
             lbSeach.Cursor = Cursors.Hand;
             lbSeach.Font = new Font("Segoe UI", 15F);
-            lbSeach.ForeColor = Color.White;
-            lbSeach.Location = new Point(3, 3);
+            lbSeach.ForeColor = Color.Gray;
+            lbSeach.Location = new Point(531, 32);
             lbSeach.Name = "lbSeach";
-            lbSeach.Size = new Size(80, 35);
+            lbSeach.Padding = new Padding(0, 4, 0, 3);
+            lbSeach.Size = new Size(274, 42);
             lbSeach.TabIndex = 126;
-            lbSeach.Text = "Seach";
+            lbSeach.Text = "Seach By NameProduct";
             // 
             // button3
             // 
-            button3.BackColor = Color.White;
+            button3.BackColor = Color.Tomato;
             button3.FlatAppearance.BorderColor = Color.DodgerBlue;
             button3.FlatAppearance.BorderSize = 0;
             button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button3.ForeColor = Color.DodgerBlue;
+            button3.ForeColor = Color.White;
             button3.Location = new Point(1074, 766);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
@@ -335,11 +282,11 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
+            button2.BackColor = Color.White;
             button2.FlatAppearance.BorderColor = Color.DodgerBlue;
             button2.FlatAppearance.BorderSize = 0;
             button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
+            button2.ForeColor = Color.Gray;
             button2.Location = new Point(880, 824);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
@@ -347,7 +294,6 @@
             button2.TabIndex = 127;
             button2.Text = "Remove";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
             // 
             // panel3
             // 
@@ -454,8 +400,6 @@
         private TextBox tbProductName;
         private TextBox tbSupplier;
         private Panel panel2;
-        private Label lbInvoiceDate;
-        private DateTimePicker InvoiceDate;
         private TextBox tbSeach;
         private Label lbSeach;
         private Button button3;
@@ -467,7 +411,5 @@
         private Button btSave;
         private TextBox tbProductID;
         private TextBox tbUnitPrice;
-        private Label lbImportDate;
-        private TextBox tbImportDate;
     }
 }
