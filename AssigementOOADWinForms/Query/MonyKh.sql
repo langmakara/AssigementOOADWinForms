@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE sp_InsertOrUpdate_Supplier
+﻿--StoreProcedure to Insert or Update Supplier information
+CREATE PROCEDURE sp_InsertOrUpdate_Supplier
     @SupplierID INT = NULL,           -- If NULL → Insert, else → Update
     @SupplierName VARCHAR(150),
     @ContactName VARCHAR(100) = NULL,
@@ -31,3 +32,33 @@ BEGIN
     END
 END;
 GO
+--StoreProcedure to Insert or Update Product information
+CREATE PROCEDURE [dbo].[sp_InsertOrUpdateProduct]
+    @ProductID INT=Null,
+    @ProductName NVARCHAR(100),
+    @SupplierID INT=Null,
+    @SupplierName NVARCHAR(100),
+    @UnitPrice DECIMAL(18,2),
+    @QuantityInStock INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    -- Check if product already exists
+     IF @ProductID IS NOT NULL AND EXISTS (SELECT 1 FROM tbProduct WHERE ProductID = @ProductID)
+    BEGIN
+        UPDATE tbProduct
+        SET 
+            ProductName = @ProductName,
+            SupplierID = @SupplierID,
+            SupplierName = @SupplierName,
+            UnitPrice = @UnitPrice,
+            QuantityInStock = @QuantityInStock
+        WHERE ProductID = @ProductID;
+    END
+    ELSE
+    BEGIN
+        -- If not exists → INSERT
+        INSERT INTO tbProduct (ProductName, SupplierID, SupplierName, UnitPrice, QuantityInStock)
+        VALUES (@ProductName, @SupplierID, @SupplierName, @UnitPrice, @QuantityInStock);
+    END
+END;

@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvcustomer = new DataGridView();
+            dgvProduct = new DataGridView();
             panel1 = new Panel();
             tbUnitPrice = new TextBox();
             tbProductID = new TextBox();
             lbUnitPrice = new Label();
             lbQauntity = new Label();
-            tbCategory = new TextBox();
+            tbSupplierID = new TextBox();
             label6 = new Label();
             label5 = new Label();
             lbProductName = new Label();
             lbSupplier = new Label();
-            tbQauntity = new TextBox();
+            tbQuantity = new TextBox();
             tbProductName = new TextBox();
-            tbSupplier = new TextBox();
+            tbSupplierName = new TextBox();
             panel2 = new Panel();
             tbSeach = new TextBox();
             lbSeach = new Label();
@@ -52,23 +52,24 @@
             label13 = new Label();
             pictureBox13 = new PictureBox();
             btSave = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvcustomer).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             SuspendLayout();
             // 
-            // dgvcustomer
+            // dgvProduct
             // 
-            dgvcustomer.BackgroundColor = Color.White;
-            dgvcustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvcustomer.Location = new Point(4, 123);
-            dgvcustomer.Margin = new Padding(3, 4, 3, 4);
-            dgvcustomer.Name = "dgvcustomer";
-            dgvcustomer.RowHeadersWidth = 51;
-            dgvcustomer.Size = new Size(873, 763);
-            dgvcustomer.TabIndex = 116;
+            dgvProduct.BackgroundColor = Color.White;
+            dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProduct.Location = new Point(4, 123);
+            dgvProduct.Margin = new Padding(3, 4, 3, 4);
+            dgvProduct.Name = "dgvProduct";
+            dgvProduct.RowHeadersWidth = 51;
+            dgvProduct.Size = new Size(875, 758);
+            dgvProduct.TabIndex = 116;
+            dgvProduct.CellClick += dgvProduct_CellClick;
             // 
             // panel1
             // 
@@ -77,14 +78,14 @@
             panel1.Controls.Add(tbProductID);
             panel1.Controls.Add(lbUnitPrice);
             panel1.Controls.Add(lbQauntity);
-            panel1.Controls.Add(tbCategory);
+            panel1.Controls.Add(tbSupplierID);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(lbProductName);
             panel1.Controls.Add(lbSupplier);
-            panel1.Controls.Add(tbQauntity);
+            panel1.Controls.Add(tbQuantity);
             panel1.Controls.Add(tbProductName);
-            panel1.Controls.Add(tbSupplier);
+            panel1.Controls.Add(tbSupplierName);
             panel1.Location = new Point(881, 4);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
@@ -108,6 +109,7 @@
             tbProductID.Margin = new Padding(3, 4, 3, 4);
             tbProductID.Multiline = true;
             tbProductID.Name = "tbProductID";
+            tbProductID.ReadOnly = true;
             tbProductID.Size = new Size(346, 48);
             tbProductID.TabIndex = 133;
             // 
@@ -137,15 +139,15 @@
             lbQauntity.TabIndex = 130;
             lbQauntity.Text = "Qauntity";
             // 
-            // tbCategory
+            // tbSupplierID
             // 
-            tbCategory.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbCategory.Location = new Point(19, 237);
-            tbCategory.Margin = new Padding(3, 4, 3, 4);
-            tbCategory.Multiline = true;
-            tbCategory.Name = "tbCategory";
-            tbCategory.Size = new Size(346, 48);
-            tbCategory.TabIndex = 131;
+            tbSupplierID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbSupplierID.Location = new Point(19, 237);
+            tbSupplierID.Margin = new Padding(3, 4, 3, 4);
+            tbSupplierID.Multiline = true;
+            tbSupplierID.Name = "tbSupplierID";
+            tbSupplierID.Size = new Size(346, 48);
+            tbSupplierID.TabIndex = 131;
             // 
             // label6
             // 
@@ -156,9 +158,9 @@
             label6.ForeColor = Color.White;
             label6.Location = new Point(19, 5);
             label6.Name = "label6";
-            label6.Size = new Size(134, 35);
+            label6.Size = new Size(322, 35);
             label6.TabIndex = 129;
-            label6.Text = "Product ID";
+            label6.Text = "Product ID(Auto Increment)";
             // 
             // label5
             // 
@@ -169,9 +171,9 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(19, 199);
             label5.Name = "label5";
-            label5.Size = new Size(115, 35);
+            label5.Size = new Size(131, 35);
             label5.TabIndex = 118;
-            label5.Text = "Category";
+            label5.Text = "SupplierID";
             // 
             // lbProductName
             // 
@@ -195,19 +197,19 @@
             lbSupplier.ForeColor = Color.White;
             lbSupplier.Location = new Point(18, 291);
             lbSupplier.Name = "lbSupplier";
-            lbSupplier.Size = new Size(106, 35);
+            lbSupplier.Size = new Size(173, 35);
             lbSupplier.TabIndex = 115;
-            lbSupplier.Text = "Supplier";
+            lbSupplier.Text = "SupplierName";
             // 
-            // tbQauntity
+            // tbQuantity
             // 
-            tbQauntity.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbQauntity.Location = new Point(18, 526);
-            tbQauntity.Margin = new Padding(3, 4, 3, 4);
-            tbQauntity.Multiline = true;
-            tbQauntity.Name = "tbQauntity";
-            tbQauntity.Size = new Size(347, 48);
-            tbQauntity.TabIndex = 116;
+            tbQuantity.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbQuantity.Location = new Point(18, 526);
+            tbQuantity.Margin = new Padding(3, 4, 3, 4);
+            tbQuantity.Multiline = true;
+            tbQuantity.Name = "tbQuantity";
+            tbQuantity.Size = new Size(347, 48);
+            tbQuantity.TabIndex = 116;
             // 
             // tbProductName
             // 
@@ -219,25 +221,25 @@
             tbProductName.Size = new Size(346, 48);
             tbProductName.TabIndex = 114;
             // 
-            // tbSupplier
+            // tbSupplierName
             // 
-            tbSupplier.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplier.Location = new Point(19, 332);
-            tbSupplier.Margin = new Padding(3, 4, 3, 4);
-            tbSupplier.Multiline = true;
-            tbSupplier.Name = "tbSupplier";
-            tbSupplier.Size = new Size(346, 48);
-            tbSupplier.TabIndex = 117;
+            tbSupplierName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbSupplierName.Location = new Point(19, 332);
+            tbSupplierName.Margin = new Padding(3, 4, 3, 4);
+            tbSupplierName.Multiline = true;
+            tbSupplierName.Name = "tbSupplierName";
+            tbSupplierName.Size = new Size(346, 48);
+            tbSupplierName.TabIndex = 117;
             // 
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(tbSeach);
             panel2.Controls.Add(lbSeach);
-            panel2.Location = new Point(3, 3);
+            panel2.Location = new Point(3, 4);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(876, 112);
+            panel2.Size = new Size(876, 111);
             panel2.TabIndex = 124;
             // 
             // tbSeach
@@ -249,6 +251,7 @@
             tbSeach.Name = "tbSeach";
             tbSeach.Size = new Size(486, 43);
             tbSeach.TabIndex = 132;
+            tbSeach.TextChanged += tbSeach_TextChanged;
             // 
             // lbSeach
             // 
@@ -371,11 +374,11 @@
             Controls.Add(btSave);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            Controls.Add(dgvcustomer);
+            Controls.Add(dgvProduct);
             Margin = new Padding(3, 4, 3, 4);
             Name = "UserControlProduct";
             Size = new Size(1264, 885);
-            ((System.ComponentModel.ISupportInitialize)dgvcustomer).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -387,18 +390,18 @@
         }
 
         #endregion
-        private DataGridView dgvcustomer;
+        private DataGridView dgvProduct;
         private Panel panel1;
         private Label lbUnitPrice;
         private Label lbQauntity;
-        private TextBox tbCategory;
+        private TextBox tbSupplierID;
         private Label label6;
         private Label label5;
         private Label lbProductName;
         private Label lbSupplier;
-        private TextBox tbQauntity;
+        private TextBox tbQuantity;
         private TextBox tbProductName;
-        private TextBox tbSupplier;
+        private TextBox tbSupplierName;
         private Panel panel2;
         private TextBox tbSeach;
         private Label lbSeach;

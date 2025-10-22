@@ -86,8 +86,25 @@ namespace AssigementOOADWinForms.Repositories
 
         public void Save(Product model)
         {
-
+            using var conn = HandleConnection.GetSqlConnection();
+            using var cmd = new SqlCommand("sp_InsertOrUpdateProduct", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ProductID", model.ProductID == 0 ? (object)DBNull.Value : model.ProductID);
+            cmd.Parameters.AddWithValue("@ProductName", model.ProductName ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@SupplierID", model.SupplierID == null ? (object)DBNull.Value : model.SupplierID);
+            cmd.Parameters.AddWithValue("@SupplierName", model.SupplierName ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
+            cmd.Parameters.AddWithValue("@QuantityInStock", model.QuantityInStock);
+            cmd.ExecuteNonQuery();
         }
-
+        public DataTable GetAllProduct()
+        {
+            using var conn = HandleConnection.GetSqlConnection();
+            using var cmd = new SqlCommand("SELECT * FROM tbProduct", conn);
+            using var adapter = new SqlDataAdapter(cmd);
+            var table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
     }
 }
