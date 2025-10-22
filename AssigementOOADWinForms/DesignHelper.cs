@@ -185,7 +185,7 @@ public static class DesignHelper
         if (txt.Tag is string tag && tag == IsGlassKey) return;
         txt.Tag = IsGlassKey;
 
-        txt.Font = new Font("Segoe UI", 14f);
+        txt.Font = new Font("Segoe UI", 15f);
         txt.BackColor = Color.FromArgb(250, 250, 250);
         txt.ForeColor = Color.Black;
         txt.BorderStyle = BorderStyle.None;
@@ -210,7 +210,7 @@ public static class DesignHelper
         if (cb.Tag is string tag && tag == IsGlassKey) return;
         cb.Tag = IsGlassKey;
 
-        cb.Font = new Font("Segoe UI", 14f);
+        cb.Font = new Font("Segoe UI", 15f);
         cb.BackColor = Color.FromArgb(250, 250, 250); // light glass-like
         cb.ForeColor = Color.Black;
         cb.FlatStyle = FlatStyle.Flat;
@@ -236,55 +236,62 @@ public static class DesignHelper
             }
         }
     }
-    public static void PopulateRowControls(DataGridView dgv, Dictionary<string, Control> columnControlMap)
+public static void PopulateRowControls(DataGridView dgv, Dictionary<string, Control> columnControlMap)
+{
+    if (dgv.CurrentRow == null || dgv.RowCount == 0)
+        return;
+
+    // Ensure column names match DataPropertyName
+    foreach (DataGridViewColumn col in dgv.Columns)
     {
-        if (dgv.CurrentRow == null || dgv.RowCount == 0)
-            return;
+        if (string.IsNullOrEmpty(col.Name) && !string.IsNullOrEmpty(col.DataPropertyName))
+            col.Name = col.DataPropertyName;
+    }
 
-        // Ensure column names match DataPropertyName
-        foreach (DataGridViewColumn col in dgv.Columns)
+    var row = dgv.CurrentRow;
+
+    foreach (var kvp in columnControlMap)
+    {
+        string columnName = kvp.Key;
+        Control control = kvp.Value;
+
+        if (!dgv.Columns.Contains(columnName))
+            continue; // skip if column does not exist
+
+        var cellValue = row.Cells[columnName].Value;
+        if (cellValue == null)
+            continue; // skip if value is null
+
+        switch (control)
         {
-            if (string.IsNullOrEmpty(col.Name) && !string.IsNullOrEmpty(col.DataPropertyName))
-                col.Name = col.DataPropertyName;
-        }
+            case TextBox txt:
+                if (cellValue is DateTime dt)
+                    txt.Text = dt.ToString("dd/MM/yyyy");
+                else if (cellValue is decimal dec)
+                    txt.Text = dec.ToString("C2");
+                else
+                    txt.Text = cellValue.ToString();
+                break;
 
-        var row = dgv.CurrentRow;
+            case ComboBox cb:
+                // Try to select by value or by string match
+                if (cb.Items.Contains(cellValue))
+                    cb.SelectedItem = cellValue;
+                else if (int.TryParse(cellValue.ToString(), out int val))
+                    cb.SelectedValue = val;
+                else
+                    cb.SelectedIndex = -1; // fallback if not found
+                break;
 
-        foreach (var kvp in columnControlMap)
-        {
-            string columnName = kvp.Key;
-            Control control = kvp.Value;
+            case Label lbl:
+                lbl.Text = cellValue.ToString();
+                break;
 
-            // Skip if column does not exist or value is null
-            if (!dgv.Columns.Contains(columnName) || row.Cells[columnName].Value == null)
-                continue;
-
-            object value = row.Cells[columnName].Value;
-
-            switch (control)
-            {
-                case TextBox txt:
-                    if (value is DateTime dt)
-                        txt.Text = FormatDate(dt); // formatted date
-                    else if (value is decimal dec)
-                        txt.Text = dec.ToString("C"); // currency
-                    else
-                        txt.Text = value.ToString();
-                    break;
-
-                case ComboBox cb:
-                    if (int.TryParse(value.ToString(), out int val))
-                        cb.SelectedValue = val;
-                    break;
-
-                case Label lbl:
-                    lbl.Text = value.ToString();
-                    break;
-
-                    // Add more control types here if needed
-            }
+            // Add more control types here if needed
         }
     }
+}
+
     public static string FormatDate(DateTime date)
     {
         return date.ToString("dd/MM/yyyy");
