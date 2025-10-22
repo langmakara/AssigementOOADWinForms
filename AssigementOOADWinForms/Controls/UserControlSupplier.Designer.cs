@@ -34,10 +34,6 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             btClear = new Button();
             btRemove = new Button();
-            panel3 = new Panel();
-            label14 = new Label();
-            label13 = new Label();
-            pictureBox13 = new PictureBox();
             btSave = new Button();
             panel1 = new Panel();
             lbSupplierID = new Label();
@@ -56,8 +52,6 @@
             tbSeach = new TextBox();
             lbSeach = new Label();
             dgvSupplier = new DataGridView();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSupplier).BeginInit();
@@ -70,10 +64,10 @@
             btClear.FlatAppearance.BorderSize = 0;
             btClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btClear.ForeColor = Color.White;
-            btClear.Location = new Point(1074, 762);
+            btClear.Location = new Point(882, 757);
             btClear.Margin = new Padding(0);
             btClear.Name = "btClear";
-            btClear.Size = new Size(189, 60);
+            btClear.Size = new Size(382, 60);
             btClear.TabIndex = 135;
             btClear.Text = "Clear";
             btClear.UseVisualStyleBackColor = false;
@@ -86,62 +80,13 @@
             btRemove.FlatAppearance.BorderSize = 0;
             btRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btRemove.ForeColor = Color.DimGray;
-            btRemove.Location = new Point(880, 820);
+            btRemove.Location = new Point(882, 821);
             btRemove.Margin = new Padding(0);
             btRemove.Name = "btRemove";
             btRemove.Size = new Size(383, 60);
             btRemove.TabIndex = 134;
             btRemove.Text = "Remove";
             btRemove.UseVisualStyleBackColor = false;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.Salmon;
-            panel3.Controls.Add(label14);
-            panel3.Controls.Add(label13);
-            panel3.Controls.Add(pictureBox13);
-            panel3.Location = new Point(881, 639);
-            panel3.Margin = new Padding(3, 4, 3, 4);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(383, 120);
-            panel3.TabIndex = 133;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Cursor = Cursors.Hand;
-            label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(30, 53);
-            label14.Name = "label14";
-            label14.Size = new Size(120, 46);
-            label14.TabIndex = 28;
-            label14.Text = "12000";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.BackColor = Color.Salmon;
-            label13.Cursor = Cursors.Hand;
-            label13.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label13.ForeColor = Color.White;
-            label13.Location = new Point(13, 16);
-            label13.Name = "label13";
-            label13.Size = new Size(268, 35);
-            label13.TabIndex = 27;
-            label13.Text = "Transation Per Month";
-            // 
-            // pictureBox13
-            // 
-            pictureBox13.BackgroundImage = Properties.Resources.icons8_employees_100__1_;
-            pictureBox13.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox13.Cursor = Cursors.AppStarting;
-            pictureBox13.Location = new Point(322, 13);
-            pictureBox13.Margin = new Padding(3, 4, 3, 4);
-            pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(34, 40);
-            pictureBox13.TabIndex = 27;
-            pictureBox13.TabStop = false;
             // 
             // btSave
             // 
@@ -150,10 +95,10 @@
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(880, 762);
+            btSave.Location = new Point(882, 693);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
-            btSave.Size = new Size(200, 60);
+            btSave.Size = new Size(382, 60);
             btSave.TabIndex = 132;
             btSave.Text = "Save";
             btSave.UseVisualStyleBackColor = false;
@@ -176,7 +121,7 @@
             panel1.Location = new Point(881, 1);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(383, 643);
+            panel1.Size = new Size(383, 684);
             panel1.TabIndex = 130;
             // 
             // lbSupplierID
@@ -185,7 +130,7 @@
             lbSupplierID.BackColor = Color.DodgerBlue;
             lbSupplierID.Font = new Font("Segoe UI", 15F);
             lbSupplierID.ForeColor = Color.White;
-            lbSupplierID.Location = new Point(15, 20);
+            lbSupplierID.Location = new Point(13, 18);
             lbSupplierID.Name = "lbSupplierID";
             lbSupplierID.Size = new Size(138, 35);
             lbSupplierID.TabIndex = 129;
@@ -194,17 +139,17 @@
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbEmail.Location = new Point(13, 461);
+            tbEmail.Location = new Point(13, 492);
             tbEmail.Margin = new Padding(3, 4, 3, 4);
             tbEmail.Multiline = true;
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(346, 50);
+            tbEmail.Size = new Size(349, 50);
             tbEmail.TabIndex = 134;
             // 
             // tbSupplierID
             // 
             tbSupplierID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierID.Location = new Point(14, 60);
+            tbSupplierID.Location = new Point(12, 58);
             tbSupplierID.Margin = new Padding(3, 4, 3, 4);
             tbSupplierID.Multiline = true;
             tbSupplierID.Name = "tbSupplierID";
@@ -218,7 +163,7 @@
             lbEmail.Cursor = Cursors.Hand;
             lbEmail.Font = new Font("Segoe UI", 15F);
             lbEmail.ForeColor = Color.White;
-            lbEmail.Location = new Point(13, 421);
+            lbEmail.Location = new Point(10, 452);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(75, 35);
             lbEmail.TabIndex = 132;
@@ -231,7 +176,7 @@
             lbAddress.Cursor = Cursors.Hand;
             lbAddress.Font = new Font("Segoe UI", 15F);
             lbAddress.ForeColor = Color.White;
-            lbAddress.Location = new Point(11, 519);
+            lbAddress.Location = new Point(10, 560);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(105, 35);
             lbAddress.TabIndex = 130;
@@ -240,11 +185,11 @@
             // tbContactName
             // 
             tbContactName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbContactName.Location = new Point(14, 266);
+            tbContactName.Location = new Point(13, 277);
             tbContactName.Margin = new Padding(3, 4, 3, 4);
             tbContactName.Multiline = true;
             tbContactName.Name = "tbContactName";
-            tbContactName.Size = new Size(346, 48);
+            tbContactName.Size = new Size(349, 48);
             tbContactName.TabIndex = 131;
             // 
             // lbContactName
@@ -254,7 +199,7 @@
             lbContactName.Cursor = Cursors.Hand;
             lbContactName.Font = new Font("Segoe UI", 15F);
             lbContactName.ForeColor = Color.White;
-            lbContactName.Location = new Point(14, 226);
+            lbContactName.Location = new Point(10, 237);
             lbContactName.Name = "lbContactName";
             lbContactName.Size = new Size(174, 35);
             lbContactName.TabIndex = 118;
@@ -267,7 +212,7 @@
             lbSupplierName.Cursor = Cursors.Hand;
             lbSupplierName.Font = new Font("Segoe UI", 15F);
             lbSupplierName.ForeColor = Color.White;
-            lbSupplierName.Location = new Point(14, 120);
+            lbSupplierName.Location = new Point(11, 128);
             lbSupplierName.Name = "lbSupplierName";
             lbSupplierName.Size = new Size(180, 35);
             lbSupplierName.TabIndex = 122;
@@ -280,7 +225,7 @@
             lbPhoneNumble.Cursor = Cursors.Hand;
             lbPhoneNumble.Font = new Font("Segoe UI", 15F);
             lbPhoneNumble.ForeColor = Color.White;
-            lbPhoneNumble.Location = new Point(12, 324);
+            lbPhoneNumble.Location = new Point(10, 344);
             lbPhoneNumble.Name = "lbPhoneNumble";
             lbPhoneNumble.Size = new Size(181, 35);
             lbPhoneNumble.TabIndex = 115;
@@ -289,31 +234,31 @@
             // tbAddress
             // 
             tbAddress.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbAddress.Location = new Point(13, 560);
+            tbAddress.Location = new Point(12, 601);
             tbAddress.Margin = new Padding(3, 4, 3, 4);
             tbAddress.Multiline = true;
             tbAddress.Name = "tbAddress";
-            tbAddress.Size = new Size(347, 50);
+            tbAddress.Size = new Size(350, 50);
             tbAddress.TabIndex = 116;
             // 
             // tbSupplierName
             // 
             tbSupplierName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierName.Location = new Point(14, 161);
+            tbSupplierName.Location = new Point(13, 169);
             tbSupplierName.Margin = new Padding(3, 4, 3, 4);
             tbSupplierName.Multiline = true;
             tbSupplierName.Name = "tbSupplierName";
-            tbSupplierName.Size = new Size(346, 48);
+            tbSupplierName.Size = new Size(349, 48);
             tbSupplierName.TabIndex = 114;
             // 
             // tbPhoneNumble
             // 
             tbPhoneNumble.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbPhoneNumble.Location = new Point(13, 365);
+            tbPhoneNumble.Location = new Point(13, 385);
             tbPhoneNumble.Margin = new Padding(3, 4, 3, 4);
             tbPhoneNumble.Multiline = true;
             tbPhoneNumble.Name = "tbPhoneNumble";
-            tbPhoneNumble.Size = new Size(346, 49);
+            tbPhoneNumble.Size = new Size(349, 49);
             tbPhoneNumble.TabIndex = 117;
             // 
             // panel2
@@ -324,16 +269,17 @@
             panel2.Location = new Point(1, 1);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(878, 79);
+            panel2.Size = new Size(878, 106);
             panel2.TabIndex = 131;
             // 
             // tbSeach
             // 
             tbSeach.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSeach.Location = new Point(14, 22);
+            tbSeach.Location = new Point(48, 30);
             tbSeach.Margin = new Padding(3, 4, 3, 4);
+            tbSeach.Multiline = true;
             tbSeach.Name = "tbSeach";
-            tbSeach.Size = new Size(597, 34);
+            tbSeach.Size = new Size(513, 44);
             tbSeach.TabIndex = 132;
             tbSeach.TextChanged += tbSeach_TextChanged_1;
             // 
@@ -342,12 +288,12 @@
             lbSeach.AutoSize = true;
             lbSeach.BackColor = Color.White;
             lbSeach.Cursor = Cursors.Hand;
-            lbSeach.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbSeach.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbSeach.ForeColor = SystemColors.Highlight;
-            lbSeach.Location = new Point(629, 22);
+            lbSeach.Location = new Point(567, 30);
             lbSeach.Name = "lbSeach";
-            lbSeach.Padding = new Padding(5, 2, 5, 3);
-            lbSeach.Size = new Size(236, 33);
+            lbSeach.Padding = new Padding(5, 5, 5, 7);
+            lbSeach.Size = new Size(274, 43);
             lbSeach.TabIndex = 126;
             lbSeach.Text = "Search By SupplierName";
             // 
@@ -382,14 +328,14 @@
             dgvSupplier.DefaultCellStyle = dataGridViewCellStyle3;
             dgvSupplier.EnableHeadersVisualStyles = false;
             dgvSupplier.GridColor = SystemColors.ControlLight;
-            dgvSupplier.Location = new Point(3, 87);
+            dgvSupplier.Location = new Point(3, 118);
             dgvSupplier.Name = "dgvSupplier";
             dgvSupplier.ReadOnly = true;
             dgvSupplier.RowHeadersWidth = 51;
             dataGridViewCellStyle4.BackColor = Color.White;
             dataGridViewCellStyle4.ForeColor = Color.Black;
             dgvSupplier.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvSupplier.Size = new Size(874, 793);
+            dgvSupplier.Size = new Size(874, 762);
             dgvSupplier.TabIndex = 136;
             dgvSupplier.CellClick += dgvSupplier_CellClick_1;
             // 
@@ -401,16 +347,12 @@
             Controls.Add(dgvSupplier);
             Controls.Add(btClear);
             Controls.Add(btRemove);
-            Controls.Add(panel3);
             Controls.Add(btSave);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "UserControlSupplier";
             Size = new Size(1264, 885);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -423,10 +365,6 @@
 
         private Button btClear;
         private Button btRemove;
-        private Panel panel3;
-        private Label label14;
-        private Label label13;
-        private PictureBox pictureBox13;
         private Button btSave;
         private Panel panel1;
         private TextBox tbEmail;
