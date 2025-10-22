@@ -33,7 +33,6 @@
             lbSeach = new Label();
             tbSeachName = new TextBox();
             cbRole = new ComboBox();
-            pbProfile = new PictureBox();
             lbUsername = new Label();
             tbUsername = new TextBox();
             tbPassword = new TextBox();
@@ -42,13 +41,12 @@
             tbID = new TextBox();
             lbRole = new Label();
             panel1 = new Panel();
+            cbRole1 = new ComboBox();
             btClear = new Button();
             btRemove = new Button();
             btSave = new Button();
             panel2 = new Panel();
-            cbRole1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvuser).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbProfile).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -109,25 +107,13 @@
             cbRole.Size = new Size(285, 36);
             cbRole.TabIndex = 33;
             // 
-            // pbProfile
-            // 
-            pbProfile.BackgroundImage = Properties.Resources.user;
-            pbProfile.BackgroundImageLayout = ImageLayout.Zoom;
-            pbProfile.Location = new Point(59, 23);
-            pbProfile.Margin = new Padding(3, 4, 3, 4);
-            pbProfile.Name = "pbProfile";
-            pbProfile.Size = new Size(288, 288);
-            pbProfile.SizeMode = PictureBoxSizeMode.Zoom;
-            pbProfile.TabIndex = 38;
-            pbProfile.TabStop = false;
-            // 
             // lbUsername
             // 
             lbUsername.AutoSize = true;
             lbUsername.Cursor = Cursors.Hand;
             lbUsername.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbUsername.ForeColor = Color.White;
-            lbUsername.Location = new Point(22, 426);
+            lbUsername.Location = new Point(14, 250);
             lbUsername.Name = "lbUsername";
             lbUsername.Size = new Size(129, 35);
             lbUsername.TabIndex = 40;
@@ -136,7 +122,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbUsername.Location = new Point(30, 465);
+            tbUsername.Location = new Point(22, 310);
             tbUsername.Margin = new Padding(3, 4, 3, 4);
             tbUsername.Multiline = true;
             tbUsername.Name = "tbUsername";
@@ -146,7 +132,7 @@
             // tbPassword
             // 
             tbPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbPassword.Location = new Point(30, 566);
+            tbPassword.Location = new Point(22, 443);
             tbPassword.Margin = new Padding(3, 4, 3, 4);
             tbPassword.Multiline = true;
             tbPassword.Name = "tbPassword";
@@ -159,7 +145,7 @@
             lbPassword.Cursor = Cursors.Hand;
             lbPassword.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbPassword.ForeColor = Color.White;
-            lbPassword.Location = new Point(22, 527);
+            lbPassword.Location = new Point(14, 383);
             lbPassword.Name = "lbPassword";
             lbPassword.Size = new Size(122, 35);
             lbPassword.TabIndex = 43;
@@ -171,7 +157,7 @@
             lbID.Cursor = Cursors.Hand;
             lbID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbID.ForeColor = Color.White;
-            lbID.Location = new Point(22, 320);
+            lbID.Location = new Point(14, 117);
             lbID.Name = "lbID";
             lbID.Size = new Size(40, 35);
             lbID.TabIndex = 44;
@@ -180,7 +166,7 @@
             // tbID
             // 
             tbID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbID.Location = new Point(30, 359);
+            tbID.Location = new Point(22, 177);
             tbID.Margin = new Padding(3, 4, 3, 4);
             tbID.Multiline = true;
             tbID.Name = "tbID";
@@ -193,7 +179,7 @@
             lbRole.Cursor = Cursors.Hand;
             lbRole.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbRole.ForeColor = Color.White;
-            lbRole.Location = new Point(22, 628);
+            lbRole.Location = new Point(14, 516);
             lbRole.Name = "lbRole";
             lbRole.Size = new Size(65, 35);
             lbRole.TabIndex = 47;
@@ -214,11 +200,20 @@
             panel1.Controls.Add(tbUsername);
             panel1.Controls.Add(lbUsername);
             panel1.Controls.Add(tbID);
-            panel1.Controls.Add(pbProfile);
             panel1.Location = new Point(867, -1);
             panel1.Name = "panel1";
             panel1.Size = new Size(433, 894);
             panel1.TabIndex = 50;
+            // 
+            // cbRole1
+            // 
+            cbRole1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            cbRole1.FormattingEnabled = true;
+            cbRole1.Location = new Point(22, 576);
+            cbRole1.Margin = new Padding(3, 4, 3, 4);
+            cbRole1.Name = "cbRole1";
+            cbRole1.Size = new Size(347, 36);
+            cbRole1.TabIndex = 132;
             // 
             // btClear
             // 
@@ -277,16 +272,6 @@
             panel2.Size = new Size(863, 109);
             panel2.TabIndex = 51;
             // 
-            // cbRole1
-            // 
-            cbRole1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            cbRole1.FormattingEnabled = true;
-            cbRole1.Location = new Point(30, 667);
-            cbRole1.Margin = new Padding(3, 4, 3, 4);
-            cbRole1.Name = "cbRole1";
-            cbRole1.Size = new Size(347, 36);
-            cbRole1.TabIndex = 132;
-            // 
             // UserControlUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -299,7 +284,6 @@
             Name = "UserControlUser";
             Size = new Size(1264, 885);
             ((System.ComponentModel.ISupportInitialize)dgvuser).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbProfile).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -314,7 +298,6 @@
         private Label lbSeach;
         private TextBox tbSeachName;
         private ComboBox cbRole;
-        private PictureBox pbProfile;
         private Label lbUsername;
         private TextBox tbUsername;
         private TextBox tbPassword;

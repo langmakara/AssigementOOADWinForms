@@ -33,7 +33,15 @@ namespace AssigementOOADWinForms.Controls
             btSave.Click += HandleSavePurchaseOrder;
             btRemove.Click += HandleRemovePurchaseOrder;
             tbPurchaseID.TextChanged += (s, e) => FilterPurchaseOrders();
+            btnCreatePurchase.Click += (s, e) => HandleChangeUserControlInvoiceToCreatePurchasDetail();
             this.Load += (s, e) => LoadPurchaseOrders();
+        }
+        private void HandleChangeUserControlInvoiceToCreatePurchasDetail()
+        {
+            if(this.FindForm() is Mainform main)
+            {
+                main.HandleUserControlReplacseItselfMainForm(new UserControlPurchaseDetail(), "PurchaseDetail");
+            }
         }
         // ===============================
         // Load PurchaseOrders from database
@@ -163,7 +171,7 @@ namespace AssigementOOADWinForms.Controls
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(tbPurchaseID.Text) || !int.TryParse(tbPurchaseID.Text, out int purchaseId))
+                if (string.IsNullOrWhiteSpace(tbPuchaseOderID.Text) || !int.TryParse(tbPuchaseOderID.Text, out int purchaseId))
                 {
                     MessageBox.Show("Please select a valid purchase order to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;

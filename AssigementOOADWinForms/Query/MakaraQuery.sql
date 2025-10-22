@@ -12,7 +12,7 @@ BEGIN
         PasswordHash,
         Role,
         CreatedAt
-    FROM dbo.Users
+    FROM tbUsers
     ORDER BY CreatedAt DESC;
 END;
 GO
@@ -38,7 +38,7 @@ BEGIN
     -- If updating existing record
     IF @UserID IS NOT NULL AND EXISTS (SELECT 1 FROM dbo.Users WHERE UserID = @UserID)
     BEGIN
-        UPDATE dbo.Users
+        UPDATE tbUsers
         SET 
             Username = @Username,
             PasswordHash = @PasswordHash,
@@ -47,7 +47,7 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO dbo.Users (Username, PasswordHash, Role, CreatedAt)
+        INSERT INTO tbUsers (Username, PasswordHash, Role, CreatedAt)
         VALUES (@Username, @PasswordHash, @Role, @CreatedAt);
 
         SET @UserID = SCOPE_IDENTITY();
@@ -69,7 +69,7 @@ BEGIN
 
     IF EXISTS (SELECT 1 FROM dbo.Users WHERE UserID = @UserID)
     BEGIN
-        DELETE FROM dbo.Users WHERE UserID = @UserID;
+        DELETE FROM tbUsers WHERE UserID = @UserID;
         PRINT 'User deleted successfully.';
     END
     ELSE
@@ -327,6 +327,125 @@ BEGIN
         TotalAmount
     FROM dbo.tbPurchaseOrder
     WHERE PurchaseID = @PurchaseID;
+END;
+GO
+
+-- =====================================
+-- Get All Purchase Details
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetAllPurchaseDetails
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        PurchaseDetailID,
+        PurchaseID,
+        ProductID,
+        ProductName,
+        Quantity,
+        UnitPrice
+    FROM dbo.tbPurchaseOrderDetail
+    ORDER BY PurchaseDetailID DESC;
+END;
+GO
+
+
+-- =====================================
+-- Insert or Update Purchase Detail
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_InsertOrUpdatePurchaseDetail
+    @PurchaseDetailID INT = NULL OUTPUT,
+    @PurchaseID       INT,
+    @ProductID        INT,
+    @Quantity         INT,
+    @UnitPrice        DECIMAL(18,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ProductName NVARCHAR(100);
+    SELECT @ProductName = ProductName FROM dbo.tbProduct WHERE ProductID = @ProductID;
+
+    -- Update existing record
+    IF @PurchaseDetailID IS NOT NULL AND EXISTS (SELECT 1 FROM dbo.tbPurchaseOrderDetail WHERE PurchaseDetailID = @PurchaseDetailID)
+    BEGIN
+        UPDATE dbo.tbPurchaseOrderDetail
+        SET 
+            PurchaseID = @PurchaseID,
+            ProductID = @ProductID,
+            ProductName = @ProductName,
+            Quantity = @Quantity,
+            UnitPrice = @UnitPrice
+        WHERE PurchaseDetailID = @PurchaseDetailID;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO dbo.tbPurchaseOrderDetail
+        (
+            PurchaseID,
+            ProductID,
+            ProductName,
+            Quantity,
+            UnitPrice
+        )
+        VALUES
+        (
+            @PurchaseID,
+            @ProductID,
+            @ProductName,
+            @Quantity,
+            @UnitPrice
+        );
+
+        SET @PurchaseDetailID = SCOPE_IDENTITY();
+    END
+
+    SELECT @PurchaseDetailID AS PurchaseDetailID;
+END;
+GO
+
+
+-- =====================================
+-- Delete Purchase Detail
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_DeletePurchaseDetail
+    @PurchaseDetailID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (SELECT 1 FROM dbo.tbPurchaseOrderDetail WHERE PurchaseDetailID = @PurchaseDetailID)
+    BEGIN
+        DELETE FROM dbo.tbPurchaseOrderDetail WHERE PurchaseDetailID = @PurchaseDetailID;
+        PRINT 'Purchase detail deleted successfully.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Purchase detail not found.';
+    END
+END;
+GO
+
+
+-- =====================================
+-- Get Purchase Detail by ID
+-- =====================================
+CREATE OR ALTER PROCEDURE sp_GetPurchaseDetailById
+    @PurchaseDetailID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        PurchaseDetailID,
+        PurchaseID,
+        ProductID,
+        ProductName,
+        Quantity,
+        UnitPrice
+    FROM dbo.tbPurchaseOrderDetail
+    WHERE PurchaseDetailID = @PurchaseDetailID;
 END;
 GO
 

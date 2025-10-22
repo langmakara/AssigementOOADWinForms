@@ -118,7 +118,7 @@ partial class FormLogin
         btLogin.TabIndex = 6;
         btLogin.Text = "LOG IN";
         btLogin.UseVisualStyleBackColor = false;
-        btLogin.Click += btLogin_Click_1;
+        btLogin.KeyPress += btLogin_KeyPress;
         // 
         // lbExit
         // 

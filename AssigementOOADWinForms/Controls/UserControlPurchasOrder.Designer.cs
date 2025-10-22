@@ -51,7 +51,7 @@
             btClear = new Button();
             btRemove = new Button();
             btSave = new Button();
-            btnCreateInvoice = new Button();
+            btnCreatePurchase = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPurchase).BeginInit();
             panel2.SuspendLayout();
@@ -331,26 +331,26 @@
             btSave.Text = "Save";
             btSave.UseVisualStyleBackColor = false;
             // 
-            // btnCreateInvoice
+            // btnCreatePurchase
             // 
-            btnCreateInvoice.BackColor = Color.FromArgb(255, 128, 0);
-            btnCreateInvoice.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnCreateInvoice.FlatAppearance.BorderSize = 0;
-            btnCreateInvoice.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnCreateInvoice.ForeColor = Color.White;
-            btnCreateInvoice.Location = new Point(894, 700);
-            btnCreateInvoice.Margin = new Padding(0);
-            btnCreateInvoice.Name = "btnCreateInvoice";
-            btnCreateInvoice.Size = new Size(370, 57);
-            btnCreateInvoice.TabIndex = 136;
-            btnCreateInvoice.Text = "View / Create Purchase Detail";
-            btnCreateInvoice.UseVisualStyleBackColor = false;
+            btnCreatePurchase.BackColor = Color.FromArgb(255, 128, 0);
+            btnCreatePurchase.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnCreatePurchase.FlatAppearance.BorderSize = 0;
+            btnCreatePurchase.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnCreatePurchase.ForeColor = Color.White;
+            btnCreatePurchase.Location = new Point(894, 700);
+            btnCreatePurchase.Margin = new Padding(0);
+            btnCreatePurchase.Name = "btnCreatePurchase";
+            btnCreatePurchase.Size = new Size(370, 57);
+            btnCreatePurchase.TabIndex = 136;
+            btnCreatePurchase.Text = "View / Create Purchase Detail";
+            btnCreatePurchase.UseVisualStyleBackColor = false;
             // 
             // UserControlPurchasOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnCreateInvoice);
+            Controls.Add(btnCreatePurchase);
             Controls.Add(btClear);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -392,6 +392,6 @@
         private TextBox tbSupplierName;
         private Label lbEmployeeName;
         private TextBox tbEmployeeName;
-        private Button btnCreateInvoice;
+        private Button btnCreatePurchase;
     }
 }
