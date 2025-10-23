@@ -103,11 +103,11 @@
             panel2.Location = new Point(5, 4);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-<<<<<<< HEAD
+
             panel2.Size = new Size(199, 752);
-=======
+
             panel2.Size = new Size(227, 991);
->>>>>>> 35dba3356ad0e89d71901c73128436cb238d47d2
+
             panel2.TabIndex = 1;
             // 
             // label2
@@ -404,16 +404,16 @@
             panel1.BackColor = Color.SlateBlue;
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.Controls.Add(LbPage);
-<<<<<<< HEAD
+
             panel1.Location = new Point(206, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(1109, 86);
-=======
+
             panel1.Location = new Point(235, 5);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
             panel1.Size = new Size(1267, 99);
->>>>>>> 35dba3356ad0e89d71901c73128436cb238d47d2
+
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -423,11 +423,11 @@
             LbPage.Cursor = Cursors.Hand;
             LbPage.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             LbPage.ForeColor = Color.White;
-<<<<<<< HEAD
+
             LbPage.Location = new Point(425, 21);
-=======
+
             LbPage.Location = new Point(495, 21);
->>>>>>> 35dba3356ad0e89d71901c73128436cb238d47d2
+
             LbPage.Name = "LbPage";
             LbPage.Size = new Size(254, 46);
             LbPage.TabIndex = 29;
@@ -437,17 +437,17 @@
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelMain.BackColor = Color.White;
-<<<<<<< HEAD
+
             panelMain.Location = new Point(206, 92);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1109, 664);
-=======
+
             panelMain.Location = new Point(233, 109);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1273, 885);
->>>>>>> 35dba3356ad0e89d71901c73128436cb238d47d2
+
             panelMain.TabIndex = 7;
             // 
             // Mainform
@@ -455,11 +455,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-<<<<<<< HEAD
+
             ClientSize = new Size(1321, 761);
-=======
+
             ClientSize = new Size(1512, 1001);
->>>>>>> 35dba3356ad0e89d71901c73128436cb238d47d2
+
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);
