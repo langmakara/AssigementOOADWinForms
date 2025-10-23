@@ -116,46 +116,7 @@ namespace AssigementOOADWinForms.Controls
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(tbProductName.Text))
-                {
-                    MessageBox.Show("Please enter or select a Product Name to remove.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                string productName = tbProductName.Text.Trim();
-
-                DialogResult confirm = MessageBox.Show(
-                    $"Are you sure you want to delete the product '{productName}'?",
-                    "Confirm Delete",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (confirm == DialogResult.Yes)
-                {
-                    using (SqlConnection conn = HandleConnection.GetSqlConnection())
-                    {
-                        SqlCommand cmd = new SqlCommand("DELETE FROM tbProduct WHERE ProductName = @ProductName", conn);
-                        cmd.Parameters.AddWithValue("@ProductName", productName);
-                        int rows = cmd.ExecuteNonQuery();
-
-                        if (rows > 0)
-                        {
-                            MessageBox.Show("Product removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadProduct();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Product not found in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show("Button clicked!"); // Test only
         }
     }
 }

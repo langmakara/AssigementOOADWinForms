@@ -33,7 +33,7 @@ BEGIN
 END;
 GO
 --StoreProcedure to Insert or Update Product information
-CREATE PROCEDURE [dbo].[sp_InsertOrUpdateProduct]
+CREATE PROCEDURE sp_InsertOrUpdateProduct
     @ProductID INT=Null,
     @ProductName NVARCHAR(100),
     @SupplierID INT=Null,
@@ -60,5 +60,22 @@ BEGIN
         -- If not exists → INSERT
         INSERT INTO tbProduct (ProductName, SupplierID, SupplierName, UnitPrice, QuantityInStock)
         VALUES (@ProductName, @SupplierID, @SupplierName, @UnitPrice, @QuantityInStock);
+    END
+END;
+--Delete Product by Product Name
+CREATE PROCEDURE sp_DeleteProductByName
+    @ProductName NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM tbProduct WHERE ProductName = @ProductName)
+    BEGIN
+        DELETE FROM tbProduct
+        WHERE ProductName = @ProductName;
+        PRINT 'Product deleted successfully.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Product not found.';
     END
 END;

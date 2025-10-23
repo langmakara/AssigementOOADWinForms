@@ -30,6 +30,7 @@
         {
             dgvProduct = new DataGridView();
             panel1 = new Panel();
+            tbProductID = new TextBox();
             tbUnitPrice = new TextBox();
             lbUnitPrice = new Label();
             lbQauntity = new Label();
@@ -45,9 +46,8 @@
             tbSeach = new TextBox();
             lbSeach = new Label();
             button3 = new Button();
-            btnRemove = new Button();
             btSave = new Button();
-            tbProductID = new TextBox();
+            btnRemove = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -85,6 +85,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(383, 655);
             panel1.TabIndex = 123;
+            // 
+            // tbProductID
+            // 
+            tbProductID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            tbProductID.Location = new Point(16, 73);
+            tbProductID.Margin = new Padding(3, 4, 3, 4);
+            tbProductID.Multiline = true;
+            tbProductID.Name = "tbProductID";
+            tbProductID.ReadOnly = true;
+            tbProductID.Size = new Size(346, 48);
+            tbProductID.TabIndex = 135;
             // 
             // tbUnitPrice
             // 
@@ -266,22 +277,6 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // btnRemove
-            // 
-            btnRemove.BackColor = Color.White;
-            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRemove.FlatAppearance.BorderSize = 0;
-            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRemove.ForeColor = Color.Gray;
-            btnRemove.Location = new Point(882, 821);
-            btnRemove.Margin = new Padding(0);
-            btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(383, 60);
-            btnRemove.TabIndex = 127;
-            btnRemove.Text = "Remove";
-            btnRemove.UseVisualStyleBackColor = false;
-            btnRemove.Click += btnRemove_Click;
-            // 
             // btSave
             // 
             btSave.BackColor = Color.DodgerBlue;
@@ -298,24 +293,29 @@
             btSave.UseVisualStyleBackColor = false;
             btSave.Click += btSave_Click;
             // 
-            // tbProductID
+            // btnRemove
             // 
-            tbProductID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbProductID.Location = new Point(16, 73);
-            tbProductID.Margin = new Padding(3, 4, 3, 4);
-            tbProductID.Multiline = true;
-            tbProductID.Name = "tbProductID";
-            tbProductID.ReadOnly = true;
-            tbProductID.Size = new Size(346, 48);
-            tbProductID.TabIndex = 135;
+            btnRemove.BackColor = Color.NavajoWhite;
+            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnRemove.FlatAppearance.BorderSize = 0;
+            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnRemove.ForeColor = Color.DimGray;
+            btnRemove.Location = new Point(884, 821);
+            btnRemove.Margin = new Padding(0);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(380, 60);
+            btnRemove.TabIndex = 129;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = false;
+            btnRemove.Click += btnRemove_Click;
             // 
             // UserControlProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            Controls.Add(button3);
             Controls.Add(btnRemove);
+            Controls.Add(button3);
             Controls.Add(btSave);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -348,9 +348,9 @@
         private TextBox tbSeach;
         private Label lbSeach;
         private Button button3;
-        private Button btnRemove;
         private Button btSave;
         private TextBox tbUnitPrice;
         private TextBox tbProductID;
+        private Button btnRemove;
     }
 }
