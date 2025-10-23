@@ -12,6 +12,7 @@ public static class DesignHelper
     {
         panel.BorderStyle = BorderStyle.None;
 
+        // Enable double buffering to reduce flicker
         typeof(Panel).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
                      .SetValue(panel, true, null);
 
@@ -24,6 +25,21 @@ public static class DesignHelper
             {
                 panel.Region = new Region(path);
 
+                // --- Glass effect ---
+                // Keep original BackColor but add transparency
+                Color baseColor = panel.BackColor;
+                Color glassColor = Color.FromArgb(180, baseColor.R, baseColor.G, baseColor.B); // semi-transparent
+
+                using (var brush = new LinearGradientBrush(
+                    rect,
+                    Color.FromArgb(200, baseColor.R, baseColor.G, baseColor.B), // slightly lighter top
+                    glassColor, // base at bottom
+                    90f))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                // Optional border
                 if (borderThickness > 0 && borderColor.HasValue)
                 {
                     using (Pen pen = new Pen(borderColor.Value, borderThickness))
@@ -34,6 +50,9 @@ public static class DesignHelper
             }
         };
     }
+
+
+
 
 
     // --- Style DataGridView ---
@@ -90,59 +109,74 @@ public static class DesignHelper
     // --- CellPainting for DataGridView ---
     public static void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
     {
-        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+        if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            return;
+
+        var dgv = (DataGridView)sender;
+
+        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+        int radius = 5; // rounded-lg
+        int padding = 2; // padding inside the cell
+        Rectangle rect = e.CellBounds;
+        rect.Inflate(1, 1); // cover hidden grid lines
+
+        // --- Step 1: Fill background behind rounded cell (corners white) ---
+        using (var bgFill = new SolidBrush(Color.White))
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            // === Background: soft glass-like gradient ===
-            Color topColor = (e.RowIndex % 2 == 0)
-                ? Color.FromArgb(255, 250, 253, 255)   // light bluish-white
-                : Color.FromArgb(255, 245, 248, 255);  // soft gray-blue tint
-            Color bottomColor = Color.FromArgb(255, 230, 240, 255); // subtle glass fade
-
-            using (var bgBrush = new System.Drawing.Drawing2D.LinearGradientBrush(
-                e.CellBounds, topColor, bottomColor, 90f))
-            {
-                e.Graphics.FillRectangle(bgBrush, e.CellBounds);
-            }
-
-            // === Selection overlay (iOS translucent blue glow) ===
-            if ((e.State & DataGridViewElementStates.Selected) != 0)
-            {
-                using (var selBrush = new SolidBrush(Color.FromArgb(90, 0, 122, 255))) // glassy blue
-                {
-                    e.Graphics.FillRectangle(selBrush, e.CellBounds);
-                }
-
-                // Optional highlight border
-                using (var glowPen = new Pen(Color.FromArgb(180, 0, 122, 255), 1.5f))
-                {
-                    e.Graphics.DrawRectangle(glowPen,
-                        e.CellBounds.X + 0.5f,
-                        e.CellBounds.Y + 0.5f,
-                        e.CellBounds.Width - 1.5f,
-                        e.CellBounds.Height - 1.5f);
-                }
-            }
-
-            // === Text rendering (clean, Apple-like font) ===
-            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            e.PaintContent(e.CellBounds);
-
-            // === Subtle divider line (soft silver tone) ===
-            using (var pen = new Pen(Color.FromArgb(220, 225, 235)))
-            {
-                e.Graphics.DrawRectangle(pen,
-                    e.CellBounds.X,
-                    e.CellBounds.Y,
-                    e.CellBounds.Width - 1,
-                    e.CellBounds.Height - 1);
-            }
-
-            e.Handled = true;
+            e.Graphics.FillRectangle(bgFill, rect);
         }
+
+        // --- Step 2: Create rounded rectangle path with padding ---
+        Rectangle paddedRect = new Rectangle(
+            rect.X + padding,
+            rect.Y + padding,
+            rect.Width - padding * 2,
+            rect.Height - padding * 2
+        );
+
+        GraphicsPath path = new GraphicsPath();
+        int d = radius * 2;
+        path.AddArc(paddedRect.X, paddedRect.Y, d, d, 180, 90);
+        path.AddArc(paddedRect.Right - d, paddedRect.Y, d, d, 270, 90);
+        path.AddArc(paddedRect.Right - d, paddedRect.Bottom - d, d, d, 0, 90);
+        path.AddArc(paddedRect.X, paddedRect.Bottom - d, d, d, 90, 90);
+        path.CloseFigure();
+
+        // --- Step 3: Fill cell background with gradient ---
+        Color topColor = (e.RowIndex % 2 == 0)
+            ? Color.FromArgb(255, 250, 253, 255)
+            : Color.FromArgb(255, 245, 248, 255);
+        Color bottomColor = Color.FromArgb(255, 230, 240, 255);
+
+        using (var brush = new LinearGradientBrush(paddedRect, topColor, bottomColor, 90f))
+        {
+            e.Graphics.FillPath(brush, path);
+        }
+
+        // --- Step 4: Selection overlay ---
+        if ((e.State & DataGridViewElementStates.Selected) != 0)
+        {
+            using (var selBrush = new SolidBrush(Color.FromArgb(90, 0, 122, 255)))
+            {
+                e.Graphics.FillPath(selBrush, path);
+            }
+        }
+
+        // --- Step 5: Paint content with padding ---
+        Rectangle contentRect = new Rectangle(
+            paddedRect.X + 2,
+            paddedRect.Y + 2,
+            paddedRect.Width - 4,
+            paddedRect.Height - 4
+        );
+        e.PaintContent(contentRect);
+
+        e.Handled = true;
     }
-   
+
+
     private static System.Drawing.Drawing2D.GraphicsPath GetRoundedPath(Rectangle rect, int radius)
     {
         int d = Math.Max(0, radius * 2);

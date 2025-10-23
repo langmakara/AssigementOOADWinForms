@@ -93,6 +93,16 @@ namespace AssigementOOADWinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_adjustment_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-adjustment-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_categories_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-categories-100", resourceCulture);
@@ -256,6 +266,16 @@ namespace AssigementOOADWinForms.Properties {
         internal static System.Drawing.Bitmap icons8_products_100__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8-products-100 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_purchase_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-purchase-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

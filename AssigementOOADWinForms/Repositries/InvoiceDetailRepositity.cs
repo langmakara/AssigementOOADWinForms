@@ -44,10 +44,9 @@ namespace AssigementOOADWinForms.Repositries
         public int SaveInvoiceDetail(InvoiceDetail model)
         {
             using var conn = HandleConnection.GetSqlConnection();
-
             using var cmd = new SqlCommand("spUpsertInvoiceDetail", conn)
             {
-                CommandType = CommandType.StoredProcedure
+                CommandType = System.Data.CommandType.StoredProcedure
             };
 
             cmd.Parameters.AddWithValue("@InvoiceDetailID", model.InvoiceDetailID == 0 ? DBNull.Value : model.InvoiceDetailID);
@@ -56,14 +55,59 @@ namespace AssigementOOADWinForms.Repositries
             cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
             cmd.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
 
-            object result = cmd.ExecuteScalar(); // Returns new InvoiceDetailID if inserted
-            if (result != null && int.TryParse(result.ToString(), out int newID))
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
             {
-                return newID;
+                // Always get the value returned by your final SELECT @ResultID AS InvoiceDetailID
+                return reader.GetInt32(0);
             }
 
-            return model.InvoiceDetailID; 
+            return model.InvoiceDetailID;
         }
+
+        public List<InvoiceDetailDto> GetByInvoiceID(int invoiceID)
+        {
+            var list = new List<InvoiceDetailDto>();
+
+            using var conn = HandleConnection.GetSqlConnection();
+
+            var query = @"
+    SELECT 
+        d.InvoiceDetailID,
+        d.InvoiceID,
+        d.ProductID,
+        d.Quantity,
+        d.UnitPrice,
+        (d.Quantity * d.UnitPrice) AS TotalPrice,
+        p.ProductName
+    FROM tbInvoiceDetail d
+    INNER JOIN tbProduct p ON d.ProductID = p.ProductID
+    WHERE d.InvoiceID = @InvoiceID
+    ";
+
+            using var cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@InvoiceID", invoiceID);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                list.Add(new InvoiceDetailDto
+                {
+                    InvoiceDetailID = reader.GetInt32(reader.GetOrdinal("InvoiceDetailID")),
+                    InvoiceID = reader.GetInt32(reader.GetOrdinal("InvoiceID")),
+                    ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                    Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
+                    UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
+                    ProductName = reader.IsDBNull(reader.GetOrdinal("ProductName"))
+                                  ? null
+                                  : reader.GetString(reader.GetOrdinal("ProductName"))
+                });
+            }
+
+            return list;
+        }
+
+
         public bool Delete(int invoiceDetailID)
         {
             using var conn = HandleConnection.GetSqlConnection();

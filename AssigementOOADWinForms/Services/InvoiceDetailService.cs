@@ -9,6 +9,7 @@ namespace AssigementOOADWinForms.Services
         private readonly InvoiceDetailRepository? _repo = new();
         public List<InvoiceDetailDto> GetAllInvoiceDetails() => _repo.GetAll();
         public int SaveInvoiceDetailToDatabase(InvoiceDetail model) => _repo.SaveInvoiceDetail(model);
+        public List<InvoiceDetailDto> GetInvoiceDetailsByInvoiceID(int id) => _repo.GetByInvoiceID(id);
         public void DeleteInvoiceDetail(int ID) => _repo.Delete(ID);
     }
 }

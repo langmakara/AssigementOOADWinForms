@@ -1,111 +1,101 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using AssigementOOADWinForms.Services;
+using Timer = System.Windows.Forms.Timer;
 
 namespace AssigementOOADWinForms.Controls
 {
     public partial class UserControlDashboard : UserControl
     {
         private readonly ProductService productService = new();
-        private string[] products = { "Product A", "Product B", "Product C" };
-        private int[] stock = { 50, 30, 70 };
-        private int[] sales = { 20, 15, 60 };
-
-        private string[] lowStockProducts = { "Product B - 3", "Product A - 5" };
-        private string[] outStockProducts = { "Product X ❌", "Product Y ❌" };
+        private readonly InvoiceDetailService invoiceDetailService = new();
+        private string[] products = { };
+        private int[] sales = { };
+        private float animationProgress = 0f;
+        private Timer animationTimer;
 
         public UserControlDashboard()
         {
             InitializeComponent();
 
-            // Rounded panels
-            DesignHelper.ApplyRoundedStyle(panel3, 5);
-            DesignHelper.ApplyRoundedStyle(panel4, 5);
-            DesignHelper.ApplyRoundedStyle(panel5, 5);
-
-            // Charts paint events
-            pbStockVsSales.Paint += PbStockVsSales_Paint;
-
-            // Style DataGridViews
-            // For Low Stock table
-          
 
             DesignHelper.StyleDataGridView(dataGridView1);
             DesignHelper.StyleDataGridView(DataViewOutOfStock);
+
             dataGridView1.CellPainting += DesignHelper.dataGridView1_CellPainting;
             DataViewOutOfStock.CellPainting += DesignHelper.dataGridView1_CellPainting;
-  
 
+            this.Load += (s, e) => LoadDashboard();
 
-            LoadDashboard();
+            // Double buffering for smooth animation
+            pbStockVsSales.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .SetValue(pbStockVsSales, true, null);
+
+            pbStockVsSales.Paint += PbStockVsSales_Paint;
+
+            // Timer for one-time animation
+            animationTimer = new Timer();
+            animationTimer.Interval = 20; // ~50 FPS
+            animationTimer.Tick += AnimationTimer_Tick;
         }
 
         private void LoadDashboard()
         {
-            // Totals
-            label14.Text = Sum(stock).ToString();                // Total Stock Quantity
-            label16.Text = CalculateTotalValue().ToString("C");  // Total Stock Value
-            label18.Text = products.Length.ToString();           // Total Categories
+            var AllProduct = productService.GetAllProducts();
+            int totalQuantity = AllProduct.AsEnumerable().Sum(row => row.Field<int>("QuantityInStock"));
+            decimal TotalValue = AllProduct.AsEnumerable().Sum(row => row.Field<decimal>("UnitPrice"));
+            int Coount = AllProduct.AsEnumerable().Count(row => row.Field<int?>("ProductID").HasValue);
 
-           var lowStock = productService.GetProductLowStock();
-            dataGridView1.Rows.Clear();
+            labelTotalValue.Text = TotalValue.ToString("C");
+            labelTotalStock.Text = totalQuantity.ToString();
+            labelTotalProduct.Text = Coount.ToString();
+
+            var lowStock = productService.GetProductLowStock();
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = lowStock;
-            var hiddenlowStock = new List<string>
-            {
-            "ProductID",
-            "SupplierID",
-            "ReorderLevel",
-            "CreatedAt"};
+            var hiddenlowStock = new List<string> { "ProductID", "SupplierID", "ReorderLevel", "CreatedAt","UnitPrice" };
             DesignHelper.HideColumns(dataGridView1, hiddenlowStock);
 
-
-            DataViewOutOfStock.Rows.Clear();
             var outStock = productService.GetProductOutOfStock();
             DataViewOutOfStock.DataSource = null;
             DataViewOutOfStock.DataSource = outStock;
-            var hiddenoutStock = new List<string>
-            {
-            "ProductID",
-            "SupplierID",
-            "ReorderLevel",
-            "CreatedAt",
-            "QuantityInStock"
-            };
+            var hiddenoutStock = new List<string> { "ProductID", "SupplierID", "ReorderLevel", "CreatedAt", "QuantityInStock" };
             DesignHelper.HideColumns(DataViewOutOfStock, hiddenoutStock);
 
-            // Refresh charts
-            pbStockVsSales.Invalidate();
+            var productStockAndSaleAndName = invoiceDetailService.GetAllInvoiceDetails();
+            var top5Products = productStockAndSaleAndName
+                .GroupBy(p => p.ProductName)
+                .Select(g => new { ProductName = g.Key, TotalSold = g.Sum(p => p.Quantity) })
+                .OrderByDescending(x => x.TotalSold)
+                .Take(5)
+                .ToList();
 
+            products = top5Products.Select(p => p.ProductName).ToArray();
+            sales = top5Products.Select(p => p.TotalSold).ToArray();
+
+            animationProgress = 0f;
+            animationTimer.Start(); // Start animation once
         }
 
-        #region Chart Paint Events
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            animationProgress += 0.02f; // increase progress
+            if (animationProgress >= 1f)
+            {
+                animationProgress = 1f;
+                animationTimer.Stop(); // stop after reaching full height
+            }
+
+            pbStockVsSales.Invalidate(); // repaint PictureBox
+        }
+
         private void PbStockVsSales_Paint(object sender, PaintEventArgs e)
         {
-            ChartHelper.DrawStockVsSales(e.Graphics, products, stock, sales,
-                pbStockVsSales.Width, pbStockVsSales.Height);
+            ChartHelper.DrawStockVsSales(e.Graphics, pbStockVsSales.ClientRectangle, products, sales, animationProgress);
         }
-
-
-
-
-        #endregion
-
-        #region Helper Methods
-        private int Sum(int[] arr)
-        {
-            int total = 0;
-            foreach (var v in arr) total += v;
-            return total;
-        }
-
-        private decimal CalculateTotalValue()
-        {
-            decimal total = 0;
-            for (int i = 0; i < stock.Length; i++)
-                total += stock[i] * 10; // example price
-            return total;
-        }  
-        #endregion
     }
 }

@@ -23,13 +23,12 @@ namespace AssigementOOADWinForms.Repositories
 
             cmd.Parameters.AddWithValue("@TransactionID", model.TransactionID);
             cmd.Parameters.AddWithValue("@ProductID", model.ProductID);
-            cmd.Parameters.AddWithValue("@ProductName", model.ProductName ?? string.Empty);
-            cmd.Parameters.AddWithValue("@ProductUnitPrice", model.ProductUnitPrice);
             cmd.Parameters.AddWithValue("@TransactionType", model.TransactionType);
             cmd.Parameters.AddWithValue("@QuantityChange", model.QuantityChange);
             cmd.Parameters.AddWithValue("@TransactionDate", model.TransactionDate);
             cmd.ExecuteNonQuery();
         }
+
 
         // -------------------------
         // Delete Transaction
@@ -65,6 +64,7 @@ namespace AssigementOOADWinForms.Repositories
             {
                 list.Add(new InventoryTransactionDto
                 {
+                    TransactionID = reader.GetInt32(reader.GetOrdinal("TransactionID")),
                     ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
                     ProductName = reader.IsDBNull(reader.GetOrdinal("ProductName"))
                                     ? string.Empty

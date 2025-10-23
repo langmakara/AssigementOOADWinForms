@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel5 = new Panel();
             pictureBox15 = new PictureBox();
-            label18 = new Label();
-            label17 = new Label();
+            labelTotalProduct = new Label();
+            TotalProduct = new Label();
             panel3 = new Panel();
-            label14 = new Label();
+            labelTotalStock = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
             panel4 = new Panel();
-            label16 = new Label();
+            labelTotalValue = new Label();
             pictureBox14 = new PictureBox();
             label15 = new Label();
             label1 = new Label();
@@ -61,8 +62,8 @@
             // 
             panel5.BackColor = Color.DodgerBlue;
             panel5.Controls.Add(pictureBox15);
-            panel5.Controls.Add(label18);
-            panel5.Controls.Add(label17);
+            panel5.Controls.Add(labelTotalProduct);
+            panel5.Controls.Add(TotalProduct);
             panel5.Location = new Point(730, 2);
             panel5.Name = "panel5";
             panel5.Size = new Size(379, 130);
@@ -79,34 +80,34 @@
             pictureBox15.TabIndex = 30;
             pictureBox15.TabStop = false;
             // 
-            // label18
+            // labelTotalProduct
             // 
-            label18.AutoSize = true;
-            label18.Cursor = Cursors.Hand;
-            label18.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(21, 59);
-            label18.Name = "label18";
-            label18.Size = new Size(143, 37);
-            label18.TabIndex = 30;
-            label18.Text = "$ 120000 ";
+            labelTotalProduct.AutoSize = true;
+            labelTotalProduct.Cursor = Cursors.Hand;
+            labelTotalProduct.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            labelTotalProduct.ForeColor = Color.White;
+            labelTotalProduct.Location = new Point(21, 59);
+            labelTotalProduct.Name = "labelTotalProduct";
+            labelTotalProduct.Size = new Size(143, 37);
+            labelTotalProduct.TabIndex = 30;
+            labelTotalProduct.Text = "$ 120000 ";
             // 
-            // label17
+            // TotalProduct
             // 
-            label17.AutoSize = true;
-            label17.Cursor = Cursors.Hand;
-            label17.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label17.ForeColor = Color.White;
-            label17.Location = new Point(21, 17);
-            label17.Name = "label17";
-            label17.Size = new Size(165, 28);
-            label17.TabIndex = 30;
-            label17.Text = "Total Categories";
+            TotalProduct.AutoSize = true;
+            TotalProduct.Cursor = Cursors.Hand;
+            TotalProduct.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            TotalProduct.ForeColor = Color.White;
+            TotalProduct.Location = new Point(21, 17);
+            TotalProduct.Name = "TotalProduct";
+            TotalProduct.Size = new Size(139, 28);
+            TotalProduct.TabIndex = 30;
+            TotalProduct.Text = "Total Product";
             // 
             // panel3
             // 
             panel3.BackColor = Color.DodgerBlue;
-            panel3.Controls.Add(label14);
+            panel3.Controls.Add(labelTotalStock);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
             panel3.Location = new Point(2, 2);
@@ -114,17 +115,17 @@
             panel3.Size = new Size(355, 130);
             panel3.TabIndex = 2;
             // 
-            // label14
+            // labelTotalStock
             // 
-            label14.AutoSize = true;
-            label14.Cursor = Cursors.Hand;
-            label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(25, 59);
-            label14.Name = "label14";
-            label14.Size = new Size(97, 37);
-            label14.TabIndex = 28;
-            label14.Text = "12000";
+            labelTotalStock.AutoSize = true;
+            labelTotalStock.Cursor = Cursors.Hand;
+            labelTotalStock.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            labelTotalStock.ForeColor = Color.White;
+            labelTotalStock.Location = new Point(25, 59);
+            labelTotalStock.Name = "labelTotalStock";
+            labelTotalStock.Size = new Size(97, 37);
+            labelTotalStock.TabIndex = 28;
+            labelTotalStock.Text = "12000";
             // 
             // label13
             // 
@@ -153,7 +154,7 @@
             // panel4
             // 
             panel4.BackColor = Color.DodgerBlue;
-            panel4.Controls.Add(label16);
+            panel4.Controls.Add(labelTotalValue);
             panel4.Controls.Add(pictureBox14);
             panel4.Controls.Add(label15);
             panel4.Location = new Point(361, 2);
@@ -161,17 +162,17 @@
             panel4.Size = new Size(365, 130);
             panel4.TabIndex = 3;
             // 
-            // label16
+            // labelTotalValue
             // 
-            label16.AutoSize = true;
-            label16.Cursor = Cursors.Hand;
-            label16.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(36, 59);
-            label16.Name = "label16";
-            label16.Size = new Size(143, 37);
-            label16.TabIndex = 29;
-            label16.Text = "$ 120000 ";
+            labelTotalValue.AutoSize = true;
+            labelTotalValue.Cursor = Cursors.Hand;
+            labelTotalValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            labelTotalValue.ForeColor = Color.White;
+            labelTotalValue.Location = new Point(36, 59);
+            labelTotalValue.Name = "labelTotalValue";
+            labelTotalValue.Size = new Size(143, 37);
+            labelTotalValue.TabIndex = 29;
+            labelTotalValue.Text = "$ 120000 ";
             // 
             // pictureBox14
             // 
@@ -202,7 +203,7 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(7, 136);
+            label1.Location = new Point(3, 136);
             label1.Name = "label1";
             label1.Size = new Size(105, 28);
             label1.TabIndex = 29;
@@ -214,7 +215,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(330, 136);
+            label2.Location = new Point(245, 136);
             label2.Name = "label2";
             label2.Size = new Size(132, 28);
             label2.TabIndex = 32;
@@ -224,20 +225,33 @@
             // 
             DataViewOutOfStock.BackgroundColor = Color.White;
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
+            DataViewOutOfStock.CellBorderStyle = DataGridViewCellBorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataViewOutOfStock.Location = new Point(332, 167);
+            DataViewOutOfStock.Location = new Point(245, 170);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(329, 494);
+            DataViewOutOfStock.Size = new Size(263, 494);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Transparent;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = Color.White;
             dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(323, 494);
+            dataGridView1.Size = new Size(237, 494);
             dataGridView1.TabIndex = 30;
             // 
             // label3
@@ -246,19 +260,20 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(661, 136);
+            label3.Location = new Point(512, 139);
             label3.Name = "label3";
-            label3.Size = new Size(133, 28);
+            label3.Size = new Size(182, 28);
             label3.TabIndex = 39;
-            label3.Text = "Stock Vs Sales";
+            label3.Text = "Top5 Products Sold";
             // 
             // pbStockVsSales
             // 
-            pbStockVsSales.BackColor = Color.White;
-            pbStockVsSales.Location = new Point(664, 167);
+            pbStockVsSales.BackColor = Color.Azure;
+            pbStockVsSales.BackgroundImageLayout = ImageLayout.None;
+            pbStockVsSales.Location = new Point(512, 167);
             pbStockVsSales.Margin = new Padding(0);
             pbStockVsSales.Name = "pbStockVsSales";
-            pbStockVsSales.Size = new Size(444, 494);
+            pbStockVsSales.Size = new Size(596, 494);
             pbStockVsSales.TabIndex = 34;
             pbStockVsSales.TabStop = false;
             // 
@@ -266,7 +281,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
+            BackColor = Color.White;
             Controls.Add(label3);
             Controls.Add(DataViewOutOfStock);
             Controls.Add(dataGridView1);
@@ -297,14 +312,14 @@
         #endregion
         private Panel panel5;
         private PictureBox pictureBox15;
-        private Label label18;
-        private Label label17;
+        private Label labelTotalProduct;
+        private Label TotalProduct;
         private Panel panel3;
-        private Label label14;
+        private Label labelTotalStock;
         private Label label13;
         private PictureBox pictureBox13;
         private Panel panel4;
-        private Label label16;
+        private Label labelTotalValue;
         private PictureBox pictureBox14;
         private Label label15;
         private Label label1;

@@ -14,8 +14,6 @@ public partial class UserControlInvoice : UserControl
         InitializeComponent();
 
         DesignHelper.MakeAllInputs(this);
-        DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
-        DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
         DesignHelper.StyleDataGridView(dgvInvoice);
         dgvInvoice.CellPainting += DesignHelper.dataGridView1_CellPainting;
         btnClear.Click += HandleClearTextBox;

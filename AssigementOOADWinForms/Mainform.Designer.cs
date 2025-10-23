@@ -74,7 +74,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(28, 126, 214);
+            panel2.BackColor = Color.RoyalBlue;
             panel2.BackgroundImageLayout = ImageLayout.None;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(pictureBox8);
@@ -102,7 +102,7 @@
             panel2.Controls.Add(LbDash);
             panel2.Location = new Point(4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(199, 743);
+            panel2.Size = new Size(199, 752);
             panel2.TabIndex = 1;
             // 
             // label2
@@ -119,7 +119,7 @@
             // 
             // pictureBox8
             // 
-            pictureBox8.BackgroundImage = Properties.Resources.icons8_logout_96;
+            pictureBox8.BackgroundImage = Properties.Resources.icons8_adjustment_100;
             pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox8.Cursor = Cursors.AppStarting;
             pictureBox8.Location = new Point(17, 590);
@@ -165,7 +165,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.BackgroundImage = Properties.Resources.icons8_logout_96;
+            pictureBox2.BackgroundImage = Properties.Resources.icons8_purchase_100;
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox2.Cursor = Cursors.AppStarting;
             pictureBox2.Location = new Point(17, 543);
@@ -384,23 +384,22 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.FromArgb(28, 126, 214);
+            panel1.BackColor = Color.SlateBlue;
             panel1.BackgroundImageLayout = ImageLayout.None;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(LbPage);
-            panel1.Location = new Point(206, 4);
+            panel1.Location = new Point(206, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1109, 75);
+            panel1.Size = new Size(1109, 86);
             panel1.TabIndex = 0;
             // 
             // LbPage
             // 
             LbPage.AutoSize = true;
-            LbPage.BackColor = Color.FromArgb(28, 126, 214);
+            LbPage.BackColor = Color.Transparent;
             LbPage.Cursor = Cursors.Hand;
             LbPage.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             LbPage.ForeColor = Color.White;
-            LbPage.Location = new Point(433, 16);
+            LbPage.Location = new Point(425, 21);
             LbPage.Name = "LbPage";
             LbPage.Size = new Size(207, 37);
             LbPage.TabIndex = 29;
@@ -410,10 +409,10 @@
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelMain.BackColor = Color.White;
-            panelMain.Location = new Point(204, 82);
+            panelMain.Location = new Point(206, 92);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1114, 664);
+            panelMain.Size = new Size(1109, 664);
             panelMain.TabIndex = 7;
             // 
             // Mainform
@@ -421,7 +420,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1323, 751);
+            ClientSize = new Size(1321, 761);
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);

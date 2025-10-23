@@ -1,15 +1,16 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace AssigementOOADWinForms
 {
     public static class ChartHelper
     {
+        // Create a rounded rectangle path
         private static GraphicsPath RoundedRect(Rectangle rect, int radius)
         {
             var path = new GraphicsPath();
             int d = radius * 2;
-
             path.AddArc(rect.X, rect.Y, d, d, 180, 90);
             path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
             path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
@@ -18,131 +19,95 @@ namespace AssigementOOADWinForms
             return path;
         }
 
-        // === DrawStockVsSales ===
-        public static void DrawStockVsSales(Graphics g, string[] products, int[] stock, int[] sales, int width, int height)
+        // Draw Stock vs Sales chart (iOS 26 style, full rounded)
+        public static void DrawStockVsSales(Graphics g, Rectangle bounds, string[] products, int[] sales, float progress = 1f)
         {
+            if (products == null || products.Length == 0 || sales == null || sales.Length == 0)
+                return;
+
             g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-            using (var bgBrush = new LinearGradientBrush(new Rectangle(0, 0, width, height),
-                Color.FromArgb(245, 247, 250), Color.FromArgb(230, 235, 240), 90f))
+            // Clip whole chart to rounded-lg
+            using (var clipPath = RoundedRect(bounds, 30)) // 30 = large rounded corners
             {
-                g.FillRectangle(bgBrush, 0, 0, width, height);
-            }
+                g.SetClip(clipPath);
 
-            int count = products.Length;
-            if (count == 0) return;
+                // Clear background (soft iOS color)
+                g.Clear(Color.FromArgb(245, 247, 250));
 
-            int margin = 30;
-            int barWidth = (width - 2 * margin) / (count * 2);
-            int maxVal = Math.Max(Max(stock), Max(sales));
-            maxVal = maxVal == 0 ? 1 : maxVal;
+                int count = products.Length;
+                int marginTop = 20;
+                int marginBottom = 30;
+                int sidePadding = 20;
+                int spacing = 8;
+                int barWidth = (bounds.Width - 2 * sidePadding - (count - 1) * spacing) / count;
+                int totalSales = TotalSales(sales);
 
-            using (var font = new Font("Segoe UI", 9, FontStyle.Bold))
-            using (var textBrush = new SolidBrush(Color.FromArgb(51, 51, 51)))
-            using (var borderPen = new Pen(Color.FromArgb(80, 80, 80), 1f))
-            {
-                for (int i = 0; i < count; i++)
+                using (var font = new Font("Segoe UI", 9, FontStyle.Bold))
+                using (var textBrush = new SolidBrush(Color.FromArgb(40, 40, 40)))
+                using (var percentFont = new Font("Segoe UI", 8, FontStyle.Bold))
+                using (var percentBrush = new SolidBrush(Color.White))
+                using (var trackBrush = new SolidBrush(Color.FromArgb(50, 135, 206, 250))) // translucent azure track
                 {
-                    int x = margin + i * barWidth * 2;
-
-                    int stockHeight = (int)((stock[i] / (float)maxVal) * (height - 60));
-                    if (stockHeight < 1) stockHeight = 1;
-                    Rectangle stockRect = new Rectangle(x, height - margin - stockHeight, barWidth, stockHeight);
-                    using (var stockBrush = new LinearGradientBrush(stockRect, Color.MediumSeaGreen, Color.Honeydew, 90f))
-                    using (var path = RoundedRect(stockRect, 6))
+                    for (int i = 0; i < count; i++)
                     {
-                        g.FillPath(stockBrush, path);
-                        g.DrawPath(borderPen, path);
+                        int x = sidePadding + i * (barWidth + spacing);
+
+                        // Draw background track
+                        Rectangle trackRect = new Rectangle(x, marginTop, barWidth, bounds.Height - marginTop - marginBottom);
+                        using (var trackPath = RoundedRect(trackRect, 6))
+                            g.FillPath(trackBrush, trackPath);
+
+                        // Bar height proportional to total sales
+                        int targetHeight = (int)((sales[i] / (float)totalSales) * (bounds.Height - marginTop - marginBottom));
+                        int barHeight = (int)(targetHeight * Math.Min(progress, 1f));
+                        if (barHeight < 1) barHeight = 1;
+
+                        int y = bounds.Height - marginBottom - barHeight;
+                        Rectangle rect = new Rectangle(x, y, barWidth, barHeight);
+
+                        // Draw actual bar with gradient and subtle inner glow
+                        using (var brush = new LinearGradientBrush(rect, Color.FromArgb(0, 122, 255), Color.FromArgb(100, 200, 255), 90f))
+                        using (var path = RoundedRect(rect, 6))
+                        {
+                            g.FillPath(brush, path);
+
+                            using (var glowBrush = new SolidBrush(Color.FromArgb(30, 255, 255, 255)))
+                            {
+                                Rectangle glowRect = new Rectangle(rect.X, rect.Y, rect.Width, rect.Height / 3);
+                                using (var glowPath = RoundedRect(glowRect, 6))
+                                    g.FillPath(glowBrush, glowPath);
+                            }
+
+                            // Draw product name
+                            PointF textPoint = new PointF(rect.X + rect.Width / 2f, bounds.Height - marginBottom + 5);
+                            g.DrawString(products[i], font, textBrush, textPoint,
+                                new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Near });
+
+                            // Draw percentage inside bar
+                            float textY = rect.Y + rect.Height / 2f - 6;
+                            if (textY < marginTop) textY = marginTop;
+                            PointF percentPoint = new PointF(rect.X + rect.Width / 2f, textY);
+                            float percentValue = (sales[i] / (float)totalSales) * 100f * Math.Min(progress, 1f);
+                            g.DrawString($"{percentValue:0.0}%", percentFont, percentBrush, percentPoint,
+                                new StringFormat { Alignment = StringAlignment.Center });
+                        }
                     }
-
-                    int salesHeight = (int)((sales[i] / (float)maxVal) * (height - 60));
-                    if (salesHeight < 1) salesHeight = 1;
-                    Rectangle salesRect = new Rectangle(x + barWidth, height - margin - salesHeight, barWidth, salesHeight);
-                    using (var salesBrush = new LinearGradientBrush(salesRect, Color.DodgerBlue, Color.LightSkyBlue, 90f))
-                    using (var path = RoundedRect(salesRect, 6))
-                    {
-                        g.FillPath(salesBrush, path);
-                        g.DrawPath(borderPen, path);
-                    }
-
-                    using (var sf = new StringFormat { Alignment = StringAlignment.Center })
-                        g.DrawString(products[i], font, textBrush, x + barWidth, height - margin + 5, sf);
                 }
+
+                // Remove clip after drawing
+                g.ResetClip();
             }
         }
 
-        // === DrawLineChart ===
-        public static void DrawLineChart(Graphics g, string[] labels, int[] values, Color lineColor, string title, int width, int height)
+        // Helper: total sales
+        private static int TotalSales(int[] values)
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-
-            // Background
-            using (var bg = new LinearGradientBrush(new Rectangle(0, 0, width, height),
-                Color.FromArgb(245, 247, 250), Color.FromArgb(230, 235, 240), LinearGradientMode.Vertical))
-            {
-                g.FillRectangle(bg, 0, 0, width, height);
-            }
-
-            int count = labels.Length;
-            if (count == 0) return;
-
-            int margin = 40;
-            int chartHeight = height - 2 * margin;
-            int chartWidth = width - 2 * margin;
-            int maxVal = Max(values);
-            maxVal = maxVal == 0 ? 1 : maxVal;
-
-            PointF[] points = new PointF[count];
-            for (int i = 0; i < count; i++)
-            {
-                float x = margin + i * chartWidth / (float)(count - 1);
-                float y = height - margin - (values[i] / (float)maxVal) * chartHeight;
-                points[i] = new PointF(x, y);
-            }
-
-            using (GraphicsPath smoothPath = CreateSmoothCurve(points))
-            using (Pen linePen = new Pen(lineColor, 2) { StartCap = LineCap.Round, EndCap = LineCap.Round })
-            {
-                g.DrawPath(linePen, smoothPath);
-
-                foreach (var p in points)
-                {
-                    using (SolidBrush halo = new SolidBrush(Color.FromArgb(70, lineColor)))
-                        g.FillEllipse(halo, p.X - 6, p.Y - 6, 12, 12);
-                    using (SolidBrush pointBrush = new SolidBrush(lineColor))
-                        g.FillEllipse(pointBrush, p.X - 4, p.Y - 4, 8, 8);
-                }
-            }
-
-            using (Font titleFont = new Font("Segoe UI", 10, FontStyle.Bold))
-            using (Font labelFont = new Font("Segoe UI", 8))
-            using (SolidBrush textBrush = new SolidBrush(Color.FromArgb(51, 51, 51)))
-            {
-                StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
-                g.DrawString(title, titleFont, textBrush, new PointF(width / 2f, 8), center);
-
-                for (int i = 0; i < count; i++)
-                    g.DrawString(labels[i], labelFont, textBrush, points[i].X, height - margin + 5, center);
-            }
-
-            using (Pen baseLine = new Pen(Color.FromArgb(220, 225, 230), 1))
-                g.DrawLine(baseLine, margin, height - margin, width - margin, height - margin);
-        }
-
-        private static GraphicsPath CreateSmoothCurve(PointF[] points)
-        {
-            GraphicsPath path = new GraphicsPath();
-            if (points.Length < 2) return path;
-            path.AddCurve(points, 0.5f);
-            return path;
-        }
-
-        private static int Max(int[] values)
-        {
-            int max = 0;
+            int sum = 0;
             foreach (int v in values)
-                if (v > max) max = v;
-            return max;
+                sum += v;
+            return sum == 0 ? 1 : sum; // avoid division by zero
         }
     }
 }

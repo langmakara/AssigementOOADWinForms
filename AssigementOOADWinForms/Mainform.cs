@@ -2,7 +2,6 @@
 namespace AssigementOOADWinForms;
 public partial class Mainform : Form
 {
-    private readonly HttpClient _httpClient;
     private UserControlDashboard? userControlDashboard;
     private UserControlInventory? userControlInventory;
     private UserControlUser? userControlUser;
@@ -15,9 +14,6 @@ public partial class Mainform : Form
     public Mainform()
     {
         InitializeComponent();
-        DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
-        DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
-        DesignHelper.ApplyRoundedStyle(panelMain, borderRadius: 5);
         userControlDashboard = new UserControlDashboard();
         userControlInventory = new UserControlInventory();
         userControlUser = new UserControlUser();

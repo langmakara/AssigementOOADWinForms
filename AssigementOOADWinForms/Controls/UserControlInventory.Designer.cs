@@ -30,22 +30,24 @@
         {
             dgvinventory = new DataGridView();
             label1 = new Label();
-            btnRefresh = new Button();
+            btnSave = new Button();
             label2 = new Label();
             comboTransaction = new ComboBox();
             label3 = new Label();
             textQuantityChange = new TextBox();
             textUnitPrice = new TextBox();
             panel3 = new Panel();
-            label14 = new Label();
+            lbTransactionTotal = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
-            button2 = new Button();
+            btnRemove = new Button();
             comboProduct = new ComboBox();
             label7 = new Label();
             label4 = new Label();
-            button3 = new Button();
+            btnClear = new Button();
             panel1 = new Panel();
+            label6 = new Label();
+            textTransactionID = new TextBox();
             datetimeTransactionDate = new DateTimePicker();
             panel2 = new Panel();
             label5 = new Label();
@@ -78,26 +80,26 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(8, 1);
+            label1.Location = new Point(8, 80);
             label1.Name = "label1";
             label1.Size = new Size(100, 28);
             label1.TabIndex = 30;
             label1.Text = "ProductID";
             // 
-            // btnRefresh
+            // btnSave
             // 
-            btnRefresh.BackColor = Color.DodgerBlue;
-            btnRefresh.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRefresh.FlatAppearance.BorderSize = 0;
-            btnRefresh.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(788, 575);
-            btnRefresh.Margin = new Padding(0);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(165, 45);
-            btnRefresh.TabIndex = 31;
-            btnRefresh.Text = "Save";
-            btnRefresh.UseVisualStyleBackColor = false;
+            btnSave.BackColor = Color.DodgerBlue;
+            btnSave.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(788, 575);
+            btnSave.Margin = new Padding(0);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(165, 45);
+            btnSave.TabIndex = 31;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -105,7 +107,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(11, 96);
+            label2.Location = new Point(6, 156);
             label2.Name = "label2";
             label2.Size = new Size(137, 28);
             label2.TabIndex = 32;
@@ -115,9 +117,9 @@
             // 
             comboTransaction.Font = new Font("Segoe UI", 15F);
             comboTransaction.FormattingEnabled = true;
-            comboTransaction.Location = new Point(800, 129);
+            comboTransaction.Location = new Point(11, 187);
             comboTransaction.Name = "comboTransaction";
-            comboTransaction.Size = new Size(304, 36);
+            comboTransaction.Size = new Size(296, 36);
             comboTransaction.TabIndex = 0;
             // 
             // label3
@@ -126,7 +128,7 @@
             label3.Cursor = Cursors.Hand;
             label3.Font = new Font("Segoe UI", 15F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 193);
+            label3.Location = new Point(7, 232);
             label3.Name = "label3";
             label3.Size = new Size(154, 28);
             label3.TabIndex = 33;
@@ -134,24 +136,25 @@
             // 
             // textQuantityChange
             // 
-            textQuantityChange.Location = new Point(800, 226);
+            textQuantityChange.Location = new Point(11, 263);
             textQuantityChange.Multiline = true;
             textQuantityChange.Name = "textQuantityChange";
-            textQuantityChange.Size = new Size(304, 37);
+            textQuantityChange.Size = new Size(296, 37);
             textQuantityChange.TabIndex = 34;
             // 
             // textUnitPrice
             // 
-            textUnitPrice.Location = new Point(800, 324);
+            textUnitPrice.Location = new Point(11, 340);
             textUnitPrice.Multiline = true;
             textUnitPrice.Name = "textUnitPrice";
-            textUnitPrice.Size = new Size(304, 37);
+            textUnitPrice.ReadOnly = true;
+            textUnitPrice.Size = new Size(296, 37);
             textUnitPrice.TabIndex = 36;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 128, 0);
-            panel3.Controls.Add(label14);
+            panel3.Controls.Add(lbTransactionTotal);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
             panel3.Location = new Point(789, 483);
@@ -159,17 +162,17 @@
             panel3.Size = new Size(319, 90);
             panel3.TabIndex = 102;
             // 
-            // label14
+            // lbTransactionTotal
             // 
-            label14.AutoSize = true;
-            label14.Cursor = Cursors.Hand;
-            label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(26, 40);
-            label14.Name = "label14";
-            label14.Size = new Size(97, 37);
-            label14.TabIndex = 28;
-            label14.Text = "12000";
+            lbTransactionTotal.AutoSize = true;
+            lbTransactionTotal.Cursor = Cursors.Hand;
+            lbTransactionTotal.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lbTransactionTotal.ForeColor = Color.White;
+            lbTransactionTotal.Location = new Point(26, 40);
+            lbTransactionTotal.Name = "lbTransactionTotal";
+            lbTransactionTotal.Size = new Size(97, 37);
+            lbTransactionTotal.TabIndex = 28;
+            lbTransactionTotal.Text = "12000";
             // 
             // label13
             // 
@@ -180,9 +183,9 @@
             label13.ForeColor = Color.White;
             label13.Location = new Point(11, 12);
             label13.Name = "label13";
-            label13.Size = new Size(216, 28);
+            label13.Size = new Size(185, 28);
             label13.TabIndex = 27;
-            label13.Text = "Transation Per Month";
+            label13.Text = "Total_Transactions";
             // 
             // pictureBox13
             // 
@@ -195,28 +198,28 @@
             pictureBox13.TabIndex = 27;
             pictureBox13.TabStop = false;
             // 
-            // button2
+            // btnRemove
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 0);
-            button2.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(788, 619);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(319, 45);
-            button2.TabIndex = 104;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
+            btnRemove.BackColor = Color.FromArgb(255, 128, 0);
+            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnRemove.FlatAppearance.BorderSize = 0;
+            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnRemove.ForeColor = Color.White;
+            btnRemove.Location = new Point(788, 619);
+            btnRemove.Margin = new Padding(0);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(319, 45);
+            btnRemove.TabIndex = 104;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = false;
             // 
             // comboProduct
             // 
             comboProduct.Font = new Font("Segoe UI", 15F);
             comboProduct.FormattingEnabled = true;
-            comboProduct.Location = new Point(797, 32);
+            comboProduct.Location = new Point(11, 111);
             comboProduct.Name = "comboProduct";
-            comboProduct.Size = new Size(304, 36);
+            comboProduct.Size = new Size(296, 36);
             comboProduct.TabIndex = 108;
             // 
             // label7
@@ -225,7 +228,7 @@
             label7.Cursor = Cursors.Hand;
             label7.Font = new Font("Segoe UI", 15F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(11, 291);
+            label7.Location = new Point(8, 309);
             label7.Name = "label7";
             label7.Size = new Size(91, 28);
             label7.TabIndex = 111;
@@ -237,49 +240,75 @@
             label4.Cursor = Cursors.Hand;
             label4.Font = new Font("Segoe UI", 15F);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(8, 389);
+            label4.Location = new Point(8, 386);
             label4.Name = "label4";
             label4.Size = new Size(151, 28);
             label4.TabIndex = 113;
             label4.Text = "TransactionDate";
             // 
-            // button3
+            // btnClear
             // 
-            button3.BackColor = Color.White;
-            button3.FlatAppearance.BorderColor = Color.DodgerBlue;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            button3.ForeColor = Color.DodgerBlue;
-            button3.Location = new Point(958, 575);
-            button3.Margin = new Padding(0);
-            button3.Name = "button3";
-            button3.Size = new Size(150, 45);
-            button3.TabIndex = 114;
-            button3.Text = "Clear";
-            button3.UseVisualStyleBackColor = false;
+            btnClear.BackColor = Color.White;
+            btnClear.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClear.ForeColor = Color.DodgerBlue;
+            btnClear.Location = new Point(958, 575);
+            btnClear.Margin = new Padding(0);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(150, 45);
+            btnClear.TabIndex = 114;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(textTransactionID);
             panel1.Controls.Add(datetimeTransactionDate);
             panel1.Controls.Add(label7);
+            panel1.Controls.Add(comboProduct);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
+            panel1.Controls.Add(textQuantityChange);
+            panel1.Controls.Add(textUnitPrice);
+            panel1.Controls.Add(comboTransaction);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(789, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(319, 478);
             panel1.TabIndex = 103;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Cursor = Cursors.Hand;
+            label6.Font = new Font("Segoe UI", 15F);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(8, 3);
+            label6.Name = "label6";
+            label6.Size = new Size(129, 28);
+            label6.TabIndex = 131;
+            label6.Text = "TransactionID";
+            // 
+            // textTransactionID
+            // 
+            textTransactionID.Location = new Point(11, 34);
+            textTransactionID.Multiline = true;
+            textTransactionID.Name = "textTransactionID";
+            textTransactionID.Size = new Size(296, 37);
+            textTransactionID.TabIndex = 124;
+            // 
             // datetimeTransactionDate
             // 
             datetimeTransactionDate.CalendarForeColor = Color.FromArgb(64, 64, 64);
             datetimeTransactionDate.CalendarTitleForeColor = Color.FromArgb(64, 64, 64);
             datetimeTransactionDate.Font = new Font("Segoe UI", 15F);
-            datetimeTransactionDate.Location = new Point(11, 420);
+            datetimeTransactionDate.Location = new Point(11, 417);
             datetimeTransactionDate.Name = "datetimeTransactionDate";
-            datetimeTransactionDate.Size = new Size(304, 34);
+            datetimeTransactionDate.Size = new Size(296, 34);
             datetimeTransactionDate.TabIndex = 130;
             // 
             // panel2
@@ -395,15 +424,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             Controls.Add(panel2);
-            Controls.Add(button3);
-            Controls.Add(comboProduct);
-            Controls.Add(button2);
+            Controls.Add(btnClear);
+            Controls.Add(btnRemove);
             Controls.Add(panel3);
-            Controls.Add(textUnitPrice);
-            Controls.Add(textQuantityChange);
-            Controls.Add(btnRefresh);
+            Controls.Add(btnSave);
             Controls.Add(dgvinventory);
-            Controls.Add(comboTransaction);
             Controls.Add(panel1);
             Name = "UserControlInventory";
             Size = new Size(1111, 664);
@@ -416,27 +441,26 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private DataGridView dgvinventory;
         private Label label1;
-        private Button btnRefresh;
+        private Button btnSave;
         private Label label2;
         private ComboBox comboTransaction;
         private Label label3;
         private TextBox textQuantityChange;
         private TextBox textUnitPrice;
         private Panel panel3;
-        private Label label14;
+        private Label lbTransactionTotal;
         private Label label13;
         private PictureBox pictureBox13;
-        private Button button2;
+        private Button btnRemove;
         private ComboBox comboProduct;
         private Label label7;
         private Label label4;
-        private Button button3;
+        private Button btnClear;
         private Panel panel1;
         private Panel panel2;
         private Label label9;
@@ -448,5 +472,7 @@
         private ComboBox comboSearchByProduct;
         private DateTimePicker dateTimeSearchStart;
         private Label label5;
+        private TextBox textTransactionID;
+        private Label label6;
     }
 }
