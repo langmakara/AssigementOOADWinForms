@@ -47,7 +47,6 @@
             lbSeach = new Label();
             button3 = new Button();
             btSave = new Button();
-            btnRemove = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -259,7 +258,7 @@
             lbSeach.Padding = new Padding(0, 4, 0, 3);
             lbSeach.Size = new Size(274, 42);
             lbSeach.TabIndex = 126;
-            lbSeach.Text = "Seach By NameProduct";
+            lbSeach.Text = "Seach By ProductName";
             // 
             // button3
             // 
@@ -268,7 +267,7 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(884, 750);
+            button3.Location = new Point(881, 772);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
             button3.Size = new Size(380, 60);
@@ -284,7 +283,7 @@
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(880, 681);
+            btSave.Location = new Point(881, 695);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
             btSave.Size = new Size(383, 60);
@@ -293,28 +292,11 @@
             btSave.UseVisualStyleBackColor = false;
             btSave.Click += btSave_Click;
             // 
-            // btnRemove
-            // 
-            btnRemove.BackColor = Color.NavajoWhite;
-            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRemove.FlatAppearance.BorderSize = 0;
-            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRemove.ForeColor = Color.DimGray;
-            btnRemove.Location = new Point(884, 821);
-            btnRemove.Margin = new Padding(0);
-            btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(380, 60);
-            btnRemove.TabIndex = 129;
-            btnRemove.Text = "Remove";
-            btnRemove.UseVisualStyleBackColor = false;
-            btnRemove.Click += btnRemove_Click;
-            // 
             // UserControlProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            Controls.Add(btnRemove);
             Controls.Add(button3);
             Controls.Add(btSave);
             Controls.Add(panel1);
@@ -351,6 +333,5 @@
         private Button btSave;
         private TextBox tbUnitPrice;
         private TextBox tbProductID;
-        private Button btnRemove;
     }
 }
