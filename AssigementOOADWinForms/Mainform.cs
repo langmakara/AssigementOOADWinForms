@@ -12,6 +12,8 @@ public partial class Mainform : Form
     private UserControlInvoiceDetail? userControlInvoiceDetail;
     private UserControlInvoice? userControlInvoice;
     private UserControlPurchasOrder? userControlPurchaseOrder;
+    private UserControlPayment? UserControlPayment;
+
     public Mainform()
     {
         InitializeComponent();
@@ -23,6 +25,7 @@ public partial class Mainform : Form
         userControlUser = new UserControlUser();
         userControlEmployee = new UserControlEmployee();
         userControlSupplier = new UserControlSupplier();
+        UserControlPayment = new UserControlPayment();
         userControlProduct = new UserControlProduct();
         userControlInvoiceDetail = new UserControlInvoiceDetail();
         userControlInvoice = new UserControlInvoice();
@@ -36,6 +39,7 @@ public partial class Mainform : Form
         Lbproduct.Click += HandleClickProduct;
         LbInvoice.Click += HandleClickInvoice;
         LbPurchaseOrder.Click += HandleClickPurchaseOrder;
+        LbPayment.Click += HandleClickPayment;
         this.Load += Form1_Load;
     }
     private void Lbproduct_Click(object? sender, EventArgs e)
@@ -148,6 +152,18 @@ public partial class Mainform : Form
         {
             panelMain.Controls.Add(userControlDashboard);
             userControlDashboard.Dock = DockStyle.Fill;
+        }
+    }
+
+    private void HandleClickPayment(object? sender, EventArgs e)
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbPayment.Text;
+        if (UserControlPayment != null)
+        {
+            panelMain.Controls.Add(UserControlPayment);
+            UserControlPayment.Dock = DockStyle.Fill;
         }
     }
 

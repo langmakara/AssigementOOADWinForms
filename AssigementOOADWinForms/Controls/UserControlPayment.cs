@@ -24,8 +24,8 @@ namespace AssigementOOADWinForms.Controls
 
         private void button3_Click(object sender, EventArgs e)
         {
-            tbSaleID.Clear();
-            tbPaymentDate.Clear();
+            tbPaymentID.Clear();
+            tbCustomerName.Clear();
             tbPaymentMethod.Clear();
             tbAmountPaid.Clear();
         }
