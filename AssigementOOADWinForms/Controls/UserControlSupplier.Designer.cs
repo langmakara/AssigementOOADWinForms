@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             btClear = new Button();
-            btRemove = new Button();
             btSave = new Button();
             panel1 = new Panel();
             lbSupplierID = new Label();
@@ -64,7 +63,7 @@
             btClear.FlatAppearance.BorderSize = 0;
             btClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btClear.ForeColor = Color.White;
-            btClear.Location = new Point(882, 757);
+            btClear.Location = new Point(880, 779);
             btClear.Margin = new Padding(0);
             btClear.Name = "btClear";
             btClear.Size = new Size(382, 60);
@@ -73,21 +72,6 @@
             btClear.UseVisualStyleBackColor = false;
             btClear.Click += btClear_Click;
             // 
-            // btRemove
-            // 
-            btRemove.BackColor = Color.WhiteSmoke;
-            btRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btRemove.FlatAppearance.BorderSize = 0;
-            btRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btRemove.ForeColor = Color.DimGray;
-            btRemove.Location = new Point(882, 821);
-            btRemove.Margin = new Padding(0);
-            btRemove.Name = "btRemove";
-            btRemove.Size = new Size(383, 60);
-            btRemove.TabIndex = 134;
-            btRemove.Text = "Remove";
-            btRemove.UseVisualStyleBackColor = false;
-            // 
             // btSave
             // 
             btSave.BackColor = Color.DodgerBlue;
@@ -95,7 +79,7 @@
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(882, 693);
+            btSave.Location = new Point(882, 707);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
             btSave.Size = new Size(382, 60);
@@ -269,7 +253,7 @@
             panel2.Location = new Point(1, 1);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(878, 106);
+            panel2.Size = new Size(876, 106);
             panel2.TabIndex = 131;
             // 
             // tbSeach
@@ -293,49 +277,49 @@
             lbSeach.Location = new Point(567, 30);
             lbSeach.Name = "lbSeach";
             lbSeach.Padding = new Padding(5, 5, 5, 7);
-            lbSeach.Size = new Size(274, 43);
+            lbSeach.Size = new Size(268, 43);
             lbSeach.TabIndex = 126;
-            lbSeach.Text = "Search By SupplierName";
+            lbSeach.Text = "Search By ContactName";
             // 
             // dgvSupplier
             // 
             dgvSupplier.AllowUserToAddRows = false;
             dgvSupplier.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.MenuHighlight;
-            dgvSupplier.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.MenuHighlight;
+            dgvSupplier.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvSupplier.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSupplier.BackgroundColor = SystemColors.ControlLightLight;
             dgvSupplier.BorderStyle = BorderStyle.None;
             dgvSupplier.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.MenuHighlight;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.MenuHighlight;
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvSupplier.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.MenuHighlight;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvSupplier.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Window;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.MenuHighlight;
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            dgvSupplier.DefaultCellStyle = dataGridViewCellStyle7;
             dgvSupplier.EnableHeadersVisualStyles = false;
             dgvSupplier.GridColor = SystemColors.ControlLight;
-            dgvSupplier.Location = new Point(3, 118);
+            dgvSupplier.Location = new Point(3, 114);
             dgvSupplier.Name = "dgvSupplier";
             dgvSupplier.ReadOnly = true;
             dgvSupplier.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dgvSupplier.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvSupplier.Size = new Size(874, 762);
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            dgvSupplier.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dgvSupplier.Size = new Size(874, 766);
             dgvSupplier.TabIndex = 136;
             dgvSupplier.CellClick += dgvSupplier_CellClick_1;
             // 
@@ -346,7 +330,6 @@
             BackColor = Color.Azure;
             Controls.Add(dgvSupplier);
             Controls.Add(btClear);
-            Controls.Add(btRemove);
             Controls.Add(btSave);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -364,7 +347,6 @@
         #endregion
 
         private Button btClear;
-        private Button btRemove;
         private Button btSave;
         private Panel panel1;
         private TextBox tbEmail;

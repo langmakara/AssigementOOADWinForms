@@ -23,22 +23,26 @@ namespace AssigementOOADWinForms.Controls
             using (SqlConnection conn = HandleConnection.GetSqlConnection())
             {
                 string query = "SELECT * FROM tbSupplier";
-
+                // search by ContactName
                 if (!string.IsNullOrEmpty(filter))
                 {
-                    query += " WHERE SupplierName LIKE @filter";
+                    query += " WHERE ContactName LIKE @filter";
                 }
-
                 SqlCommand cmd = new SqlCommand(query, conn);
                 if (!string.IsNullOrEmpty(filter))
                 {
                     cmd.Parameters.AddWithValue("@filter", "%" + filter + "%");
                 }
-
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvSupplier.DataSource = dt;
+                // Hide SupplierName and Email columns
+                if (dgvSupplier.Columns["SupplierName"] != null)
+                    dgvSupplier.Columns["SupplierName"].Visible = false;
+
+                if (dgvSupplier.Columns["Email"] != null)
+                    dgvSupplier.Columns["Email"].Visible = false;
             }
         }
 
@@ -97,6 +101,11 @@ namespace AssigementOOADWinForms.Controls
         private void LoadSuppliers()
         {
             dgvSupplier.DataSource = _service.GetAllSuppliers();
+            if (dgvSupplier.Columns["SupplierName"] != null)
+                dgvSupplier.Columns["SupplierName"].Visible = false;
+
+            if (dgvSupplier.Columns["Email"] != null)
+                dgvSupplier.Columns["Email"].Visible = false;
         }
 
         private void tbSeach_TextChanged_1(object sender, EventArgs e)

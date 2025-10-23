@@ -67,6 +67,9 @@ namespace AssigementOOADWinForms.Controls
         {
             var dt = _service.GetAllProducts();
             dgvProduct.DataSource = dt;
+            // Hide SupplierName and Email columns
+            if (dgvProduct.Columns["SupplierName"] != null)
+                dgvProduct.Columns["SupplierName"].Visible = false;
         }
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
@@ -95,6 +98,9 @@ namespace AssigementOOADWinForms.Controls
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvProduct.DataSource = dt;
+                // Hide SupplierName and Email columns
+                if (dgvProduct.Columns["SupplierName"] != null)
+                    dgvProduct.Columns["SupplierName"].Visible = false;
             }
         }
 
@@ -114,9 +120,6 @@ namespace AssigementOOADWinForms.Controls
             }
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Button clicked!"); // Test only
-        }
+       
     }
 }
