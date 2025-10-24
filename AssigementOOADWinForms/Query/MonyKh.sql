@@ -62,20 +62,40 @@ BEGIN
         VALUES (@ProductName, @SupplierID, @SupplierName, @UnitPrice, @QuantityInStock);
     END
 END;
---Delete Product by Product Name
-CREATE PROCEDURE sp_DeleteProductByName
-    @ProductName NVARCHAR(100)
+--StoreProcedure to Insert or Update Payment information
+CREATE PROCEDURE sp_InsertOrUpdatePayment
+    @PaymentID INT = NULL,
+    @InvoiceID INT,
+    @PaymentDate DATETIME = NULL,
+    @PaymentMethod VARCHAR(50),
+    @AmountPaid DECIMAL(18,2)
 AS
 BEGIN
     SET NOCOUNT ON;
-    IF EXISTS (SELECT 1 FROM tbProduct WHERE ProductName = @ProductName)
+
+    -- If PaymentDate not provided, use current date/time
+    IF @PaymentDate IS NULL
+        SET @PaymentDate = GETDATE();
+
+    -- Check if record exists
+    IF EXISTS (SELECT 1 FROM tbPayment WHERE PaymentID = @PaymentID AND InvoiceID = @InvoiceID)
     BEGIN
-        DELETE FROM tbProduct
-        WHERE ProductName = @ProductName;
-        PRINT 'Product deleted successfully.';
+        -- ✅ Update existing record
+        UPDATE tbPayment
+        SET
+            PaymentDate = @PaymentDate,
+            PaymentMethod = @PaymentMethod,
+            AmountPaid = @AmountPaid
+        WHERE PaymentID = @PaymentID AND InvoiceID = @InvoiceID;
+
+        PRINT 'Payment record updated successfully.';
     END
     ELSE
     BEGIN
-        PRINT 'Product not found.';
+        -- ✅ Insert new record
+        INSERT INTO tbPayment (InvoiceID, PaymentDate, PaymentMethod, AmountPaid)
+        VALUES (@InvoiceID, @PaymentDate, @PaymentMethod, @AmountPaid);
+
+        PRINT 'New payment record inserted successfully.';
     END
 END;
