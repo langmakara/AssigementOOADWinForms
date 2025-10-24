@@ -22,11 +22,5 @@ namespace AssigementOOADWinForms.Services
 
             _repo.SaveTransaction(model);
         }
-
-        public void DeleteTransaction(int transactionId)
-        {
-            if (transactionId <= 0) throw new ArgumentException("TransactionID must be greater than 0.");
-            _repo.DeleteTransaction(transactionId);
-        }
     }
 }

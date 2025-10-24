@@ -215,7 +215,7 @@
             label2.Cursor = Cursors.Hand;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(245, 136);
+            label2.Location = new Point(260, 136);
             label2.Name = "label2";
             label2.Size = new Size(132, 28);
             label2.TabIndex = 32;
@@ -227,9 +227,9 @@
             DataViewOutOfStock.BorderStyle = BorderStyle.None;
             DataViewOutOfStock.CellBorderStyle = DataGridViewCellBorderStyle.None;
             DataViewOutOfStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataViewOutOfStock.Location = new Point(245, 170);
+            DataViewOutOfStock.Location = new Point(260, 170);
             DataViewOutOfStock.Name = "DataViewOutOfStock";
-            DataViewOutOfStock.Size = new Size(263, 494);
+            DataViewOutOfStock.Size = new Size(248, 494);
             DataViewOutOfStock.TabIndex = 34;
             // 
             // dataGridView1
@@ -251,7 +251,7 @@
             dataGridView1.GridColor = Color.White;
             dataGridView1.Location = new Point(3, 167);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(237, 494);
+            dataGridView1.Size = new Size(251, 494);
             dataGridView1.TabIndex = 30;
             // 
             // label3

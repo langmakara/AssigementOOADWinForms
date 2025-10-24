@@ -95,7 +95,10 @@ namespace AssigementOOADWinForms.Controls
             {
                 "ReturnIn",
                 "ReturnOut",
-                "Transfer"
+                "Transfer",
+                "Sale",
+                "Purchase",
+                "Adjustment"
             });
             comboTransaction.DropDownStyle = ComboBoxStyle.DropDownList;
             comboTransaction.SelectedIndex = 0;
@@ -199,7 +202,6 @@ namespace AssigementOOADWinForms.Controls
 
             LoadTransactions();
         }
-
         // =======================================
         // 🔹 FORM LOGIC: Filter Transactions
         // =======================================

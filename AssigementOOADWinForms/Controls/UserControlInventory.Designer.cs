@@ -40,7 +40,6 @@
             lbTransactionTotal = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
-            btnRemove = new Button();
             comboProduct = new ComboBox();
             label7 = new Label();
             label4 = new Label();
@@ -96,7 +95,7 @@
             btnSave.Location = new Point(788, 575);
             btnSave.Margin = new Padding(0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(165, 45);
+            btnSave.Size = new Size(320, 45);
             btnSave.TabIndex = 31;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -198,21 +197,6 @@
             pictureBox13.TabIndex = 27;
             pictureBox13.TabStop = false;
             // 
-            // btnRemove
-            // 
-            btnRemove.BackColor = Color.FromArgb(255, 128, 0);
-            btnRemove.FlatAppearance.BorderColor = Color.DodgerBlue;
-            btnRemove.FlatAppearance.BorderSize = 0;
-            btnRemove.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnRemove.ForeColor = Color.White;
-            btnRemove.Location = new Point(788, 619);
-            btnRemove.Margin = new Padding(0);
-            btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(319, 45);
-            btnRemove.TabIndex = 104;
-            btnRemove.Text = "Remove";
-            btnRemove.UseVisualStyleBackColor = false;
-            // 
             // comboProduct
             // 
             comboProduct.Font = new Font("Segoe UI", 15F);
@@ -253,10 +237,10 @@
             btnClear.FlatAppearance.BorderSize = 0;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.ForeColor = Color.DodgerBlue;
-            btnClear.Location = new Point(958, 575);
+            btnClear.Location = new Point(789, 620);
             btnClear.Margin = new Padding(0);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(150, 45);
+            btnClear.Size = new Size(319, 41);
             btnClear.TabIndex = 114;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -425,7 +409,6 @@
             BackColor = Color.Azure;
             Controls.Add(panel2);
             Controls.Add(btnClear);
-            Controls.Add(btnRemove);
             Controls.Add(panel3);
             Controls.Add(btnSave);
             Controls.Add(dgvinventory);
@@ -456,7 +439,6 @@
         private Label lbTransactionTotal;
         private Label label13;
         private PictureBox pictureBox13;
-        private Button btnRemove;
         private ComboBox comboProduct;
         private Label label7;
         private Label label4;

@@ -31,21 +31,6 @@ namespace AssigementOOADWinForms.Repositories
 
 
         // -------------------------
-        // Delete Transaction
-        // -------------------------
-        public void DeleteTransaction(int transactionId)
-        {
-            using var conn = HandleConnection.GetSqlConnection();
-            using var cmd = new SqlCommand("sp_DeleteInventoryTransaction", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-
-            cmd.Parameters.AddWithValue("@TransactionID", transactionId);
-            cmd.ExecuteNonQuery();
-        }
-
-        // -------------------------
         // Get all transactions using stored procedure
         // -------------------------
         public List<InventoryTransactionDto> GetAllTransactions()
