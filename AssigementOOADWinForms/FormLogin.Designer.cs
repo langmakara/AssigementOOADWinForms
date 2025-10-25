@@ -26,7 +26,6 @@ partial class FormLogin
     /// </summary>
     private void InitializeComponent()
     {
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
         NovaCompany = new Label();
         pictureBox2 = new PictureBox();
         panel1 = new Panel();
@@ -38,9 +37,9 @@ partial class FormLogin
         tbPassword = new TextBox();
         panel2 = new Panel();
         panel3 = new Panel();
-        pictureBox1 = new PictureBox();
-        label1 = new Label();
         label2 = new Label();
+        label1 = new Label();
+        pictureBox1 = new PictureBox();
         ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
         panel3.SuspendLayout();
@@ -188,16 +187,14 @@ partial class FormLogin
         panel3.Size = new Size(445, 800);
         panel3.TabIndex = 12;
         // 
-        // pictureBox1
+        // label2
         // 
-        pictureBox1.Dock = DockStyle.Fill;
-        pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-        pictureBox1.Location = new Point(0, 0);
-        pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(1042, 800);
-        pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-        pictureBox1.TabIndex = 13;
-        pictureBox1.TabStop = false;
+        label2.AutoSize = true;
+        label2.Location = new Point(57, 215);
+        label2.Name = "label2";
+        label2.Size = new Size(369, 20);
+        label2.TabIndex = 13;
+        label2.Text = "Welcome to Nova Company! Please log in to continue.";
         // 
         // label1
         // 
@@ -209,14 +206,16 @@ partial class FormLogin
         label1.TabIndex = 12;
         label1.Text = "Make sure all fields are filled before logging in.";
         // 
-        // label2
+        // pictureBox1
         // 
-        label2.AutoSize = true;
-        label2.Location = new Point(57, 215);
-        label2.Name = "label2";
-        label2.Size = new Size(369, 20);
-        label2.TabIndex = 13;
-        label2.Text = "Welcome to Nova Company! Please log in to continue.";
+        pictureBox1.Dock = DockStyle.Fill;
+        pictureBox1.Image = Properties.Resources.kontakt_td4zgcpwpjf0ha6;
+        pictureBox1.Location = new Point(0, 0);
+        pictureBox1.Name = "pictureBox1";
+        pictureBox1.Size = new Size(1042, 800);
+        pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+        pictureBox1.TabIndex = 13;
+        pictureBox1.TabStop = false;
         // 
         // FormLogin
         // 
