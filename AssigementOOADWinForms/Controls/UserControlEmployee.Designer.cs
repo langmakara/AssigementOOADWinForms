@@ -39,6 +39,8 @@
             label6 = new Label();
             label7 = new Label();
             panel1 = new Panel();
+            label9 = new Label();
+            tbEmail = new TextBox();
             label8 = new Label();
             tbEmployeeID = new TextBox();
             tbPosition = new TextBox();
@@ -47,15 +49,13 @@
             label2 = new Label();
             label1 = new Label();
             panel3 = new Panel();
-            label14 = new Label();
+            lbTotalEmployee = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
             btClear = new Button();
             btRemove = new Button();
             btSave = new Button();
             cbPositionFilter = new ComboBox();
-            label9 = new Label();
-            tbEmail = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvemployee).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -198,6 +198,28 @@
             panel1.Size = new Size(381, 637);
             panel1.TabIndex = 69;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Cursor = Cursors.Hand;
+            label9.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(8, 273);
+            label9.Name = "label9";
+            label9.Size = new Size(77, 35);
+            label9.TabIndex = 71;
+            label9.Text = "Email";
+            // 
+            // tbEmail
+            // 
+            tbEmail.Font = new Font("Segoe UI", 15F);
+            tbEmail.Location = new Point(8, 312);
+            tbEmail.Margin = new Padding(3, 4, 3, 4);
+            tbEmail.Multiline = true;
+            tbEmail.Name = "tbEmail";
+            tbEmail.Size = new Size(343, 48);
+            tbEmail.TabIndex = 70;
+            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -277,7 +299,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 128, 0);
-            panel3.Controls.Add(label14);
+            panel3.Controls.Add(lbTotalEmployee);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
             panel3.Location = new Point(897, 639);
@@ -286,17 +308,17 @@
             panel3.Size = new Size(367, 119);
             panel3.TabIndex = 126;
             // 
-            // label14
+            // lbTotalEmployee
             // 
-            label14.AutoSize = true;
-            label14.Cursor = Cursors.Hand;
-            label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(21, 47);
-            label14.Name = "label14";
-            label14.Size = new Size(120, 46);
-            label14.TabIndex = 28;
-            label14.Text = "12000";
+            lbTotalEmployee.AutoSize = true;
+            lbTotalEmployee.Cursor = Cursors.Hand;
+            lbTotalEmployee.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lbTotalEmployee.ForeColor = Color.White;
+            lbTotalEmployee.Location = new Point(21, 47);
+            lbTotalEmployee.Name = "lbTotalEmployee";
+            lbTotalEmployee.Size = new Size(40, 46);
+            lbTotalEmployee.TabIndex = 28;
+            lbTotalEmployee.Text = "0";
             // 
             // label13
             // 
@@ -379,28 +401,6 @@
             cbPositionFilter.TabIndex = 0;
             cbPositionFilter.SelectedIndexChanged += CbPositionFilter_SelectedIndexChanged;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Cursor = Cursors.Hand;
-            label9.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(8, 273);
-            label9.Name = "label9";
-            label9.Size = new Size(77, 35);
-            label9.TabIndex = 71;
-            label9.Text = "Email";
-            // 
-            // tbEmail
-            // 
-            tbEmail.Font = new Font("Segoe UI", 15F);
-            tbEmail.Location = new Point(8, 312);
-            tbEmail.Margin = new Padding(3, 4, 3, 4);
-            tbEmail.Multiline = true;
-            tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(343, 48);
-            tbEmail.TabIndex = 70;
-            // 
             // UserControlEmployee
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -444,7 +444,7 @@
         private Label label2;
         private Label label1;
         private Panel panel3;
-        private Label label14;
+        private Label lbTotalEmployee;
         private Label label13;
         private PictureBox pictureBox13;
         private Button btClear;

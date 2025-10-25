@@ -71,6 +71,7 @@ namespace AssigementOOADWinForms.Controls
 
                 dgvemployee.DataSource = null;
                 dgvemployee.DataSource = employeesList;
+                UpdateEmployeeCount(); //Show total count
             }
             catch (Exception ex)
             {
@@ -86,7 +87,6 @@ namespace AssigementOOADWinForms.Controls
         {
             try
             {
-                // Ensure consistent type for allEmployees
                 var allEmployees = fromDatabase
                     ? _employeeService.GetAllEmployees().Select(e => new EmployeeDto
                     {
@@ -100,7 +100,6 @@ namespace AssigementOOADWinForms.Controls
                     }).ToList()
                     : employeesList;
 
-                // Extract distinct positions
                 var positions = allEmployees
                     .Select(e => e.Position ?? string.Empty)
                     .Where(pos => !string.IsNullOrWhiteSpace(pos))
@@ -108,14 +107,11 @@ namespace AssigementOOADWinForms.Controls
                     .OrderBy(pos => pos)
                     .ToList();
 
-                // Add "All" option at the top
                 positions.Insert(0, "All");
 
-                // Bind to ComboBox
                 cbPositionFilter.DataSource = null;
                 cbPositionFilter.DataSource = positions;
 
-                // Re-attach event (prevent duplicates)
                 cbPositionFilter.SelectedIndexChanged -= CbPositionFilter_SelectedIndexChanged;
                 cbPositionFilter.SelectedIndexChanged += CbPositionFilter_SelectedIndexChanged;
             }
@@ -152,14 +148,34 @@ namespace AssigementOOADWinForms.Controls
                     filtered = filtered.Where(e => e.Position == selectedPosition);
                 }
 
-                // Update DataGridView
                 dgvemployee.DataSource = null;
                 dgvemployee.DataSource = filtered.ToList();
+
+                UpdateEmployeeCount(); //Update count after filtering
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error while filtering employees:\n{ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ===============================
+        // Function to Show Total Employees
+        // ===============================
+        private void UpdateEmployeeCount()
+        {
+            try
+            {
+                if (lbTotalEmployee != null)
+                {
+                    int total = dgvemployee.Rows.Count;
+                    lbTotalEmployee.Text = $"{total}";
+                }
+            }
+            catch
+            {
+                // Ignore errors (e.g., if label not present)
             }
         }
 
@@ -209,7 +225,7 @@ namespace AssigementOOADWinForms.Controls
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            LoadEmployees(); //Refresh employee list and count
         }
 
         // ===============================
@@ -226,9 +242,7 @@ namespace AssigementOOADWinForms.Controls
                 }
 
                 int employeeId = 0;
-                // If you have a textbox for ID, use int.TryParse(tbEmployeeID.Text, out employeeId);
 
-                // If editing, get ID from selected row
                 if (dgvemployee.SelectedRows.Count > 0)
                 {
                     var selectedRow = dgvemployee.SelectedRows[0];
@@ -248,6 +262,7 @@ namespace AssigementOOADWinForms.Controls
                 };
                 _employeeService.SaveEmployee(model);
                 LoadEmployees();
+                UpdateEmployeeCount(); //Update count
             }
             catch (Exception ex)
             {
@@ -280,11 +295,11 @@ namespace AssigementOOADWinForms.Controls
                                                      MessageBoxIcon.Question);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    // Call service that executes sp_DeleteEmployee
                     _employeeService.RemoveEmployee(employee.EmployeeID);
-                    MessageBox.Show("User deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Employee deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadEmployees();
-                    LoadPositions(fromDatabase: true); // Refresh positions after deletion
+                    LoadPositions(fromDatabase: true);
+                    UpdateEmployeeCount(); //Update after deletion
                 }
             }
             catch (Exception ex)

@@ -14,6 +14,7 @@ namespace AssigementOOADWinForms.Controls
     {
         private List<PurchaseOrderDeailDots> purchaseOrderDetailDtos = new();
         private readonly PurchaseOrderDeailService _purchaseOrderDetailService = new();
+
         public UserControlPurchaseDetail()
         {
             InitializeComponent();
@@ -22,11 +23,13 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvPurchaseDetail);
+
             // DataGridView config
             dgvPurchaseDetail.SelectionChanged += SelectionRowChanges;
             dgvPurchaseDetail.CellPainting += DesignHelper.dataGridView1_CellPainting;
             dgvPurchaseDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPurchaseDetail.AutoGenerateColumns = true;
+
             // Events
             btClear.Click += HandleClearTextBox;
             btSave.Click += HandleSavePurchaseOrderDetail;
@@ -34,6 +37,7 @@ namespace AssigementOOADWinForms.Controls
             tbPurchaseDetailID.TextChanged += (s, e) => FilterPurchaseOrderDetails();
             this.Load += (s, e) => LoadPurchaseOrderDetails();
         }
+
         // ===============================
         // Load PurchaseOrderDetails from database
         // ===============================
@@ -50,8 +54,11 @@ namespace AssigementOOADWinForms.Controls
                     Quantity = p.Quantity,
                     UnitPrice = p.UnitPrice
                 }).ToList();
+
                 dgvPurchaseDetail.DataSource = null;
                 dgvPurchaseDetail.DataSource = purchaseOrderDetailDtos;
+
+                UpdatePurchaseDetailCount(); //Update total count
             }
             catch (SqlException sqlEx)
             {
@@ -61,21 +68,51 @@ namespace AssigementOOADWinForms.Controls
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
         // ===============================
         // Filter PurchaseOrderDetails Based on search criteria
         // ===============================
         private void FilterPurchaseOrderDetails()
         {
-            var filteredList = purchaseOrderDetailDtos.AsEnumerable();
-            if (int.TryParse(tbPurchaseDetailID.Text, out int purchaseDetailID))
+            try
             {
-                filteredList = filteredList.Where(p => p.PurchaseDetailID == purchaseDetailID);
-            }
-            dgvPurchaseDetail.DataSource = filteredList.ToList();
+                var filteredList = purchaseOrderDetailDtos.AsEnumerable();
 
+                if (int.TryParse(tbPurchaseDetailID.Text, out int purchaseDetailID))
+                {
+                    filteredList = filteredList.Where(p => p.PurchaseDetailID == purchaseDetailID);
+                }
+
+                dgvPurchaseDetail.DataSource = filteredList.ToList();
+
+                UpdatePurchaseDetailCount(); //Update after filtering
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error filtering purchase details:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        // ===============================
+        // Show Total Purchase Details
+        // ===============================
+        private void UpdatePurchaseDetailCount()
+        {
+            try
+            {
+                if (lbTotalPurchaseDetail != null)
+                {
+                    int total = dgvPurchaseDetail.Rows.Count;
+                    lbTotalPurchaseDetail.Text = $"{total}";
+                }
+            }
+            catch
+            {
+                // Ignore if label doesn't exist or grid not ready
+            }
+        }
+
         // ===============================
         // Clear all input fields
         // ===============================
@@ -87,6 +124,7 @@ namespace AssigementOOADWinForms.Controls
             tbQuantity.Clear();
             tbUnitPrice.Clear();
         }
+
         // ===============================
         // Selection & From Controls
         // ===============================
@@ -102,6 +140,7 @@ namespace AssigementOOADWinForms.Controls
             };
             DesignHelper.PopulateRowControls(dgvPurchaseDetail, map);
         }
+
         // ===============================
         // CRUD Operations
         // ===============================
@@ -109,7 +148,7 @@ namespace AssigementOOADWinForms.Controls
         {
             try
             {
-                //Basic validation
+                // Basic validation
                 if (string.IsNullOrWhiteSpace(tbPurchaseID.Text) || !int.TryParse(tbPurchaseID.Text, out int purchaseId))
                 {
                     MessageBox.Show("Please enter a valid Purchase ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -130,6 +169,7 @@ namespace AssigementOOADWinForms.Controls
                     MessageBox.Show("Please enter a valid Unit Price.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 var model = new PurchaseOrderDetail
                 {
                     PurchaseDetailID = string.IsNullOrWhiteSpace(tbPurchaseDetailID.Text) ? 0 : int.Parse(tbPurchaseDetailID.Text),
@@ -138,9 +178,12 @@ namespace AssigementOOADWinForms.Controls
                     Quantity = quantity,
                     UnitPrice = unitPrice
                 };
+
                 _purchaseOrderDetailService.SavePurchaseOrderDeail(model);
                 LoadPurchaseOrderDetails();
+
                 MessageBox.Show("Purchase order detail saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UpdatePurchaseDetailCount(); // Update count
             }
             catch (SqlException sqlEx)
             {
@@ -151,6 +194,7 @@ namespace AssigementOOADWinForms.Controls
                 MessageBox.Show($"Failed to save purchase order detail:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void HandleRemovePurchaseOrderDetail(object? sender, EventArgs e)
         {
             try
@@ -160,12 +204,14 @@ namespace AssigementOOADWinForms.Controls
                     MessageBox.Show("Please select a valid Purchase Detail ID to remove.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 var confirmResult = MessageBox.Show("Are you sure to delete this purchase order detail?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmResult == DialogResult.Yes)
                 {
                     _purchaseOrderDetailService.RemovePurchaseOrderDeail(purchaseDetailID);
                     LoadPurchaseOrderDetails();
                     MessageBox.Show("Purchase order detail removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdatePurchaseDetailCount(); //Update after deletion
                 }
             }
             catch (SqlException sqlEx)

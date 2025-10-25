@@ -14,19 +14,23 @@ namespace AssigementOOADWinForms.Controls
     {
         private List<UserDto> usersList = new();
         private readonly UserService _userService = new();
+
         public UserControlUser()
         {
             InitializeComponent();
+
             // UI design helpers
             DesignHelper.MakeAllInputs(this);
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvuser);
+
             // DataGridView config
             dgvuser.SelectionChanged += SelectionRowChanges;
             dgvuser.CellPainting += DesignHelper.dataGridView1_CellPainting;
             dgvuser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvuser.AutoGenerateColumns = true;
+
             // Events
             btClear.Click += HandleClearTextBox;
             btSave.Click += HandleSaveUser;
@@ -40,11 +44,13 @@ namespace AssigementOOADWinForms.Controls
             cbRole.Items.AddRange(new object[] { "Admin", "Manager", "Staff" });
             cbRole.SelectedIndex = 0;
             cbRole.SelectedIndexChanged += (s, e) => FilterUsers();
+
             cbRole1.Items.Clear();
             cbRole1.Items.Add("All");
             cbRole1.Items.AddRange(new object[] { "Admin", "Manager", "Staff" });
             cbRole1.SelectedIndex = 0;
         }
+
         // ===============================
         // Load Users from database
         // ===============================
@@ -61,14 +67,20 @@ namespace AssigementOOADWinForms.Controls
                     Role = u.Role,
                     CreatedAt = u.CreatedAt
                 }).ToList();
+
                 dgvuser.DataSource = usersList;
                 HideSensitiveColumns();
+
+                // ✅ Update total user count
+                lbUserTotal.Text = usersList.Count.ToString("N0");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading users: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading users: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         // ===============================
         // Hide Password Column
         // ===============================
@@ -77,6 +89,7 @@ namespace AssigementOOADWinForms.Controls
             if (dgvuser.Columns["PasswordHash"] != null)
                 dgvuser.Columns["PasswordHash"].Visible = false;
         }
+
         // ===============================
         // Filter Users by Username & Role
         // ===============================
@@ -97,15 +110,20 @@ namespace AssigementOOADWinForms.Controls
                                                    u.Username.Contains(searchName, StringComparison.OrdinalIgnoreCase));
                 }
 
-                // Filter by Role (ComboBox)
+                // Filter by Role
                 if (cbRole.SelectedItem is string selectedRole && selectedRole != "All")
                 {
                     filtered = filtered.Where(u => u.Role == selectedRole);
                 }
 
+                var filteredList = filtered.ToList();
+
                 // Update DataGridView
                 dgvuser.DataSource = null;
-                dgvuser.DataSource = filtered.ToList();
+                dgvuser.DataSource = filteredList;
+
+                // ✅ Update total for filtered results
+                lbUserTotal.Text = filteredList.Count.ToString("N0");
             }
             catch (Exception ex)
             {
@@ -113,6 +131,29 @@ namespace AssigementOOADWinForms.Controls
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // ===============================
+        // FORM LOGIC: Filter Users (legacy method)
+        // ===============================
+        private void HandleFilterUsers(object sender, EventArgs e)
+        {
+            string usersKeyword = tbSeachName.Text.Trim().ToLower();
+
+            int selectedUserID = 0;
+            if (cbRole != null && cbRole.SelectedValue != null)
+            {
+                int.TryParse(cbRole.SelectedValue.ToString(), out selectedUserID);
+            }
+
+            var filteredUsers = usersList.Where(u =>
+                (string.IsNullOrEmpty(usersKeyword) || u.Username.ToLower().Contains(usersKeyword)) &&
+                (selectedUserID == 0 || u.UserID == selectedUserID)
+            ).ToList();
+
+            // Display filtered users
+            lbUserTotal.Text = usersList.Count.ToString();
+        }
+
         // ===============================
         // Clear input fields
         // ===============================
@@ -124,6 +165,7 @@ namespace AssigementOOADWinForms.Controls
             tbPassword.Clear();
             cbRole1.SelectedIndex = -1;
         }
+
         // ===============================
         // Handle row selection changes
         // ===============================
@@ -133,15 +175,15 @@ namespace AssigementOOADWinForms.Controls
             {
                 var selectedRow = dgvuser.SelectedRows[0];
                 var user = selectedRow.DataBoundItem as UserDto;
-                if(user != null)
+                if (user != null)
                 {
                     tbID.Text = user.UserID.ToString();
                     tbUsername.Text = user.Username;
                     cbRole1.Text = user.Role;
                 }
-
             }
         }
+
         // ===============================
         // CRUD Logic
         // ===============================
@@ -154,23 +196,28 @@ namespace AssigementOOADWinForms.Controls
                     MessageBox.Show("Please select a role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 var model = new User
                 {
                     UserID = string.IsNullOrWhiteSpace(tbID.Text) ? 0 : int.Parse(tbID.Text),
                     Username = tbUsername.Text,
-                    PasswordHash = tbPassword.Text, // In real app, hash the password
+                    PasswordHash = tbPassword.Text, // ⚠️ Note: Use hashed password in real app
                     Role = cbRole1.Text,
                 };
-                // Call service that executes sp_InsertOrUpdateUser
+
+                // Save or update user
                 _userService.SaveUser(model);
-                //MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadUsers();
+
+                LoadUsers(); // Refresh user list and total
+                MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to save user:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to save user:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void HandleRemoveUser(object sender, EventArgs e)
         {
             try
@@ -180,18 +227,27 @@ namespace AssigementOOADWinForms.Controls
                     MessageBox.Show("Please select a valid user to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                var confirmResult = MessageBox.Show("Are you sure to delete this user?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                var confirmResult = MessageBox.Show("Are you sure to delete this user?",
+                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                 if (confirmResult == DialogResult.Yes)
                 {
                     _userService.RemoveUser(userId);
+                    LoadUsers(); // Refresh total after delete
                     MessageBox.Show("User deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadUsers();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to delete user:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to delete user:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void lbPassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

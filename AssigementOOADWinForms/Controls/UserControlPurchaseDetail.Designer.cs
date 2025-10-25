@@ -36,7 +36,7 @@
             label10 = new Label();
             textBox2 = new TextBox();
             panel3 = new Panel();
-            label14 = new Label();
+            lbTotalPurchaseDetail = new Label();
             label13 = new Label();
             pictureBox13 = new PictureBox();
             tbPurchaseDetailID = new TextBox();
@@ -142,7 +142,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 128, 0);
-            panel3.Controls.Add(label14);
+            panel3.Controls.Add(lbTotalPurchaseDetail);
             panel3.Controls.Add(label13);
             panel3.Controls.Add(pictureBox13);
             panel3.Location = new Point(897, 640);
@@ -151,17 +151,17 @@
             panel3.Size = new Size(367, 119);
             panel3.TabIndex = 132;
             // 
-            // label14
+            // lbTotalPurchaseDetail
             // 
-            label14.AutoSize = true;
-            label14.Cursor = Cursors.Hand;
-            label14.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(21, 47);
-            label14.Name = "label14";
-            label14.Size = new Size(120, 46);
-            label14.TabIndex = 28;
-            label14.Text = "12000";
+            lbTotalPurchaseDetail.AutoSize = true;
+            lbTotalPurchaseDetail.Cursor = Cursors.Hand;
+            lbTotalPurchaseDetail.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lbTotalPurchaseDetail.ForeColor = Color.White;
+            lbTotalPurchaseDetail.Location = new Point(21, 47);
+            lbTotalPurchaseDetail.Name = "lbTotalPurchaseDetail";
+            lbTotalPurchaseDetail.Size = new Size(40, 46);
+            lbTotalPurchaseDetail.TabIndex = 28;
+            lbTotalPurchaseDetail.Text = "0";
             // 
             // label13
             // 
@@ -172,9 +172,9 @@
             label13.ForeColor = Color.White;
             label13.Location = new Point(16, 5);
             label13.Name = "label13";
-            label13.Size = new Size(176, 35);
+            label13.Size = new Size(261, 35);
             label13.TabIndex = 27;
-            label13.Text = "Total Amount";
+            label13.Text = "Total Purchase Detail";
             // 
             // pictureBox13
             // 
@@ -404,7 +404,7 @@
         private Label label10;
         private TextBox textBox2;
         private Panel panel3;
-        private Label label14;
+        private Label lbTotalPurchaseDetail;
         private Label label13;
         private PictureBox pictureBox13;
         private TextBox tbPurchaseDetailID;
