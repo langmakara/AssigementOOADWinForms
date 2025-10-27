@@ -54,7 +54,7 @@ namespace AssigementOOADWinForms.Controls
         }
 
         // =======================================
-        // 🔹 FORM LOGIC: Filter Transactions
+        // FORM LOGIC: Filter Transactions
         // =======================================
         private void FilterTransactions()
         {

@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            tbSeashPurchaseDetailD = new TextBox();
             label1 = new Label();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            label8 = new Label();
-            label10 = new Label();
-            textBox2 = new TextBox();
             panel3 = new Panel();
             lbTotalPurchaseDetail = new Label();
             label13 = new Label();
@@ -64,17 +60,22 @@
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
+            panel2.Controls.Add(tbSeashPurchaseDetailD);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(textBox7);
-            panel2.Controls.Add(textBox8);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(textBox2);
             panel2.Location = new Point(1, 4);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
             panel2.Size = new Size(893, 133);
             panel2.TabIndex = 133;
+            // 
+            // tbSeashPurchaseDetailD
+            // 
+            tbSeashPurchaseDetailD.Location = new Point(3, 43);
+            tbSeashPurchaseDetailD.Margin = new Padding(3, 4, 3, 4);
+            tbSeashPurchaseDetailD.Multiline = true;
+            tbSeashPurchaseDetailD.Name = "tbSeashPurchaseDetailD";
+            tbSeashPurchaseDetailD.Size = new Size(267, 48);
+            tbSeashPurchaseDetailD.TabIndex = 140;
             // 
             // label1
             // 
@@ -82,62 +83,11 @@
             label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI", 15F);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(594, 3);
+            label1.Location = new Point(6, 2);
             label1.Name = "label1";
-            label1.Size = new Size(156, 35);
-            label1.TabIndex = 133;
-            label1.Text = "ProductPrice";
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(7, 44);
-            textBox7.Margin = new Padding(3, 4, 3, 4);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(276, 48);
-            textBox7.TabIndex = 132;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(291, 44);
-            textBox8.Margin = new Padding(3, 4, 3, 4);
-            textBox8.Multiline = true;
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(292, 48);
-            textBox8.TabIndex = 124;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Cursor = Cursors.Hand;
-            label8.Font = new Font("Segoe UI", 15F);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(10, 3);
-            label8.Name = "label8";
-            label8.Size = new Size(140, 35);
-            label8.TabIndex = 126;
-            label8.Text = "PurchaseID";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Cursor = Cursors.Hand;
-            label10.Font = new Font("Segoe UI", 15F);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(295, 3);
-            label10.Name = "label10";
-            label10.Size = new Size(127, 35);
-            label10.TabIndex = 127;
-            label10.Text = "ProductID";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(591, 44);
-            textBox2.Margin = new Padding(3, 4, 3, 4);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(294, 48);
-            textBox2.TabIndex = 93;
+            label1.Size = new Size(174, 35);
+            label1.TabIndex = 139;
+            label1.Text = "Seach Product";
             // 
             // panel3
             // 
@@ -397,12 +347,6 @@
         #endregion
 
         private Panel panel2;
-        private Label label1;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private Label label8;
-        private Label label10;
-        private TextBox textBox2;
         private Panel panel3;
         private Label lbTotalPurchaseDetail;
         private Label label13;
@@ -422,5 +366,7 @@
         private Label label5;
         private Label label3;
         private TextBox tbUnitPrice;
+        private TextBox tbSeashPurchaseDetailD;
+        private Label label1;
     }
 }

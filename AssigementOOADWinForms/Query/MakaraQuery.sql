@@ -363,8 +363,8 @@ CREATE OR ALTER PROCEDURE sp_InsertOrUpdatePurchaseDetail
 AS
 BEGIN
     SET NOCOUNT ON;
-
-    DECLARE @ProductName NVARCHAR(100);
+    
+    DECLARE @ProductName NVARCHAR(150);
     SELECT @ProductName = ProductName FROM dbo.tbProduct WHERE ProductID = @ProductID;
 
     -- Update existing record

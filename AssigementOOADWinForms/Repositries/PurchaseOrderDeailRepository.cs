@@ -8,30 +8,39 @@ namespace AssigementOOADWinForms.Repositries
 {
     public class PurchaseOrderDeailRepository
     {
-        public List<PurchaseOrderDetail> GetAllPurchaseOrderDetails()
+        public List<PurchaseOrderDeailDots> GetAllPurchaseOrderDetails()
         {
-            var PurchaseOrderDeail = new List<PurchaseOrderDetail>();
-            using (SqlConnection conn = HandleConnection.GetSqlConnection())
+            var PurchaseOrderDeail = new List<PurchaseOrderDeailDots>();
+            try
             {
-                if (conn == null) throw new Exception("Database connection failed.");
-                using (SqlCommand cmd = new SqlCommand("sp_GetAllPurchaseDetails", conn))
+
+                using (SqlConnection conn = HandleConnection.GetSqlConnection())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand("sp_GetAllPurchaseDetails", conn))
                     {
-                        while (reader.Read())
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            PurchaseOrderDeail.Add(new PurchaseOrderDetail
+                            while (reader.Read())
                             {
-                                PurchaseDetailID = reader.GetInt32(reader.GetOrdinal("PurchaseDetailID")),
-                                PurchaseID = reader.GetInt32(reader.GetOrdinal("PurchaseID")),
-                                ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
-                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
-                                UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
-                            });
+                                PurchaseOrderDeail.Add(new PurchaseOrderDeailDots
+                                {
+                                    PurchaseDetailID = reader.GetInt32(reader.GetOrdinal("PurchaseDetailID")),
+                                    PurchaseID = reader.GetInt32(reader.GetOrdinal("PurchaseID")),
+                                    ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                                    ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                                    Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
+                                    UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
+                                });
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception as needed
+                MessageBox.Show($"An error occurred while retrieving purchase order details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return PurchaseOrderDeail; // Ensure a value is returned in all code paths
         }
@@ -43,9 +52,8 @@ namespace AssigementOOADWinForms.Repositries
                 model.Quantity == 0 ||
                 model.UnitPrice == 0)
             {
-                // បង្ហាញសារព្រមាន (សម្រាប់ Windows Form ឬ Console)
-                MessageBox.Show("សូមបញ្ចូល PurchaseID, ProductID, Quantity និង UnitPrice មុនពេលរក្សាទុក!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // បញ្ចប់មុខងារ
+                MessageBox.Show("Please insert PurchaseID, ProductID, Quantity and UnitPrice!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             using (SqlConnection conn = HandleConnection.GetSqlConnection())
             {

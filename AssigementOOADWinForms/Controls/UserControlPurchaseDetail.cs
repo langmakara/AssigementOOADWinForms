@@ -5,6 +5,7 @@ using AssigementOOADWinForms.Services;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,50 +16,54 @@ namespace AssigementOOADWinForms.Controls
         private List<PurchaseOrderDeailDots> purchaseOrderDetailDtos = new();
         private readonly PurchaseOrderDeailService _purchaseOrderDetailService = new();
 
+        private bool _suppressSelectionUpdates = false;
+
         public UserControlPurchaseDetail()
         {
             InitializeComponent();
-            // UI design helpers
+
             DesignHelper.MakeAllInputs(this);
             DesignHelper.ApplyRoundedStyle(panel1, borderRadius: 5);
             DesignHelper.ApplyRoundedStyle(panel2, borderRadius: 5);
             DesignHelper.StyleDataGridView(dgvPurchaseDetail);
 
-            // DataGridView config
             dgvPurchaseDetail.SelectionChanged += SelectionRowChanges;
             dgvPurchaseDetail.CellPainting += DesignHelper.dataGridView1_CellPainting;
             dgvPurchaseDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPurchaseDetail.AutoGenerateColumns = true;
 
-            // Events
             btClear.Click += HandleClearTextBox;
             btSave.Click += HandleSavePurchaseOrderDetail;
             btRemove.Click += HandleRemovePurchaseOrderDetail;
-            tbPurchaseDetailID.TextChanged += (s, e) => FilterPurchaseOrderDetails();
+
+            // ✅ Use tbSeashPurchaseDetailD for filtering
+            tbSeashPurchaseDetailD.TextChanged += (s, e) => FilterPurchaseOrderDetails();
+
             this.Load += (s, e) => LoadPurchaseOrderDetails();
         }
 
         // ===============================
-        // Load PurchaseOrderDetails from database
+        // Load all Purchase Order Details
         // ===============================
         private void LoadPurchaseOrderDetails()
         {
             try
             {
                 var purchaseOrderDetails = _purchaseOrderDetailService.GetAllPurchaseOrderDetails();
-                purchaseOrderDetailDtos = purchaseOrderDetails.Select(p => new PurchaseOrderDeailDots
+                purchaseOrderDetailDtos = purchaseOrderDetails.Select(static p => new PurchaseOrderDeailDots
                 {
                     PurchaseDetailID = p.PurchaseDetailID,
                     PurchaseID = p.PurchaseID,
                     ProductID = p.ProductID,
+                    ProductName = p.ProductName,
                     Quantity = p.Quantity,
                     UnitPrice = p.UnitPrice
                 }).ToList();
 
                 dgvPurchaseDetail.DataSource = null;
                 dgvPurchaseDetail.DataSource = purchaseOrderDetailDtos;
-
-                UpdatePurchaseDetailCount(); //Update total count
+                dgvPurchaseDetail.ClearSelection();
+                UpdatePurchaseDetailCount();
             }
             catch (SqlException sqlEx)
             {
@@ -66,50 +71,42 @@ namespace AssigementOOADWinForms.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error Form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         // ===============================
-        // Filter PurchaseOrderDetails Based on search criteria
+        // Filter using tbSeashPurchaseDetailD
         // ===============================
         private void FilterPurchaseOrderDetails()
         {
             try
             {
-                var filteredList = purchaseOrderDetailDtos.AsEnumerable();
+                if (_suppressSelectionUpdates)
+                    return;
 
-                if (int.TryParse(tbPurchaseDetailID.Text, out int purchaseDetailID))
+                var filtered = purchaseOrderDetailDtos.AsEnumerable();
+                string searchText = tbSeashPurchaseDetailD?.Text?.Trim() ?? string.Empty;
+
+                if (!string.IsNullOrWhiteSpace(searchText))
                 {
-                    filteredList = filteredList.Where(p => p.PurchaseDetailID == purchaseDetailID);
+                    // Try parse number for numeric fields
+                    bool isNumber = int.TryParse(searchText, out int numericValue);
+
+                    filtered = filtered.Where(p =>
+                        (isNumber && (p.PurchaseID == numericValue || p.ProductID == numericValue || p.PurchaseDetailID == numericValue)) ||
+                        (!isNumber && (
+                            (!string.IsNullOrEmpty(p.ProductName) && p.ProductName.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                        )));
                 }
 
-                dgvPurchaseDetail.DataSource = filteredList.ToList();
-
-                UpdatePurchaseDetailCount(); //Update after filtering
+                dgvPurchaseDetail.DataSource = filtered.ToList();
+                dgvPurchaseDetail.ClearSelection();
+                UpdatePurchaseDetailCount();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error filtering purchase details:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // ===============================
-        // Show Total Purchase Details
-        // ===============================
-        private void UpdatePurchaseDetailCount()
-        {
-            try
-            {
-                if (lbTotalPurchaseDetail != null)
-                {
-                    int total = dgvPurchaseDetail.Rows.Count;
-                    lbTotalPurchaseDetail.Text = $"{total}";
-                }
-            }
-            catch
-            {
-                // Ignore if label doesn't exist or grid not ready
+                MessageBox.Show($"Failed to filter purchase details:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -118,18 +115,40 @@ namespace AssigementOOADWinForms.Controls
         // ===============================
         private void HandleClearTextBox(object? sender, EventArgs e)
         {
-            tbPurchaseDetailID.Clear();
-            tbPurchaseID.Clear();
-            tbProductID.Clear();
-            tbQuantity.Clear();
-            tbUnitPrice.Clear();
+            try
+            {
+                _suppressSelectionUpdates = true;
+
+                tbPurchaseDetailID?.Clear();
+                tbPurchaseID?.Clear();
+                tbProductID?.Clear();
+                tbQuantity?.Clear();
+                tbUnitPrice?.Clear();
+                tbSeashPurchaseDetailD.Clear();
+
+                dgvPurchaseDetail?.ClearSelection();
+                UpdatePurchaseDetailCount();
+
+                tbPurchaseID?.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to clear fields: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                _suppressSelectionUpdates = false;
+            }
         }
 
         // ===============================
-        // Selection & From Controls
+        // Update fields when row changes
         // ===============================
         private void SelectionRowChanges(object? sender, EventArgs e)
         {
+            if (_suppressSelectionUpdates)
+                return;
+
             var map = new Dictionary<string, Control>
             {
                 { "PurchaseDetailID", tbPurchaseDetailID },
@@ -138,41 +157,78 @@ namespace AssigementOOADWinForms.Controls
                 { "Quantity", tbQuantity },
                 { "UnitPrice", tbUnitPrice }
             };
-            DesignHelper.PopulateRowControls(dgvPurchaseDetail, map);
+
+            _suppressSelectionUpdates = true;
+            try
+            {
+                DesignHelper.PopulateRowControls(dgvPurchaseDetail, map);
+            }
+            finally
+            {
+                _suppressSelectionUpdates = false;
+            }
         }
 
         // ===============================
-        // CRUD Operations
+        // Show total Purchase Details count
+        // ===============================
+        private void UpdatePurchaseDetailCount()
+        {
+            try
+            {
+                if (lbTotalPurchaseDetail != null && dgvPurchaseDetail != null)
+                {
+                    int total = dgvPurchaseDetail.Rows.Count;
+                    lbTotalPurchaseDetail.Text = $"{total}";
+                }
+            }
+            catch
+            {
+                // Ignore
+            }
+        }
+
+        // ===============================
+        // Save Purchase Detail
         // ===============================
         private void HandleSavePurchaseOrderDetail(object? sender, EventArgs e)
         {
             try
             {
-                // Basic validation
-                if (string.IsNullOrWhiteSpace(tbPurchaseID.Text) || !int.TryParse(tbPurchaseID.Text, out int purchaseId))
+                if (string.IsNullOrWhiteSpace(tbPurchaseID.Text) ||
+                    !int.TryParse(tbPurchaseID.Text, out int purchaseId))
                 {
                     MessageBox.Show("Please enter a valid Purchase ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (string.IsNullOrWhiteSpace(tbProductID.Text) || !int.TryParse(tbProductID.Text, out int productId))
+                if (string.IsNullOrWhiteSpace(tbProductID.Text) ||
+                    !int.TryParse(tbProductID.Text, out int productId))
                 {
                     MessageBox.Show("Please enter a valid Product ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (string.IsNullOrWhiteSpace(tbQuantity.Text) || !int.TryParse(tbQuantity.Text, out int quantity))
+                if (string.IsNullOrWhiteSpace(tbQuantity.Text) ||
+                    !int.TryParse(tbQuantity.Text, out int quantity))
                 {
                     MessageBox.Show("Please enter a valid Quantity.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (string.IsNullOrWhiteSpace(tbUnitPrice.Text) || !decimal.TryParse(tbUnitPrice.Text, out decimal unitPrice))
+                if (string.IsNullOrWhiteSpace(tbUnitPrice.Text) ||
+                    !decimal.TryParse(tbUnitPrice.Text, out decimal unitPrice))
                 {
                     MessageBox.Show("Please enter a valid Unit Price.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                int purchaseDetailIdValue = 0;
+                if (!string.IsNullOrWhiteSpace(tbPurchaseDetailID.Text))
+                {
+                    int.TryParse(tbPurchaseDetailID.Text, out purchaseDetailIdValue);
+                }
+
                 var model = new PurchaseOrderDetail
                 {
-                    PurchaseDetailID = string.IsNullOrWhiteSpace(tbPurchaseDetailID.Text) ? 0 : int.Parse(tbPurchaseDetailID.Text),
+                    PurchaseDetailID = purchaseDetailIdValue,
                     PurchaseID = purchaseId,
                     ProductID = productId,
                     Quantity = quantity,
@@ -183,7 +239,7 @@ namespace AssigementOOADWinForms.Controls
                 LoadPurchaseOrderDetails();
 
                 MessageBox.Show("Purchase order detail saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdatePurchaseDetailCount(); // Update count
+                UpdatePurchaseDetailCount();
             }
             catch (SqlException sqlEx)
             {
@@ -195,11 +251,15 @@ namespace AssigementOOADWinForms.Controls
             }
         }
 
+        // ===============================
+        // Remove Purchase Detail
+        // ===============================
         private void HandleRemovePurchaseOrderDetail(object? sender, EventArgs e)
         {
             try
             {
-                if (!int.TryParse(tbPurchaseDetailID.Text, out int purchaseDetailID))
+                if (string.IsNullOrWhiteSpace(tbPurchaseDetailID.Text) ||
+                    !int.TryParse(tbPurchaseDetailID.Text, out int purchaseDetailID))
                 {
                     MessageBox.Show("Please select a valid Purchase Detail ID to remove.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -211,7 +271,7 @@ namespace AssigementOOADWinForms.Controls
                     _purchaseOrderDetailService.RemovePurchaseOrderDeail(purchaseDetailID);
                     LoadPurchaseOrderDetails();
                     MessageBox.Show("Purchase order detail removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UpdatePurchaseDetailCount(); //Update after deletion
+                    UpdatePurchaseDetailCount();
                 }
             }
             catch (SqlException sqlEx)

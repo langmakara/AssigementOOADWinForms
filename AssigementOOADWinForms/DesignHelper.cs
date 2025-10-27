@@ -270,61 +270,140 @@ public static class DesignHelper
             }
         }
     }
-public static void PopulateRowControls(DataGridView dgv, Dictionary<string, Control> columnControlMap)
-{
-    if (dgv.CurrentRow == null || dgv.RowCount == 0)
-        return;
 
-    // Ensure column names match DataPropertyName
-    foreach (DataGridViewColumn col in dgv.Columns)
+    public static void PopulateRowControls(DataGridView dgv, Dictionary<string, Control> columnControlMap)
     {
-        if (string.IsNullOrEmpty(col.Name) && !string.IsNullOrEmpty(col.DataPropertyName))
-            col.Name = col.DataPropertyName;
-    }
+        if (dgv == null || columnControlMap == null)
+            return;
 
-    var row = dgv.CurrentRow;
+        if (dgv.RowCount == 0)
+            return;
 
-    foreach (var kvp in columnControlMap)
-    {
-        string columnName = kvp.Key;
-        Control control = kvp.Value;
-
-        if (!dgv.Columns.Contains(columnName))
-            continue; // skip if column does not exist
-
-        var cellValue = row.Cells[columnName].Value;
-        if (cellValue == null)
-            continue; // skip if value is null
-
-        switch (control)
+        foreach (DataGridViewColumn col in dgv.Columns)
         {
-            case TextBox txt:
-                if (cellValue is DateTime dt)
-                    txt.Text = dt.ToString("dd/MM/yyyy");
-                else if (cellValue is decimal dec)
-                    txt.Text = dec.ToString("C2");
-                else
-                    txt.Text = cellValue.ToString();
-                break;
+            if (string.IsNullOrEmpty(col.Name) && !string.IsNullOrEmpty(col.DataPropertyName))
+                col.Name = col.DataPropertyName;
+        }
 
-            case ComboBox cb:
-                // Try to select by value or by string match
-                if (cb.Items.Contains(cellValue))
-                    cb.SelectedItem = cellValue;
-                else if (int.TryParse(cellValue.ToString(), out int val))
-                    cb.SelectedValue = val;
-                else
-                    cb.SelectedIndex = -1; // fallback if not found
-                break;
+        DataGridViewRow? row = null;
+        if (dgv.CurrentRow != null && dgv.CurrentRow.Index >= 0)
+            row = dgv.CurrentRow;
+        else if (dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0)
+            row = dgv.Rows[dgv.CurrentCell.RowIndex];
+        else if (dgv.SelectedRows != null && dgv.SelectedRows.Count > 0 && dgv.SelectedRows[0].Index >= 0)
+            row = dgv.SelectedRows[0];
+        else
+        {
+            foreach (DataGridViewRow r in dgv.Rows)
+            {
+                if (!r.IsNewRow && r.Index >= 0)
+                {
+                    row = r;
+                    break;
+                }
+            }
+        }
 
-            case Label lbl:
-                lbl.Text = cellValue.ToString();
-                break;
+        if (row == null)
+            return;
 
-            // Add more control types here if needed
+        foreach (var kvp in columnControlMap)
+        {
+            string columnName = kvp.Key;
+            Control control = kvp.Value;
+
+            if (!dgv.Columns.Contains(columnName))
+                continue;
+
+            DataGridViewColumn col = dgv.Columns[columnName];
+            int colIndex = col?.Index ?? -1;
+            if (colIndex < 0 || colIndex >= row.Cells.Count)
+                continue;
+
+            try
+            {
+                var cell = row.Cells[colIndex];
+                var cellValue = cell?.Value;
+                if (cellValue == null || cellValue == DBNull.Value)
+                    continue;
+
+                switch (control)
+                {
+                    case TextBox txt:
+                        var typeCode = Type.GetTypeCode(cellValue.GetType());
+
+                        // Treat integers (IDs, counts) as plain numbers
+                        if (typeCode == TypeCode.Int16 || typeCode == TypeCode.Int32 || typeCode == TypeCode.Int64
+                            || typeCode == TypeCode.UInt16 || typeCode == TypeCode.UInt32 || typeCode == TypeCode.UInt64)
+                        {
+                            txt.Text = Convert.ToString(cellValue);
+                        }
+                        else if (typeCode == TypeCode.DateTime)
+                        {
+                            txt.Text = ((DateTime)cellValue).ToString("dd/MM/yyyy");
+                        }
+                        else if (typeCode == TypeCode.Decimal || typeCode == TypeCode.Double || typeCode == TypeCode.Single)
+                        {
+                            // Only format as currency for columns that represent money
+                            var lower = columnName.ToLowerInvariant();
+                            if (lower.Contains("price") || lower.Contains("amount") || lower.Contains("total"))
+                            {
+                                if (decimal.TryParse(Convert.ToString(cellValue), out decimal dec))
+                                    txt.Text = dec.ToString("C2");
+                                else
+                                    txt.Text = Convert.ToString(cellValue);
+                            }
+                            else
+                            {
+                                // Non-money numeric values: show raw number (no currency symbol)
+                                txt.Text = Convert.ToString(cellValue);
+                            }
+                        }
+                        else
+                        {
+                            txt.Text = Convert.ToString(cellValue);
+                        }
+                        break;
+
+                    case ComboBox cb:
+                        if (!string.IsNullOrEmpty(cb.ValueMember))
+                        {
+                            try
+                            {
+                                cb.SelectedValue = cellValue;
+                                if (cb.SelectedIndex >= 0) break;
+                            }
+                            catch { }
+                        }
+
+                        bool matched = false;
+                        foreach (var item in cb.Items)
+                        {
+                            if (Equals(item, cellValue) || (item != null && item.ToString() == cellValue.ToString()))
+                            {
+                                cb.SelectedItem = item;
+                                matched = true;
+                                break;
+                            }
+                        }
+                        if (!matched)
+                            cb.SelectedIndex = -1;
+                        break;
+
+                    case Label lbl:
+                        lbl.Text = Convert.ToString(cellValue);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+                continue;
+            }
         }
     }
-}
 
     public static string FormatDate(DateTime date)
     {

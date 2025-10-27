@@ -45,7 +45,6 @@
             tbSupplierID = new TextBox();
             tbPurchaseID = new TextBox();
             dgvPurchase = new DataGridView();
-            OrderDate = new DateTimePicker();
             panel2 = new Panel();
             lbPurchaseID = new Label();
             btClear = new Button();
@@ -254,20 +253,10 @@
             dgvPurchase.Size = new Size(882, 747);
             dgvPurchase.TabIndex = 70;
             // 
-            // OrderDate
-            // 
-            OrderDate.CalendarFont = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            OrderDate.Font = new Font("Segoe UI", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            OrderDate.Location = new Point(281, 58);
-            OrderDate.Name = "OrderDate";
-            OrderDate.Size = new Size(389, 38);
-            OrderDate.TabIndex = 77;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(lbPurchaseID);
-            panel2.Controls.Add(OrderDate);
             panel2.Controls.Add(tbPurchaseID);
             panel2.Location = new Point(3, 2);
             panel2.Name = "panel2";
@@ -379,7 +368,6 @@
         private TextBox tbSupplierID;
         private TextBox tbPurchaseID;
         private DataGridView dgvPurchase;
-        private DateTimePicker OrderDate;
         private DateTimePicker DTPOrderDate;
         private Panel panel2;
         private Label lbPurchaseID;

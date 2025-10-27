@@ -9,7 +9,7 @@ namespace AssigementOOADWinForms.Services
     {
         // Implement business logic methods for PurchaseOrderDetail here
         private readonly PurchaseOrderDeailRepository _repo = new();
-        public List<PurchaseOrderDetail> GetAllPurchaseOrderDetails() => _repo.GetAllPurchaseOrderDetails();
+        public List<PurchaseOrderDeailDots> GetAllPurchaseOrderDetails() => _repo.GetAllPurchaseOrderDetails();
         public void SavePurchaseOrderDeail(PurchaseOrderDetail model) => _repo.Save(model);
         public void RemovePurchaseOrderDeail(int purchaseDetailID) => _repo.Delete(purchaseDetailID);
 
