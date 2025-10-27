@@ -449,5 +449,46 @@ BEGIN
 END;
 GO
 
+-- ===============================================
+-- 🔹 CREATE OR ALTER VIEW: Import Report
+-- ===============================================
+CREATE OR ALTER VIEW vw_ImportReport AS
+SELECT 
+    po.PurchaseID,
+    po.OrderDate AS ImportDate,
+    s.SupplierName,
+    e.EmployeeName AS HandledBy,
+    d.ProductName,
+    d.Quantity,
+    d.UnitPrice,
+    (d.Quantity * d.UnitPrice) AS SubTotal,
+    po.TotalAmount AS TotalImportAmount
+FROM tbPurchaseOrder po
+JOIN tbPurchaseOrderDetail d ON po.PurchaseID = d.PurchaseID
+JOIN tbSupplier s ON po.SupplierID = s.SupplierID
+JOIN tbEmployee e ON po.EmployeeID = e.EmployeeID;
+GO
 
+
+-- ===============================================
+-- 🔹 CREATE OR ALTER VIEW: Export Report by Customer
+-- ===============================================
+CREATE OR ALTER VIEW vw_ExportReport AS
+SELECT 
+    i.InvoiceID,
+    i.OrderDate AS ExportDate,
+    i.CustomerName,
+    e.EmployeeName AS HandledBy,
+    d.ProductName,
+    d.Quantity,
+    d.UnitPrice,
+    (d.Quantity * d.UnitPrice) AS SubTotal,
+    i.TotalAmount AS TotalExportAmount,
+    p.PaymentMethod,
+    p.AmountPaid
+FROM tbInvoice i
+JOIN tbInvoiceDetail d ON i.InvoiceID = d.InvoiceID
+LEFT JOIN tbEmployee e ON i.EmployeeID = e.EmployeeID
+LEFT JOIN tbPayment p ON i.InvoiceID = p.InvoiceID;
+GO
 

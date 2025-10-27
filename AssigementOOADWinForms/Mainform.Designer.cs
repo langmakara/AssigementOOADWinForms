@@ -44,7 +44,7 @@
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
-            label10 = new Label();
+            LbReport = new Label();
             LbPayment = new Label();
             LbInvoice = new Label();
             Lbproduct = new Label();
@@ -91,7 +91,7 @@
             panel2.Controls.Add(pictureBox5);
             panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(pictureBox3);
-            panel2.Controls.Add(label10);
+            panel2.Controls.Add(LbReport);
             panel2.Controls.Add(LbPayment);
             panel2.Controls.Add(LbInvoice);
             panel2.Controls.Add(Lbproduct);
@@ -103,11 +103,7 @@
             panel2.Location = new Point(5, 4);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-
-            panel2.Size = new Size(199, 752);
-
             panel2.Size = new Size(227, 991);
-
             panel2.TabIndex = 1;
             // 
             // label2
@@ -290,17 +286,17 @@
             pictureBox3.TabIndex = 15;
             pictureBox3.TabStop = false;
             // 
-            // label10
+            // LbReport
             // 
-            label10.AutoSize = true;
-            label10.Cursor = Cursors.Hand;
-            label10.Font = new Font("Segoe UI", 15F);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(55, 661);
-            label10.Name = "label10";
-            label10.Size = new Size(100, 35);
-            label10.TabIndex = 11;
-            label10.Text = "Reports";
+            LbReport.AutoSize = true;
+            LbReport.Cursor = Cursors.Hand;
+            LbReport.Font = new Font("Segoe UI", 15F);
+            LbReport.ForeColor = Color.White;
+            LbReport.Location = new Point(55, 661);
+            LbReport.Name = "LbReport";
+            LbReport.Size = new Size(100, 35);
+            LbReport.TabIndex = 11;
+            LbReport.Text = "Reports";
             // 
             // LbPayment
             // 
@@ -404,16 +400,10 @@
             panel1.BackColor = Color.SlateBlue;
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.Controls.Add(LbPage);
-
-            panel1.Location = new Point(206, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1109, 86);
-
             panel1.Location = new Point(235, 5);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
             panel1.Size = new Size(1267, 99);
-
             panel1.TabIndex = 0;
             // 
             // LbPage
@@ -423,11 +413,7 @@
             LbPage.Cursor = Cursors.Hand;
             LbPage.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             LbPage.ForeColor = Color.White;
-
-            LbPage.Location = new Point(425, 21);
-
             LbPage.Location = new Point(495, 21);
-
             LbPage.Name = "LbPage";
             LbPage.Size = new Size(254, 46);
             LbPage.TabIndex = 29;
@@ -437,17 +423,10 @@
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelMain.BackColor = Color.White;
-
-            panelMain.Location = new Point(206, 92);
-            panelMain.Margin = new Padding(0);
-            panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1109, 664);
-
             panelMain.Location = new Point(233, 109);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(1273, 885);
-
             panelMain.TabIndex = 7;
             // 
             // Mainform
@@ -455,11 +434,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-
-            ClientSize = new Size(1321, 761);
-
             ClientSize = new Size(1512, 1001);
-
             Controls.Add(panelMain);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -497,7 +472,7 @@
         private Label LbDash;
         private Label LbInventory;
         private Label Lbuser;
-        private Label label10;
+        private Label LbReport;
         private Label LbPayment;
         private Label LbInvoice;
         private Label Lbproduct;
