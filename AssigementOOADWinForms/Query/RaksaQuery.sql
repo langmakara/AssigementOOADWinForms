@@ -475,6 +475,100 @@ BEGIN
     FROM tbInventoryTransaction;
 END
 GO
+---Adjustment
+CREATE OR ALTER PROCEDURE sp_GetAllStockAdjustments
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT AdjustmentID,
+           ProductID,
+           ProductName,  
+           EmployeeID,
+           AdjustmentType,
+           Quantity,
+           Reason,
+           AdjustmentDate
+    FROM tbStockAdjustment
+    ORDER BY AdjustmentDate DESC;
+END
+GO
+
+---===================================
+CREATE PROCEDURE sp_GetStockAdjustmentsByProduct
+    @ProductID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT AdjustmentID,
+           ProductID,
+		   ProductName,
+           EmployeeID,
+           AdjustmentType,
+           Quantity,
+           Reason,
+           AdjustmentDate
+    FROM tbStockAdjustment
+    WHERE ProductID = @ProductID
+    ORDER BY AdjustmentDate DESC;
+END
+GO
+---==========================================
+CREATE OR ALTER PROCEDURE sp_InsertOrUpdateStockAdjustment
+    @AdjustmentID INT = NULL OUTPUT,
+    @ProductID INT,
+    @EmployeeID INT,
+    @AdjustmentType VARCHAR(50),
+    @Quantity INT,
+    @Reason VARCHAR(255) = NULL,
+    @AdjustmentDate DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @AdjustmentID IS NULL
+    BEGIN
+        -- Insert
+        INSERT INTO tbStockAdjustment (ProductID, ProductName, EmployeeID, AdjustmentType, Quantity, Reason, AdjustmentDate)
+        VALUES (
+            @ProductID,
+            (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID), -- automatic ProductName
+            @EmployeeID,
+            @AdjustmentType,
+            @Quantity,
+            @Reason,
+            @AdjustmentDate
+        );
+
+        SET @AdjustmentID = SCOPE_IDENTITY();
+    END
+    ELSE
+    BEGIN
+        -- Update
+        UPDATE tbStockAdjustment
+        SET ProductID = @ProductID,
+            ProductName = (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID), -- automatic ProductName
+            EmployeeID = @EmployeeID,
+            AdjustmentType = @AdjustmentType,
+            Quantity = @Quantity,
+            Reason = @Reason,
+            AdjustmentDate = @AdjustmentDate
+        WHERE AdjustmentID = @AdjustmentID;
+    END
+END
+GO
+
+CREATE OR ALTER PROCEDURE sp_DeleteStockAdjustment
+    @AdjustmentID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM tbStockAdjustment
+    WHERE AdjustmentID = @AdjustmentID;
+END
+GO
 
 --====================================Run =====================================================================
 ALTER TABLE tbInventoryTransaction

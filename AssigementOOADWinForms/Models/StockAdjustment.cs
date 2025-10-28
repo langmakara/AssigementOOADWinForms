@@ -4,6 +4,7 @@
     {
         private int _adjustmentID;
         private int _productID;
+        private string _productName;
         private int _employeeID;
         private string _adjustmentType = string.Empty;
         private int _quantity;
@@ -29,6 +30,15 @@
                 if (value <= 0)
                     throw new ArgumentException("ProductID must be greater than zero.");
                 _productID = value;
+            }
+        }
+        public string ProductName
+        {
+            get => _productName;
+            set {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("ProductName not be null.");
+                _productName = value.Trim();
             }
         }
 
