@@ -80,9 +80,10 @@ namespace AssigementOOADWinForms
                                     g.FillPath(glowBrush, glowPath);
                             }
 
-                            // Draw product name
-                            PointF textPoint = new PointF(rect.X + rect.Width / 2f, bounds.Height - marginBottom + 5);
-                            g.DrawString(products[i], font, textBrush, textPoint,
+                            // Draw product name (limit to 10 characters)
+                            PointF textPoint = new PointF(rect.X + rect.Width / 2f, bounds.Height - marginBottom + 10);
+                            string displayName = products[i].Length > 10 ? products[i].Substring(0, 10) + "..." : products[i];
+                            g.DrawString(displayName, font, textBrush, textPoint,
                                 new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Near });
 
                             // Draw percentage inside bar
