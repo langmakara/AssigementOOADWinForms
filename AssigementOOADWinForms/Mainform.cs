@@ -13,6 +13,7 @@ public partial class Mainform : Form
     private UserControlPurchasOrder? userControlPurchaseOrder;
     private UserControlPayment? UserControlPayment;
     private UserControlReport? UserControlReport;
+    private UserControlStockAdjustment? UserControlStockAdjustment;
 
     public Mainform()
     {
@@ -28,6 +29,7 @@ public partial class Mainform : Form
         userControlInvoiceDetail = new UserControlInvoiceDetail();
         userControlInvoice = new UserControlInvoice();
         userControlPurchaseOrder = new UserControlPurchasOrder();
+        UserControlStockAdjustment = new UserControlStockAdjustment();
 
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
@@ -39,8 +41,22 @@ public partial class Mainform : Form
         LbPurchaseOrder.Click += HandleClickPurchaseOrder;
         LbPayment.Click += HandleClickPayment;
         LbReport.Click += HandleClickReport;
+        LbAdjustment.Click += HandleClickAdjustment;
         this.Load += Form1_Load;
     }
+
+    private void HandleClickAdjustment(object? sender, EventArgs e)
+    {
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbAdjustment.Text;
+        if (UserControlStockAdjustment != null)
+        {
+            panelMain.Controls.Add(UserControlStockAdjustment);
+            UserControlStockAdjustment.Dock = DockStyle.Fill;
+        }
+    }
+
     private void Lbproduct_Click(object? sender, EventArgs e)
     {
         throw new NotImplementedException();

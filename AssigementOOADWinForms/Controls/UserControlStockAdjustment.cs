@@ -26,5 +26,15 @@ namespace AssigementOOADWinForms.Controls
         {
 
         }
+
+        private void lbQuantity_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

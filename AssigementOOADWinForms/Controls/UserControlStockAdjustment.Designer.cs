@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btDelete = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            label1 = new Label();
             lbReason = new Label();
             tbReason = new TextBox();
             lbQuantity = new Label();
@@ -49,6 +52,9 @@
             // 
             panel1.BackColor = Color.DodgerBlue;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(btDelete);
+            panel1.Controls.Add(dateTimePicker1);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(lbReason);
             panel1.Controls.Add(tbReason);
             panel1.Controls.Add(lbQuantity);
@@ -62,10 +68,47 @@
             panel1.Controls.Add(tbEmployee);
             panel1.Controls.Add(lbAdjustmentID);
             panel1.Controls.Add(tbAdjustmentID);
-            panel1.Location = new Point(31, 26);
+            panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1208, 836);
+            panel1.Size = new Size(1261, 882);
             panel1.TabIndex = 77;
+            panel1.Paint += panel1_Paint;
+            // 
+            // btDelete
+            // 
+            btDelete.BackColor = Color.Red;
+            btDelete.FlatAppearance.BorderColor = Color.DodgerBlue;
+            btDelete.FlatAppearance.BorderSize = 0;
+            btDelete.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
+            btDelete.ForeColor = Color.White;
+            btDelete.Location = new Point(967, 766);
+            btDelete.Margin = new Padding(0);
+            btDelete.Name = "btDelete";
+            btDelete.Size = new Size(175, 49);
+            btDelete.TabIndex = 77;
+            btDelete.Text = "Delete";
+            btDelete.UseVisualStyleBackColor = false;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(796, 156);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(346, 47);
+            dateTimePicker1.TabIndex = 76;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
+            label1.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(796, 117);
+            label1.Name = "label1";
+            label1.Size = new Size(201, 35);
+            label1.TabIndex = 75;
+            label1.Text = "AdjustmentDate";
             // 
             // lbReason
             // 
@@ -85,7 +128,7 @@
             tbReason.Margin = new Padding(3, 4, 3, 4);
             tbReason.Multiline = true;
             tbReason.Name = "tbReason";
-            tbReason.Size = new Size(1074, 428);
+            tbReason.Size = new Size(1081, 428);
             tbReason.TabIndex = 73;
             // 
             // lbQuantity
@@ -94,19 +137,20 @@
             lbQuantity.Cursor = Cursors.Hand;
             lbQuantity.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbQuantity.ForeColor = Color.White;
-            lbQuantity.Location = new Point(585, 117);
+            lbQuantity.Location = new Point(442, 117);
             lbQuantity.Name = "lbQuantity";
             lbQuantity.Size = new Size(115, 35);
             lbQuantity.TabIndex = 72;
             lbQuantity.Text = "Quantity";
+            lbQuantity.Click += lbQuantity_Click;
             // 
             // tbQuantity
             // 
-            tbQuantity.Location = new Point(585, 156);
+            tbQuantity.Location = new Point(442, 156);
             tbQuantity.Margin = new Padding(3, 4, 3, 4);
             tbQuantity.Multiline = true;
             tbQuantity.Name = "tbQuantity";
-            tbQuantity.Size = new Size(554, 48);
+            tbQuantity.Size = new Size(339, 48);
             tbQuantity.TabIndex = 71;
             tbQuantity.TextChanged += tbQuantity_TextChanged;
             // 
@@ -128,7 +172,7 @@
             tbAdjustmentType.Margin = new Padding(3, 4, 3, 4);
             tbAdjustmentType.Multiline = true;
             tbAdjustmentType.Name = "tbAdjustmentType";
-            tbAdjustmentType.Size = new Size(514, 48);
+            tbAdjustmentType.Size = new Size(355, 48);
             tbAdjustmentType.TabIndex = 69;
             // 
             // lbProductID
@@ -137,7 +181,7 @@
             lbProductID.Cursor = Cursors.Hand;
             lbProductID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbProductID.ForeColor = Color.White;
-            lbProductID.Location = new Point(426, 15);
+            lbProductID.Location = new Point(442, 15);
             lbProductID.Name = "lbProductID";
             lbProductID.Size = new Size(137, 35);
             lbProductID.TabIndex = 63;
@@ -145,21 +189,21 @@
             // 
             // tbProductID
             // 
-            tbProductID.Location = new Point(426, 59);
+            tbProductID.Location = new Point(442, 59);
             tbProductID.Margin = new Padding(3, 4, 3, 4);
             tbProductID.Multiline = true;
             tbProductID.Name = "tbProductID";
-            tbProductID.Size = new Size(355, 48);
+            tbProductID.Size = new Size(339, 48);
             tbProductID.TabIndex = 62;
             // 
             // btSave
             // 
-            btSave.BackColor = Color.Green;
+            btSave.BackColor = Color.DodgerBlue;
             btSave.FlatAppearance.BorderColor = Color.DodgerBlue;
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(1006, 765);
+            btSave.Location = new Point(766, 766);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
             btSave.Size = new Size(175, 49);
@@ -173,7 +217,7 @@
             lbEmployeeID.Cursor = Cursors.Hand;
             lbEmployeeID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbEmployeeID.ForeColor = Color.White;
-            lbEmployeeID.Location = new Point(787, 15);
+            lbEmployeeID.Location = new Point(796, 15);
             lbEmployeeID.Name = "lbEmployeeID";
             lbEmployeeID.Size = new Size(158, 35);
             lbEmployeeID.TabIndex = 59;
@@ -182,11 +226,11 @@
             // 
             // tbEmployee
             // 
-            tbEmployee.Location = new Point(787, 59);
+            tbEmployee.Location = new Point(796, 59);
             tbEmployee.Margin = new Padding(3, 4, 3, 4);
             tbEmployee.Multiline = true;
             tbEmployee.Name = "tbEmployee";
-            tbEmployee.Size = new Size(355, 48);
+            tbEmployee.Size = new Size(346, 48);
             tbEmployee.TabIndex = 56;
             // 
             // lbAdjustmentID
@@ -238,5 +282,8 @@
         private TextBox tbReason;
         private Label lbQuantity;
         private TextBox tbQuantity;
+        private Label label1;
+        private DateTimePicker dateTimePicker1;
+        private Button btDelete;
     }
 }

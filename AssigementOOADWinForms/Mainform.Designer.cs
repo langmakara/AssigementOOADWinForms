@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
-            label2 = new Label();
+            LbAdjustment = new Label();
             pictureBox8 = new PictureBox();
             pictureBox13 = new PictureBox();
             label1 = new Label();
@@ -76,7 +76,7 @@
             // 
             panel2.BackColor = Color.RoyalBlue;
             panel2.BackgroundImageLayout = ImageLayout.None;
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(LbAdjustment);
             panel2.Controls.Add(pictureBox8);
             panel2.Controls.Add(pictureBox13);
             panel2.Controls.Add(label1);
@@ -106,17 +106,17 @@
             panel2.Size = new Size(227, 991);
             panel2.TabIndex = 1;
             // 
-            // label2
+            // LbAdjustment
             // 
-            label2.AutoSize = true;
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(55, 787);
-            label2.Name = "label2";
-            label2.Size = new Size(142, 35);
-            label2.TabIndex = 31;
-            label2.Text = "Adjustment";
+            LbAdjustment.AutoSize = true;
+            LbAdjustment.Cursor = Cursors.Hand;
+            LbAdjustment.Font = new Font("Segoe UI", 15F);
+            LbAdjustment.ForeColor = Color.White;
+            LbAdjustment.Location = new Point(55, 787);
+            LbAdjustment.Name = "LbAdjustment";
+            LbAdjustment.Size = new Size(142, 35);
+            LbAdjustment.TabIndex = 31;
+            LbAdjustment.Text = "Adjustment";
             // 
             // pictureBox8
             // 
@@ -494,7 +494,7 @@
         private Label label1;
         private PictureBox pictureBox13;
         private Label LbPage;
-        private Label label2;
+        private Label LbAdjustment;
         private PictureBox pictureBox8;
     }
 }
