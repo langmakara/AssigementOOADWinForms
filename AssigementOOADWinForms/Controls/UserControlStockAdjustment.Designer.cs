@@ -53,7 +53,6 @@
             // panel1
             // 
             panel1.BackColor = Color.DodgerBlue;
-            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(lbAdjustmentDate);
             panel1.Controls.Add(tbAdjustmentDate);
             panel1.Controls.Add(cbAdjustmentType);
@@ -82,7 +81,7 @@
             lbAdjustmentDate.Cursor = Cursors.Hand;
             lbAdjustmentDate.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbAdjustmentDate.ForeColor = Color.White;
-            lbAdjustmentDate.Location = new Point(874, 465);
+            lbAdjustmentDate.Location = new Point(428, 111);
             lbAdjustmentDate.Name = "lbAdjustmentDate";
             lbAdjustmentDate.Size = new Size(201, 35);
             lbAdjustmentDate.TabIndex = 83;
@@ -92,18 +91,18 @@
             // 
             tbAdjustmentDate.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tbAdjustmentDate.Format = DateTimePickerFormat.Short;
-            tbAdjustmentDate.Location = new Point(874, 505);
+            tbAdjustmentDate.Location = new Point(428, 151);
             tbAdjustmentDate.Name = "tbAdjustmentDate";
-            tbAdjustmentDate.Size = new Size(358, 47);
+            tbAdjustmentDate.Size = new Size(415, 47);
             tbAdjustmentDate.TabIndex = 82;
             // 
             // cbAdjustmentType
             // 
             cbAdjustmentType.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbAdjustmentType.FormattingEnabled = true;
-            cbAdjustmentType.Location = new Point(874, 318);
+            cbAdjustmentType.Location = new Point(12, 149);
             cbAdjustmentType.Name = "cbAdjustmentType";
-            cbAdjustmentType.Size = new Size(358, 49);
+            cbAdjustmentType.Size = new Size(383, 49);
             cbAdjustmentType.TabIndex = 81;
             // 
             // dgvStockAdjustments
@@ -111,11 +110,12 @@
             dgvStockAdjustments.BackgroundColor = Color.Azure;
             dgvStockAdjustments.BorderStyle = BorderStyle.None;
             dgvStockAdjustments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStockAdjustments.Location = new Point(3, 7);
+            dgvStockAdjustments.Location = new Point(3, 451);
             dgvStockAdjustments.Name = "dgvStockAdjustments";
             dgvStockAdjustments.RowHeadersWidth = 51;
-            dgvStockAdjustments.Size = new Size(853, 828);
+            dgvStockAdjustments.Size = new Size(1252, 408);
             dgvStockAdjustments.TabIndex = 80;
+            dgvStockAdjustments.CellClick += dgvStockAdjustments_CellClick;
             // 
             // btDelete
             // 
@@ -124,10 +124,10 @@
             btDelete.FlatAppearance.BorderSize = 0;
             btDelete.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
             btDelete.ForeColor = Color.White;
-            btDelete.Location = new Point(1067, 786);
+            btDelete.Location = new Point(611, 390);
             btDelete.Margin = new Padding(0);
             btDelete.Name = "btDelete";
-            btDelete.Size = new Size(165, 49);
+            btDelete.Size = new Size(192, 49);
             btDelete.TabIndex = 77;
             btDelete.Text = "Delete";
             btDelete.UseVisualStyleBackColor = false;
@@ -139,22 +139,21 @@
             lbReason.Cursor = Cursors.Hand;
             lbReason.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbReason.ForeColor = Color.White;
-            lbReason.Location = new Point(874, 558);
+            lbReason.Location = new Point(12, 207);
             lbReason.Name = "lbReason";
             lbReason.Size = new Size(97, 35);
             lbReason.TabIndex = 74;
             lbReason.Text = "Reason";
-            lbReason.Click += lbReason_Click;
             // 
             // tbReason
             // 
             tbReason.BackColor = Color.White;
             tbReason.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbReason.Location = new Point(874, 597);
+            tbReason.Location = new Point(12, 246);
             tbReason.Margin = new Padding(3, 4, 3, 4);
             tbReason.Multiline = true;
             tbReason.Name = "tbReason";
-            tbReason.Size = new Size(358, 172);
+            tbReason.Size = new Size(1229, 100);
             tbReason.TabIndex = 73;
             // 
             // lbQuantity
@@ -163,7 +162,7 @@
             lbQuantity.Cursor = Cursors.Hand;
             lbQuantity.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbQuantity.ForeColor = Color.White;
-            lbQuantity.Location = new Point(874, 371);
+            lbQuantity.Location = new Point(874, 110);
             lbQuantity.Name = "lbQuantity";
             lbQuantity.Size = new Size(115, 35);
             lbQuantity.TabIndex = 72;
@@ -172,11 +171,11 @@
             // tbQuantity
             // 
             tbQuantity.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbQuantity.Location = new Point(874, 410);
+            tbQuantity.Location = new Point(874, 149);
             tbQuantity.Margin = new Padding(3, 4, 3, 4);
             tbQuantity.Multiline = true;
             tbQuantity.Name = "tbQuantity";
-            tbQuantity.Size = new Size(358, 49);
+            tbQuantity.Size = new Size(367, 49);
             tbQuantity.TabIndex = 71;
             // 
             // lbAdjustmentType
@@ -185,7 +184,7 @@
             lbAdjustmentType.Cursor = Cursors.Hand;
             lbAdjustmentType.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbAdjustmentType.ForeColor = Color.White;
-            lbAdjustmentType.Location = new Point(874, 279);
+            lbAdjustmentType.Location = new Point(12, 110);
             lbAdjustmentType.Name = "lbAdjustmentType";
             lbAdjustmentType.Size = new Size(209, 35);
             lbAdjustmentType.TabIndex = 70;
@@ -197,7 +196,7 @@
             lbProductID.Cursor = Cursors.Hand;
             lbProductID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbProductID.ForeColor = Color.White;
-            lbProductID.Location = new Point(874, 97);
+            lbProductID.Location = new Point(428, 8);
             lbProductID.Name = "lbProductID";
             lbProductID.Size = new Size(137, 35);
             lbProductID.TabIndex = 63;
@@ -206,11 +205,11 @@
             // tbProductID
             // 
             tbProductID.Font = new Font("Segoe UI", 18F);
-            tbProductID.Location = new Point(874, 136);
+            tbProductID.Location = new Point(428, 47);
             tbProductID.Margin = new Padding(3, 4, 3, 4);
             tbProductID.Multiline = true;
             tbProductID.Name = "tbProductID";
-            tbProductID.Size = new Size(358, 47);
+            tbProductID.Size = new Size(415, 47);
             tbProductID.TabIndex = 62;
             // 
             // btSave
@@ -220,10 +219,10 @@
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Bahnschrift", 13.8F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(874, 786);
+            btSave.Location = new Point(402, 390);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
-            btSave.Size = new Size(158, 49);
+            btSave.Size = new Size(192, 49);
             btSave.TabIndex = 60;
             btSave.Text = "Save";
             btSave.UseVisualStyleBackColor = false;
@@ -235,7 +234,7 @@
             lbEmployeeID.Cursor = Cursors.Hand;
             lbEmployeeID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbEmployeeID.ForeColor = Color.White;
-            lbEmployeeID.Location = new Point(874, 187);
+            lbEmployeeID.Location = new Point(874, 8);
             lbEmployeeID.Name = "lbEmployeeID";
             lbEmployeeID.Size = new Size(158, 35);
             lbEmployeeID.TabIndex = 59;
@@ -244,11 +243,11 @@
             // tbEmployeeID
             // 
             tbEmployeeID.Font = new Font("Segoe UI", 18F);
-            tbEmployeeID.Location = new Point(874, 228);
+            tbEmployeeID.Location = new Point(874, 47);
             tbEmployeeID.Margin = new Padding(3, 4, 3, 4);
             tbEmployeeID.Multiline = true;
             tbEmployeeID.Name = "tbEmployeeID";
-            tbEmployeeID.Size = new Size(358, 47);
+            tbEmployeeID.Size = new Size(367, 47);
             tbEmployeeID.TabIndex = 56;
             // 
             // lbAdjustmentID
@@ -257,7 +256,7 @@
             lbAdjustmentID.Cursor = Cursors.Hand;
             lbAdjustmentID.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbAdjustmentID.ForeColor = Color.White;
-            lbAdjustmentID.Location = new Point(874, 7);
+            lbAdjustmentID.Location = new Point(12, 8);
             lbAdjustmentID.Name = "lbAdjustmentID";
             lbAdjustmentID.Size = new Size(173, 35);
             lbAdjustmentID.TabIndex = 55;
@@ -266,11 +265,11 @@
             // tbAdjustmentID
             // 
             tbAdjustmentID.Font = new Font("Segoe UI", 18F);
-            tbAdjustmentID.Location = new Point(874, 46);
+            tbAdjustmentID.Location = new Point(12, 47);
             tbAdjustmentID.Margin = new Padding(3, 4, 3, 4);
             tbAdjustmentID.Multiline = true;
             tbAdjustmentID.Name = "tbAdjustmentID";
-            tbAdjustmentID.Size = new Size(358, 47);
+            tbAdjustmentID.Size = new Size(383, 47);
             tbAdjustmentID.TabIndex = 54;
             // 
             // UserControlStockAdjustment

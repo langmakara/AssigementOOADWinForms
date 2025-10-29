@@ -25,7 +25,7 @@ namespace AssigementOOADWinForms.Controls
         {
             try
             {
-                //Get values from input controls (replace with your actual control names)
+                //Get values from input controls
                 int productId = int.Parse(tbProductID.Text.Trim());
                 int employeeId = int.Parse(tbEmployeeID.Text.Trim());
                 string adjustmentType = cbAdjustmentType.Text.Trim();
@@ -95,6 +95,8 @@ namespace AssigementOOADWinForms.Controls
             try
             {
                 dgvStockAdjustments.DataSource = _service.GetAllAdjustments();
+                if (dgvStockAdjustments.Columns["ProductName"] != null)
+                    dgvStockAdjustments.Columns["ProductName"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -125,9 +127,20 @@ namespace AssigementOOADWinForms.Controls
             cbAdjustmentType.SelectedIndex = 0; // default selection
         }
 
-        private void lbReason_Click(object sender, EventArgs e)
+        private void dgvStockAdjustments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvStockAdjustments.Rows[e.RowIndex];
 
+                tbAdjustmentID.Text = row.Cells["AdjustmentID"].Value.ToString();
+                tbProductID.Text = row.Cells["ProductID"].Value.ToString();
+                tbEmployeeID.Text = row.Cells["EmployeeID"].Value.ToString();
+                cbAdjustmentType.Text = row.Cells["AdjustmentType"].Value.ToString();
+                tbQuantity.Text = row.Cells["Quantity"].Value.ToString();
+                tbReason.Text = row.Cells["Reason"].Value?.ToString();
+                tbAdjustmentDate.Value = Convert.ToDateTime(row.Cells["AdjustmentDate"].Value);
+            }
         }
     }
 }
