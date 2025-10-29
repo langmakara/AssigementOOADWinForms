@@ -8,7 +8,7 @@ public partial class UserControlInvoice : UserControl
     private List<InvoiceDto> invoicesList = new();
     private readonly InvoiceService _invoiceService = new();
     private readonly EmployeeService _employeeService = new();
-    private UserControlInvoiceDetail _userControlInvoiceDetail;
+    private readonly UserControlInvoiceDetail _userControlInvoiceDetail;
     public UserControlInvoice()
     {
         InitializeComponent();

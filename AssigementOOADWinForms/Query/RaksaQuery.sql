@@ -14,7 +14,8 @@ BEGIN
         EmployeeID,
         EmployeeName,  -- denormalized
         TotalAmount,
-        OrderDate
+        OrderDate,
+        Status
     FROM tbInvoice
     ORDER BY OrderDate DESC;
 END;
@@ -61,9 +62,26 @@ BEGIN
     SELECT @InvoiceID AS InvoiceID;
 END;
 GO
+--==========================================================================
+CREATE PROCEDURE sp_GetPendingInvoices
+AS
+BEGIN
+    SET NOCOUNT ON;
 
-
-
+    SELECT InvoiceID,
+           CustomerName,
+           CustomerPhone,
+           CustomerAddress,
+           EmployeeID,
+           EmployeeName,
+           OrderDate,
+           Status,
+           TotalAmount
+    FROM tbInvoice
+    WHERE Status = 'Pending'
+    ORDER BY OrderDate DESC;
+END
+GO
 -- =====================================
 -- Delete Invoice
 CREATE OR ALTER PROCEDURE sp_DeleteInvoice
@@ -249,44 +267,20 @@ BEGIN
     WHERE i.Status = 'Delivered' AND oldI.Status <> 'Delivered';
 END;
 GO
---===============================================================================
-CREATE OR ALTER TRIGGER trg_InvoiceDetail_Inventory
-ON tbInvoiceDetail
-AFTER INSERT, UPDATE, DELETE
+---====================================================================
+---===================================
+CREATE PROCEDURE sp_MarkInvoiceDelivered
+    @InvoiceID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Only handle inventory if invoice is already delivered
-    INSERT INTO tbInventoryTransaction (ProductID, ProductName, ProductUnitPrice, TransactionType, QuantityChange, TransactionDate, ReferenceID)
-    SELECT 
-        i.ProductID,
-        i.ProductName,
-        i.UnitPrice,
-        'Sale',
-        -i.Quantity,
-        GETDATE(),
-        i.InvoiceID
-    FROM inserted i
-    INNER JOIN tbInvoice inv ON i.InvoiceID = inv.InvoiceID
-    WHERE inv.Status = 'Delivered';
-
-    -- For deleted invoice details, restore stock only if invoice was delivered
-    INSERT INTO tbInventoryTransaction (ProductID, ProductName, ProductUnitPrice, TransactionType, QuantityChange, TransactionDate, ReferenceID)
-    SELECT 
-        d.ProductID,
-        d.ProductName,
-        d.UnitPrice,
-        'Adjustment',
-        d.Quantity,
-        GETDATE(),
-        d.InvoiceID
-    FROM deleted d
-    INNER JOIN tbInvoice inv ON d.InvoiceID = inv.InvoiceID
-    WHERE inv.Status = 'Delivered';
-END;
-GO
-
+    -- Update the invoice status
+    UPDATE tbInvoice
+    SET Status = 'Delivered'
+    WHERE InvoiceID = @InvoiceID
+      AND Status <> 'Delivered';  -- only update if not already delivered
+END
 GO
 ---=======================================================================
 
@@ -356,65 +350,54 @@ BEGIN
 END;
 GO
 ---=============================Handle Trigger transaction-=====================================
-CREATE OR ALTER TRIGGER trg_InventoryStock_ReturnTransfer
-ON tbInventoryTransaction
-AFTER INSERT, UPDATE, DELETE
+
+--========================================================================
+CREATE OR ALTER TRIGGER trg_UpdateStockOnDelivery
+ON tbInvoice
+AFTER UPDATE
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    BEGIN TRY
-        BEGIN TRANSACTION;
-
-        -- ============================
-        -- Handle INSERT / UPDATE for ReturnIn, ReturnOut, Transfer
-        -- ============================
-        UPDATE p
-        SET p.QuantityInStock = p.QuantityInStock
-            + CASE 
-                WHEN i.TransactionType = 'ReturnIn' THEN i.QuantityChange
-                WHEN i.TransactionType = 'ReturnOut' THEN -i.QuantityChange
-                WHEN i.TransactionType = 'Transfer' THEN i.QuantityChange
-                ELSE 0
-              END
-        FROM tbProduct p
-        INNER JOIN inserted i 
-            ON p.ProductID = i.ProductID
-        WHERE i.TransactionType IN ('ReturnIn','ReturnOut','Transfer');
-
-        -- ============================
-        -- Handle DELETE (revert effect)
-        -- ============================
-        UPDATE p
-        SET p.QuantityInStock = p.QuantityInStock
-            - CASE 
-                WHEN d.TransactionType = 'ReturnIn' THEN d.QuantityChange
-                WHEN d.TransactionType = 'ReturnOut' THEN -d.QuantityChange
-                WHEN d.TransactionType = 'Transfer' THEN d.QuantityChange
-                ELSE 0
-              END
-        FROM tbProduct p
-        INNER JOIN deleted d 
-            ON p.ProductID = d.ProductID
-        WHERE d.TransactionType IN ('ReturnIn','ReturnOut','Transfer');
-
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
-
-        DECLARE @ErrorMessage NVARCHAR(4000), @ErrorSeverity INT, @ErrorState INT;
-        SELECT 
-            @ErrorMessage = ERROR_MESSAGE(),
-            @ErrorSeverity = ERROR_SEVERITY(),
-            @ErrorState = ERROR_STATE();
-        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
-    END CATCH
+    INSERT INTO tbInventoryTransaction
+    (ProductID, ProductName, ProductUnitPrice, TransactionType, QuantityChange, TransactionDate, ReferenceID)
+    SELECT d.ProductID, d.ProductName, d.UnitPrice, 'Sale', -d.Quantity, GETDATE(), d.InvoiceID
+    FROM tbInvoiceDetail d
+    INNER JOIN inserted i ON d.InvoiceID = i.InvoiceID
+    INNER JOIN deleted oldI ON oldI.InvoiceID = i.InvoiceID
+    WHERE i.Status = 'Delivered'
+      AND oldI.Status <> 'Delivered'
+      AND NOT EXISTS (
+          SELECT 1 FROM tbInventoryTransaction t
+          WHERE t.ReferenceID = d.InvoiceID
+            AND t.ProductID = d.ProductID
+            AND t.TransactionType = 'Sale'
+      );
 END;
 GO
 
----=======================================================================
+CREATE TRIGGER trg_UpdateProductStock
+ON tbInventoryTransaction
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE p
+    SET p.QuantityInStock = p.QuantityInStock + i.QuantityChange
+    FROM tbProduct p
+    INNER JOIN inserted i ON p.ProductID = i.ProductID;
+END;
+GO
+----==========================Clean======================================
+WITH Dup AS (
+    SELECT TransactionID,
+           ROW_NUMBER() OVER (PARTITION BY ReferenceID, ProductID, TransactionType ORDER BY TransactionDate) AS rn
+    FROM tbInventoryTransaction
+    WHERE TransactionType = 'Sale'
+)
+DELETE FROM tbInventoryTransaction
+WHERE TransactionID IN (SELECT TransactionID FROM Dup WHERE rn > 1);
+GO
 -- =====================================
 -- Stored Procedure: Insert or Update InventoryTransaction
 -- =====================================
@@ -493,7 +476,6 @@ BEGIN
     ORDER BY AdjustmentDate DESC;
 END
 GO
-
 ---===================================
 CREATE PROCEDURE sp_GetStockAdjustmentsByProduct
     @ProductID INT

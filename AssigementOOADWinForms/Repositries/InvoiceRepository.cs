@@ -28,11 +28,54 @@ namespace AssigementOOADWinForms.Repositories
                     EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
                     EmployeeName = reader.GetString(reader.GetOrdinal("EmployeeName")),
                     TotalAmount = reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
-                    OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"))
+                    OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate")),
+                     Status = reader.GetString(reader.GetOrdinal("Status")),
                 });
             }
 
             return list;
+        }
+        public List<InvoiceDto> GetPendingInvoices()
+        {
+            var list = new List<InvoiceDto>();
+
+            using var conn = HandleConnection.GetSqlConnection();
+            using var cmd = new SqlCommand("sp_GetPendingInvoices", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                list.Add(new InvoiceDto
+                {
+                    InvoiceID = reader.GetInt32(reader.GetOrdinal("InvoiceID")),
+                    CustomerName = reader.IsDBNull(reader.GetOrdinal("CustomerName"))
+                                    ? null : reader.GetString(reader.GetOrdinal("CustomerName")),
+                    CustomerPhone = reader.IsDBNull(reader.GetOrdinal("CustomerPhone"))
+                                    ? null : reader.GetString(reader.GetOrdinal("CustomerPhone")),
+                    CustomerAddress = reader.IsDBNull(reader.GetOrdinal("CustomerAddress"))
+                                    ? null : reader.GetString(reader.GetOrdinal("CustomerAddress")),
+                    EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                    EmployeeName = reader.IsDBNull(reader.GetOrdinal("EmployeeName"))
+                                    ? null : reader.GetString(reader.GetOrdinal("EmployeeName")),
+                    OrderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate")),
+                    Status = reader.GetString(reader.GetOrdinal("Status")),
+                    TotalAmount = reader.IsDBNull(reader.GetOrdinal("TotalAmount"))
+                                    ? 0 : reader.GetDecimal(reader.GetOrdinal("TotalAmount"))
+                });
+            }
+
+            return list;
+        }
+
+        // Optional: Mark invoice as delivered
+        public void MarkAsDelivered(int invoiceId)
+        {
+            using var conn = HandleConnection.GetSqlConnection();
+            using var cmd = new SqlCommand("sp_MarkInvoiceDelivered", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
+            cmd.ExecuteNonQuery();
         }
         public List<InvoiceDto> GetAllInvoicesLatestFirst()
         {

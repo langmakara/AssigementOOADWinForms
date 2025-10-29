@@ -2,35 +2,9 @@
 namespace AssigementOOADWinForms;
 public partial class Mainform : Form
 {
-    private UserControlDashboard? userControlDashboard;
-    private UserControlInventory? userControlInventory;
-    private UserControlUser? userControlUser;
-    private UserControlEmployee? userControlEmployee;
-    private UserControlSupplier? userControlSupplier;
-    private UserControlProduct? userControlProduct;
-    private UserControlInvoiceDetail? userControlInvoiceDetail;
-    private UserControlInvoice? userControlInvoice;
-    private UserControlPurchasOrder? userControlPurchaseOrder;
-    private UserControlPayment? UserControlPayment;
-    private UserControlReport? UserControlReport;
-    private UserControlStockAdjustment? UserControlStockAdjustment;
-
     public Mainform()
     {
         InitializeComponent();
-        userControlDashboard = new UserControlDashboard();
-        userControlInventory = new UserControlInventory();
-        userControlUser = new UserControlUser();
-        userControlEmployee = new UserControlEmployee();
-        userControlSupplier = new UserControlSupplier();
-        UserControlPayment = new UserControlPayment();
-        UserControlReport = new UserControlReport();
-        userControlProduct = new UserControlProduct();
-        userControlInvoiceDetail = new UserControlInvoiceDetail();
-        userControlInvoice = new UserControlInvoice();
-        userControlPurchaseOrder = new UserControlPurchasOrder();
-        UserControlStockAdjustment = new UserControlStockAdjustment();
-
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
         Lbuser.Click += HandleClickUser;
@@ -42,11 +16,30 @@ public partial class Mainform : Form
         LbPayment.Click += HandleClickPayment;
         LbReport.Click += HandleClickReport;
         LbAdjustment.Click += HandleClickAdjustment;
+        LbInvoiceService.Click += HandleClickInvoiceService; 
         this.Load += Form1_Load;
     }
 
+    private void LbInvoiceService_Click(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void HandleClickInvoiceService(object? sender, EventArgs e)
+    {
+        var userControlInvoiceService = new UserControlInvoiceService();
+        panelMain.Controls.Clear();
+        LbPage.Text = "";
+        LbPage.Text = LbInvoiceService.Text;
+        if (userControlInvoiceService != null)
+        {
+            panelMain.Controls.Add(userControlInvoiceService);
+            userControlInvoiceService.Dock = DockStyle.Fill;
+        }
+    }
     private void HandleClickAdjustment(object? sender, EventArgs e)
     {
+        var UserControlStockAdjustment = new UserControlStockAdjustment();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbAdjustment.Text;
@@ -72,6 +65,7 @@ public partial class Mainform : Form
     }
     private void HandleClickDashBoard(object? sender, EventArgs e)
     {
+        var userControlDashboard = new UserControlDashboard();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbDash.Text;
@@ -83,6 +77,7 @@ public partial class Mainform : Form
     }
     private void HandleClickInventory(object? sender, EventArgs e)
     {
+        var userControlInventory = new UserControlInventory();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbInventory.Text;
@@ -94,6 +89,7 @@ public partial class Mainform : Form
     }
     private void HandleClickUser(object? sender, EventArgs e)
     {
+        var userControlUser = new UserControlUser();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = Lbuser.Text;
@@ -105,6 +101,7 @@ public partial class Mainform : Form
     }
     private void HandleClickEmployee(object? sender, EventArgs e)
     {
+        var userControlEmployee = new UserControlEmployee();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbEmployee.Text;
@@ -116,6 +113,7 @@ public partial class Mainform : Form
     }
     private void HandleClickSupplier(object? sender, EventArgs e)
     {
+        var userControlSupplier = new UserControlSupplier();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbSupplier.Text;
@@ -127,6 +125,7 @@ public partial class Mainform : Form
     }
     private void HandleClickProduct(object? sender, EventArgs args)
     {
+        var userControlProduct = new UserControlProduct();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = Lbproduct.Text;
@@ -138,6 +137,7 @@ public partial class Mainform : Form
     }
     private void HandleClickInvoice(object? sender, EventArgs e)
     {
+        var userControlInvoice = new UserControlInvoice();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbInvoice.Text;
@@ -149,6 +149,7 @@ public partial class Mainform : Form
     }
     private void HandleClickPurchaseOrder(object? sender, EventArgs e)
     {
+        var userControlPurchaseOrder = new UserControlPurchasOrder();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbPurchaseOrder.Text;
@@ -160,6 +161,7 @@ public partial class Mainform : Form
     }
     private void Form1_Load(object? sender, EventArgs e)
     {
+        var userControlDashboard = new UserControlDashboard();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbDash.Text;
@@ -172,6 +174,7 @@ public partial class Mainform : Form
 
     private void HandleClickPayment(object? sender, EventArgs e)
     {
+        var UserControlPayment  = new UserControlPayment();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbPayment.Text;
@@ -184,10 +187,11 @@ public partial class Mainform : Form
 
     private void HandleClickReport(object? sender, EventArgs e)
     {
+        var UserControlReport = new UserControlReport();
         panelMain.Controls.Clear();
         LbPage.Text = "";
         LbPage.Text = LbReport.Text;
-        if (userControlDashboard != null)
+        if (UserControlReport != null)
         {
             panelMain.Controls.Add(UserControlReport);
             UserControlReport.Dock = DockStyle.Fill;
