@@ -511,12 +511,22 @@ BEGIN
 
     IF @AdjustmentID IS NULL
     BEGIN
-        -- Insert
-        INSERT INTO tbStockAdjustment (ProductID, ProductName, EmployeeID, AdjustmentType, Quantity, Reason, AdjustmentDate)
+        -- Insert new stock adjustment
+        INSERT INTO tbStockAdjustment (
+            ProductID,
+            ProductName,
+            EmployeeID,
+            EmployeeName,
+            AdjustmentType,
+            Quantity,
+            Reason,
+            AdjustmentDate
+        )
         VALUES (
             @ProductID,
-            (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID), -- automatic ProductName
+            (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID),  -- Auto ProductName
             @EmployeeID,
+            (SELECT EmployeeName FROM tbEmployee WHERE EmployeeID = @EmployeeID), -- Auto EmployeeName
             @AdjustmentType,
             @Quantity,
             @Reason,
@@ -527,11 +537,12 @@ BEGIN
     END
     ELSE
     BEGIN
-        -- Update
+        -- Update existing stock adjustment
         UPDATE tbStockAdjustment
         SET ProductID = @ProductID,
-            ProductName = (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID), -- automatic ProductName
+            ProductName = (SELECT ProductName FROM tbProduct WHERE ProductID = @ProductID),
             EmployeeID = @EmployeeID,
+            EmployeeName = (SELECT EmployeeName FROM tbEmployee WHERE EmployeeID = @EmployeeID),
             AdjustmentType = @AdjustmentType,
             Quantity = @Quantity,
             Reason = @Reason,
@@ -540,7 +551,6 @@ BEGIN
     END
 END
 GO
-
 CREATE OR ALTER PROCEDURE sp_DeleteStockAdjustment
     @AdjustmentID INT
 AS

@@ -262,9 +262,9 @@
             label3.ForeColor = Color.FromArgb(64, 64, 64);
             label3.Location = new Point(512, 139);
             label3.Name = "label3";
-            label3.Size = new Size(182, 28);
+            label3.Size = new Size(259, 28);
             label3.TabIndex = 39;
-            label3.Text = "Top5 Products Sold";
+            label3.Text = "Top5 Products Sold Vs Stock";
             // 
             // pbStockVsSales
             // 
