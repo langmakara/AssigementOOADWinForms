@@ -43,7 +43,7 @@
             tbEmployeeID = new TextBox();
             lbSupplierID = new Label();
             tbSupplierID = new TextBox();
-            tbPurchaseID = new TextBox();
+            tbSearchEmployeeName = new TextBox();
             dgvPurchase = new DataGridView();
             panel2 = new Panel();
             lbPurchaseID = new Label();
@@ -232,15 +232,15 @@
             tbSupplierID.Size = new Size(355, 48);
             tbSupplierID.TabIndex = 54;
             // 
-            // tbPurchaseID
+            // tbSearchEmployeeName
             // 
-            tbPurchaseID.Font = new Font("Segoe UI", 15F);
-            tbPurchaseID.Location = new Point(8, 58);
-            tbPurchaseID.Margin = new Padding(3, 4, 3, 4);
-            tbPurchaseID.Multiline = true;
-            tbPurchaseID.Name = "tbPurchaseID";
-            tbPurchaseID.Size = new Size(267, 41);
-            tbPurchaseID.TabIndex = 72;
+            tbSearchEmployeeName.Font = new Font("Segoe UI", 15F);
+            tbSearchEmployeeName.Location = new Point(8, 58);
+            tbSearchEmployeeName.Margin = new Padding(3, 4, 3, 4);
+            tbSearchEmployeeName.Multiline = true;
+            tbSearchEmployeeName.Name = "tbSearchEmployeeName";
+            tbSearchEmployeeName.Size = new Size(378, 41);
+            tbSearchEmployeeName.TabIndex = 72;
             // 
             // dgvPurchase
             // 
@@ -257,7 +257,7 @@
             // 
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(lbPurchaseID);
-            panel2.Controls.Add(tbPurchaseID);
+            panel2.Controls.Add(tbSearchEmployeeName);
             panel2.Location = new Point(3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(888, 122);
@@ -271,9 +271,9 @@
             lbPurchaseID.ForeColor = Color.White;
             lbPurchaseID.Location = new Point(8, 22);
             lbPurchaseID.Name = "lbPurchaseID";
-            lbPurchaseID.Size = new Size(143, 35);
+            lbPurchaseID.Size = new Size(283, 35);
             lbPurchaseID.TabIndex = 78;
-            lbPurchaseID.Text = "PurchaseID";
+            lbPurchaseID.Text = "Search Employee Name";
             // 
             // btClear
             // 
@@ -366,7 +366,7 @@
         private TextBox tbEmployeeID;
         private Label lbSupplierID;
         private TextBox tbSupplierID;
-        private TextBox tbPurchaseID;
+        private TextBox tbSearchEmployeeName;
         private DataGridView dgvPurchase;
         private DateTimePicker DTPOrderDate;
         private Panel panel2;

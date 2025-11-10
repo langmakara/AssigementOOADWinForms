@@ -214,13 +214,15 @@ namespace AssigementOOADWinForms.Controls
         // ===============================
         private void HandleClearTextBox(object? sender, EventArgs e)
         {
-            tbEmployeeID.Clear();
-            tbName.Clear();
-            tbPhone.Clear();
-            tbEmail.Clear();
-            tbAddress.Clear();
-            tbPosition.Clear();
+            tbEmployeeID.Text = "";
+            tbName.Text = "";
+            tbPhone.Text = "";
+            tbEmail.Text = "";
+            tbAddress.Text = "";
+            tbPosition.Text = "";
             dtpHireDate.Value = DateTime.Now;
+
+            dgvemployee.ClearSelection();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

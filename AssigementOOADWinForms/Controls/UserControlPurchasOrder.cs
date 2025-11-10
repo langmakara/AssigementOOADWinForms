@@ -14,6 +14,7 @@ namespace AssigementOOADWinForms.Controls
     {
         private List<PurchaseOrderDto> purchaseOrderDtos = new();
         private readonly PurchaseOrderService _purchaseOrderService = new();
+        private readonly BindingSource purchaseBinding = new();
 
         public UserControlPurchasOrder()
         {
@@ -26,19 +27,32 @@ namespace AssigementOOADWinForms.Controls
             // DataGridView config
             dgvPurchase.SelectionChanged += SelectionRowChanges;
             dgvPurchase.CellPainting += DesignHelper.dataGridView1_CellPainting;
+            dgvPurchase.DataError += DgvPurchase_DataError; // suppress default error dialog
             dgvPurchase.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPurchase.AutoGenerateColumns = true;
+            // Bind via BindingSource to avoid CurrencyManager / index issues
+            dgvPurchase.DataSource = purchaseBinding;
             // Events
             btClear.Click += HandleClearTextBox;
             btSave.Click += HandleSavePurchaseOrder;
             btRemove.Click += HandleRemovePurchaseOrder;
-            tbPurchaseID.TextChanged += (s, e) => FilterPurchaseOrders();
+            // Filter should respond to EmployeeName input
+            tbSearchEmployeeName.TextChanged += (s, e) => FilterPurchaseOrders();
             btnCreatePurchase.Click += (s, e) => HandleChangeUserControlInvoiceToCreatePurchasDetail();
             this.Load += (s, e) => LoadPurchaseOrders();
         }
+
+        private void DgvPurchase_DataError(object? sender, DataGridViewDataErrorEventArgs e)
+        {
+            // Prevent the default DataGridView error dialog and stop propagation.
+            // For debugging you can log e.Exception, column/row indexes.
+            e.ThrowException = false;
+            e.Cancel = true;
+        }
+
         private void HandleChangeUserControlInvoiceToCreatePurchasDetail()
         {
-            if(this.FindForm() is Mainform main)
+            if (this.FindForm() is Mainform main)
             {
                 main.HandleUserControlReplacseItselfMainForm(new UserControlPurchaseDetail(), "PurchaseDetail");
             }
@@ -61,8 +75,11 @@ namespace AssigementOOADWinForms.Controls
                     OrderDate = p.OrderDate,
                     TotalAmount = p.TotalAmount
                 }).ToList();
-                dgvPurchase.DataSource = null;
-                dgvPurchase.DataSource = purchaseOrderDtos;
+
+                // Use BindingSource to safely update grid
+                purchaseBinding.DataSource = null;
+                purchaseBinding.DataSource = purchaseOrderDtos;
+                dgvPurchase.ClearSelection();
             }
             catch (SqlException sqlEx)
             {
@@ -74,16 +91,44 @@ namespace AssigementOOADWinForms.Controls
             }
         }
         // ===============================
-        // Filter PurchaseOrders based on search criteria
+        // Filter PurchaseOrders by EmployeeName
         // ===============================
         private void FilterPurchaseOrders()
         {
-            var filteredList = purchaseOrderDtos.AsEnumerable();
-            if (int.TryParse(tbPurchaseID.Text, out int purchaseId))
+            try
             {
-                filteredList = filteredList.Where(p => p.PurchaseID == purchaseId);
+                if (purchaseOrderDtos == null || purchaseOrderDtos.Count == 0)
+                {
+                    purchaseBinding.DataSource = null;
+                    return;
+                }
+
+                var filtered = purchaseOrderDtos.AsEnumerable();
+
+                // Use employee name textbox for searching
+                var searchName = tbSearchEmployeeName.Text.Trim();
+                if (!string.IsNullOrEmpty(searchName))
+                {
+                    filtered = filtered.Where(e => !string.IsNullOrEmpty(e.EmployeeName) &&
+                                                   e.EmployeeName.Contains(searchName, StringComparison.OrdinalIgnoreCase));
+                }
+
+                // Update binding source safely
+                dgvPurchase.SelectionChanged -= SelectionRowChanges;
+                try
+                {
+                    purchaseBinding.DataSource = filtered.ToList();
+                    dgvPurchase.ClearSelection();
+                }
+                finally
+                {
+                    dgvPurchase.SelectionChanged += SelectionRowChanges;
+                }
             }
-            dgvPurchase.DataSource = filteredList.ToList();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while filtering: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         // ===============================
         // Clear all input fields
@@ -104,18 +149,21 @@ namespace AssigementOOADWinForms.Controls
         // -------------------------
         private void SelectionRowChanges(object sender, EventArgs e)
         {
-            var map = new Dictionary<string, Control>
-            {
-                { "PurchaseID", tbPuchaseOderID },
-                { "SupplierID", tbSupplierID },
-                {"SupplierName", tbSupplierName },
-                { "EmployeeID", tbEmployeeID },
-                { "EmployeeName", tbEmployeeName },
-                { "OrderDate", DTPOrderDate },
-                { "TotalAmount", tbTotal }
-            };
+            // Defensive: ensure there is a valid current row and data
+            if (dgvPurchase.CurrentRow == null)
+                return;
 
-            DesignHelper.PopulateRowControls(dgvPurchase, map);
+            if (dgvPurchase.CurrentRow.DataBoundItem is not PurchaseOrderDto dto)
+                return;
+
+            // Populate controls directly from the DTO to avoid index/column binding issues
+            tbPuchaseOderID.Text = dto.PurchaseID.ToString();
+            tbSupplierID.Text = dto.SupplierID?.ToString() ?? string.Empty;
+            tbSupplierName.Text = dto.SupplierName ?? string.Empty;
+            tbEmployeeID.Text = dto.EmployeeID?.ToString() ?? string.Empty;
+            tbEmployeeName.Text = dto.EmployeeName ?? string.Empty;
+            DTPOrderDate.Value = dto.OrderDate;
+            tbTotal.Text = dto.TotalAmount.ToString("F2");
         }
         // ===============================
         // CRUD Logic
@@ -146,7 +194,8 @@ namespace AssigementOOADWinForms.Controls
 
                 var model = new PurchaseOrder
                 {
-                    PurchaseID = string.IsNullOrWhiteSpace(tbPurchaseID.Text) ? 0 : int.Parse(tbPurchaseID.Text),
+                    // Use the purchase-order textbox that this form actually uses
+                    PurchaseID = string.IsNullOrWhiteSpace(tbPuchaseOderID.Text) ? 0 : int.Parse(tbPuchaseOderID.Text),
                     SupplierID = supplierId,
                     EmployeeID = employeeId,
                     OrderDate = DTPOrderDate.Value,

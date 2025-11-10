@@ -109,7 +109,7 @@ partial class FormLogin
         // 
         lbExit.Anchor = AnchorStyles.None;
         lbExit.AutoSize = true;
-        lbExit.BackColor = Color.Silver;
+        lbExit.BackColor = SystemColors.Control;
         lbExit.Font = new Font("Microsoft Tai Le", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         lbExit.ForeColor = Color.FromArgb(0, 117, 214);
         lbExit.Location = new Point(193, 622);
@@ -123,7 +123,7 @@ partial class FormLogin
         // 
         lbClearFields.Anchor = AnchorStyles.None;
         lbClearFields.AutoSize = true;
-        lbClearFields.BackColor = Color.Silver;
+        lbClearFields.BackColor = SystemColors.Control;
         lbClearFields.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         lbClearFields.ForeColor = Color.FromArgb(0, 117, 214);
         lbClearFields.Location = new Point(298, 516);
@@ -136,7 +136,7 @@ partial class FormLogin
         // tbUser
         // 
         tbUser.Anchor = AnchorStyles.None;
-        tbUser.BackColor = Color.Silver;
+        tbUser.BackColor = SystemColors.Control;
         tbUser.BorderStyle = BorderStyle.None;
         tbUser.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
         tbUser.ForeColor = Color.FromArgb(0, 117, 214);
@@ -148,7 +148,7 @@ partial class FormLogin
         // tbPassword
         // 
         tbPassword.Anchor = AnchorStyles.None;
-        tbPassword.BackColor = Color.Silver;
+        tbPassword.BackColor = SystemColors.Control;
         tbPassword.BorderStyle = BorderStyle.None;
         tbPassword.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
         tbPassword.ForeColor = Color.FromArgb(0, 117, 214);
@@ -168,7 +168,7 @@ partial class FormLogin
         // 
         // panel3
         // 
-        panel3.BackColor = Color.Silver;
+        panel3.BackColor = SystemColors.Control;
         panel3.Controls.Add(label2);
         panel3.Controls.Add(label1);
         panel3.Controls.Add(panel2);
