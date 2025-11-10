@@ -26,9 +26,6 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.StyleDataGridView(dataGridView1);
             DesignHelper.StyleDataGridView(DataViewOutOfStock);
 
-            dataGridView1.CellPainting += DesignHelper.dataGridView1_CellPainting;
-            DataViewOutOfStock.CellPainting += DesignHelper.dataGridView1_CellPainting;
-
             this.Load += (s, e) => LoadDashboard();
 
             // Double buffering for smooth animation

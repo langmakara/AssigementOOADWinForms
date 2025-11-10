@@ -22,7 +22,6 @@ namespace AssigementOOADWinForms.Controls
 
             DesignHelper.MakeAllInputs(this);
             DesignHelper.StyleDataGridView(dgvInvoicedetail);
-            dgvInvoicedetail.CellPainting += DesignHelper.dataGridView1_CellPainting;
             dgvInvoicedetail.SelectionChanged += (s, e) => SelectionRowChanges();
 
             LoadComboProduct();

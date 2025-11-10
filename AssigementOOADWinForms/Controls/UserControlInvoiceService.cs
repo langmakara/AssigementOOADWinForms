@@ -21,8 +21,6 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             DesignHelper.StyleDataGridView(dvgInvoiceService);
-            dvgInvoiceService.CellPainting += DesignHelper.dataGridView1_CellPainting;
-
             DataGridViewCheckBoxColumn deliveredCol = new DataGridViewCheckBoxColumn();
             deliveredCol.Name = "Delivered";
             deliveredCol.HeaderText = "Delivered";
@@ -56,6 +54,8 @@ namespace AssigementOOADWinForms.Controls
             {
                 dvgInvoiceService.Columns["Delivered"].DisplayIndex = dvgInvoiceService.Columns.Count - 1;
             }
+            var hiddenColumns = new List<string> { "InvoiceID", "EmployeeID", "DisplayText" };
+            DesignHelper.HideColumns(dvgInvoiceService, hiddenColumns);
         }
         public void MarkAsDelivered(int invoiceId)
         {

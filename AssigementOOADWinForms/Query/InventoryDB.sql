@@ -48,7 +48,6 @@ CREATE TABLE tbProduct (
     SupplierPhone VARCHAR(50),
     UnitPrice DECIMAL(18,2) NOT NULL,
     QuantityInStock INT DEFAULT 0,
-    ReorderLevel INT DEFAULT 0,
     CreatedAt DATETIME DEFAULT GETDATE(),
     CONSTRAINT FK_tbProduct_tbSupplier FOREIGN KEY (SupplierID) REFERENCES tbSupplier(SupplierID)
 );

@@ -54,13 +54,13 @@
             // 
             // dgvProduct
             // 
+            dgvProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProduct.BackgroundColor = Color.White;
             dgvProduct.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProduct.Location = new Point(4, 123);
-            dgvProduct.Margin = new Padding(3, 4, 3, 4);
+            dgvProduct.Location = new Point(4, 92);
             dgvProduct.Name = "dgvProduct";
             dgvProduct.RowHeadersWidth = 51;
-            dgvProduct.Size = new Size(875, 758);
+            dgvProduct.Size = new Size(766, 568);
             dgvProduct.TabIndex = 116;
             dgvProduct.CellClick += dgvProduct_CellClick;
             // 
@@ -79,31 +79,28 @@
             panel1.Controls.Add(tbQuantity);
             panel1.Controls.Add(tbProductName);
             panel1.Controls.Add(tbSupplierName);
-            panel1.Location = new Point(881, 4);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Location = new Point(771, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(383, 655);
+            panel1.Size = new Size(335, 491);
             panel1.TabIndex = 123;
             // 
             // tbProductID
             // 
             tbProductID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbProductID.Location = new Point(16, 73);
-            tbProductID.Margin = new Padding(3, 4, 3, 4);
+            tbProductID.Location = new Point(14, 55);
             tbProductID.Multiline = true;
             tbProductID.Name = "tbProductID";
             tbProductID.ReadOnly = true;
-            tbProductID.Size = new Size(346, 48);
+            tbProductID.Size = new Size(303, 37);
             tbProductID.TabIndex = 135;
             // 
             // tbUnitPrice
             // 
             tbUnitPrice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbUnitPrice.Location = new Point(20, 459);
-            tbUnitPrice.Margin = new Padding(3, 4, 3, 4);
+            tbUnitPrice.Location = new Point(18, 344);
             tbUnitPrice.Multiline = true;
             tbUnitPrice.Name = "tbUnitPrice";
-            tbUnitPrice.Size = new Size(346, 48);
+            tbUnitPrice.Size = new Size(303, 37);
             tbUnitPrice.TabIndex = 134;
             // 
             // lbUnitPrice
@@ -113,9 +110,9 @@
             lbUnitPrice.Cursor = Cursors.Hand;
             lbUnitPrice.Font = new Font("Segoe UI", 15F);
             lbUnitPrice.ForeColor = Color.White;
-            lbUnitPrice.Location = new Point(16, 421);
+            lbUnitPrice.Location = new Point(14, 316);
             lbUnitPrice.Name = "lbUnitPrice";
-            lbUnitPrice.Size = new Size(114, 35);
+            lbUnitPrice.Size = new Size(91, 28);
             lbUnitPrice.TabIndex = 132;
             lbUnitPrice.Text = "UnitPrice";
             // 
@@ -126,20 +123,19 @@
             lbQauntity.Cursor = Cursors.Hand;
             lbQauntity.Font = new Font("Segoe UI", 15F);
             lbQauntity.ForeColor = Color.White;
-            lbQauntity.Location = new Point(16, 512);
+            lbQauntity.Location = new Point(14, 384);
             lbQauntity.Name = "lbQauntity";
-            lbQauntity.Size = new Size(109, 35);
+            lbQauntity.Size = new Size(88, 28);
             lbQauntity.TabIndex = 130;
             lbQauntity.Text = "Qauntity";
             // 
             // tbSupplierID
             // 
             tbSupplierID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierID.Location = new Point(20, 269);
-            tbSupplierID.Margin = new Padding(3, 4, 3, 4);
+            tbSupplierID.Location = new Point(18, 202);
             tbSupplierID.Multiline = true;
             tbSupplierID.Name = "tbSupplierID";
-            tbSupplierID.Size = new Size(346, 48);
+            tbSupplierID.Size = new Size(303, 37);
             tbSupplierID.TabIndex = 131;
             // 
             // label6
@@ -149,9 +145,9 @@
             label6.Cursor = Cursors.Hand;
             label6.Font = new Font("Segoe UI", 15F);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(16, 34);
+            label6.Location = new Point(14, 26);
             label6.Name = "label6";
-            label6.Size = new Size(322, 35);
+            label6.Size = new Size(252, 28);
             label6.TabIndex = 129;
             label6.Text = "Product ID(Auto Increment)";
             // 
@@ -162,9 +158,9 @@
             label5.Cursor = Cursors.Hand;
             label5.Font = new Font("Segoe UI", 15F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(20, 231);
+            label5.Location = new Point(18, 173);
             label5.Name = "label5";
-            label5.Size = new Size(131, 35);
+            label5.Size = new Size(104, 28);
             label5.TabIndex = 118;
             label5.Text = "SupplierID";
             // 
@@ -175,9 +171,9 @@
             lbProductName.Cursor = Cursors.Hand;
             lbProductName.Font = new Font("Segoe UI", 15F);
             lbProductName.ForeColor = Color.White;
-            lbProductName.Location = new Point(16, 135);
+            lbProductName.Location = new Point(14, 101);
             lbProductName.Name = "lbProductName";
-            lbProductName.Size = new Size(176, 35);
+            lbProductName.Size = new Size(138, 28);
             lbProductName.TabIndex = 122;
             lbProductName.Text = "Product Name";
             // 
@@ -188,40 +184,37 @@
             lbSupplier.Cursor = Cursors.Hand;
             lbSupplier.Font = new Font("Segoe UI", 15F);
             lbSupplier.ForeColor = Color.White;
-            lbSupplier.Location = new Point(19, 324);
+            lbSupplier.Location = new Point(17, 243);
             lbSupplier.Name = "lbSupplier";
-            lbSupplier.Size = new Size(173, 35);
+            lbSupplier.Size = new Size(137, 28);
             lbSupplier.TabIndex = 115;
             lbSupplier.Text = "SupplierName";
             // 
             // tbQuantity
             // 
             tbQuantity.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbQuantity.Location = new Point(19, 551);
-            tbQuantity.Margin = new Padding(3, 4, 3, 4);
+            tbQuantity.Location = new Point(17, 413);
             tbQuantity.Multiline = true;
             tbQuantity.Name = "tbQuantity";
-            tbQuantity.Size = new Size(347, 48);
+            tbQuantity.Size = new Size(304, 37);
             tbQuantity.TabIndex = 116;
             // 
             // tbProductName
             // 
             tbProductName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbProductName.Location = new Point(16, 173);
-            tbProductName.Margin = new Padding(3, 4, 3, 4);
+            tbProductName.Location = new Point(14, 130);
             tbProductName.Multiline = true;
             tbProductName.Name = "tbProductName";
-            tbProductName.Size = new Size(346, 48);
+            tbProductName.Size = new Size(303, 37);
             tbProductName.TabIndex = 114;
             // 
             // tbSupplierName
             // 
             tbSupplierName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSupplierName.Location = new Point(20, 365);
-            tbSupplierName.Margin = new Padding(3, 4, 3, 4);
+            tbSupplierName.Location = new Point(18, 274);
             tbSupplierName.Multiline = true;
             tbSupplierName.Name = "tbSupplierName";
-            tbSupplierName.Size = new Size(346, 48);
+            tbSupplierName.Size = new Size(303, 37);
             tbSupplierName.TabIndex = 117;
             // 
             // panel2
@@ -229,20 +222,18 @@
             panel2.BackColor = Color.DodgerBlue;
             panel2.Controls.Add(tbSeach);
             panel2.Controls.Add(lbSeach);
-            panel2.Location = new Point(3, 4);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(876, 111);
+            panel2.Size = new Size(766, 83);
             panel2.TabIndex = 124;
             // 
             // tbSeach
             // 
             tbSeach.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            tbSeach.Location = new Point(31, 32);
-            tbSeach.Margin = new Padding(3, 4, 3, 4);
+            tbSeach.Location = new Point(27, 24);
             tbSeach.Multiline = true;
             tbSeach.Name = "tbSeach";
-            tbSeach.Size = new Size(518, 43);
+            tbSeach.Size = new Size(454, 33);
             tbSeach.TabIndex = 132;
             tbSeach.TextChanged += tbSeach_TextChanged;
             // 
@@ -253,10 +244,10 @@
             lbSeach.Cursor = Cursors.Hand;
             lbSeach.Font = new Font("Segoe UI", 15F);
             lbSeach.ForeColor = SystemColors.Highlight;
-            lbSeach.Location = new Point(562, 32);
+            lbSeach.Location = new Point(492, 24);
             lbSeach.Name = "lbSeach";
-            lbSeach.Padding = new Padding(0, 4, 0, 3);
-            lbSeach.Size = new Size(274, 42);
+            lbSeach.Padding = new Padding(0, 3, 0, 2);
+            lbSeach.Size = new Size(215, 33);
             lbSeach.TabIndex = 126;
             lbSeach.Text = "Seach By ProductName";
             // 
@@ -267,10 +258,10 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(881, 772);
+            button3.Location = new Point(771, 579);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
-            button3.Size = new Size(380, 60);
+            button3.Size = new Size(332, 45);
             button3.TabIndex = 128;
             button3.Text = "Clear";
             button3.UseVisualStyleBackColor = false;
@@ -283,10 +274,10 @@
             btSave.FlatAppearance.BorderSize = 0;
             btSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btSave.ForeColor = Color.White;
-            btSave.Location = new Point(881, 695);
+            btSave.Location = new Point(771, 521);
             btSave.Margin = new Padding(0);
             btSave.Name = "btSave";
-            btSave.Size = new Size(383, 60);
+            btSave.Size = new Size(335, 45);
             btSave.TabIndex = 125;
             btSave.Text = "Save";
             btSave.UseVisualStyleBackColor = false;
@@ -294,7 +285,7 @@
             // 
             // UserControlProduct
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             Controls.Add(button3);
@@ -302,9 +293,8 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(dgvProduct);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "UserControlProduct";
-            Size = new Size(1264, 885);
+            Size = new Size(1106, 664);
             ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -18,7 +18,6 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             DesignHelper.StyleDataGridView(dgvStockAdjustments);
-            dgvStockAdjustments.CellPainting += DesignHelper.dataGridView1_CellPainting!;
         }
 
         private void btSave_Click(object sender, EventArgs e)

@@ -15,7 +15,6 @@ public partial class UserControlInvoice : UserControl
 
         DesignHelper.MakeAllInputs(this);
         DesignHelper.StyleDataGridView(dgvInvoice);
-        dgvInvoice.CellPainting += DesignHelper.dataGridView1_CellPainting;
         btnClear.Click += HandleClearTextBox;
         dgvInvoice.SelectionChanged += (s, e) => SelectionRowChanges();
         dgvInvoice.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
