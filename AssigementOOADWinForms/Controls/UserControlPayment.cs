@@ -20,7 +20,6 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             DesignHelper.StyleDataGridView(dgvPayment);
-            dgvPayment.CellPainting += DesignHelper.dataGridView1_CellPainting!;
             LoadPayment();
         }
         private void button3_Click(object sender, EventArgs e)

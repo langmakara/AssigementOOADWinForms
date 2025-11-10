@@ -17,7 +17,6 @@ namespace AssigementOOADWinForms.Controls
         {
             InitializeComponent();
             DesignHelper.StyleDataGridView(dgvProduct);
-            dgvProduct.CellPainting += DesignHelper.dataGridView1_CellPainting;
             LoadProductData();
             LoadProduct();
         }
@@ -67,9 +66,6 @@ namespace AssigementOOADWinForms.Controls
         {
             var dt = _service.GetAllProducts();
             dgvProduct.DataSource = dt;
-            // Hide SupplierName and Email columns
-            if (dgvProduct.Columns["SupplierName"] != null)
-                dgvProduct.Columns["SupplierName"].Visible = false;
         }
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
@@ -98,10 +94,9 @@ namespace AssigementOOADWinForms.Controls
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvProduct.DataSource = dt;
-                // Hide SupplierName and Email columns
-                if (dgvProduct.Columns["SupplierName"] != null)
-                    dgvProduct.Columns["SupplierName"].Visible = false;
             }
+            var hiddenColumns = new List<string> { "SupplierID", "ProductID", };
+            DesignHelper.HideColumns(dgvProduct, hiddenColumns);
         }
 
         private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)

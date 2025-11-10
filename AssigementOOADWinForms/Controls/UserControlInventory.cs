@@ -29,7 +29,6 @@ namespace AssigementOOADWinForms.Controls
             // ===== UI Design Helpers =====
             DesignHelper.MakeAllInputs(this);
             DesignHelper.StyleDataGridView(dgvinventory);
-            dgvinventory.CellPainting += DesignHelper.dataGridView1_CellPainting;
 
             // ===== Event Bindings (Form Logic) =====
             dateTimeSearchStart.ValueChanged += (s, e) => FilterTransactions();

@@ -460,6 +460,7 @@
             Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            WindowState = FormWindowState.Minimized;
             Load += Form1_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
