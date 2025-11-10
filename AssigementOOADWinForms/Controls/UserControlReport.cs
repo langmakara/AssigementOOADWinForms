@@ -19,7 +19,7 @@ namespace AssigementOOADWinForms.Controls
             DesignHelper.StyleDataGridView(DGVreport);
 
             //Event Handlers
-            SeachCustomer.TextChanged += (s, e) => FilterTransactions();
+            //SeachCustomer.TextChanged += (s, e) => FilterTransactions();
             SeachSupplier.TextChanged += (s, e) => FilterTransactions();
             btnLoadImport.Click += HandleImport;
             btnLoadExport.Click += HandleExport;
@@ -60,7 +60,7 @@ namespace AssigementOOADWinForms.Controls
         {
             try
             {
-                string customerKeyboard = SeachCustomer.Text.Trim();
+                //string customerKeyboard = SeachCustomer.Text.Trim();
                 string supplierKeyboard = SeachSupplier.Text.Trim();
 
                 DateTime? startDate = dateSearchStart.Checked ? dateSearchStart.Value.Date : (DateTime?)null;
@@ -71,11 +71,11 @@ namespace AssigementOOADWinForms.Controls
                 var parameters = new Dictionary<string, object?>();
 
                 // Assumes views expose CustomerName and SupplierName columns — adjust if different
-                if (!string.IsNullOrEmpty(customerKeyboard))
-                {
-                    whereClauses.Add("CustomerName LIKE @Customer");
-                    parameters.Add("@Customer", $"%{customerKeyboard}%");
-                }
+                //if (!string.IsNullOrEmpty(customerKeyboard))
+                //{
+                //    whereClauses.Add("CustomerName LIKE @Customer");
+                //    parameters.Add("@Customer", $"%{customerKeyboard}%");
+                //}
 
                 if (!string.IsNullOrEmpty(supplierKeyboard))
                 {
@@ -147,6 +147,11 @@ namespace AssigementOOADWinForms.Controls
             {
                 MessageBox.Show($"Failed to load report data:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

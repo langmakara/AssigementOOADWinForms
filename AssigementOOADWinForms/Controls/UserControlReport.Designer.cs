@@ -29,17 +29,15 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            label4 = new Label();
+            label3 = new Label();
             SeachSupplier = new TextBox();
             label2 = new Label();
             btnLoadExport = new Button();
             btnLoadImport = new Button();
-            SeachCustomer = new TextBox();
-            label1 = new Label();
             dateSearchStart = new DateTimePicker();
             dateSearchEnd = new DateTimePicker();
             DGVreport = new DataGridView();
-            label3 = new Label();
-            label4 = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGVreport).BeginInit();
             SuspendLayout();
@@ -53,8 +51,6 @@
             panel2.Controls.Add(label2);
             panel2.Controls.Add(btnLoadExport);
             panel2.Controls.Add(btnLoadImport);
-            panel2.Controls.Add(SeachCustomer);
-            panel2.Controls.Add(label1);
             panel2.Controls.Add(dateSearchStart);
             panel2.Controls.Add(dateSearchEnd);
             panel2.Location = new Point(3, 4);
@@ -62,12 +58,36 @@
             panel2.Size = new Size(1259, 109);
             panel2.TabIndex = 52;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Cursor = Cursors.IBeam;
+            label4.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(694, 6);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 35);
+            label4.TabIndex = 146;
+            label4.Text = "End";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Cursor = Cursors.IBeam;
+            label3.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(461, 7);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 35);
+            label3.TabIndex = 145;
+            label3.Text = "Start";
+            // 
             // SeachSupplier
             // 
             SeachSupplier.Font = new Font("Segoe UI", 16F);
-            SeachSupplier.Location = new Point(235, 46);
+            SeachSupplier.Location = new Point(34, 46);
             SeachSupplier.Name = "SeachSupplier";
-            SeachSupplier.Size = new Size(197, 43);
+            SeachSupplier.Size = new Size(371, 43);
             SeachSupplier.TabIndex = 144;
             // 
             // label2
@@ -76,11 +96,12 @@
             label2.Cursor = Cursors.IBeam;
             label2.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(233, 6);
+            label2.Location = new Point(34, 7);
             label2.Name = "label2";
-            label2.Size = new Size(184, 35);
+            label2.Size = new Size(258, 35);
             label2.TabIndex = 143;
-            label2.Text = "Seach Supplier";
+            label2.Text = "Seach Supplier Name";
+            label2.Click += label2_Click;
             // 
             // btnLoadExport
             // 
@@ -111,26 +132,6 @@
             btnLoadImport.TabIndex = 141;
             btnLoadImport.Text = "Import";
             btnLoadImport.UseVisualStyleBackColor = false;
-            // 
-            // SeachCustomer
-            // 
-            SeachCustomer.Font = new Font("Segoe UI", 16F);
-            SeachCustomer.Location = new Point(30, 46);
-            SeachCustomer.Name = "SeachCustomer";
-            SeachCustomer.Size = new Size(197, 43);
-            SeachCustomer.TabIndex = 138;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Cursor = Cursors.IBeam;
-            label1.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(28, 6);
-            label1.Name = "label1";
-            label1.Size = new Size(199, 35);
-            label1.TabIndex = 137;
-            label1.Text = "Seach Customer";
             // 
             // dateSearchStart
             // 
@@ -168,30 +169,6 @@
             DGVreport.Size = new Size(1258, 763);
             DGVreport.TabIndex = 53;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Cursor = Cursors.IBeam;
-            label3.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(461, 7);
-            label3.Name = "label3";
-            label3.Size = new Size(69, 35);
-            label3.TabIndex = 145;
-            label3.Text = "Start";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Cursor = Cursors.IBeam;
-            label4.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(694, 6);
-            label4.Name = "label4";
-            label4.Size = new Size(58, 35);
-            label4.TabIndex = 146;
-            label4.Text = "End";
-            // 
             // UserControlReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -213,8 +190,6 @@
         private DataGridView DGVreport;
         private DateTimePicker dateSearchStart;
         private DateTimePicker dateSearchEnd;
-        private Label label1;
-        private TextBox SeachCustomer;
         private Button btnLoadExport;
         private Button btnLoadImport;
         private TextBox SeachSupplier;
