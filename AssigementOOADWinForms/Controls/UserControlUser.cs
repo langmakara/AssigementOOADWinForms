@@ -121,6 +121,7 @@ namespace AssigementOOADWinForms.Controls
                 // Update DataGridView
                 dgvuser.DataSource = null;
                 dgvuser.DataSource = filteredList;
+                HideSensitiveColumns();
 
                 // ✅ Update total for filtered results
                 lbUserTotal.Text = filteredList.Count.ToString("N0");
@@ -152,6 +153,7 @@ namespace AssigementOOADWinForms.Controls
 
             // Display filtered users
             lbUserTotal.Text = usersList.Count.ToString();
+            HideSensitiveColumns();
         }
 
         // ===============================
@@ -209,7 +211,6 @@ namespace AssigementOOADWinForms.Controls
                 _userService.SaveUser(model);
 
                 LoadUsers(); // Refresh user list and total
-                MessageBox.Show("User saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
