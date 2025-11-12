@@ -63,6 +63,7 @@ BEGIN
     END
 END;
 --StoreProcedure to Insert or Update Payment information
+Go
 CREATE PROCEDURE sp_InsertOrUpdatePayment
     @PaymentID INT = NULL,
     @InvoiceID INT,

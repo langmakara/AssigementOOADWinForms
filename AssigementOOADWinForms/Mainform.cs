@@ -5,6 +5,14 @@ public partial class Mainform : Form
     public Mainform()
     {
         InitializeComponent();
+        this.StartPosition = FormStartPosition.CenterScreen;
+        this.Load += (s, e) =>
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
+            this.BringToFront();
+            this.Focus();
+        };
         LbDash.Click += HandleClickDashBoard;
         LbInventory.Click += HandleClickInventory;
         Lbuser.Click += HandleClickUser;
